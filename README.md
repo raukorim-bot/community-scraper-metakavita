@@ -40,14 +40,15 @@ No rebuild of the MetaKavita image is required.
 | [`locg.py`](locg.py) | `LOCG` | Comic | **Required** | Yes | LoCG API — `client_id:client_secret` in `LOCG_API_KEY` |
 | [`isbndb.py`](isbndb.py) | `ISBNDB` | Book | **Required** | Yes | [ISBNdb](https://isbndb.com/apidocs/v2) REST key → `ISBNDB_API_KEY` |
 | [`bdgest.py`](bdgest.py) | `BDGEST` | Comic | None | Yes | BDgest / Bédéthèque best-effort HTML (finetune later) |
+| [`gcd.py`](gcd.py) | `GCD` | Comic | Optional Basic | Yes* | Grand Comics Database — JSON `/api/` (HTML is CF-blocked) |
 
-\*Bangumi expects a proper User-Agent (handled by the scraper).
+\*Bangumi expects a proper User-Agent (handled by the scraper).  
+\*GCD cover URLs are on `files1.comics.org` (may need proxy / browser-like fetch).
 
 ### Skipped / blocked for now
 
 | Provider | Reason |
 |----------|--------|
-| Grand Comics Database (comics.org) | Cloudflare JS challenge |
 | LibraryThing | Cloudflare JS challenge |
 | Goodreads | Terms / anti-bot — not pursued |
 | Nautiljon | IP bans / aggressive anti-bot (historical) |
@@ -61,6 +62,8 @@ No rebuild of the MetaKavita image is required.
 **ISBNdb** — REST key from isbndb.com dashboard → `ISBNDB_API_KEY`.
 
 **Novel Updates** — optional: browser `cf_clearance` cookie string in `NOVELUPDATES_API_KEY` (without it, CF usually blocks).
+
+**GCD** — optional comics.org account as `user:password` in `GCD_API_KEY` (Basic auth, higher API quota). HTML is CF-blocked; scraper uses `/api/` only.
 
 ---
 
