@@ -4,7 +4,7 @@ Official community repository for **plug-and-play** metadata scrapers for [MetaK
 
 Drop a `.py` file into your MetaKavita `data/scrapers/` folder, restart, and the provider appears in the UI.
 
-> **Security:** installing a scraper runs arbitrary Python with the same privileges as MetaKavita. Only install files from this repository (or sources you trust). Read MetaKavita’s `CUSTOM_SCRAPERS.md` before installing third-party code.
+> **Security:** installing a scraper runs arbitrary Python with the same privileges as MetaKavita. Only install files from this repository (or sources you trust). Full authoring rules: [`CUSTOM_SCRAPERS.md`](CUSTOM_SCRAPERS.md).
 
 ---
 
@@ -40,16 +40,9 @@ No rebuild of the MetaKavita image is required.
 
 ---
 
-## Requirements
+## Authoring / vibecoding
 
-Scrapers follow the MetaKavita contract:
-
-- Inherit `BaseScraper`
-- Allowed libs: `requests`, `curl_cffi`, `bs4` — **no** Selenium/Playwright
-- Use `score_candidate` / `attach_match_score` / `get_match_accept_threshold`
-- Respect `get_max_tags` / `get_max_genres`
-
-They import from MetaKavita at runtime (`scrapers.base`, `scrapers.utils`, `config_manager`). They are **not** a standalone Python package.
+See **[`CUSTOM_SCRAPERS.md`](CUSTOM_SCRAPERS.md)** for the full contract (BaseScraper, scoring, tags/genres caps, `proxy_domains`, inheritance patterns).
 
 ---
 
