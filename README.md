@@ -30,6 +30,16 @@ No rebuild of the MetaKavita image is required.
 | [`bangumi.py`](bangumi.py) | `BANGUMI` | Manga, Book | None* | Yes | Bangumi (`api.bgm.tv`) — JP/CN |
 | [`ann.py`](ann.py) | `ANN` | Manga | None | Yes | Anime News Network encyclopedia (XML) |
 | [`planetebd.py`](planetebd.py) | `PLANETEBD` | Comic | None | Yes | Planète BD — BD FR + comics US (HTML) |
+| [`bnf.py`](bnf.py) | `BNF` | Book | None | No | BnF Catalogue (SRU Dublin Core) |
+| [`decitre.py`](decitre.py) | `DECITRE` | Book | None | Yes | Decitre — HTML search + JSON-LD |
+| [`animeplanet.py`](animeplanet.py) | `ANIMEPLANET` | Manga | None | Yes | Anime-Planet (HTML) |
+| [`webtoon.py`](webtoon.py) | `WEBTOON` | Manga | None | Yes | WEBTOON / Line (HTML) |
+| [`tapas.py`](tapas.py) | `TAPAS` | Manga | None | Yes | Tapas series (HTML) |
+| [`mangasanctuary.py`](mangasanctuary.py) | `MANGASANCTUARY` | Manga | None | Yes | Manga-Sanctuary FR (HTML) |
+| [`novelupdates.py`](novelupdates.py) | `NOVELUPDATES` | Book, Manga | Optional CF cookies | Yes | Cloudflare — paste `cf_clearance=…` in `NOVELUPDATES_API_KEY` |
+| [`locg.py`](locg.py) | `LOCG` | Comic | **Required** | Yes | LoCG API — `client_id:client_secret` in `LOCG_API_KEY` |
+| [`isbndb.py`](isbndb.py) | `ISBNDB` | Book | **Required** | Yes | [ISBNdb](https://isbndb.com/apidocs/v2) REST key → `ISBNDB_API_KEY` |
+| [`bdgest.py`](bdgest.py) | `BDGEST` | Comic | None | Yes | BDgest / Bédéthèque best-effort HTML (finetune later) |
 
 \*Bangumi expects a proper User-Agent (handled by the scraper).
 
@@ -37,17 +47,20 @@ No rebuild of the MetaKavita image is required.
 
 | Provider | Reason |
 |----------|--------|
-| Novel Updates | Cloudflare JS challenge (`Just a moment…`) — TLS impersonation alone is not enough |
-| League of Comic Geeks | Official API needs developer `client_id` / `client_secret` |
-| Grand Comics Database | Cloudflare JS challenge |
+| Grand Comics Database (comics.org) | Cloudflare JS challenge |
+| LibraryThing | Cloudflare JS challenge |
+| Goodreads | Terms / anti-bot — not pursued |
 | Nautiljon | IP bans / aggressive anti-bot (historical) |
 
-### Metron API key
+### API keys
 
-1. Create an account on [metron.cloud](https://metron.cloud)
-2. Profile → **API Tokens** → generate
-3. Paste into MetaKavita config as `METRON_API_KEY`  
-   (Bearer token, or `user:password` for basic auth)
+**Metron** — account on [metron.cloud](https://metron.cloud) → API Tokens → `METRON_API_KEY` (Bearer, or `user:password`).
+
+**LoCG** — developer credentials as `client_id:client_secret` in `LOCG_API_KEY`.
+
+**ISBNdb** — REST key from isbndb.com dashboard → `ISBNDB_API_KEY`.
+
+**Novel Updates** — optional: browser `cf_clearance` cookie string in `NOVELUPDATES_API_KEY` (without it, CF usually blocks).
 
 ---
 
