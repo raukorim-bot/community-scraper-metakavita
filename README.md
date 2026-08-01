@@ -29,6 +29,7 @@ No rebuild of the MetaKavita image is required.
 | [`metron.py`](metron.py) | `METRON` | Comic | **Required** | Yes | [metron.cloud](https://metron.cloud) API token → `METRON_API_KEY` |
 | [`bangumi.py`](bangumi.py) | `BANGUMI` | Manga, Book | None* | Yes | Bangumi (`api.bgm.tv`) — JP/CN |
 | [`ann.py`](ann.py) | `ANN` | Manga | None | Yes | Anime News Network encyclopedia (XML) |
+| [`planetebd.py`](planetebd.py) | `PLANETEBD` | Comic | None | Yes | Planète BD — BD FR + comics US (HTML) |
 
 \*Bangumi expects a proper User-Agent (handled by the scraper).
 
@@ -36,8 +37,10 @@ No rebuild of the MetaKavita image is required.
 
 | Provider | Reason |
 |----------|--------|
-| Novel Updates | Cloudflare challenge (403) — same class as Nautiljon |
+| Novel Updates | Cloudflare JS challenge (`Just a moment…`) — TLS impersonation alone is not enough |
 | League of Comic Geeks | Official API needs developer `client_id` / `client_secret` |
+| Grand Comics Database | Cloudflare JS challenge |
+| Nautiljon | IP bans / aggressive anti-bot (historical) |
 
 ### Metron API key
 
