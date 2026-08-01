@@ -141,12 +141,19 @@ class MangaSanctuaryScraper(BaseScraper):
         return covers
 
     def _search(self, session, terms: str) -> List[dict]:
-        res = session.get(
-            f"{_BASE}/recherche.php",
-            params={"type": "manga", "keywords": terms},
+        # La page /recherche.php est JS / 0 résultat en GET.
+        # Autocomplete XHR : /include/ajax_rechercher_mots.php?chaine=
+        res = session.post(
+            f"{_BASE}/include/ajax_rechercher_mots.php",
+            data={"chaine": terms},
+            headers={
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Referer": f"{_BASE}/",
+            },
             timeout=25,
         )
-        if res.status_code != 200:
+        if res.status_code != 200 or not res.text.strip():
             return []
         soup = BeautifulSoup(res.text, "html.parser")
         hits, seen = [], set()
@@ -156,15 +163,12 @@ class MangaSanctuaryScraper(BaseScraper):
             if not mid or mid in seen:
                 continue
             title = a.get_text(" ", strip=True)
+            # "death note (Manga)" → "death note"
+            title = re.sub(r"\s*\((?:Manga|Manhwa|Manhua)\)\s*$", "", title, flags=re.I).strip()
             if not title or len(title) < 2:
                 continue
             seen.add(mid)
-            hits.append(
-                {
-                    "title": title,
-                    "url": urljoin(_BASE, href),
-                }
-            )
+            hits.append({"title": title, "url": urljoin(_BASE, href)})
             if len(hits) >= 15:
                 break
         return hits

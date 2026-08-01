@@ -79,6 +79,17 @@ See **[`CUSTOM_SCRAPERS.md`](CUSTOM_SCRAPERS.md)** for the full contract (BaseSc
 2. Add one `.py` file per provider (uppercase `id`, clear `display_name`, `supported_types`, `rate_limit`, `proxy_domains`)
 3. Open a PR with a short description + how you tested (title search + covers if any)
 
+### Smoke tests
+
+From this repo, with MetaKavita on `PYTHONPATH`:
+
+```bat
+set PYTHONPATH=Z:\kavitafetcher
+set METAKAVITA_ROOT=Z:\kavitafetcher
+python -m pytest tests/test_ann.py tests/test_planetebd.py -q
+python tests/run_live_smoke.py
+```
+
 Maintainer review required before merge.
 
 ---

@@ -187,8 +187,9 @@ class TapasScraper(BaseScraper):
         og_desc = soup.select_one('meta[property="og:description"]')
         og_img = soup.select_one('meta[property="og:image"]')
         title = (og_title.get("content") if og_title else "").strip()
-        if title.lower().endswith(" | tapas"):
-            title = title[: -len(" | tapas")].strip()
+        # "Read Solo Leveling | Tapas Web Comics"
+        title = re.sub(r"^Read\s+", "", title, flags=re.I).strip()
+        title = re.sub(r"\s*\|\s*Tapas.*$", "", title, flags=re.I).strip()
         if not title and soup.h1:
             title = soup.h1.get_text(" ", strip=True)
         if not title or title.casefold().startswith("tapas"):
@@ -202,10 +203,14 @@ class TapasScraper(BaseScraper):
         staff = [
             {"role": "Story & Art", "node": {"name": {"full": n}}} for n in authors[:3]
         ]
+        summary = (og_desc.get("content") if og_desc else "") or ""
+        # og:description est souvent le pitch marketing Tapas, pas le résumé série
+        if "only on tapas" in summary.casefold() or "discover stories" in summary.casefold():
+            summary = ""
         return {
             "title": title,
             "alternative_titles": [],
-            "summary": (og_desc.get("content") if og_desc else "") or "",
+            "summary": summary,
             "cover_url": og_img.get("content") if og_img else None,
             "genres": ["Manga"][: get_max_genres()],
             "tags": [],

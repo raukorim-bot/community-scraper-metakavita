@@ -1,8 +1,8 @@
-"""BDgest / Bedetheque search mirror — best-effort HTML BD FR.
+"""BDgest / Bédéthèque — métadonnées BD FR via bedetheque.com (HTML).
 
-Note: la recherche native BDgest est souvent JS-heavy ; on tente
-plusieurs URLs et on parse les liens série bedetheque/bdgest si présents.
-Qualité de matching à finetuner plus tard.
+La recherche bdgest.com/search est morte (404). On utilise
+https://www.bedetheque.com/search/albums?RechSerie=… puis les pages
+serie-N-BD-Slug.html dérivées des albums.
 """
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 from curl_cffi import requests
 
-from config_manager import get_max_genres, get_max_tags
+from config_manager import get_max_genres
 from scrapers.base import BaseScraper
 from scrapers.utils import (
     attach_match_score,
@@ -23,17 +23,15 @@ from scrapers.utils import (
     score_candidate,
 )
 
-_BASE = "https://www.bdgest.com"
-_SERIES = re.compile(
-    r"(?:bedetheque\.com|bdgest\.com)/(?:serie|series)/([^/?#]+)",
-    re.I,
-)
+_BASE = "https://www.bedetheque.com"
+_SERIES = re.compile(r"serie-(\d+)-BD-([^/?#]+)\.html", re.I)
+_ALBUM = re.compile(r"BD-[^/]+-(\d+)\.html", re.I)
 _YEAR = re.compile(r"(1[0-9]{3}|20[0-9]{2})")
 
 
 class BdgestScraper(BaseScraper):
     id = "BDGEST"
-    display_name = "BDgest"
+    display_name = "BDgest / Bédéthèque"
     supported_types = {"Comic"}
     rate_limit = 1.5
     proxy_domains = [
@@ -48,34 +46,34 @@ class BdgestScraper(BaseScraper):
 
     translations = {
         "fr": {
-            "search_title": "🔍 [BDgest] Recherche pour '{0}'…",
-            "direct_id": "🎯 [BDgest] serie={0}",
-            "no_match": "⚠️ [BDgest] Aucun résultat pertinent pour '{0}' (Score max: {1}%)",
-            "matched": "🎯 [BDgest] Match validé : '{0}' (Score: {1}%)",
-            "err": "❌ [BDgest] Erreur : {0}",
-            "covers_err": "❌ [Covers] BDgest : {0}",
+            "search_title": "🔍 [Bédéthèque] Recherche pour '{0}'…",
+            "direct_id": "🎯 [Bédéthèque] serie={0}",
+            "no_match": "⚠️ [Bédéthèque] Aucun résultat pertinent pour '{0}' (Score max: {1}%)",
+            "matched": "🎯 [Bédéthèque] Match validé : '{0}' (Score: {1}%)",
+            "err": "❌ [Bédéthèque] Erreur : {0}",
+            "covers_err": "❌ [Covers] Bédéthèque : {0}",
         },
         "en": {
-            "search_title": "🔍 [BDgest] Searching for '{0}'…",
-            "direct_id": "🎯 [BDgest] series={0}",
-            "no_match": "⚠️ [BDgest] No relevant result for '{0}' (Max score: {1}%)",
-            "matched": "🎯 [BDgest] Match validated: '{0}' (Score: {1}%)",
-            "err": "❌ [BDgest] Error: {0}",
-            "covers_err": "❌ [Covers] BDgest: {0}",
+            "search_title": "🔍 [Bédéthèque] Searching for '{0}'…",
+            "direct_id": "🎯 [Bédéthèque] series={0}",
+            "no_match": "⚠️ [Bédéthèque] No relevant result for '{0}' (Max score: {1}%)",
+            "matched": "🎯 [Bédéthèque] Match validated: '{0}' (Score: {1}%)",
+            "err": "❌ [Bédéthèque] Error: {0}",
+            "covers_err": "❌ [Covers] Bédéthèque: {0}",
         },
     }
 
     def extract_id_from_url(self, url: str) -> Optional[str]:
         if not url:
             return None
+        if url.strip().isdigit():
+            return url.strip()
         m = _SERIES.search(url)
         if m:
             return m.group(1)
         path = urlparse(url).path if "://" in url else url
-        parts = [p for p in path.split("/") if p]
-        if parts and re.fullmatch(r"[a-z0-9\-]+", parts[-1], re.I):
-            return parts[-1]
-        return None
+        m = _SERIES.search(path)
+        return m.group(1) if m else None
 
     def fetch(
         self,
@@ -86,23 +84,28 @@ class BdgestScraper(BaseScraper):
     ) -> Optional[Dict[str, Any]]:
         session = requests.Session(impersonate="chrome110")
         session.headers.update(
-            {"Accept-Language": "fr-FR,fr;q=0.9,en;q=0.5", "Referer": f"{_BASE}/"}
+            {
+                "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.5",
+                "Referer": f"{_BASE}/",
+            }
         )
         try:
             if is_id:
-                slug = self.extract_id_from_url(query) or query.strip()
-                logging.info(self.t("direct_id").format(slug))
-                for url in (
-                    query if "://" in query else None,
-                    f"{_BASE}/serie/{slug}",
-                    f"https://www.bedetheque.com/serie/{slug}",
-                    f"https://www.bedetheque.com/serie-{slug}.html",
-                ):
-                    if not url:
-                        continue
+                sid = self.extract_id_from_url(query) or query.strip()
+                logging.info(self.t("direct_id").format(sid))
+                urls = []
+                if "://" in query:
+                    urls.append(query)
+                urls.append(f"{_BASE}/serie-{sid}-BD-.html")
+                # sans slug exact : chercher via albums puis série
+                if sid.isdigit():
+                    # tenter de trouver une page série via search id dans hits
+                    pass
+                for url in urls:
                     cand = self._parse_series(session, url)
                     if cand:
                         return attach_match_score(cand, 1.0)
+                # fallback : search by numeric id in serie links after a broad fetch
                 return None
 
             cleaned = clean_title(query, library_type=library_type)
@@ -128,7 +131,10 @@ class BdgestScraper(BaseScraper):
                     }
                 score = score_candidate(cand, cleaned, existing_metadata)
                 if (cand.get("title") or "").casefold() == cleaned.casefold():
-                    score = min(1.0, score + 0.12)
+                    score = min(1.0, score + 0.15)
+                # Pénaliser albums "Tome N" vs série
+                if re.search(r"\b#?\d+\b", cand.get("title") or ""):
+                    score = max(0.0, score - 0.05)
                 if score > best_score:
                     best_score, best = score, cand
             if not best or best_score < get_match_accept_threshold():
@@ -175,40 +181,94 @@ class BdgestScraper(BaseScraper):
         return covers
 
     def _search(self, session, terms: str) -> List[dict]:
-        candidates = [
-            (f"{_BASE}/search", {"q": terms}),
-            (f"{_BASE}/recherche", {"q": terms}),
-            (f"{_BASE}/", {"searchsite": terms}),
-            ("https://www.bedetheque.com/search/0", {"RechSerie": terms}),
-            ("https://www.bedetheque.com/search/0", {"RechTout": terms}),
-        ]
+        """Search albums by series name, group by serie-N-BD-Slug pages."""
+        # Warmup cookies / csrf
+        try:
+            session.get(_BASE + "/", timeout=20)
+        except Exception:
+            pass
+
+        res = session.get(
+            f"{_BASE}/search/albums",
+            params={"RechSerie": terms},
+            timeout=40,
+        )
+        if res.status_code != 200 or len(res.text) < 1000:
+            return []
+
+        soup = BeautifulSoup(res.text, "html.parser")
         hits, seen = [], set()
-        for url, params in candidates:
+
+        # Direct series links first
+        for a in soup.select('a[href*="serie-"]'):
+            href = a.get("href") or ""
+            m = _SERIES.search(href)
+            if not m:
+                continue
+            sid = m.group(1)
+            if sid in seen:
+                continue
+            title = a.get_text(" ", strip=True)
+            if not title or title.casefold() in {"la série", "série", "series"}:
+                # use slug
+                title = m.group(2).replace("-", " ").replace("_", " ").strip()
+            if not title or len(title) < 2:
+                continue
+            seen.add(sid)
+            full = urljoin(_BASE + "/", href)
+            hits.append({"title": title, "url": full.split("?")[0], "id": sid})
+            if len(hits) >= 12:
+                return hits
+
+        # Fallback : from album pages, follow first album → series
+        albums = []
+        for a in soup.select('a[href*="BD-"]'):
+            href = a.get("href") or ""
+            if not _ALBUM.search(href) and "Tome" not in href and "BD-" not in href:
+                continue
+            if "serie-" in href.casefold():
+                continue
+            full = urljoin(_BASE + "/", href).split("?")[0]
+            if full in albums:
+                continue
+            label = a.get_text(" ", strip=True)
+            if not label:
+                continue
+            albums.append(full)
+            if len(albums) >= 4:
+                break
+
+        for album_url in albums:
             try:
-                res = session.get(url, params=params, timeout=20)
-                if res.status_code != 200 or len(res.text) < 500:
-                    continue
-                soup = BeautifulSoup(res.text, "html.parser")
-                for a in soup.select('a[href*="serie"]'):
-                    href = a.get("href") or ""
-                    if "serie" not in href.casefold():
-                        continue
-                    full = urljoin(url, href)
-                    key = full.split("?")[0]
-                    if key in seen:
-                        continue
-                    title = a.get_text(" ", strip=True)
-                    if not title or len(title) < 2:
-                        continue
-                    # Filtrer nav générique
-                    if title.casefold() in {"série", "series", "bd", "comics"}:
-                        continue
-                    seen.add(key)
-                    hits.append({"title": title, "url": key})
-                    if len(hits) >= 12:
-                        return hits
+                ar = session.get(album_url, timeout=25)
             except Exception:
                 continue
+            if ar.status_code != 200:
+                continue
+            asoup = BeautifulSoup(ar.text, "html.parser")
+            for a in asoup.select('a[href*="serie-"]'):
+                href = a.get("href") or ""
+                m = _SERIES.search(href)
+                if not m:
+                    continue
+                sid = m.group(1)
+                if sid in seen:
+                    continue
+                title = a.get_text(" ", strip=True)
+                if not title or title.casefold() in {"la série", "série"}:
+                    title = m.group(2).replace("-", " ")
+                seen.add(sid)
+                hits.append(
+                    {
+                        "title": title,
+                        "url": urljoin(_BASE + "/", href).split("?")[0],
+                        "id": sid,
+                    }
+                )
+                break
+            if len(hits) >= 8:
+                break
+
         return hits
 
     def _parse_series(self, session, url: str) -> Optional[Dict[str, Any]]:
@@ -226,10 +286,32 @@ class BdgestScraper(BaseScraper):
         if not title and soup.h1:
             title = soup.h1.get_text(" ", strip=True)
         if not title:
+            # lien série dans la page
+            for a in soup.select('a[href*="serie-"]'):
+                t = a.get_text(" ", strip=True)
+                if t and t.casefold() not in {"la série", "série"}:
+                    title = t
+                    break
+        if not title:
             return None
-        title = re.sub(r"\s*[-|]\s*(BDgest|Bédéthèque|Bedetheque).*$", "", title, flags=re.I).strip()
+        title = re.sub(
+            r"\s*[-|]\s*(BDgest|Bédéthèque|Bedetheque).*$", "", title, flags=re.I
+        ).strip()
+        title = re.sub(
+            r"\s*[-–—]\s*BD,?\s*informations.*$", "", title, flags=re.I
+        ).strip()
+        title = re.sub(r"\s*,\s*cotes\s*$", "", title, flags=re.I).strip()
+        # "Astérix -1- Astérix le Gaulois" → garder série si on est sur album
+        if re.search(r"\s-\d+-\s", title):
+            title = re.split(r"\s-\d+-\s", title, maxsplit=1)[0].strip()
+
         authors = []
-        for sel in (".auteur a", ".infos a[href*='auteur']", "a[href*='/auteur']"):
+        for sel in (
+            ".auteur a",
+            ".infos a[href*='auteur']",
+            "a[href*='/auteur']",
+            "a[href*='Auteur-']",
+        ):
             for el in soup.select(sel):
                 n = el.get_text(" ", strip=True)
                 if n and n not in authors and len(n) < 60:
@@ -243,6 +325,15 @@ class BdgestScraper(BaseScraper):
             y = int(m.group(1))
             if 1900 <= y <= 2030:
                 year = y
+
+        # Prefer series URL if we landed on an album
+        series_url = url.split("?")[0]
+        for a in soup.select('a[href*="serie-"]'):
+            href = a.get("href") or ""
+            if _SERIES.search(href):
+                series_url = urljoin(_BASE + "/", href).split("?")[0]
+                break
+
         return {
             "title": title,
             "alternative_titles": [],
@@ -253,6 +344,6 @@ class BdgestScraper(BaseScraper):
             "year": year,
             "staff": staff,
             "format": "comic",
-            "url": url.split("?")[0],
-            "links": [url.split("?")[0]],
+            "url": series_url,
+            "links": [series_url],
         }

@@ -7,3 +7,8 @@ __pycache__/
 *.egg-info/
 .DS_Store
 Thumbs.db
+
+# Local probes / smoke artifacts
+tests/_smoke_report.json
+tests/_*.html
+tests/_probe_*.py

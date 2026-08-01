@@ -176,13 +176,24 @@ class WebtoonScraper(BaseScraper):
                 continue
             seen.add(tid)
             title = a.get_text(" ", strip=True)
-            # Souvent "Title Author Views" — garder premier segment raisonnable
+            # "Tower of God SIU 1B Views" / "Title Author 588M Views"
+            title = re.sub(
+                r"\s+\S+\s+[\d.]+[KMB]?\s*Views.*$", "", title, flags=re.I
+            ).strip()
             title = re.split(r"\s{2,}|\d+[KMB]?\s*Views", title)[0].strip()
             if not title:
                 continue
-            hits.append({"title": title, "url": urljoin(_BASE, href)})
+            hits.append(
+                {
+                    "title": title,
+                    "url": urljoin(_BASE, href),
+                    "is_canvas": "/canvas/" in href,
+                }
+            )
             if len(hits) >= 15:
                 break
+        # Prefer originals over canvas fan works
+        hits.sort(key=lambda h: (1 if h.get("is_canvas") else 0, h["title"]))
         return hits
 
     def _parse_title(self, session, url: str) -> Optional[Dict[str, Any]]:
