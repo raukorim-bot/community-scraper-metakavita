@@ -28,8 +28,16 @@ No rebuild of the MetaKavita image is required.
 | [`dnb.py`](dnb.py) | `DNB` | Book | None | No | Deutsche Nationalbibliothek (SRU MARC21) |
 | [`metron.py`](metron.py) | `METRON` | Comic | **Required** | Yes | [metron.cloud](https://metron.cloud) API token → `METRON_API_KEY` |
 | [`bangumi.py`](bangumi.py) | `BANGUMI` | Manga, Book | None* | Yes | Bangumi (`api.bgm.tv`) — JP/CN |
+| [`ann.py`](ann.py) | `ANN` | Manga | None | Yes | Anime News Network encyclopedia (XML) |
 
 \*Bangumi expects a proper User-Agent (handled by the scraper).
+
+### Skipped / blocked for now
+
+| Provider | Reason |
+|----------|--------|
+| Novel Updates | Cloudflare challenge (403) — same class as Nautiljon |
+| League of Comic Geeks | Official API needs developer `client_id` / `client_secret` |
 
 ### Metron API key
 
