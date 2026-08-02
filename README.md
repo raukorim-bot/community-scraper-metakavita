@@ -38,7 +38,7 @@ No rebuild of the MetaKavita image is required.
 | [`mangasanctuary.py`](mangasanctuary.py) | `MANGASANCTUARY` | Manga | None | Yes | Manga-Sanctuary FR (HTML) |
 | [`novelupdates.py`](novelupdates.py) | `NOVELUPDATES` | Book, Manga | Optional CF cookies | Yes | Cloudflare — paste `cf_clearance=…` in `NOVELUPDATES_API_KEY` |
 | [`locg.py`](locg.py) | `LOCG` | Comic | **Required** | Yes | LoCG API — `client_id:client_secret` in `LOCG_API_KEY` |
-| [`isbndb.py`](isbndb.py) | `ISBNDB` | Book | **Required** | Yes | [ISBNdb](https://isbndb.com/apidocs/v2) REST key → `ISBNDB_API_KEY` |
+| [`isbndb.py`](isbndb.py) | `ISBNDB` | Book | **Required (paid)** | Yes | [ISBNdb](https://isbndb.com/apidocs/v2) REST key → `ISBNDB_API_KEY` — **not live-tested** (paid plan) |
 | [`bdgest.py`](bdgest.py) | `BDGEST` | Comic | None | Yes | BDgest / Bédéthèque best-effort HTML (finetune later) |
 | [`gcd.py`](gcd.py) | `GCD` | Comic | Optional Basic | Yes* | Grand Comics Database — JSON `/api/` (HTML is CF-blocked) |
 
@@ -57,9 +57,21 @@ No rebuild of the MetaKavita image is required.
 
 **Metron** — account on [metron.cloud](https://metron.cloud) → API Tokens → `METRON_API_KEY` (Bearer, or `user:password`).
 
-**LoCG** — developer credentials as `client_id:client_secret` in `LOCG_API_KEY`.
+**LoCG** — MetaKavita attend **deux valeurs collées** dans `LOCG_API_KEY` :
 
-**ISBNdb** — REST key from isbndb.com dashboard → `ISBNDB_API_KEY`.
+```text
+client_id:client_secret
+```
+
+Ce n’est **pas** un login/mot de passe de compte LoCG. Ce sont les credentials d’application API (même modèle que le client [Himon](https://himon.readthedocs.io/)) :
+- `client_id` → header `X-API-CLIENT`
+- `client_secret` → header `X-API-KEY`
+- le scraper appelle ensuite `/api/authorize` pour obtenir un bearer token
+
+À obtenir via le programme développeur / API League of Comic Geeks (si tu n’as pas ces credentials, le provider restera inutilisable — pas de mode anonyme fiable).
+
+**ISBNdb** — REST key payante depuis le dashboard isbndb.com → `ISBNDB_API_KEY`.  
+**Non testé en live** dans ce dépôt : un abonnement payant est requis pour obtenir une clé.
 
 **Novel Updates** — optional: browser `cf_clearance` cookie string in `NOVELUPDATES_API_KEY` (without it, CF usually blocks).
 

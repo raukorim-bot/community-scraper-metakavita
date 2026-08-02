@@ -238,8 +238,8 @@ SUITES: List[Suite] = [
             Case("zzzzqwxnotitle999", "Comic", None),
         ],
     ),
-    Suite("ISBNDB", skip_reason="clé ISBNDB_API_KEY manquante"),
-    Suite("LOCG", skip_reason="clé LOCG_API_KEY manquante"),
+    Suite("ISBNDB", skip_reason="non testé — clé ISBNdb payante requise"),
+    Suite("LOCG", skip_reason="clé LOCG_API_KEY manquante (client_id:client_secret)"),
     Suite("METRON", skip_reason="clé METRON_API_KEY manquante"),
     Suite(
         "NOVELUPDATES",
