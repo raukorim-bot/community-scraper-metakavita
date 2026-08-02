@@ -237,5 +237,5 @@ class WebtoonScraper(BaseScraper):
             "format": fmt,
             "url": url.split("#")[0],
             "links": [url.split("#")[0]],
-            "status": "RELEASING",
+            # Pas de status inventé (BF59) — le HTML WEBTOON ne le donne pas de façon fiable
         }
