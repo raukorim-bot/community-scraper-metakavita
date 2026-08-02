@@ -29,7 +29,7 @@ Gaps: `opt.: tags, alternative_titles` — global overview: [`docs/QUALITY.md`](
 ## Install (MetaKavita)
 
 1. Download [`planetebd.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/planetebd.py) into `data/scrapers/`.
-2. Verify SHA-256: `951940a59baadbdeb6dbdcf12a1723815f0f7468eaf565924a135a6e1553aaec`.
+2. Verify SHA-256: `22c42ef2fd97e2cc7c97cef4672f01f4b323158c0db61f7573195c8d8e77ca01`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 

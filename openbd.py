@@ -174,14 +174,16 @@ class OpenbdScraper(BaseScraper):
                 name = part.strip().replace("／", " ").replace("/", " ").strip()
                 if name:
                     staff.append({"role": "Story", "node": {"name": {"full": name}}})
-        if not cover and isbn:
-            cover = f"https://cover.openbd.jp/{isbn}.jpg"
+        # Ne pas inventer cover.openbd.jp/{isbn}.jpg : beaucoup d'ISBN n'ont
+        # pas d'image (404) → vignette cassée dans Manual Review / covers.
+        if cover and not str(cover).startswith(("http://", "https://")):
+            cover = None
         url = f"https://www.openbd.jp/"  # pas d'URL notice stable ; ISBN en id
         return {
             "title": str(title).strip(),
             "alternative_titles": [],
             "summary": "",
-            "cover_url": cover,
+            "cover_url": cover or None,
             "genres": ["Book"][: get_max_genres()],
             "tags": [],
             "year": year,

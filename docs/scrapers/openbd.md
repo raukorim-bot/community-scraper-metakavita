@@ -29,7 +29,7 @@ Gaps: `provider: summary; opt.: tags, alternative_titles, status` — global ove
 ## Install (MetaKavita)
 
 1. Download [`openbd.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/openbd.py) into `data/scrapers/`.
-2. Verify SHA-256: `86b132b69e2e8c483ac438af852a6846be29c75647db513a8c3cfa3429a2aba9`.
+2. Verify SHA-256: `dce810a94a51cefbca14bd263520e66ec2db242102e9d12e2658a35e9665723b`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

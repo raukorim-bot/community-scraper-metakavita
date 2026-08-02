@@ -30,6 +30,9 @@ class AnimePlanetScraper(BaseScraper):
     rate_limit = 3.0  # HTML — anti-ban IP
     proxy_domains = ["anime-planet.com", "www.anime-planet.com", "cdn.anime-planet.com"]
     has_direct_id_support = True
+    # CDN refuse le hotlink si Referer ≠ anime-planet.com (403 HTML).
+    requires_proxy = True
+    proxy_referer = "https://www.anime-planet.com/"
     needs_api_key = False
     uses_unified_scoring = True
 

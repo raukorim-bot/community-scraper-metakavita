@@ -29,7 +29,7 @@ Gaps: `opt.: isbn, alternative_titles` — global overview: [`docs/QUALITY.md`](
 ## Install (MetaKavita)
 
 1. Download [`metron.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/metron.py) into `data/scrapers/`.
-2. Verify SHA-256: `bde836ad8168b1b684c6f59470267ad2434b80842fa992d0dc0c40a0a0a1b45b`.
+2. Verify SHA-256: `576ce6840092849f8b6c75b3ebb26b563d3cd7a908b7e8397feff6ab336366e3`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 

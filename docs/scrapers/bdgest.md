@@ -29,7 +29,7 @@ Gaps: `opt.: isbn, publisher, tags, alternative_titles, status` — global overv
 ## Install (MetaKavita)
 
 1. Download [`bdgest.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bdgest.py) into `data/scrapers/`.
-2. Verify SHA-256: `b9993ab015cc78d0f91a6ab117aef8b10e8c1cb9291c0c5ea19594208c9f8057`.
+2. Verify SHA-256: `59dea681d71103d588fd15cf6d868a88e22173d55dfab010c79af18e93ec03be`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 

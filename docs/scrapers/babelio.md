@@ -29,7 +29,7 @@ Gaps: `opt.: alternative_titles, status` — global overview: [`docs/QUALITY.md`
 ## Install (MetaKavita)
 
 1. Download [`babelio.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/babelio.py) into `data/scrapers/`.
-2. Verify SHA-256: `6e0a24358254889c469132b62e75035a0c71f1cc0def6808a8bfc88537c6b89c`.
+2. Verify SHA-256: `914606d21347b1bae24bdafce945bd54ac68d7612f9c41e5873dfb842d0dab21`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

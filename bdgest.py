@@ -159,6 +159,14 @@ class BdgestScraper(BaseScraper):
         if not cleaned:
             return covers
         session = requests.Session(impersonate="chrome110")
+        # Mêmes headers que fetch() — sans Referer/langue, search/albums renvoie souvent
+        # le formulaire vide (0 hit) et le picker de covers reste silencieux.
+        session.headers.update(
+            {
+                "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.5",
+                "Referer": f"{_BASE}/",
+            }
+        )
         try:
             for hit in self._search(session, cleaned)[:5]:
                 cand = self._parse_series(session, hit["url"])

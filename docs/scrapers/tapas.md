@@ -29,7 +29,7 @@ Gaps: `provider: summary, year; opt.: isbn, publisher, tags, alternative_titles,
 ## Install (MetaKavita)
 
 1. Download [`tapas.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/tapas.py) into `data/scrapers/`.
-2. Verify SHA-256: `0c441ab0dc84d68ab51d985e9f3c6964641cde5dd01fb6d5c3e1a343498f6531`.
+2. Verify SHA-256: `1d5f73b733ba34d0970c5c0cf6e490a8432dd9f2512ee5367c52398bbaadcfe0`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 
@@ -39,7 +39,7 @@ No API key. rate_limit=2.5 s.
 
 ## Proxy domains (covers)
 
-`tapas.io`, `www.tapas.io`, `s3.tapasticusercontent.com`, `tapas-prod.s3.amazonaws.com`
+`tapas.io`, `www.tapas.io`, `us-a.tapas.io`, `s3.tapasticusercontent.com`, `tapas-prod.s3.amazonaws.com`
 
 ## Warnings
 

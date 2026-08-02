@@ -141,36 +141,72 @@ class TebeosferaScraper(BaseScraper):
         return covers
 
     def _search(self, terms: str) -> List[dict]:
-        # Plusieurs formes d’URL de recherche historiques / actuelles
-        candidates = [
-            f"{_BASE}/buscador.php?buscar={quote_plus(terms)}",
-            f"{_BASE}/busqueda/?q={quote_plus(terms)}",
-            f"{_BASE}/?s={quote_plus(terms)}",
-            f"{_BASE}/obras/?q={quote_plus(terms)}",
+        """Recherche best-effort.
+
+        Le buscador Tebeosfera est majoritairement JS (`preventDefault` + AJAX).
+        On tente GET/POST HTML et on filtre les bannières promo / nav qui
+        polluaient les covers (liens /numeros/ hors-sujet).
+        """
+        qcf = (terms or "").casefold().strip()
+        # Requêtes HTTP à essayer (GET url) ou (POST url, data)
+        attempts = [
+            ("POST", f"{_BASE}/buscador/", {"busqueda": terms, "tabla_especifica": "obras"}),
+            ("POST", f"{_BASE}/buscador/", {"busqueda": terms}),
+            ("GET", f"{_BASE}/buscador/?texto={quote_plus(terms)}", None),
+            ("GET", f"{_BASE}/catalogos/obras/?q={quote_plus(terms)}", None),
+            ("GET", f"{_BASE}/busqueda/?q={quote_plus(terms)}", None),
         ]
+        promo_markers = (
+            "nueva catalogación",
+            "novedad de acyt",
+            "teoría sobre tebeos",
+            "hemos catalogado",
+            "números",
+            "tebeos de hoy",
+        )
         out: List[dict] = []
         seen = set()
-        for url in candidates:
-            res = self._session.get(url, timeout=25)
+        for method, url, data in attempts:
+            try:
+                if method == "POST":
+                    res = self._session.post(url, data=data or {}, timeout=25)
+                else:
+                    res = self._session.get(url, timeout=25)
+            except Exception:
+                continue
             if res.status_code != 200 or len(res.text) < 500:
                 continue
             if "just a moment" in res.text.casefold():
                 continue
             soup = BeautifulSoup(res.text, "html.parser")
+            batch: List[dict] = []
             for a in soup.select("a[href*='/obras/'], a[href*='/numeros/']"):
                 href = _abs(a.get("href"))
                 if not href or href in seen:
                     continue
+                # Ignorer index /numeros/ seul
+                path = urlparse(href).path.rstrip("/")
+                if path in {"/numeros", "/obras"}:
+                    continue
                 title = a.get_text(" ", strip=True)
                 if not title or len(title) < 2:
+                    continue
+                tcf = title.casefold()
+                if any(p in tcf for p in promo_markers):
+                    continue
+                # Exiger un ancrage minimal sur la requête (évite les sidebars)
+                if qcf and qcf not in tcf and not any(
+                    tok and tok in tcf for tok in qcf.split() if len(tok) >= 4
+                ):
                     continue
                 seen.add(href)
                 img = a.find("img")
                 cover = None
                 if img:
                     cover = _abs(img.get("data-src") or img.get("src"))
-                out.append({"title": title, "url": href, "cover": cover})
-            if out:
+                batch.append({"title": title, "url": href, "cover": cover})
+            if batch:
+                out.extend(batch)
                 break
         return out
 

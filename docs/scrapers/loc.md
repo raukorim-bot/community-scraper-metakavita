@@ -29,7 +29,7 @@ Gaps: `provider: cover_url, summary, url; opt.: isbn, publisher, alternative_tit
 ## Install (MetaKavita)
 
 1. Download [`loc.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/loc.py) into `data/scrapers/`.
-2. Verify SHA-256: `c7a4d0e033a56e0e23d441503ded7272834e71cb0861bc9c706a295d7f25da16`.
+2. Verify SHA-256: `b8e00f8f5540b1d74deecaf864b812401e36d1d0e0be19c7a0528c010ce65f57`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

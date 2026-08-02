@@ -8,7 +8,7 @@
   "repo": "https://github.com/raukorim-bot/community-scraper-metakavita",
   "default_branch": "main",
   "raw_base": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main",
-  "generated_at": "2026-08-02T12:20:20Z",
+  "generated_at": "2026-08-02T14:30:49Z",
   "quality_docs": "docs/QUALITY.md",
   "quality_audited_at": "2026-08-02",
   "install_notes": {
@@ -43,7 +43,7 @@
       "needs_api_key": false,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
-      "requires_proxy": false,
+      "requires_proxy": true,
       "proxy_domains": [
         "anime-planet.com",
         "www.anime-planet.com",
@@ -91,8 +91,8 @@
       "install": {
         "path": "animeplanet.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/animeplanet.py",
-        "sha256": "a4ecc0416d323aa7a69dea06762b23cb54cc9b197d349ee1df11689b266c99a2",
-        "bytes": 10961,
+        "sha256": "1257f6596fb4697d66ca589c9d302b94d00cb1f75ace5f539d8594fc8bccd615",
+        "bytes": 11114,
         "target": "data/scrapers/animeplanet.py"
       },
       "tags": [
@@ -254,8 +254,8 @@
       "install": {
         "path": "babelio.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/babelio.py",
-        "sha256": "6e0a24358254889c469132b62e75035a0c71f1cc0def6808a8bfc88537c6b89c",
-        "bytes": 24397,
+        "sha256": "914606d21347b1bae24bdafce945bd54ac68d7612f9c41e5873dfb842d0dab21",
+        "bytes": 23761,
         "target": "data/scrapers/babelio.py"
       },
       "tags": [
@@ -423,8 +423,8 @@
       "install": {
         "path": "bdgest.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bdgest.py",
-        "sha256": "b9993ab015cc78d0f91a6ab117aef8b10e8c1cb9291c0c5ea19594208c9f8057",
-        "bytes": 15766,
+        "sha256": "59dea681d71103d588fd15cf6d868a88e22173d55dfab010c79af18e93ec03be",
+        "bytes": 16116,
         "target": "data/scrapers/bdgest.py"
       },
       "tags": [
@@ -507,8 +507,8 @@
       "install": {
         "path": "bne.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bne.py",
-        "sha256": "3a66d4e43e2ce09dda30f07c260a2d03d254ecbba2bea0485f93235fc7efc8dd",
-        "bytes": 9331,
+        "sha256": "2d53ec833819bc1ab34f30d49a216eb29581aca5c0f254cc7f41598eec5fa146",
+        "bytes": 9088,
         "target": "data/scrapers/bne.py"
       },
       "tags": [
@@ -672,8 +672,8 @@
       "install": {
         "path": "decitre.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/decitre.py",
-        "sha256": "a5bf8b8c882bacd6b4131196b58bdf94f138cebbc236db897580457e8f8f0dbb",
-        "bytes": 11103,
+        "sha256": "f2a1767f78f0c2dd2b2cd172d924d7dd7d14d554523720512484ae8eb32e22a7",
+        "bytes": 10818,
         "target": "data/scrapers/decitre.py"
       },
       "tags": [
@@ -999,8 +999,8 @@
       "install": {
         "path": "kb.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/kb.py",
-        "sha256": "2496269a3fdebb7df799644e8cd64b807cf803611bb3e9ca522b5f4724d6323c",
-        "bytes": 8587,
+        "sha256": "d51e5b2033c15efa3bf4878d0f3aded1d5ca39a0d69af7c7ea80abec6a7181bf",
+        "bytes": 8361,
         "target": "data/scrapers/kb.py"
       },
       "tags": [
@@ -1088,8 +1088,8 @@
       "install": {
         "path": "loc.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/loc.py",
-        "sha256": "c7a4d0e033a56e0e23d441503ded7272834e71cb0861bc9c706a295d7f25da16",
-        "bytes": 17617,
+        "sha256": "b8e00f8f5540b1d74deecaf864b812401e36d1d0e0be19c7a0528c010ce65f57",
+        "bytes": 17185,
         "target": "data/scrapers/loc.py"
       },
       "tags": [
@@ -1174,8 +1174,8 @@
       "install": {
         "path": "locg.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/locg.py",
-        "sha256": "10012dbc672c94532dd24a3cb908ed4c25a2378d9084c4ece22b1b6c980661ff",
-        "bytes": 19765,
+        "sha256": "27f83546e4f08d9248c96a25fd70112b3d6b0d0c5b694a2d8518304a5c3aa42a",
+        "bytes": 19255,
         "target": "data/scrapers/locg.py"
       },
       "tags": [
@@ -1257,8 +1257,8 @@
       "install": {
         "path": "mangasanctuary.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangasanctuary.py",
-        "sha256": "1d0bc6945af3c1da57ec0d8df3376f5a9522be056cd000fe8c311064f46e759c",
-        "bytes": 9639,
+        "sha256": "b942112acefe4d77f316d0088e2b95d6702cbb0181f122a5cdcdd2f04dd85835",
+        "bytes": 9400,
         "target": "data/scrapers/mangasanctuary.py"
       },
       "tags": [
@@ -1337,8 +1337,8 @@
       "install": {
         "path": "metron.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/metron.py",
-        "sha256": "bde836ad8168b1b684c6f59470267ad2434b80842fa992d0dc0c40a0a0a1b45b",
-        "bytes": 20761,
+        "sha256": "576ce6840092849f8b6c75b3ebb26b563d3cd7a908b7e8397feff6ab336366e3",
+        "bytes": 20195,
         "target": "data/scrapers/metron.py"
       },
       "tags": [
@@ -1422,8 +1422,8 @@
       "install": {
         "path": "ndl.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/ndl.py",
-        "sha256": "da95d4e290fa0518c0cc8d096fa9710a4edf1bbb60c5c8a912c508263b900bef",
-        "bytes": 10989,
+        "sha256": "c7c5d1ebf38157af1ae623300e8f02535265dcaba52d7823009a522fa4dc751c",
+        "bytes": 10709,
         "target": "data/scrapers/ndl.py"
       },
       "tags": [
@@ -1502,8 +1502,8 @@
       "install": {
         "path": "novelupdates.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/novelupdates.py",
-        "sha256": "e00fde53ed1efb636318da84e994261b4d777b872653d84e17c0ed4de7abc3c0",
-        "bytes": 9853,
+        "sha256": "e8e61c4eebe87aedff2f46e33dc67e6c1a2fdceaa71e29ee0b42ccd026a1ce4e",
+        "bytes": 9599,
         "target": "data/scrapers/novelupdates.py"
       },
       "tags": [
@@ -1586,8 +1586,8 @@
       "install": {
         "path": "openbd.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/openbd.py",
-        "sha256": "86b132b69e2e8c483ac438af852a6846be29c75647db513a8c3cfa3429a2aba9",
-        "bytes": 6964,
+        "sha256": "dce810a94a51cefbca14bd263520e66ec2db242102e9d12e2658a35e9665723b",
+        "bytes": 7138,
         "target": "data/scrapers/openbd.py"
       },
       "tags": [
@@ -1667,8 +1667,8 @@
       "install": {
         "path": "planetebd.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/planetebd.py",
-        "sha256": "951940a59baadbdeb6dbdcf12a1723815f0f7468eaf565924a135a6e1553aaec",
-        "bytes": 20159,
+        "sha256": "22c42ef2fd97e2cc7c97cef4672f01f4b323158c0db61f7573195c8d8e77ca01",
+        "bytes": 19629,
         "target": "data/scrapers/planetebd.py"
       },
       "tags": [
@@ -1754,8 +1754,8 @@
       "install": {
         "path": "sbn.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/sbn.py",
-        "sha256": "eba464110696309e8e51ee7877d271459c7f4b445a517e5cf9fe3f272dc88bcb",
-        "bytes": 10150,
+        "sha256": "e91dc8c8c27fb2a69a5f324162cc02aaf16c42bfcfd90e7209a3102b4ed32ec4",
+        "bytes": 9878,
         "target": "data/scrapers/sbn.py"
       },
       "tags": [
@@ -1839,8 +1839,8 @@
       "install": {
         "path": "senscritique.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/senscritique.py",
-        "sha256": "7446ffb2625425641f0ff5a086f6780d41f131b49eb2bc6dab7b1654e0a63b51",
-        "bytes": 22998,
+        "sha256": "c5df9c5625307a20e44ead5d73b375c7c6a306c5f88450ef8ba959ce3341ec81",
+        "bytes": 22347,
         "target": "data/scrapers/senscritique.py"
       },
       "tags": [
@@ -1879,6 +1879,7 @@
       "proxy_domains": [
         "tapas.io",
         "www.tapas.io",
+        "us-a.tapas.io",
         "s3.tapasticusercontent.com",
         "tapas-prod.s3.amazonaws.com"
       ],
@@ -1929,8 +1930,8 @@
       "install": {
         "path": "tapas.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/tapas.py",
-        "sha256": "0c441ab0dc84d68ab51d985e9f3c6964641cde5dd01fb6d5c3e1a343498f6531",
-        "bytes": 8952,
+        "sha256": "1d5f73b733ba34d0970c5c0cf6e490a8432dd9f2512ee5367c52398bbaadcfe0",
+        "bytes": 9061,
         "target": "data/scrapers/tapas.py"
       },
       "tags": [
@@ -2006,8 +2007,8 @@
       "install": {
         "path": "tebeosfera.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/tebeosfera.py",
-        "sha256": "54c4ae1fd588dc56a18c0de33edd4d4b6b80b1e375eebcb51fd66bdbafcdccc2",
-        "bytes": 9568,
+        "sha256": "da2c7d274727a6a28c425b1179ab743dff8b1b860fb42749b886d59049c42007",
+        "bytes": 11166,
         "target": "data/scrapers/tebeosfera.py"
       },
       "tags": [
@@ -2093,8 +2094,8 @@
       "install": {
         "path": "webtoon.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/webtoon.py",
-        "sha256": "5ce8016da387446cb2ccaf5fbcde5dd749a288a427f72bf8fb0b892f1d629ad0",
-        "bytes": 9798,
+        "sha256": "dde4a94c3f08b3bf547d05d48d4da85d12b550289c1d7e350a461620c2610f4f",
+        "bytes": 9557,
         "target": "data/scrapers/webtoon.py"
       },
       "tags": [

@@ -29,7 +29,7 @@ Gaps: `opt.: isbn, publisher, tags, alternative_titles, status` — global overv
 ## Install (MetaKavita)
 
 1. Download [`locg.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/locg.py) into `data/scrapers/`.
-2. Verify SHA-256: `10012dbc672c94532dd24a3cb908ed4c25a2378d9084c4ece22b1b6c980661ff`.
+2. Verify SHA-256: `27f83546e4f08d9248c96a25fd70112b3d6b0d0c5b694a2d8518304a5c3aa42a`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 
