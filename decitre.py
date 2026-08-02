@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import logging
 import re
+from datetime import date
 from typing import Any, Dict, List, Optional
 from urllib.parse import urljoin, urlparse
 
@@ -110,14 +111,31 @@ class DecitreScraper(BaseScraper):
             logging.info(self.t("search_title").format(term))
             hits = self._search(session, term)
             best, best_score = None, -1.0
-            for hit in hits[:6]:
+            for hit in hits[:8]:
                 cand = self._parse_product(session, hit["url"])
                 if not cand:
                     continue
                 if existing_isbn and _norm_isbn(cand.get("isbn")) == existing_isbn:
                     return attach_match_score(cand, 1.0)
                 score = score_candidate(cand, cleaned or term, existing_metadata)
-                if score > best_score:
+                # Rééditions libraire : léger malus année très récente si titre exact
+                y = cand.get("year")
+                if isinstance(y, int) and y >= date.today().year - 1:
+                    score = max(0.0, score - 0.05)
+                if (cand.get("title") or "").casefold() == (cleaned or term).casefold():
+                    score = min(1.0, score + 0.08)
+                # À score égal, préférer l'édition la plus ancienne
+                better = score > best_score
+                if (
+                    not better
+                    and score == best_score
+                    and best
+                    and isinstance(y, int)
+                    and isinstance(best.get("year"), int)
+                    and y < best["year"]
+                ):
+                    better = True
+                if better:
                     best_score, best = score, cand
             if not best or best_score < get_match_accept_threshold():
                 logging.warning(

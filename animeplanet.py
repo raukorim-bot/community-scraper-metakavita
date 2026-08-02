@@ -86,8 +86,17 @@ class AnimePlanetScraper(BaseScraper):
                 return None
             logging.info(self.t("search_title").format(cleaned))
             hits = self._search(session, cleaned)
+            qcf = cleaned.casefold()
+            # Tri alpha du site met Boruto avant Naruto — prioriser titre exact / préfixe
+            hits.sort(
+                key=lambda h: (
+                    0 if (h.get("title") or "").casefold() == qcf else 1,
+                    0 if (h.get("title") or "").casefold().startswith(qcf) else 1,
+                    len(h.get("title") or ""),
+                )
+            )
             best, best_score = None, -1.0
-            for hit in hits[:6]:
+            for hit in hits[:8]:
                 cand = self._parse_manga(session, hit["url"])
                 if not cand:
                     # fallback léger depuis la carte
@@ -104,8 +113,14 @@ class AnimePlanetScraper(BaseScraper):
                         "alternative_titles": [],
                     }
                 score = score_candidate(cand, cleaned, existing_metadata)
-                if (cand.get("title") or "").casefold() == cleaned.casefold():
-                    score = min(1.0, score + 0.12)
+                tcf = (cand.get("title") or "").casefold()
+                if tcf == qcf:
+                    score = min(1.0, score + 0.20)
+                elif tcf.startswith(qcf + " ") or tcf.startswith(qcf + ":"):
+                    score = min(1.0, score + 0.05)
+                elif qcf in tcf and tcf != qcf:
+                    # spin-offs « Naruto Gaiden », « Boruto: Naruto… »
+                    score = max(0.0, score - 0.08)
                 if score > best_score:
                     best_score, best = score, cand
             if not best or best_score < get_match_accept_threshold():

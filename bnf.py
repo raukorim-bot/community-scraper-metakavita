@@ -190,6 +190,10 @@ class BnfScraper(BaseScraper):
         if not titles:
             return None
         title = titles[0].split(" / ", 1)[0].strip()
+        title = title.strip("[]").strip()
+        # BnF : souvent "[Madame Bovary]" ou "Madame Bovary [Texte imprimé]"
+        title = re.sub(r"\s*\[(?:Texte imprimé|Document électronique)\]\s*$", "", title, flags=re.I).strip()
+        title = title.strip("[]").strip()
         creators = texts("creator")
         # "Nom, Prénom (dates). Rôle" → Nom Prénom approx
         authors = []

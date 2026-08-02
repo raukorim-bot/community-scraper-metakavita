@@ -128,6 +128,14 @@ def _edition_adjustments(
             delta += 0.04
             reasons.append("title_prefix")
 
+    # Préférer les éditions plus anciennes (rééditions courantes DNB = année en cours)
+    if isinstance(year, int) and year >= now - 1:
+        delta -= 0.06
+        reasons.append(f"recent_reprint:{year}")
+    elif isinstance(year, int) and year < now - 30:
+        delta += 0.03
+        reasons.append("older_edition")
+
     return delta, reasons
 
 
@@ -367,13 +375,15 @@ class DnbScraper(BaseScraper):
 
     @staticmethod
     def _prefer_candidate(a: Dict[str, Any], b: Dict[str, Any]) -> bool:
-        """Tie-break : année non future, puis titre plus court (édition « pure »)."""
+        """Tie-break : pas futur, puis année plus ancienne, puis titre plus court."""
         now = _current_pub_year()
         ya, yb = a.get("year"), b.get("year")
         a_future = isinstance(ya, int) and ya > now
         b_future = isinstance(yb, int) and yb > now
         if a_future != b_future:
             return not a_future
+        if isinstance(ya, int) and isinstance(yb, int) and ya != yb:
+            return ya < yb
         ta = len(a.get("title") or "")
         tb = len(b.get("title") or "")
         if ta != tb:

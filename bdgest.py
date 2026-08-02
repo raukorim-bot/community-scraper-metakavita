@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import logging
 import re
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
@@ -198,9 +198,13 @@ class BdgestScraper(BaseScraper):
 
         soup = BeautifulSoup(res.text, "html.parser")
         hits, seen = [], set()
+        qcf = terms.casefold()
 
-        # Direct series links first
-        for a in soup.select('a[href*="serie-"]'):
+        def _slug_title(slug: str) -> str:
+            return slug.replace("-", " ").replace("_", " ").strip()
+
+        # Direct series links only (serie-123-BD-Slug.html) — pas « 5eme-serie » dans un album
+        for a in soup.select("a[href]"):
             href = a.get("href") or ""
             m = _SERIES.search(href)
             if not m:
@@ -210,8 +214,7 @@ class BdgestScraper(BaseScraper):
                 continue
             title = a.get_text(" ", strip=True)
             if not title or title.casefold() in {"la série", "série", "series"}:
-                # use slug
-                title = m.group(2).replace("-", " ").replace("_", " ").strip()
+                title = _slug_title(m.group(2))
             if not title or len(title) < 2:
                 continue
             seen.add(sid)
@@ -220,22 +223,53 @@ class BdgestScraper(BaseScraper):
             if len(hits) >= 12:
                 return hits
 
-        # Fallback : from album pages, follow first album → series
-        albums = []
-        for a in soup.select('a[href*="BD-"]'):
+        # Albums candidats — scorer pour éviter DOC / hors-série / coloriage
+        album_cands: List[Tuple[float, str, str]] = []
+        for a in soup.select("a[href*='BD-']"):
             href = a.get("href") or ""
-            if not _ALBUM.search(href) and "Tome" not in href and "BD-" not in href:
+            if _SERIES.search(href):
                 continue
-            if "serie-" in href.casefold():
+            if not re.search(r"BD-.+\d+\.html", href, re.I):
                 continue
             full = urljoin(_BASE + "/", href).split("?")[0]
-            if full in albums:
-                continue
             label = a.get_text(" ", strip=True)
             if not label:
                 continue
+            lcf = label.casefold()
+            hcf = href.casefold()
+            score = 0.0
+            if lcf.startswith(qcf + " #") or lcf.startswith(qcf + " tome"):
+                score += 5.0
+            elif lcf.startswith(qcf):
+                score += 2.0
+            if f"bd-{qcf.replace(' ', '-')}-tome-" in hcf.replace("é", "e").replace("è", "e"):
+                score += 4.0
+            if "tome-" in hcf:
+                score += 1.5
+            # Bruit
+            for bad in (
+                "doc-",
+                "journal-",
+                "colorier",
+                "hors-serie",
+                "hors série",
+                "divers",
+                "parabd",
+                "archives",
+            ):
+                if bad in hcf or bad in lcf:
+                    score -= 5.0
+            album_cands.append((score, full, label))
+
+        album_cands.sort(key=lambda x: (-x[0], x[2]))
+        albums = []
+        for sc, full, _label in album_cands:
+            if full in albums:
+                continue
+            if sc < 0:
+                continue
             albums.append(full)
-            if len(albums) >= 4:
+            if len(albums) >= 6:
                 break
 
         for album_url in albums:
@@ -246,7 +280,7 @@ class BdgestScraper(BaseScraper):
             if ar.status_code != 200:
                 continue
             asoup = BeautifulSoup(ar.text, "html.parser")
-            for a in asoup.select('a[href*="serie-"]'):
+            for a in asoup.select("a[href]"):
                 href = a.get("href") or ""
                 m = _SERIES.search(href)
                 if not m:
@@ -256,7 +290,10 @@ class BdgestScraper(BaseScraper):
                     continue
                 title = a.get_text(" ", strip=True)
                 if not title or title.casefold() in {"la série", "série"}:
-                    title = m.group(2).replace("-", " ")
+                    title = _slug_title(m.group(2))
+                # Préférer la série dont le titre colle à la requête
+                if qcf not in title.casefold() and qcf not in m.group(2).casefold().replace("-", " "):
+                    continue
                 seen.add(sid)
                 hits.append(
                     {

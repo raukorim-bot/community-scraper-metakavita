@@ -207,6 +207,21 @@ class BangumiScraper(BaseScraper):
                 score = score_candidate(candidate, cleaned, existing_metadata)
                 if is_series:
                     score = min(1.0, score + 0.08)
+                # Titre exact JP/CN/EN vs spin-off (ワンピースパーティー)
+                names = [
+                    (candidate.get("title") or ""),
+                    *((candidate.get("alternative_titles") or [])[:4]),
+                ]
+                qcf = cleaned.casefold()
+                exact = any((n or "").casefold() == qcf for n in names if n)
+                if exact:
+                    score = min(1.0, score + 0.18)
+                else:
+                    for n in names:
+                        ncf = (n or "").casefold()
+                        if qcf and qcf in ncf and ncf != qcf and len(ncf) > len(qcf) + 2:
+                            score = max(0.0, score - 0.15)
+                            break
                 if _platform_ok(platform, wanted):
                     score = min(1.0, score + 0.05)
 
