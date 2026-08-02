@@ -72,7 +72,7 @@ class BabelioScraper(BaseScraper):
     id = "BABELIO"
     display_name = "Babelio (Littérature FR)"
     supported_types = {"Book"}
-    rate_limit = 1.5
+    rate_limit = 3.0  # HTML — anti-ban IP
     proxy_domains = [
         "babelio.com",
         "www.babelio.com",

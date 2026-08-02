@@ -27,7 +27,7 @@ class MangaSanctuaryScraper(BaseScraper):
     id = "MANGASANCTUARY"
     display_name = "Manga-Sanctuary"
     supported_types = {"Manga"}
-    rate_limit = 1.5
+    rate_limit = 2.5  # HTML — anti-ban IP
     proxy_domains = ["manga-sanctuary.com", "www.manga-sanctuary.com"]
     has_direct_id_support = True
     needs_api_key = False

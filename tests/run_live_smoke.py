@@ -37,7 +37,6 @@ QUERIES: Dict[str, List[Tuple[str, str]]] = {
 # Providers qui nécessitent une clé / cookies — skip live si absente
 KEY_ENV = {
     "METRON": "METRON_API_KEY",
-    "LOCG": "LOCG_API_KEY",
     "ISBNDB": "ISBNDB_API_KEY",
     "NOVELUPDATES": "NOVELUPDATES_API_KEY",  # cookies CF optionnels
     "GCD": "GCD_API_KEY",  # optionnel mais utile si 429
@@ -242,7 +241,6 @@ def run() -> int:
             k: ("yes" if (cfg.get(k) or os.environ.get(k)) else "no")
             for k in (
                 "METRON_API_KEY",
-                "LOCG_API_KEY",
                 "ISBNDB_API_KEY",
                 "NOVELUPDATES_API_KEY",
                 "GCD_API_KEY",

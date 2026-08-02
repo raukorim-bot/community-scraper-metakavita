@@ -37,7 +37,7 @@ class DecitreScraper(BaseScraper):
     id = "DECITRE"
     display_name = "Decitre"
     supported_types = {"Book"}
-    rate_limit = 1.5
+    rate_limit = 2.5  # HTML e-commerce — anti-ban IP
     proxy_domains = ["decitre.fr", "www.decitre.fr", "products-images.di-static.com", "di-static.com"]
     has_direct_id_support = True
     needs_api_key = False

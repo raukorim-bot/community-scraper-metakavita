@@ -49,7 +49,7 @@ class NovelUpdatesScraper(BaseScraper):
     id = "NOVELUPDATES"
     display_name = "Novel Updates"
     supported_types = {"Book", "Manga"}
-    rate_limit = 2.0
+    rate_limit = 3.0  # HTML + Cloudflare — anti-ban IP
     proxy_domains = ["novelupdates.com", "www.novelupdates.com"]
     has_direct_id_support = True
     needs_api_key = False  # cookies optionnels via env / clé UI

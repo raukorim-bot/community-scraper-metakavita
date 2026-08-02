@@ -46,24 +46,30 @@ FILE_BY_ID = {
     "BABELIO": "babelio.py",
     "BANGUMI": "bangumi.py",
     "BDGEST": "bdgest.py",
+    "BNE": "bne.py",
     "BNF": "bnf.py",
     "DECITRE": "decitre.py",
     "DNB": "dnb.py",
     "GCD": "gcd.py",
     "ISBNDB": "isbndb.py",
+    "KB": "kb.py",
+    "LOC": "loc.py",
     "LOCG": "locg.py",
     "MANGASANCTUARY": "mangasanctuary.py",
     "METRON": "metron.py",
+    "NDL": "ndl.py",
     "NOVELUPDATES": "novelupdates.py",
+    "OPENBD": "openbd.py",
     "PLANETEBD": "planetebd.py",
+    "SBN": "sbn.py",
     "SENSCRITIQUE": "senscritique.py",
     "TAPAS": "tapas.py",
+    "TEBEOSFERA": "tebeosfera.py",
     "WEBTOON": "webtoon.py",
 }
 
 KEY_ENV = {
     "METRON": "METRON_API_KEY",
-    "LOCG": "LOCG_API_KEY",
     "ISBNDB": "ISBNDB_API_KEY",
 }
 
@@ -239,8 +245,138 @@ SUITES: List[Suite] = [
         ],
     ),
     Suite("ISBNDB", skip_reason="non testé — clé ISBNdb payante requise"),
-    Suite("LOCG", skip_reason="clé LOCG_API_KEY manquante (client_id:client_secret)"),
-    Suite("METRON", skip_reason="clé METRON_API_KEY manquante"),
+    Suite(
+        "METRON",
+        [
+            Case(
+                "Watchmen",
+                "Comic",
+                "Watchmen",
+                require_cover=True,
+                require_staff=True,
+                year_min=1986,
+                year_max=1988,
+                existing={"year": 1986},
+            ),
+            Case(
+                "Sandman",
+                "Comic",
+                "Sandman",
+                title_mode="soft",
+                require_cover=True,
+                year_min=1988,
+                year_max=1996,
+                existing={"year": 1989},
+            ),
+            Case("zzzzqwxnotitle999", "Comic", None),
+        ],
+    ),
+    Suite(
+        "OPENBD",
+        [
+            # Norwegian Wood / ノルウェイの森 — ISBN JP connu openBD
+            Case(
+                "9784101001517",
+                "Book",
+                "*",
+                is_id=True,
+                require_cover=True,
+                min_score=0.99,
+                note="ISBN direct",
+            ),
+            Case(
+                "ノルウェイの森",
+                "Book",
+                "*",
+                existing={"isbn": "9784101001517"},
+                require_cover=True,
+                year_min=1980,
+                year_max=2025,
+            ),
+            Case("zzzzqwxnotitle999", "Book", None),
+        ],
+    ),
+    Suite(
+        "NDL",
+        [
+            Case("Norwegian Wood", "Book", "Norwegian Wood", title_mode="soft", year_min=1980, year_max=2025),
+            Case(
+                "ノルウェイの森",
+                "Book",
+                "*",
+                existing={"isbn": "9784062748681"},
+                min_score=0.55,
+            ),
+            Case("zzzzqwxnotitle999", "Book", None),
+        ],
+    ),
+    Suite(
+        "BNE",
+        [
+            Case("Don Quijote", "Book", "Quijote", title_mode="contains", year_min=1600, year_max=2025),
+            Case("Cien años de soledad", "Book", "soledad", title_mode="contains", min_score=0.55),
+            Case("zzzzqwxnotitle999", "Book", None),
+        ],
+    ),
+    Suite(
+        "LOC",
+        [
+            Case("Moby Dick", "Book", "Moby", title_mode="contains", require_year=False, year_min=1800, year_max=2025),
+            Case(
+                "Great Gatsby",
+                "Book",
+                "Gatsby",
+                title_mode="contains",
+                min_score=0.55,
+                existing={"authors": ["Fitzgerald"]},
+            ),
+            Case("zzzzqwxnotitle999", "Book", None),
+        ],
+    ),
+    Suite(
+        "SBN",
+        [
+            Case("Il nome della rosa", "Book", "rosa", title_mode="contains", min_score=0.55),
+            Case("Se questo è un uomo", "Book", "uomo", title_mode="contains", min_score=0.50),
+            Case("zzzzqwxnotitle999", "Book", None),
+        ],
+    ),
+    Suite(
+        "KB",
+        [
+            Case("Max Havelaar", "Book", "Havelaar", title_mode="contains", min_score=0.55),
+            Case("Het Achterhuis", "Book", "*", title_mode="soft", min_score=0.50),
+            Case("zzzzqwxnotitle999", "Book", None),
+        ],
+    ),
+    Suite(
+        "TEBEOSFERA",
+        skip_reason="catalogue JS/iframe — HTML non scrapable (shell 19k sans contenu)",
+    ),
+    Suite(
+        "LOCG",
+        [
+            Case(
+                "Watchmen",
+                "Comic",
+                "Watchmen",
+                require_cover=True,
+                year_min=1986,
+                year_max=1988,
+                existing={"year": 1986},
+            ),
+            Case(
+                "Sandman",
+                "Comic",
+                "Sandman",
+                title_mode="soft",
+                year_min=1988,
+                year_max=1990,
+                existing={"year": 1989},
+            ),
+            Case("zzzzqwxnotitle999", "Comic", None),
+        ],
+    ),
     Suite(
         "NOVELUPDATES",
         [
@@ -293,8 +429,11 @@ def _check_positive(meta: dict, case: Case) -> List[str]:
     if not meta:
         return ["aucun résultat"]
     title = meta.get("title") or ""
-    if case.expect_title and not title_ok(title, case.expect_title, case.title_mode):
-        errs.append(f"titre '{title}' ≠ attendu '{case.expect_title}'")
+    if case.expect_title and case.expect_title != "*":
+        if not title_ok(title, case.expect_title, case.title_mode):
+            errs.append(f"titre '{title}' ≠ attendu '{case.expect_title}'")
+    elif case.expect_title == "*" and not title.strip():
+        errs.append("titre vide")
     score = meta.get("_match_score")
     try:
         fs = float(score) if score is not None else -1.0
@@ -349,15 +488,10 @@ def run_suite(suite: Suite) -> Dict[str, Any]:
     }
     cfg = _load_config()
 
-    if suite.skip_reason:
-        if suite.scraper_id in KEY_ENV and not _has_key(suite.scraper_id):
-            out["status"] = "SKIP"
-            out["detail"] = suite.skip_reason
-            return out
-        if suite.skip_reason and suite.scraper_id in KEY_ENV:
-            out["status"] = "SKIP"
-            out["detail"] = suite.skip_reason
-            return out
+    if suite.skip_reason and not suite.cases:
+        out["status"] = "SKIP"
+        out["detail"] = suite.skip_reason
+        return out
 
     if suite.scraper_id in KEY_ENV and not _has_key(suite.scraper_id):
         out["status"] = "SKIP"

@@ -33,7 +33,7 @@ class BdgestScraper(BaseScraper):
     id = "BDGEST"
     display_name = "BDgest / Bédéthèque"
     supported_types = {"Comic"}
-    rate_limit = 1.5
+    rate_limit = 3.0  # HTML bedetheque.com — anti-ban IP
     proxy_domains = [
         "bdgest.com",
         "www.bdgest.com",
@@ -357,11 +357,31 @@ class BdgestScraper(BaseScraper):
             {"role": "Story & Art", "node": {"name": {"full": n}}} for n in authors[:4]
         ]
         year = None
-        m = _YEAR.search(soup.get_text(" ", strip=True)[:2500])
-        if m:
-            y = int(m.group(1))
-            if 1900 <= y <= 2030:
-                year = y
+        # Bandeau série : "Astérix Humour … 1961-2025"
+        bandeau = soup.select_one(".bandeau-info.serie") or soup.select_one(".bandeau-info")
+        if bandeau:
+            bt = bandeau.get_text(" ", strip=True)
+            m = re.search(r"(19\d{2}|20\d{2})\s*[-–—]\s*(?:\d{4}|…|\.{2,})?", bt)
+            if m:
+                year = int(m.group(1))
+        if year is None:
+            m = _YEAR.search(soup.get_text(" ", strip=True)[:2500])
+            if m:
+                y = int(m.group(1))
+                if 1900 <= y <= 2030:
+                    year = y
+
+        genres = ["Comic"]
+        if bandeau:
+            # "Astérix Humour Série en cours Europe …"
+            parts = bandeau.get_text(" ", strip=True).split()
+            skip = {title.casefold(), "série", "serie", "en", "cours", "europe", "albums", "français", "francais"}
+            for p in parts[1:6]:
+                if p.casefold() in skip or re.fullmatch(r"\d{4}(-\d{4})?", p):
+                    continue
+                if p[0].isupper() and len(p) > 2:
+                    genres = [p]
+                    break
 
         # Prefer series URL if we landed on an album
         series_url = url.split("?")[0]
@@ -376,7 +396,7 @@ class BdgestScraper(BaseScraper):
             "alternative_titles": [],
             "summary": (og_desc.get("content") if og_desc else "") or "",
             "cover_url": og_img.get("content") if og_img else None,
-            "genres": ["Comic"][: get_max_genres()],
+            "genres": genres[: get_max_genres()],
             "tags": [],
             "year": year,
             "staff": staff,

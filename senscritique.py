@@ -211,7 +211,7 @@ class SensCritiqueScraper(BaseScraper):
     id = "SENSCRITIQUE"
     display_name = "SensCritique (FR)"
     supported_types = {"Book", "Comic"}
-    rate_limit = 1.2
+    rate_limit = 2.5  # GraphQL front — anti-ban IP
     proxy_domains = [
         "senscritique.com",
         "www.senscritique.com",

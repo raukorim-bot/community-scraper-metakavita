@@ -1,0 +1,2109 @@
+{
+  "schema_version": 1,
+  "name": "MetaKavita Community Scraper Store",
+  "description": {
+    "fr": "Catalogue des scrapers communautaires vérifiés pour installation sideload dans data/scrapers/.",
+    "en": "Catalog of vetted community scrapers for sideload install into data/scrapers/."
+  },
+  "repo": "https://github.com/raukorim-bot/community-scraper-metakavita",
+  "default_branch": "main",
+  "raw_base": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main",
+  "generated_at": "2026-08-02T12:20:20Z",
+  "quality_docs": "docs/QUALITY.md",
+  "quality_audited_at": "2026-08-02",
+  "install_notes": {
+    "fr": "Télécharger le .py vers data/scrapers/, vérifier sha256, redémarrer MetaKavita. N’installez que des fichiers de ce dépôt.",
+    "en": "Download the .py into data/scrapers/, verify sha256, restart MetaKavita. Only install files from this repository."
+  },
+  "security": {
+    "fr": "Un scraper = code Python exécuté avec les droits de MetaKavita. Voir CUSTOM_SCRAPERS.md.",
+    "en": "A scraper is Python executed with MetaKavita privileges. See CUSTOM_SCRAPERS.md."
+  },
+  "scrapers": [
+    {
+      "id": "ANIMEPLANET",
+      "file": "animeplanet.py",
+      "display_name": "Anime-Planet",
+      "version": "1.0.0",
+      "supported_types": [
+        "Manga"
+      ],
+      "library_types": [
+        "Manga"
+      ],
+      "method": "html",
+      "languages": [
+        "en"
+      ],
+      "region": "US",
+      "homepage": "https://www.anime-planet.com",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 3.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "anime-planet.com",
+        "www.anime-planet.com",
+        "cdn.anime-planet.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Anime-Planet — métadonnées manga (HTML).",
+        "en": "Anime-Planet — manga metadata (HTML)."
+      },
+      "setup": {
+        "fr": "Aucune clé. rate_limit=3.0 s.",
+        "en": "No API key. rate_limit=3.0 s."
+      },
+      "warnings": [
+        "Anti-bot fréquent — rate limit élevé."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 100,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": [
+            "isbn",
+            "publisher",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Death Note",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Manga EN — payload complet + covers.",
+          "en": "EN manga — full payload + covers."
+        }
+      },
+      "docs": "docs/scrapers/animeplanet.md",
+      "install": {
+        "path": "animeplanet.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/animeplanet.py",
+        "sha256": "a4ecc0416d323aa7a69dea06762b23cb54cc9b197d349ee1df11689b266c99a2",
+        "bytes": 10961,
+        "target": "data/scrapers/animeplanet.py"
+      },
+      "tags": [
+        "Manga",
+        "covers",
+        "grade-a",
+        "html",
+        "us"
+      ]
+    },
+    {
+      "id": "ANN",
+      "file": "ann.py",
+      "display_name": "Anime News Network",
+      "version": "1.0.0",
+      "supported_types": [
+        "Manga"
+      ],
+      "library_types": [
+        "Manga"
+      ],
+      "method": "api",
+      "languages": [
+        "en"
+      ],
+      "region": "US",
+      "homepage": "https://www.animenewsnetwork.com",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 1.2,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "animenewsnetwork.com",
+        "cdn.animenewsnetwork.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Encyclopédie Anime News Network — API XML publique.",
+        "en": "Anime News Network encyclopedia — public XML API."
+      },
+      "setup": {
+        "fr": "Aucune clé.",
+        "en": "No API key."
+      },
+      "warnings": [],
+      "quality": {
+        "grade": "A",
+        "note": 100,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": [
+            "isbn",
+            "publisher",
+            "status"
+          ]
+        },
+        "tested_query": "Death Note",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Référence manga EN (API XML) — covers OK.",
+          "en": "EN manga reference (XML API) — covers OK."
+        }
+      },
+      "docs": "docs/scrapers/ann.md",
+      "install": {
+        "path": "ann.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/ann.py",
+        "sha256": "dec4ffc17f9def84f454a4500508a29288c36a59e294670ddbeffdd602845ed3",
+        "bytes": 14338,
+        "target": "data/scrapers/ann.py"
+      },
+      "tags": [
+        "Manga",
+        "api",
+        "covers",
+        "grade-a",
+        "us"
+      ]
+    },
+    {
+      "id": "BABELIO",
+      "file": "babelio.py",
+      "display_name": "Babelio (Littérature FR)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book"
+      ],
+      "library_types": [
+        "Book"
+      ],
+      "method": "html",
+      "languages": [
+        "fr"
+      ],
+      "region": "FR",
+      "homepage": "https://www.babelio.com",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 3.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "babelio.com",
+        "www.babelio.com",
+        "images-na.ssl-images-amazon.com",
+        "images-eu.ssl-images-amazon.com",
+        "ecx.images-amazon.com",
+        "m.media-amazon.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Catalogue littéraire francophone (avis, résumé, couverture). Scraping HTML.",
+        "en": "French literature catalog (reviews, summary, cover). HTML scraping."
+      },
+      "setup": {
+        "fr": "Aucune clé. rate_limit=3.0 s recommandé.",
+        "en": "No API key. rate_limit=3.0 s recommended."
+      },
+      "warnings": [
+        "Site HTML — respecter le rate limit pour éviter un ban IP."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 100,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": [
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Le Petit Prince",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Littérature FR — idéal Book francophone.",
+          "en": "French literature — best for FR Book libraries."
+        }
+      },
+      "docs": "docs/scrapers/babelio.md",
+      "install": {
+        "path": "babelio.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/babelio.py",
+        "sha256": "6e0a24358254889c469132b62e75035a0c71f1cc0def6808a8bfc88537c6b89c",
+        "bytes": 24397,
+        "target": "data/scrapers/babelio.py"
+      },
+      "tags": [
+        "Book",
+        "covers",
+        "fr",
+        "grade-a",
+        "html"
+      ]
+    },
+    {
+      "id": "BANGUMI",
+      "file": "bangumi.py",
+      "display_name": "Bangumi (JP/CN)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book",
+        "Manga"
+      ],
+      "library_types": [
+        "Book",
+        "Manga"
+      ],
+      "method": "api",
+      "languages": [
+        "ja",
+        "zh",
+        "en"
+      ],
+      "region": "JP/CN",
+      "homepage": "https://bgm.tv",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 1.2,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "bgm.tv",
+        "api.bgm.tv",
+        "lain.bgm.tv"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "API Bangumi (manga / light novels JP-CN). User-Agent géré par le scraper.",
+        "en": "Bangumi API (JP/CN manga / light novels). User-Agent handled by scraper."
+      },
+      "setup": {
+        "fr": "Aucune clé.",
+        "en": "No API key."
+      },
+      "warnings": [],
+      "quality": {
+        "grade": "A",
+        "note": 100,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": [
+            "isbn"
+          ]
+        },
+        "tested_query": "Death Note",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Manga/Book JP-CN — très complet (status inclus).",
+          "en": "JP/CN manga & books — very complete (incl. status)."
+        }
+      },
+      "docs": "docs/scrapers/bangumi.md",
+      "install": {
+        "path": "bangumi.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bangumi.py",
+        "sha256": "6644e03d80d03df97575faf257a0c830e1f35430ddfdf1a5dcd92db1daf9d06a",
+        "bytes": 18695,
+        "target": "data/scrapers/bangumi.py"
+      },
+      "tags": [
+        "Book",
+        "Manga",
+        "api",
+        "covers",
+        "grade-a",
+        "jp"
+      ]
+    },
+    {
+      "id": "BDGEST",
+      "file": "bdgest.py",
+      "display_name": "BDgest / Bédéthèque",
+      "version": "1.0.0",
+      "supported_types": [
+        "Comic"
+      ],
+      "library_types": [
+        "Comic"
+      ],
+      "method": "html",
+      "languages": [
+        "fr"
+      ],
+      "region": "FR",
+      "homepage": "https://www.bedetheque.com",
+      "covers": true,
+      "status": "beta",
+      "rate_limit": 3.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "bdgest.com",
+        "www.bdgest.com",
+        "bedetheque.com",
+        "www.bedetheque.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "BDgest / Bédéthèque — BD FR via bedetheque.com (HTML, best-effort).",
+        "en": "BDgest / Bédéthèque — French BD via bedetheque.com (HTML, best-effort)."
+      },
+      "setup": {
+        "fr": "Aucune clé. rate_limit=3.0 s.",
+        "en": "No API key. rate_limit=3.0 s."
+      },
+      "warnings": [
+        "Matching encore perfectible.",
+        "Site sensible aux bans IP."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 100,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": [
+            "isbn",
+            "publisher",
+            "tags",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Astérix",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "BD FR (Bédéthèque) — covers + année série.",
+          "en": "FR BD (Bédéthèque) — covers + series year."
+        }
+      },
+      "docs": "docs/scrapers/bdgest.md",
+      "install": {
+        "path": "bdgest.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bdgest.py",
+        "sha256": "b9993ab015cc78d0f91a6ab117aef8b10e8c1cb9291c0c5ea19594208c9f8057",
+        "bytes": 15766,
+        "target": "data/scrapers/bdgest.py"
+      },
+      "tags": [
+        "Comic",
+        "covers",
+        "fr",
+        "grade-a",
+        "html"
+      ]
+    },
+    {
+      "id": "BNE",
+      "file": "bne.py",
+      "display_name": "BNE (España)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book"
+      ],
+      "library_types": [
+        "Book"
+      ],
+      "method": "sru",
+      "languages": [
+        "es"
+      ],
+      "region": "ES",
+      "homepage": "https://www.bne.es",
+      "covers": false,
+      "status": "stable",
+      "rate_limit": 1.2,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "bne.es",
+        "catalogo.bne.es",
+        "datos.bne.es",
+        "www.bne.es"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Biblioteca Nacional de España — SRU Alma (DC).",
+        "en": "National Library of Spain — Alma SRU (DC)."
+      },
+      "setup": {
+        "fr": "Aucune clé. Données CC0.",
+        "en": "No API key. CC0 data."
+      },
+      "warnings": [],
+      "quality": {
+        "grade": "A",
+        "note": 98,
+        "audit_status": "PASS",
+        "covers_ok": false,
+        "gaps": {
+          "provider": [
+            "cover_url"
+          ],
+          "bug": [],
+          "optional": [
+            "isbn",
+            "tags",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Don Quijote",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Catalogue ES — notices OK, pas de covers SRU.",
+          "en": "Spanish national catalog — records OK, no SRU covers."
+        }
+      },
+      "docs": "docs/scrapers/bne.md",
+      "install": {
+        "path": "bne.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bne.py",
+        "sha256": "3a66d4e43e2ce09dda30f07c260a2d03d254ecbba2bea0485f93235fc7efc8dd",
+        "bytes": 9331,
+        "target": "data/scrapers/bne.py"
+      },
+      "tags": [
+        "Book",
+        "es",
+        "grade-a",
+        "no-covers",
+        "sru"
+      ]
+    },
+    {
+      "id": "BNF",
+      "file": "bnf.py",
+      "display_name": "BnF Catalogue",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book"
+      ],
+      "library_types": [
+        "Book"
+      ],
+      "method": "sru",
+      "languages": [
+        "fr"
+      ],
+      "region": "FR",
+      "homepage": "https://catalogue.bnf.fr",
+      "covers": false,
+      "status": "stable",
+      "rate_limit": 1.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "bnf.fr",
+        "catalogue.bnf.fr"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Catalogue BnF — SRU Dublin Core (pas de couvertures natives).",
+        "en": "BnF catalogue — SRU Dublin Core (no native covers)."
+      },
+      "setup": {
+        "fr": "Aucune clé.",
+        "en": "No API key."
+      },
+      "warnings": [],
+      "quality": {
+        "grade": "A",
+        "note": 99,
+        "audit_status": "PASS",
+        "covers_ok": false,
+        "gaps": {
+          "provider": [
+            "cover_url"
+          ],
+          "bug": [],
+          "optional": [
+            "publisher",
+            "tags",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Les Misérables",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Catalogue FR officiel — pas de covers (coupler Babelio/Decitre).",
+          "en": "French national catalog — no covers (pair with Babelio/Decitre)."
+        }
+      },
+      "docs": "docs/scrapers/bnf.md",
+      "install": {
+        "path": "bnf.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bnf.py",
+        "sha256": "709bc1308ebbbe393228e89f93451a9310fdd5fcb237731d87edb2da3e32ba31",
+        "bytes": 9394,
+        "target": "data/scrapers/bnf.py"
+      },
+      "tags": [
+        "Book",
+        "fr",
+        "grade-a",
+        "no-covers",
+        "sru"
+      ]
+    },
+    {
+      "id": "DECITRE",
+      "file": "decitre.py",
+      "display_name": "Decitre",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book"
+      ],
+      "library_types": [
+        "Book"
+      ],
+      "method": "html",
+      "languages": [
+        "fr"
+      ],
+      "region": "FR",
+      "homepage": "https://www.decitre.fr",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 2.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "decitre.fr",
+        "www.decitre.fr",
+        "products-images.di-static.com",
+        "di-static.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Librairie Decitre — recherche HTML + fiche JSON-LD.",
+        "en": "Decitre bookstore — HTML search + JSON-LD product page."
+      },
+      "setup": {
+        "fr": "Aucune clé. rate_limit=2.5 s.",
+        "en": "No API key. rate_limit=2.5 s."
+      },
+      "warnings": [
+        "E-commerce / WAF possible — respecter le rate limit."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 100,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": [
+            "tags",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Le Petit Prince",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Librairie FR — covers + ISBN + résumé.",
+          "en": "French bookstore — covers + ISBN + summary."
+        }
+      },
+      "docs": "docs/scrapers/decitre.md",
+      "install": {
+        "path": "decitre.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/decitre.py",
+        "sha256": "a5bf8b8c882bacd6b4131196b58bdf94f138cebbc236db897580457e8f8f0dbb",
+        "bytes": 11103,
+        "target": "data/scrapers/decitre.py"
+      },
+      "tags": [
+        "Book",
+        "covers",
+        "fr",
+        "grade-a",
+        "html"
+      ]
+    },
+    {
+      "id": "DNB",
+      "file": "dnb.py",
+      "display_name": "DNB (Deutsche Nationalbibliothek)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book"
+      ],
+      "library_types": [
+        "Book"
+      ],
+      "method": "sru",
+      "languages": [
+        "de",
+        "en"
+      ],
+      "region": "DE",
+      "homepage": "https://www.dnb.de",
+      "covers": false,
+      "status": "stable",
+      "rate_limit": 1.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "dnb.de",
+        "services.dnb.de",
+        "d-nb.info",
+        "portal.dnb.de"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Deutsche Nationalbibliothek — SRU MARC21 (pas de couvertures natives).",
+        "en": "German National Library — SRU MARC21 (no native covers)."
+      },
+      "setup": {
+        "fr": "Aucune clé. Année = souvent édition catalogue, pas 1re parution.",
+        "en": "No API key. Year is often catalogue edition year, not first publication."
+      },
+      "warnings": [],
+      "quality": {
+        "grade": "A",
+        "note": 98,
+        "audit_status": "PASS",
+        "covers_ok": false,
+        "gaps": {
+          "provider": [
+            "cover_url",
+            "summary"
+          ],
+          "bug": [],
+          "optional": [
+            "tags",
+            "status"
+          ]
+        },
+        "tested_query": "Der Prozess",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Catalogue DE — notices riches, sans cover/summary.",
+          "en": "German national catalog — rich records, no cover/summary."
+        }
+      },
+      "docs": "docs/scrapers/dnb.md",
+      "install": {
+        "path": "dnb.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/dnb.py",
+        "sha256": "7511ee2cc726523128c0da47725c8a26d2db87aebf01c19b3dda094096cfb729",
+        "bytes": 24538,
+        "target": "data/scrapers/dnb.py"
+      },
+      "tags": [
+        "Book",
+        "de",
+        "grade-a",
+        "no-covers",
+        "sru"
+      ]
+    },
+    {
+      "id": "GCD",
+      "file": "gcd.py",
+      "display_name": "Grand Comics Database",
+      "version": "1.0.0",
+      "supported_types": [
+        "Comic"
+      ],
+      "library_types": [
+        "Comic"
+      ],
+      "method": "api",
+      "languages": [
+        "en"
+      ],
+      "region": "US",
+      "homepage": "https://www.comics.org",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 2.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "comics.org",
+        "www.comics.org",
+        "files1.comics.org",
+        "files2.comics.org",
+        "files.comics.org"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": "GCD_API_KEY",
+        "kind": "optional_basic"
+      },
+      "summary": {
+        "fr": "Grand Comics Database — API JSON /api/ (HTML bloqué par Cloudflare).",
+        "en": "Grand Comics Database — JSON /api/ (HTML blocked by Cloudflare)."
+      },
+      "setup": {
+        "fr": "Optionnel : compte comics.org en user:password dans GCD_API_KEY (meilleur quota).",
+        "en": "Optional: comics.org user:password in GCD_API_KEY (higher quota)."
+      },
+      "warnings": [
+        "Couvertures sur files1.comics.org (proxy MetaKavita)."
+      ],
+      "quality": {
+        "grade": null,
+        "note": null,
+        "audit_status": "EXPECTED",
+        "covers_ok": null,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": []
+        },
+        "tested_query": "Watchmen",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Comics US — souvent 429 ; covers déclarés mais non vérifiés ce run.",
+          "en": "US comics — often 429; covers declared but not verified this run."
+        }
+      },
+      "docs": "docs/scrapers/gcd.md",
+      "install": {
+        "path": "gcd.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/gcd.py",
+        "sha256": "246f7c2286a3cdc113c2ffb88b0ae6d4a680e1274ea412694712c9bf70b48662",
+        "bytes": 21166,
+        "target": "data/scrapers/gcd.py"
+      },
+      "tags": [
+        "Comic",
+        "api",
+        "us"
+      ]
+    },
+    {
+      "id": "ISBNDB",
+      "file": "isbndb.py",
+      "display_name": "ISBNdb",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book"
+      ],
+      "library_types": [
+        "Book"
+      ],
+      "method": "api",
+      "languages": [
+        "en"
+      ],
+      "region": "US",
+      "homepage": "https://isbndb.com",
+      "covers": true,
+      "status": "untested",
+      "rate_limit": 1.0,
+      "needs_api_key": true,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "isbndb.com",
+        "api2.isbndb.com",
+        "images.isbndb.com"
+      ],
+      "auth": {
+        "required": true,
+        "config_key": "ISBNDB_API_KEY",
+        "kind": "api_key"
+      },
+      "summary": {
+        "fr": "ISBNdb — API REST livres (abonnement payant). Non testé en live dans ce dépôt.",
+        "en": "ISBNdb — books REST API (paid plan). Not live-tested in this repo."
+      },
+      "setup": {
+        "fr": "Clé REST payante → ISBNDB_API_KEY.",
+        "en": "Paid REST key → ISBNDB_API_KEY."
+      },
+      "warnings": [
+        "Abonnement payant requis.",
+        "Non validé en live (pas de clé de test)."
+      ],
+      "quality": {
+        "grade": null,
+        "note": null,
+        "audit_status": "SKIP",
+        "covers_ok": null,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": []
+        },
+        "tested_query": null,
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "ISBN mondial — clé payante requise, non testé en live.",
+          "en": "Worldwide ISBN — paid key required, not live-tested."
+        }
+      },
+      "docs": "docs/scrapers/isbndb.md",
+      "install": {
+        "path": "isbndb.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/isbndb.py",
+        "sha256": "55d8176285b3527ba82cc85aa2737ee18e81101d2f40629079ff688d73680ada",
+        "bytes": 9279,
+        "target": "data/scrapers/isbndb.py"
+      },
+      "tags": [
+        "Book",
+        "api",
+        "api-key",
+        "us"
+      ]
+    },
+    {
+      "id": "KB",
+      "file": "kb.py",
+      "display_name": "KB (Nederland)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book"
+      ],
+      "library_types": [
+        "Book"
+      ],
+      "method": "sru",
+      "languages": [
+        "nl"
+      ],
+      "region": "NL",
+      "homepage": "https://www.kb.nl",
+      "covers": false,
+      "status": "beta",
+      "rate_limit": 1.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "kb.nl",
+        "jsru.kb.nl",
+        "www.kb.nl",
+        "resolver.kb.nl"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Koninklijke Bibliotheek — SRU JSRU (collections GGC/DPO).",
+        "en": "KB National Library of the Netherlands — JSRU SRU (GGC/DPO)."
+      },
+      "setup": {
+        "fr": "Aucune clé. Couverture catalogue à valider en live.",
+        "en": "No API key. Catalog coverage to validate live."
+      },
+      "warnings": [
+        "Collections SRU KB surtout numériques / GGC — à finetuner après tests."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 97,
+        "audit_status": "PASS",
+        "covers_ok": false,
+        "gaps": {
+          "provider": [
+            "cover_url",
+            "summary"
+          ],
+          "bug": [],
+          "optional": [
+            "isbn",
+            "tags",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Max Havelaar",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Catalogue NL — pas de covers SRU.",
+          "en": "Dutch national catalog — no SRU covers."
+        }
+      },
+      "docs": "docs/scrapers/kb.md",
+      "install": {
+        "path": "kb.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/kb.py",
+        "sha256": "2496269a3fdebb7df799644e8cd64b807cf803611bb3e9ca522b5f4724d6323c",
+        "bytes": 8587,
+        "target": "data/scrapers/kb.py"
+      },
+      "tags": [
+        "Book",
+        "grade-a",
+        "nl",
+        "no-covers",
+        "sru"
+      ]
+    },
+    {
+      "id": "LOC",
+      "file": "loc.py",
+      "display_name": "Library of Congress",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book"
+      ],
+      "library_types": [
+        "Book"
+      ],
+      "method": "sru",
+      "languages": [
+        "en"
+      ],
+      "region": "US",
+      "homepage": "https://www.loc.gov",
+      "covers": false,
+      "status": "stable",
+      "rate_limit": 1.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "loc.gov",
+        "www.loc.gov",
+        "tile.loc.gov",
+        "cover.loc.gov"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Library of Congress — SRU LCDB (Dublin Core). Peu/pas de covers.",
+        "en": "Library of Congress — LCDB SRU (Dublin Core). Covers rarely available."
+      },
+      "setup": {
+        "fr": "Aucune clé. rate_limit=1.5 s. Fallback JSON loc.gov si SRU vide.",
+        "en": "No API key. rate_limit=1.5 s. JSON loc.gov fallback if SRU empty."
+      },
+      "warnings": [
+        "Couvertures absentes via SRU DC.",
+        "Préférer une requête avec auteur pour de meilleures notices."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 97,
+        "audit_status": "PASS",
+        "covers_ok": false,
+        "gaps": {
+          "provider": [
+            "cover_url",
+            "summary",
+            "url"
+          ],
+          "bug": [],
+          "optional": [
+            "isbn",
+            "publisher",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Moby Dick",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Library of Congress — SRU DC, rarement covers/URL.",
+          "en": "Library of Congress — SRU DC, covers/URL rarely present."
+        }
+      },
+      "docs": "docs/scrapers/loc.md",
+      "install": {
+        "path": "loc.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/loc.py",
+        "sha256": "c7a4d0e033a56e0e23d441503ded7272834e71cb0861bc9c706a295d7f25da16",
+        "bytes": 17617,
+        "target": "data/scrapers/loc.py"
+      },
+      "tags": [
+        "Book",
+        "grade-a",
+        "no-covers",
+        "sru",
+        "us"
+      ]
+    },
+    {
+      "id": "LOCG",
+      "file": "locg.py",
+      "display_name": "League of Comic Geeks",
+      "version": "1.0.0",
+      "supported_types": [
+        "Comic"
+      ],
+      "library_types": [
+        "Comic"
+      ],
+      "method": "html",
+      "languages": [
+        "en"
+      ],
+      "region": "US",
+      "homepage": "https://leagueofcomicgeeks.com",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 4.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "leagueofcomicgeeks.com",
+        "www.leagueofcomicgeeks.com",
+        "comicgeeks.app",
+        "s3.amazonaws.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "League of Comic Geeks — séries comics via XHR/HTML public (pas d’API partenaire libre-service).",
+        "en": "League of Comic Geeks — comic series via public XHR/HTML (partner API is not self-serve)."
+      },
+      "setup": {
+        "fr": "Aucune clé. rate_limit=4.0 s (prudent).",
+        "en": "No API key. rate_limit=4.0 s (conservative)."
+      },
+      "warnings": [
+        "API officielle non disponible en libre-service.",
+        "Rate limit élevé volontairement."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 100,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": [
+            "isbn",
+            "publisher",
+            "tags",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Watchmen",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Comics US sans clé — covers + résumé série.",
+          "en": "US comics, no API key — series covers + summary."
+        }
+      },
+      "docs": "docs/scrapers/locg.md",
+      "install": {
+        "path": "locg.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/locg.py",
+        "sha256": "10012dbc672c94532dd24a3cb908ed4c25a2378d9084c4ece22b1b6c980661ff",
+        "bytes": 19765,
+        "target": "data/scrapers/locg.py"
+      },
+      "tags": [
+        "Comic",
+        "covers",
+        "grade-a",
+        "html",
+        "us"
+      ]
+    },
+    {
+      "id": "MANGASANCTUARY",
+      "file": "mangasanctuary.py",
+      "display_name": "Manga-Sanctuary",
+      "version": "1.0.0",
+      "supported_types": [
+        "Manga"
+      ],
+      "library_types": [
+        "Manga"
+      ],
+      "method": "html",
+      "languages": [
+        "fr"
+      ],
+      "region": "FR",
+      "homepage": "https://www.manga-sanctuary.com",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 2.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "manga-sanctuary.com",
+        "www.manga-sanctuary.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Manga-Sanctuary — catalogue manga FR (HTML).",
+        "en": "Manga-Sanctuary — French manga catalog (HTML)."
+      },
+      "setup": {
+        "fr": "Aucune clé. rate_limit=2.5 s.",
+        "en": "No API key. rate_limit=2.5 s."
+      },
+      "warnings": [
+        "Site HTML — anti-ban rate limit."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 100,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": [
+            "isbn",
+            "publisher",
+            "tags",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Death Note",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Manga FR — covers OK.",
+          "en": "French manga site — covers OK."
+        }
+      },
+      "docs": "docs/scrapers/mangasanctuary.md",
+      "install": {
+        "path": "mangasanctuary.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangasanctuary.py",
+        "sha256": "1d0bc6945af3c1da57ec0d8df3376f5a9522be056cd000fe8c311064f46e759c",
+        "bytes": 9639,
+        "target": "data/scrapers/mangasanctuary.py"
+      },
+      "tags": [
+        "Manga",
+        "covers",
+        "fr",
+        "grade-a",
+        "html"
+      ]
+    },
+    {
+      "id": "METRON",
+      "file": "metron.py",
+      "display_name": "Metron (Comics API)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Comic"
+      ],
+      "library_types": [
+        "Comic"
+      ],
+      "method": "api",
+      "languages": [
+        "en"
+      ],
+      "region": "US",
+      "homepage": "https://metron.cloud",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 3.0,
+      "needs_api_key": true,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "metron.cloud",
+        "static.metron.cloud"
+      ],
+      "auth": {
+        "required": true,
+        "config_key": "METRON_API_KEY",
+        "kind": "bearer_or_basic"
+      },
+      "summary": {
+        "fr": "API comics Metron (séries, issues, covers). Clé obligatoire.",
+        "en": "Metron comics API (series, issues, covers). API key required."
+      },
+      "setup": {
+        "fr": "Compte metron.cloud → API Tokens → coller dans METRON_API_KEY (Bearer, ou user:password).",
+        "en": "metron.cloud account → API Tokens → METRON_API_KEY (Bearer, or user:password)."
+      },
+      "warnings": [
+        "Quota API Metron (~20 req/min) — rate_limit=3.0."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 100,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": [
+            "isbn",
+            "alternative_titles"
+          ]
+        },
+        "tested_query": "Watchmen",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Meilleure API comics (clé) — staff via 1er issue + covers.",
+          "en": "Best comics API (key) — staff from 1st issue + covers."
+        }
+      },
+      "docs": "docs/scrapers/metron.md",
+      "install": {
+        "path": "metron.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/metron.py",
+        "sha256": "bde836ad8168b1b684c6f59470267ad2434b80842fa992d0dc0c40a0a0a1b45b",
+        "bytes": 20761,
+        "target": "data/scrapers/metron.py"
+      },
+      "tags": [
+        "Comic",
+        "api",
+        "api-key",
+        "covers",
+        "grade-a",
+        "us"
+      ]
+    },
+    {
+      "id": "NDL",
+      "file": "ndl.py",
+      "display_name": "NDL Search (JP)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book"
+      ],
+      "library_types": [
+        "Book"
+      ],
+      "method": "api",
+      "languages": [
+        "ja",
+        "en"
+      ],
+      "region": "JP",
+      "homepage": "https://ndlsearch.ndl.go.jp",
+      "covers": false,
+      "status": "stable",
+      "rate_limit": 1.2,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "ndl.go.jp",
+        "ndlsearch.ndl.go.jp",
+        "dl.ndl.go.jp",
+        "www.ndl.go.jp"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "NDL Search — Bibliothèque nationale du Japon (OpenSearch).",
+        "en": "NDL Search — National Diet Library of Japan (OpenSearch)."
+      },
+      "setup": {
+        "fr": "Aucune clé. Pas de covers natives fiables (utiliser openBD pour les ISBN).",
+        "en": "No API key. No reliable native covers (use openBD for ISBNs)."
+      },
+      "warnings": [],
+      "quality": {
+        "grade": "A",
+        "note": 99,
+        "audit_status": "PASS",
+        "covers_ok": false,
+        "gaps": {
+          "provider": [
+            "cover_url"
+          ],
+          "bug": [],
+          "optional": [
+            "tags",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Norwegian Wood",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Bibliothèque nationale JP — notices, pas de covers (voir openBD).",
+          "en": "JP national library — records, no covers (see openBD)."
+        }
+      },
+      "docs": "docs/scrapers/ndl.md",
+      "install": {
+        "path": "ndl.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/ndl.py",
+        "sha256": "da95d4e290fa0518c0cc8d096fa9710a4edf1bbb60c5c8a912c508263b900bef",
+        "bytes": 10989,
+        "target": "data/scrapers/ndl.py"
+      },
+      "tags": [
+        "Book",
+        "api",
+        "grade-a",
+        "jp",
+        "no-covers"
+      ]
+    },
+    {
+      "id": "NOVELUPDATES",
+      "file": "novelupdates.py",
+      "display_name": "Novel Updates",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book",
+        "Manga"
+      ],
+      "library_types": [
+        "Book",
+        "Manga"
+      ],
+      "method": "html",
+      "languages": [
+        "en"
+      ],
+      "region": "US",
+      "homepage": "https://www.novelupdates.com",
+      "covers": true,
+      "status": "limited",
+      "rate_limit": 3.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "novelupdates.com",
+        "www.novelupdates.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": "NOVELUPDATES_API_KEY",
+        "kind": "optional_cf_cookies"
+      },
+      "summary": {
+        "fr": "Novel Updates — light novels (HTML). Souvent derrière Cloudflare.",
+        "en": "Novel Updates — light novels (HTML). Often behind Cloudflare."
+      },
+      "setup": {
+        "fr": "Optionnel : coller cf_clearance=… (cookies navigateur) dans NOVELUPDATES_API_KEY. rate_limit=3.0 s.",
+        "en": "Optional: paste cf_clearance=… browser cookies into NOVELUPDATES_API_KEY. rate_limit=3.0 s."
+      },
+      "warnings": [
+        "Sans cookies CF, les recherches échouent souvent.",
+        "Ne pas partager vos cookies publiquement."
+      ],
+      "quality": {
+        "grade": null,
+        "note": null,
+        "audit_status": "EXPECTED",
+        "covers_ok": null,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": []
+        },
+        "tested_query": "Overlord",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Novels EN — Cloudflare ; cookies optionnels.",
+          "en": "EN novels — Cloudflare; optional cookies."
+        }
+      },
+      "docs": "docs/scrapers/novelupdates.md",
+      "install": {
+        "path": "novelupdates.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/novelupdates.py",
+        "sha256": "e00fde53ed1efb636318da84e994261b4d777b872653d84e17c0ed4de7abc3c0",
+        "bytes": 9853,
+        "target": "data/scrapers/novelupdates.py"
+      },
+      "tags": [
+        "Book",
+        "Manga",
+        "html",
+        "us"
+      ]
+    },
+    {
+      "id": "OPENBD",
+      "file": "openbd.py",
+      "display_name": "openBD (JP)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book"
+      ],
+      "library_types": [
+        "Book"
+      ],
+      "method": "api",
+      "languages": [
+        "ja"
+      ],
+      "region": "JP",
+      "homepage": "https://www.openbd.jp",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 1.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "openbd.jp",
+        "api.openbd.jp",
+        "cover.openbd.jp",
+        "www.openbd.jp"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "openBD — bibliographie / covers JP par ISBN (API libre). Pas de recherche titre.",
+        "en": "openBD — JP bibliography / covers by ISBN (free API). No title search."
+      },
+      "setup": {
+        "fr": "Aucune clé. ISBN requis (query ou métadonnées existantes).",
+        "en": "No API key. ISBN required (query or existing metadata)."
+      },
+      "warnings": [
+        "API ISBN-only — couplez avec NDL pour la recherche titre."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 99,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [
+            "summary"
+          ],
+          "bug": [],
+          "optional": [
+            "tags",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "9784101001517",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "ISBN JP + covers — résumé souvent absent.",
+          "en": "JP ISBN + covers — summary often missing."
+        }
+      },
+      "docs": "docs/scrapers/openbd.md",
+      "install": {
+        "path": "openbd.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/openbd.py",
+        "sha256": "86b132b69e2e8c483ac438af852a6846be29c75647db513a8c3cfa3429a2aba9",
+        "bytes": 6964,
+        "target": "data/scrapers/openbd.py"
+      },
+      "tags": [
+        "Book",
+        "api",
+        "covers",
+        "grade-a",
+        "jp"
+      ]
+    },
+    {
+      "id": "PLANETEBD",
+      "file": "planetebd.py",
+      "display_name": "Planète BD",
+      "version": "1.0.0",
+      "supported_types": [
+        "Comic"
+      ],
+      "library_types": [
+        "Comic"
+      ],
+      "method": "html",
+      "languages": [
+        "fr"
+      ],
+      "region": "FR",
+      "homepage": "https://www.planetebd.com",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 2.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "planetebd.com",
+        "static.planetebd.com",
+        "www.planetebd.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Planète BD — albums BD / comics FR (HTML).",
+        "en": "Planète BD — French BD / comics albums (HTML)."
+      },
+      "setup": {
+        "fr": "Aucune clé. rate_limit=2.5 s.",
+        "en": "No API key. rate_limit=2.5 s."
+      },
+      "warnings": [
+        "Site HTML — anti-ban rate limit."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 100,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": [
+            "tags",
+            "alternative_titles"
+          ]
+        },
+        "tested_query": "Astérix",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "BD FR + comics — payload très complet.",
+          "en": "FR BD + comics — very complete payload."
+        }
+      },
+      "docs": "docs/scrapers/planetebd.md",
+      "install": {
+        "path": "planetebd.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/planetebd.py",
+        "sha256": "951940a59baadbdeb6dbdcf12a1723815f0f7468eaf565924a135a6e1553aaec",
+        "bytes": 20159,
+        "target": "data/scrapers/planetebd.py"
+      },
+      "tags": [
+        "Comic",
+        "covers",
+        "fr",
+        "grade-a",
+        "html"
+      ]
+    },
+    {
+      "id": "SBN",
+      "file": "sbn.py",
+      "display_name": "SBN (Italia)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book"
+      ],
+      "library_types": [
+        "Book"
+      ],
+      "method": "api",
+      "languages": [
+        "it"
+      ],
+      "region": "IT",
+      "homepage": "https://opac.sbn.it",
+      "covers": false,
+      "status": "beta",
+      "rate_limit": 1.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "sbn.it",
+        "opac.sbn.it",
+        "www.sbn.it",
+        "iccu.sbn.it"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "SBN / ICCU — catalogue bibliographique italien (JSON OPAC mobile).",
+        "en": "SBN / ICCU — Italian national bibliographic catalog (OPAC mobile JSON)."
+      },
+      "setup": {
+        "fr": "Aucune clé. Endpoint app OPAC (non documenté officiellement pour tiers).",
+        "en": "No API key. OPAC app endpoint (not officially documented for third parties)."
+      },
+      "warnings": [
+        "API mobile non officiellement documentée — peut changer."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 97,
+        "audit_status": "PASS",
+        "covers_ok": false,
+        "gaps": {
+          "provider": [
+            "cover_url",
+            "summary"
+          ],
+          "bug": [],
+          "optional": [
+            "isbn",
+            "tags",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Il nome della rosa",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Catalogue IT — pas de covers.",
+          "en": "Italian catalog — no covers."
+        }
+      },
+      "docs": "docs/scrapers/sbn.md",
+      "install": {
+        "path": "sbn.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/sbn.py",
+        "sha256": "eba464110696309e8e51ee7877d271459c7f4b445a517e5cf9fe3f272dc88bcb",
+        "bytes": 10150,
+        "target": "data/scrapers/sbn.py"
+      },
+      "tags": [
+        "Book",
+        "api",
+        "grade-a",
+        "it",
+        "no-covers"
+      ]
+    },
+    {
+      "id": "SENSCRITIQUE",
+      "file": "senscritique.py",
+      "display_name": "SensCritique (FR)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book",
+        "Comic"
+      ],
+      "library_types": [
+        "Book",
+        "Comic"
+      ],
+      "method": "graphql",
+      "languages": [
+        "fr"
+      ],
+      "region": "FR",
+      "homepage": "https://www.senscritique.com",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 2.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "senscritique.com",
+        "www.senscritique.com",
+        "media.senscritique.com",
+        "apollo.senscritique.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Livres et BD via Apollo GraphQL du front SensCritique.",
+        "en": "Books and comics via SensCritique front-end Apollo GraphQL."
+      },
+      "setup": {
+        "fr": "Aucune clé. rate_limit=2.5 s.",
+        "en": "No API key. rate_limit=2.5 s."
+      },
+      "warnings": [
+        "Endpoint GraphQL non officiel — peut changer sans préavis."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 100,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": [
+            "tags",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Tintin",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "FR Book/Comic — GraphQL, covers OK.",
+          "en": "FR Book/Comic — GraphQL, covers OK."
+        }
+      },
+      "docs": "docs/scrapers/senscritique.md",
+      "install": {
+        "path": "senscritique.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/senscritique.py",
+        "sha256": "7446ffb2625425641f0ff5a086f6780d41f131b49eb2bc6dab7b1654e0a63b51",
+        "bytes": 22998,
+        "target": "data/scrapers/senscritique.py"
+      },
+      "tags": [
+        "Book",
+        "Comic",
+        "covers",
+        "fr",
+        "grade-a",
+        "graphql"
+      ]
+    },
+    {
+      "id": "TAPAS",
+      "file": "tapas.py",
+      "display_name": "Tapas",
+      "version": "1.0.0",
+      "supported_types": [
+        "Manga"
+      ],
+      "library_types": [
+        "Manga"
+      ],
+      "method": "html",
+      "languages": [
+        "en"
+      ],
+      "region": "US",
+      "homepage": "https://tapas.io",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 2.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "tapas.io",
+        "www.tapas.io",
+        "s3.tapasticusercontent.com",
+        "tapas-prod.s3.amazonaws.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Tapas — webcomics / manhwa (HTML).",
+        "en": "Tapas — webcomics / manhwa (HTML)."
+      },
+      "setup": {
+        "fr": "Aucune clé. rate_limit=2.5 s.",
+        "en": "No API key. rate_limit=2.5 s."
+      },
+      "warnings": [
+        "Site HTML — anti-ban rate limit.",
+        "Synopsis série rarement exposé en HTML public (pitch marketing og:description)."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 98,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [
+            "summary",
+            "year"
+          ],
+          "bug": [],
+          "optional": [
+            "isbn",
+            "publisher",
+            "tags",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Solo Leveling",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Manhwa/webcomics — covers OK ; résumé/année absents côté HTML public.",
+          "en": "Manhwa/webcomics — covers OK; public HTML lacks summary/year."
+        }
+      },
+      "docs": "docs/scrapers/tapas.md",
+      "install": {
+        "path": "tapas.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/tapas.py",
+        "sha256": "0c441ab0dc84d68ab51d985e9f3c6964641cde5dd01fb6d5c3e1a343498f6531",
+        "bytes": 8952,
+        "target": "data/scrapers/tapas.py"
+      },
+      "tags": [
+        "Manga",
+        "covers",
+        "grade-a",
+        "html",
+        "us"
+      ]
+    },
+    {
+      "id": "TEBEOSFERA",
+      "file": "tebeosfera.py",
+      "display_name": "Tebeosfera",
+      "version": "1.0.0",
+      "supported_types": [
+        "Comic"
+      ],
+      "library_types": [
+        "Comic"
+      ],
+      "method": "html",
+      "languages": [
+        "es"
+      ],
+      "region": "ES",
+      "homepage": "https://www.tebeosfera.com",
+      "covers": true,
+      "status": "limited",
+      "rate_limit": 3.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "tebeosfera.com",
+        "www.tebeosfera.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Tebeosfera — comics / tebeos espagnols (HTML best-effort).",
+        "en": "Tebeosfera — Spanish comics / tebeos (best-effort HTML)."
+      },
+      "setup": {
+        "fr": "Aucune clé. rate_limit=3.0 s.",
+        "en": "No API key. rate_limit=3.0 s."
+      },
+      "warnings": [
+        "Catalogue entièrement JS/iframe — scraping HTML inopérant pour l’instant."
+      ],
+      "quality": {
+        "grade": null,
+        "note": null,
+        "audit_status": "SKIP",
+        "covers_ok": false,
+        "gaps": {
+          "provider": [],
+          "bug": [],
+          "optional": []
+        },
+        "tested_query": null,
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Comics ES — catalogue JS/iframe, non scrapable pour l’instant.",
+          "en": "ES comics — JS/iframe catalog, not scrapable yet."
+        }
+      },
+      "docs": "docs/scrapers/tebeosfera.md",
+      "install": {
+        "path": "tebeosfera.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/tebeosfera.py",
+        "sha256": "54c4ae1fd588dc56a18c0de33edd4d4b6b80b1e375eebcb51fd66bdbafcdccc2",
+        "bytes": 9568,
+        "target": "data/scrapers/tebeosfera.py"
+      },
+      "tags": [
+        "Comic",
+        "es",
+        "html",
+        "no-covers"
+      ]
+    },
+    {
+      "id": "WEBTOON",
+      "file": "webtoon.py",
+      "display_name": "WEBTOON",
+      "version": "1.0.0",
+      "supported_types": [
+        "Manga"
+      ],
+      "library_types": [
+        "Manga"
+      ],
+      "method": "html",
+      "languages": [
+        "en",
+        "fr"
+      ],
+      "region": "KR/Global",
+      "homepage": "https://www.webtoons.com",
+      "covers": true,
+      "status": "stable",
+      "rate_limit": 2.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "webtoons.com",
+        "www.webtoons.com",
+        "swebtoon-phinf.pstatic.net",
+        "webtoon-phinf.pstatic.net"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "WEBTOON (Line) — webtoons / manhwa (HTML). Ne invente pas le statut de publication.",
+        "en": "WEBTOON (Line) — webtoons / manhwa (HTML). Does not invent publication status."
+      },
+      "setup": {
+        "fr": "Aucune clé. rate_limit=2.5 s.",
+        "en": "No API key. rate_limit=2.5 s."
+      },
+      "warnings": [
+        "Gros site — rate limit recommandé."
+      ],
+      "quality": {
+        "grade": "A",
+        "note": 99,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [
+            "year"
+          ],
+          "bug": [],
+          "optional": [
+            "isbn",
+            "publisher",
+            "tags",
+            "alternative_titles",
+            "status"
+          ]
+        },
+        "tested_query": "Tower of God",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Webtoon EN — covers + résumé ; année non exposée.",
+          "en": "EN webtoon — covers + summary; year not exposed."
+        }
+      },
+      "docs": "docs/scrapers/webtoon.md",
+      "install": {
+        "path": "webtoon.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/webtoon.py",
+        "sha256": "5ce8016da387446cb2ccaf5fbcde5dd749a288a427f72bf8fb0b892f1d629ad0",
+        "bytes": 9798,
+        "target": "data/scrapers/webtoon.py"
+      },
+      "tags": [
+        "Manga",
+        "covers",
+        "grade-a",
+        "html",
+        "kr"
+      ]
+    }
+  ]
+}

@@ -26,7 +26,7 @@ class TapasScraper(BaseScraper):
     id = "TAPAS"
     display_name = "Tapas"
     supported_types = {"Manga"}
-    rate_limit = 1.2
+    rate_limit = 2.5  # HTML — anti-ban IP
     proxy_domains = ["tapas.io", "www.tapas.io", "s3.tapasticusercontent.com", "tapas-prod.s3.amazonaws.com"]
     has_direct_id_support = True
     needs_api_key = False

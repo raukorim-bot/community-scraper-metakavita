@@ -26,7 +26,7 @@ class WebtoonScraper(BaseScraper):
     id = "WEBTOON"
     display_name = "WEBTOON"
     supported_types = {"Manga"}
-    rate_limit = 1.2
+    rate_limit = 2.5  # HTML — anti-ban IP
     proxy_domains = [
         "webtoons.com",
         "www.webtoons.com",

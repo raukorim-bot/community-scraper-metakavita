@@ -139,6 +139,7 @@ class MetronScraper(BaseScraper):
                 cover = self._first_cover(session, headers, sid)
                 candidate = self._build_candidate(detail, cover_url=cover)
                 if candidate:
+                    candidate["staff"] = self._staff_from_series(session, headers, sid)
                     return attach_match_score(candidate, 1.0)
                 return None
 
@@ -224,10 +225,13 @@ class MetronScraper(BaseScraper):
                 )
                 return None
 
-            # Cover uniquement pour le gagnant (1 req)
+            # Cover + staff (crédits 1er issue) uniquement pour le gagnant
             sid = best_match.pop("_series_id", None)
-            if sid and not best_match.get("cover_url"):
-                best_match["cover_url"] = self._first_cover(session, headers, sid)
+            if sid:
+                if not best_match.get("cover_url"):
+                    best_match["cover_url"] = self._first_cover(session, headers, sid)
+                if not best_match.get("staff"):
+                    best_match["staff"] = self._staff_from_series(session, headers, sid)
 
             logging.info(
                 self.t("matched").format(best_match.get("title"), int(best_score * 100))
@@ -362,6 +366,15 @@ class MetronScraper(BaseScraper):
         urls = self._issue_covers(session, headers, series_id, limit=1)
         return urls[0] if urls else None
 
+    def _issue_list(
+        self, session, headers: Dict[str, str], series_id: int
+    ) -> List[dict]:
+        data = self._get_json(
+            session, headers, f"{_API}/series/{series_id}/issue_list/"
+        )
+        results = (data or {}).get("results") or []
+        return results if isinstance(results, list) else []
+
     def _issue_covers(
         self,
         session,
@@ -370,17 +383,89 @@ class MetronScraper(BaseScraper):
         *,
         limit: int = 5,
     ) -> List[str]:
-        data = self._get_json(
-            session, headers, f"{_API}/series/{series_id}/issue_list/"
-        )
         urls: List[str] = []
-        for issue in (data or {}).get("results") or []:
+        for issue in self._issue_list(session, headers, series_id):
             img = issue.get("image")
             if img:
                 urls.append(str(img))
             if len(urls) >= limit:
                 break
         return urls
+
+    def _staff_from_series(
+        self, session, headers: Dict[str, str], series_id: int
+    ) -> List[Dict[str, Any]]:
+        """Metron n'expose pas les creators au niveau série — crédits du 1er issue."""
+        issues = self._issue_list(session, headers, series_id)
+        if not issues:
+            return []
+        issue_id = issues[0].get("id")
+        if not issue_id:
+            return []
+        detail = self._get_json(session, headers, f"{_API}/issue/{issue_id}/")
+        credits = (detail or {}).get("credits") or []
+        if not isinstance(credits, list):
+            return []
+
+        role_map = {
+            "writer": "Story",
+            "artist": "Art",
+            "penciller": "Art",
+            "inker": "Art",
+            "colorist": "Color",
+            "letterer": "Lettering",
+            "cover": "Cover",
+            "editor": "Editor",
+        }
+        priority = {
+            "Story": 0,
+            "Art": 1,
+            "Cover": 2,
+            "Color": 3,
+            "Lettering": 4,
+            "Editor": 5,
+        }
+        staff: List[Dict[str, Any]] = []
+        seen: set = set()
+        ranked: List[Tuple[int, str, str]] = []
+        for cred in credits:
+            if not isinstance(cred, dict):
+                continue
+            name = (cred.get("creator") or "").strip()
+            if not name:
+                continue
+            roles_raw = cred.get("role") or []
+            role_names = []
+            if isinstance(roles_raw, list):
+                for r in roles_raw:
+                    if isinstance(r, dict) and r.get("name"):
+                        role_names.append(str(r["name"]))
+                    elif isinstance(r, str):
+                        role_names.append(r)
+            mapped = "Story"
+            for rn in role_names:
+                key = rn.strip().lower()
+                if key in role_map:
+                    mapped = role_map[key]
+                    break
+                if "writer" in key:
+                    mapped = "Story"
+                    break
+                if "artist" in key or "penciller" in key:
+                    mapped = "Art"
+                    break
+            ranked.append((priority.get(mapped, 9), mapped, name))
+
+        ranked.sort(key=lambda x: (x[0], x[2].casefold()))
+        for _, role, name in ranked:
+            key = (role, name.casefold())
+            if key in seen:
+                continue
+            seen.add(key)
+            staff.append({"role": role, "node": {"name": {"full": name}}})
+            if len(staff) >= 6:
+                break
+        return staff
 
     # ------------------------------------------------------------------ Build
 

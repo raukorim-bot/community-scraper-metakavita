@@ -6,6 +6,11 @@ Drop a `.py` file into your MetaKavita `data/scrapers/` folder, restart, and the
 
 > **Security:** installing a scraper runs arbitrary Python with the same privileges as MetaKavita. Only install files from this repository (or sources you trust). Full authoring rules: [`CUSTOM_SCRAPERS.md`](CUSTOM_SCRAPERS.md).
 
+**Docs:** per-scraper pages in [`docs/`](docs/README.md).  
+**Quality / covers / which scraper to pick:** [`docs/QUALITY.md`](docs/QUALITY.md).  
+**Store (MetaKavita):** machine catalog [`store/catalog.json`](store/catalog.json) — see [`store/README.md`](store/README.md).  
+**Propose a scraper (PR):** [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
 ---
 
 ## Install
@@ -21,26 +26,33 @@ No rebuild of the MetaKavita image is required.
 
 ## Available scrapers
 
-| File | ID | Types | Auth | Covers | Notes |
-|------|-----|-------|------|--------|-------|
-| [`babelio.py`](babelio.py) | `BABELIO` | Book | None | Yes | French literature (HTML) |
-| [`senscritique.py`](senscritique.py) | `SENSCRITIQUE` | Book, Comic | None | Yes | FR — GraphQL Apollo |
-| [`dnb.py`](dnb.py) | `DNB` | Book | None | No | Deutsche Nationalbibliothek (SRU MARC21) |
-| [`metron.py`](metron.py) | `METRON` | Comic | **Required** | Yes | [metron.cloud](https://metron.cloud) API token → `METRON_API_KEY` |
-| [`bangumi.py`](bangumi.py) | `BANGUMI` | Manga, Book | None* | Yes | Bangumi (`api.bgm.tv`) — JP/CN |
-| [`ann.py`](ann.py) | `ANN` | Manga | None | Yes | Anime News Network encyclopedia (XML) |
-| [`planetebd.py`](planetebd.py) | `PLANETEBD` | Comic | None | Yes | Planète BD — BD FR + comics US (HTML) |
-| [`bnf.py`](bnf.py) | `BNF` | Book | None | No | BnF Catalogue (SRU Dublin Core) |
-| [`decitre.py`](decitre.py) | `DECITRE` | Book | None | Yes | Decitre — HTML search + JSON-LD |
-| [`animeplanet.py`](animeplanet.py) | `ANIMEPLANET` | Manga | None | Yes | Anime-Planet (HTML) |
-| [`webtoon.py`](webtoon.py) | `WEBTOON` | Manga | None | Yes | WEBTOON / Line (HTML) |
-| [`tapas.py`](tapas.py) | `TAPAS` | Manga | None | Yes | Tapas series (HTML) |
-| [`mangasanctuary.py`](mangasanctuary.py) | `MANGASANCTUARY` | Manga | None | Yes | Manga-Sanctuary FR (HTML) |
-| [`novelupdates.py`](novelupdates.py) | `NOVELUPDATES` | Book, Manga | Optional CF cookies | Yes | Cloudflare — paste `cf_clearance=…` in `NOVELUPDATES_API_KEY` |
-| [`locg.py`](locg.py) | `LOCG` | Comic | **Required** | Yes | LoCG API — `client_id:client_secret` in `LOCG_API_KEY` |
-| [`isbndb.py`](isbndb.py) | `ISBNDB` | Book | **Required (paid)** | Yes | [ISBNdb](https://isbndb.com/apidocs/v2) REST key → `ISBNDB_API_KEY` — **not live-tested** (paid plan) |
-| [`bdgest.py`](bdgest.py) | `BDGEST` | Comic | None | Yes | BDgest / Bédéthèque best-effort HTML (finetune later) |
-| [`gcd.py`](gcd.py) | `GCD` | Comic | Optional Basic | Yes* | Grand Comics Database — JSON `/api/` (HTML is CF-blocked) |
+| File | ID | Types | Auth | Covers | Notes | Doc |
+|------|-----|-------|------|--------|-------|-----|
+| [`babelio.py`](babelio.py) | `BABELIO` | Book | None | Yes | French literature (HTML) | [doc](docs/scrapers/babelio.md) |
+| [`senscritique.py`](senscritique.py) | `SENSCRITIQUE` | Book, Comic | None | Yes | FR — GraphQL Apollo | [doc](docs/scrapers/senscritique.md) |
+| [`dnb.py`](dnb.py) | `DNB` | Book | None | No | Deutsche Nationalbibliothek (SRU MARC21) | [doc](docs/scrapers/dnb.md) |
+| [`metron.py`](metron.py) | `METRON` | Comic | **Required** | Yes | [metron.cloud](https://metron.cloud) API token → `METRON_API_KEY` | [doc](docs/scrapers/metron.md) |
+| [`bangumi.py`](bangumi.py) | `BANGUMI` | Manga, Book | None* | Yes | Bangumi (`api.bgm.tv`) — JP/CN | [doc](docs/scrapers/bangumi.md) |
+| [`ann.py`](ann.py) | `ANN` | Manga | None | Yes | Anime News Network encyclopedia (XML) | [doc](docs/scrapers/ann.md) |
+| [`planetebd.py`](planetebd.py) | `PLANETEBD` | Comic | None | Yes | Planète BD — French BD + US comics (HTML) | [doc](docs/scrapers/planetebd.md) |
+| [`bnf.py`](bnf.py) | `BNF` | Book | None | No | BnF Catalogue (SRU Dublin Core) | [doc](docs/scrapers/bnf.md) |
+| [`decitre.py`](decitre.py) | `DECITRE` | Book | None | Yes | Decitre — HTML search + JSON-LD | [doc](docs/scrapers/decitre.md) |
+| [`animeplanet.py`](animeplanet.py) | `ANIMEPLANET` | Manga | None | Yes | Anime-Planet (HTML) | [doc](docs/scrapers/animeplanet.md) |
+| [`webtoon.py`](webtoon.py) | `WEBTOON` | Manga | None | Yes | WEBTOON / Line (HTML) | [doc](docs/scrapers/webtoon.md) |
+| [`tapas.py`](tapas.py) | `TAPAS` | Manga | None | Yes | Tapas series (HTML) | [doc](docs/scrapers/tapas.md) |
+| [`mangasanctuary.py`](mangasanctuary.py) | `MANGASANCTUARY` | Manga | None | Yes | Manga-Sanctuary FR (HTML) | [doc](docs/scrapers/mangasanctuary.md) |
+| [`novelupdates.py`](novelupdates.py) | `NOVELUPDATES` | Book, Manga | Optional CF cookies | Yes | Cloudflare — paste `cf_clearance=…` in `NOVELUPDATES_API_KEY` | [doc](docs/scrapers/novelupdates.md) |
+| [`locg.py`](locg.py) | `LOCG` | Comic | None | Yes | LoCG site XHR/HTML — partner API not self-serve | [doc](docs/scrapers/locg.md) |
+| [`isbndb.py`](isbndb.py) | `ISBNDB` | Book | **Required (paid)** | Yes | [ISBNdb](https://isbndb.com/apidocs/v2) — **not live-tested** | [doc](docs/scrapers/isbndb.md) |
+| [`bdgest.py`](bdgest.py) | `BDGEST` | Comic | None | Yes | BDgest / Bédéthèque best-effort HTML | [doc](docs/scrapers/bdgest.md) |
+| [`gcd.py`](gcd.py) | `GCD` | Comic | Optional Basic | Yes* | Grand Comics Database — JSON `/api/` | [doc](docs/scrapers/gcd.md) |
+| [`openbd.py`](openbd.py) | `OPENBD` | Book | None | Yes | openBD JP — ISBN API + covers | [doc](docs/scrapers/openbd.md) |
+| [`ndl.py`](ndl.py) | `NDL` | Book | None | No | NDL Search (National Diet Library JP) | [doc](docs/scrapers/ndl.md) |
+| [`bne.py`](bne.py) | `BNE` | Book | None | No | Biblioteca Nacional de España (SRU) | [doc](docs/scrapers/bne.md) |
+| [`loc.py`](loc.py) | `LOC` | Book | None | No | Library of Congress (SRU DC) | [doc](docs/scrapers/loc.md) |
+| [`sbn.py`](sbn.py) | `SBN` | Book | None | No | SBN / ICCU Italia (OPAC JSON) | [doc](docs/scrapers/sbn.md) |
+| [`kb.py`](kb.py) | `KB` | Book | None | No | KB Nederland (JSRU / GGC) | [doc](docs/scrapers/kb.md) |
+| [`tebeosfera.py`](tebeosfera.py) | `TEBEOSFERA` | Comic | None | Yes | Tebeosfera — Spanish comics (HTML; limited) | [doc](docs/scrapers/tebeosfera.md) |
 
 \*Bangumi expects a proper User-Agent (handled by the scraper).  
 \*GCD cover URLs are on `files1.comics.org` (may need proxy / browser-like fetch).
@@ -57,21 +69,10 @@ No rebuild of the MetaKavita image is required.
 
 **Metron** — account on [metron.cloud](https://metron.cloud) → API Tokens → `METRON_API_KEY` (Bearer, or `user:password`).
 
-**LoCG** — MetaKavita attend **deux valeurs collées** dans `LOCG_API_KEY` :
+**LoCG** — **no API key**. The official partner API (`client_id` / `client_secret`, [Himon](https://himon.readthedocs.io/) model) is **not** self-serve on the site; this scraper uses public series search / HTML+XHR pages. `/search` may sit behind Cloudflare; the endpoint we use (`/comic/get_comics`) was not CF-blocked in our tests.
 
-```text
-client_id:client_secret
-```
-
-Ce n’est **pas** un login/mot de passe de compte LoCG. Ce sont les credentials d’application API (même modèle que le client [Himon](https://himon.readthedocs.io/)) :
-- `client_id` → header `X-API-CLIENT`
-- `client_secret` → header `X-API-KEY`
-- le scraper appelle ensuite `/api/authorize` pour obtenir un bearer token
-
-À obtenir via le programme développeur / API League of Comic Geeks (si tu n’as pas ces credentials, le provider restera inutilisable — pas de mode anonyme fiable).
-
-**ISBNdb** — REST key payante depuis le dashboard isbndb.com → `ISBNDB_API_KEY`.  
-**Non testé en live** dans ce dépôt : un abonnement payant est requis pour obtenir une clé.
+**ISBNdb** — paid REST key from the isbndb.com dashboard → `ISBNDB_API_KEY`.  
+**Not live-tested** in this repo: a paid subscription is required to obtain a key.
 
 **Novel Updates** — optional: browser `cf_clearance` cookie string in `NOVELUPDATES_API_KEY` (without it, CF usually blocks).
 
@@ -81,19 +82,27 @@ Ce n’est **pas** un login/mot de passe de compte LoCG. Ce sont les credentials
 
 ## Authoring / vibecoding
 
-See **[`CUSTOM_SCRAPERS.md`](CUSTOM_SCRAPERS.md)** for the full contract (BaseScraper, scoring, tags/genres caps, `proxy_domains`, inheritance patterns).
+Full BaseScraper contract (scoring, allowed libraries, `proxy_domains`, vibecoding prompt): **[`CUSTOM_SCRAPERS.md`](CUSTOM_SCRAPERS.md)**.
 
 ---
 
-## Contributing
+## Contributing (propose your scraper via PR)
 
-1. Fork this repo
-2. Add one `.py` file per provider (uppercase `id`, clear `display_name`, `supported_types`, `rate_limit`, `proxy_domains`)
-3. Open a PR with a short description + how you tested (title search + covers if any)
+Community scrapers are added through **GitHub Pull Requests**. Maintainers review security and matching quality before merge; merged scrapers are listed in [`store/catalog.json`](store/catalog.json).
+
+**Step-by-step guide:** **[`CONTRIBUTING.md`](CONTRIBUTING.md)**
+
+Short version:
+
+1. Fork this repo and create a branch.
+2. Add **one** `.py` at the repo root (uppercase `id`, `supported_types`, `rate_limit`, `proxy_domains`) following [`CUSTOM_SCRAPERS.md`](CUSTOM_SCRAPERS.md).
+3. Test locally (positive + negative match; covers if any) with MetaKavita on `PYTHONPATH`.
+4. Register the scraper in [`store/meta.json`](store/meta.json), then run `python scripts\build_store_catalog.py`.
+5. Open a PR against `main` (use the PR template checklist).
+
+Ideas without code yet → open a GitHub **Issue**.
 
 ### Smoke tests
-
-From this repo, with MetaKavita on `PYTHONPATH`:
 
 ```bat
 set PYTHONPATH=Z:\kavitafetcher
@@ -102,7 +111,7 @@ python -m pytest tests/test_ann.py tests/test_planetebd.py -q
 python tests/run_live_smoke.py
 ```
 
-Maintainer review required before merge.
+Maintainer review is required before merge.
 
 ---
 

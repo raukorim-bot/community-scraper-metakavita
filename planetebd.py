@@ -66,7 +66,7 @@ class PlanetebdScraper(BaseScraper):
     id = "PLANETEBD"
     display_name = "Planète BD"
     supported_types = {"Comic"}
-    rate_limit = 1.5
+    rate_limit = 2.5  # HTML — anti-ban IP
     proxy_domains = ["planetebd.com", "static.planetebd.com", "www.planetebd.com"]
     has_direct_id_support = True
     requires_proxy = False

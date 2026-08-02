@@ -1,0 +1,50 @@
+# WEBTOON
+
+| | |
+|---|---|
+| **ID** | `WEBTOON` |
+| **File** | [`webtoon.py`](../../webtoon.py) |
+| **Types** | Manga |
+| **Method** | HTML / site |
+| **Status** | Stable |
+| **Covers (declared)** | Yes |
+| **Covers (audit)** | Yes |
+| **Quality audit** | A / 99 |
+| **Auth** | None |
+| **Rate limit** | `2.5` s |
+| **Direct ID / URL** | Yes |
+| **Region / languages** | KR/Global — en, fr |
+| **Site** | https://www.webtoons.com |
+
+## Summary
+
+WEBTOON (Line) — webtoons / manhwa (HTML). Does not invent publication status.
+
+## Quality / when to pick
+
+EN webtoon — covers + summary; year not exposed.
+
+Gaps: `provider: year; opt.: isbn, publisher, tags, alternative_titles, status` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
+
+## Install (MetaKavita)
+
+1. Download [`webtoon.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/webtoon.py) into `data/scrapers/`.
+2. Verify SHA-256: `5ce8016da387446cb2ccaf5fbcde5dd749a288a427f72bf8fb0b892f1d629ad0`.
+3. Restart MetaKavita.
+4. Enable the provider in Config for the matching types (Manga).
+
+### Setup
+
+No API key. rate_limit=2.5 s.
+
+## Proxy domains (covers)
+
+`webtoons.com`, `www.webtoons.com`, `swebtoon-phinf.pstatic.net`, `webtoon-phinf.pstatic.net`
+
+## Warnings
+
+- Gros site — rate limit recommandé.
+
+## Store
+
+Catalog entry: [`store/catalog.json`](../../store/catalog.json) → id `WEBTOON`.

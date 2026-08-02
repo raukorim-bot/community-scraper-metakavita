@@ -27,7 +27,7 @@ class AnimePlanetScraper(BaseScraper):
     id = "ANIMEPLANET"
     display_name = "Anime-Planet"
     supported_types = {"Manga"}
-    rate_limit = 1.5
+    rate_limit = 3.0  # HTML — anti-ban IP
     proxy_domains = ["anime-planet.com", "www.anime-planet.com", "cdn.anime-planet.com"]
     has_direct_id_support = True
     needs_api_key = False

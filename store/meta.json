@@ -1,0 +1,551 @@
+{
+  "ANIMEPLANET": {
+    "method": "html",
+    "languages": [
+      "en"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.anime-planet.com",
+    "region": "US",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Anime-Planet — métadonnées manga (HTML).",
+    "summary_en": "Anime-Planet — manga metadata (HTML).",
+    "setup_fr": "Aucune clé. rate_limit=3.0 s.",
+    "setup_en": "No API key. rate_limit=3.0 s.",
+    "warnings": [
+      "Anti-bot fréquent — rate limit élevé."
+    ]
+  },
+  "ANN": {
+    "method": "api",
+    "languages": [
+      "en"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.animenewsnetwork.com",
+    "region": "US",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Encyclopédie Anime News Network — API XML publique.",
+    "summary_en": "Anime News Network encyclopedia — public XML API.",
+    "setup_fr": "Aucune clé.",
+    "setup_en": "No API key.",
+    "warnings": []
+  },
+  "BABELIO": {
+    "method": "html",
+    "languages": [
+      "fr"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.babelio.com",
+    "region": "FR",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Catalogue littéraire francophone (avis, résumé, couverture). Scraping HTML.",
+    "summary_en": "French literature catalog (reviews, summary, cover). HTML scraping.",
+    "setup_fr": "Aucune clé. rate_limit=3.0 s recommandé.",
+    "setup_en": "No API key. rate_limit=3.0 s recommended.",
+    "warnings": [
+      "Site HTML — respecter le rate limit pour éviter un ban IP."
+    ]
+  },
+  "BANGUMI": {
+    "method": "api",
+    "languages": [
+      "ja",
+      "zh",
+      "en"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://bgm.tv",
+    "region": "JP/CN",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "API Bangumi (manga / light novels JP-CN). User-Agent géré par le scraper.",
+    "summary_en": "Bangumi API (JP/CN manga / light novels). User-Agent handled by scraper.",
+    "setup_fr": "Aucune clé.",
+    "setup_en": "No API key.",
+    "warnings": []
+  },
+  "BDGEST": {
+    "method": "html",
+    "languages": [
+      "fr"
+    ],
+    "covers": true,
+    "status": "beta",
+    "homepage": "https://www.bedetheque.com",
+    "region": "FR",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "BDgest / Bédéthèque — BD FR via bedetheque.com (HTML, best-effort).",
+    "summary_en": "BDgest / Bédéthèque — French BD via bedetheque.com (HTML, best-effort).",
+    "setup_fr": "Aucune clé. rate_limit=3.0 s.",
+    "setup_en": "No API key. rate_limit=3.0 s.",
+    "warnings": [
+      "Matching encore perfectible.",
+      "Site sensible aux bans IP."
+    ]
+  },
+  "BNF": {
+    "method": "sru",
+    "languages": [
+      "fr"
+    ],
+    "covers": false,
+    "status": "stable",
+    "homepage": "https://catalogue.bnf.fr",
+    "region": "FR",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Catalogue BnF — SRU Dublin Core (pas de couvertures natives).",
+    "summary_en": "BnF catalogue — SRU Dublin Core (no native covers).",
+    "setup_fr": "Aucune clé.",
+    "setup_en": "No API key.",
+    "warnings": []
+  },
+  "DECITRE": {
+    "method": "html",
+    "languages": [
+      "fr"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.decitre.fr",
+    "region": "FR",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Librairie Decitre — recherche HTML + fiche JSON-LD.",
+    "summary_en": "Decitre bookstore — HTML search + JSON-LD product page.",
+    "setup_fr": "Aucune clé. rate_limit=2.5 s.",
+    "setup_en": "No API key. rate_limit=2.5 s.",
+    "warnings": [
+      "E-commerce / WAF possible — respecter le rate limit."
+    ]
+  },
+  "DNB": {
+    "method": "sru",
+    "languages": [
+      "de",
+      "en"
+    ],
+    "covers": false,
+    "status": "stable",
+    "homepage": "https://www.dnb.de",
+    "region": "DE",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Deutsche Nationalbibliothek — SRU MARC21 (pas de couvertures natives).",
+    "summary_en": "German National Library — SRU MARC21 (no native covers).",
+    "setup_fr": "Aucune clé. Année = souvent édition catalogue, pas 1re parution.",
+    "setup_en": "No API key. Year is often catalogue edition year, not first publication.",
+    "warnings": []
+  },
+  "GCD": {
+    "method": "api",
+    "languages": [
+      "en"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.comics.org",
+    "region": "US",
+    "auth": {
+      "required": false,
+      "config_key": "GCD_API_KEY",
+      "kind": "optional_basic"
+    },
+    "summary_fr": "Grand Comics Database — API JSON /api/ (HTML bloqué par Cloudflare).",
+    "summary_en": "Grand Comics Database — JSON /api/ (HTML blocked by Cloudflare).",
+    "setup_fr": "Optionnel : compte comics.org en user:password dans GCD_API_KEY (meilleur quota).",
+    "setup_en": "Optional: comics.org user:password in GCD_API_KEY (higher quota).",
+    "warnings": [
+      "Couvertures sur files1.comics.org (proxy MetaKavita)."
+    ]
+  },
+  "ISBNDB": {
+    "method": "api",
+    "languages": [
+      "en"
+    ],
+    "covers": true,
+    "status": "untested",
+    "homepage": "https://isbndb.com",
+    "region": "US",
+    "auth": {
+      "required": true,
+      "config_key": "ISBNDB_API_KEY",
+      "kind": "api_key"
+    },
+    "summary_fr": "ISBNdb — API REST livres (abonnement payant). Non testé en live dans ce dépôt.",
+    "summary_en": "ISBNdb — books REST API (paid plan). Not live-tested in this repo.",
+    "setup_fr": "Clé REST payante → ISBNDB_API_KEY.",
+    "setup_en": "Paid REST key → ISBNDB_API_KEY.",
+    "warnings": [
+      "Abonnement payant requis.",
+      "Non validé en live (pas de clé de test)."
+    ]
+  },
+  "LOCG": {
+    "method": "html",
+    "languages": [
+      "en"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://leagueofcomicgeeks.com",
+    "region": "US",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "League of Comic Geeks — séries comics via XHR/HTML public (pas d’API partenaire libre-service).",
+    "summary_en": "League of Comic Geeks — comic series via public XHR/HTML (partner API is not self-serve).",
+    "setup_fr": "Aucune clé. rate_limit=4.0 s (prudent).",
+    "setup_en": "No API key. rate_limit=4.0 s (conservative).",
+    "warnings": [
+      "API officielle non disponible en libre-service.",
+      "Rate limit élevé volontairement."
+    ]
+  },
+  "MANGASANCTUARY": {
+    "method": "html",
+    "languages": [
+      "fr"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.manga-sanctuary.com",
+    "region": "FR",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Manga-Sanctuary — catalogue manga FR (HTML).",
+    "summary_en": "Manga-Sanctuary — French manga catalog (HTML).",
+    "setup_fr": "Aucune clé. rate_limit=2.5 s.",
+    "setup_en": "No API key. rate_limit=2.5 s.",
+    "warnings": [
+      "Site HTML — anti-ban rate limit."
+    ]
+  },
+  "METRON": {
+    "method": "api",
+    "languages": [
+      "en"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://metron.cloud",
+    "region": "US",
+    "auth": {
+      "required": true,
+      "config_key": "METRON_API_KEY",
+      "kind": "bearer_or_basic"
+    },
+    "summary_fr": "API comics Metron (séries, issues, covers). Clé obligatoire.",
+    "summary_en": "Metron comics API (series, issues, covers). API key required.",
+    "setup_fr": "Compte metron.cloud → API Tokens → coller dans METRON_API_KEY (Bearer, ou user:password).",
+    "setup_en": "metron.cloud account → API Tokens → METRON_API_KEY (Bearer, or user:password).",
+    "warnings": [
+      "Quota API Metron (~20 req/min) — rate_limit=3.0."
+    ]
+  },
+  "NOVELUPDATES": {
+    "method": "html",
+    "languages": [
+      "en"
+    ],
+    "covers": true,
+    "status": "limited",
+    "homepage": "https://www.novelupdates.com",
+    "region": "US",
+    "auth": {
+      "required": false,
+      "config_key": "NOVELUPDATES_API_KEY",
+      "kind": "optional_cf_cookies"
+    },
+    "summary_fr": "Novel Updates — light novels (HTML). Souvent derrière Cloudflare.",
+    "summary_en": "Novel Updates — light novels (HTML). Often behind Cloudflare.",
+    "setup_fr": "Optionnel : coller cf_clearance=… (cookies navigateur) dans NOVELUPDATES_API_KEY. rate_limit=3.0 s.",
+    "setup_en": "Optional: paste cf_clearance=… browser cookies into NOVELUPDATES_API_KEY. rate_limit=3.0 s.",
+    "warnings": [
+      "Sans cookies CF, les recherches échouent souvent.",
+      "Ne pas partager vos cookies publiquement."
+    ]
+  },
+  "PLANETEBD": {
+    "method": "html",
+    "languages": [
+      "fr"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.planetebd.com",
+    "region": "FR",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Planète BD — albums BD / comics FR (HTML).",
+    "summary_en": "Planète BD — French BD / comics albums (HTML).",
+    "setup_fr": "Aucune clé. rate_limit=2.5 s.",
+    "setup_en": "No API key. rate_limit=2.5 s.",
+    "warnings": [
+      "Site HTML — anti-ban rate limit."
+    ]
+  },
+  "SENSCRITIQUE": {
+    "method": "graphql",
+    "languages": [
+      "fr"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.senscritique.com",
+    "region": "FR",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Livres et BD via Apollo GraphQL du front SensCritique.",
+    "summary_en": "Books and comics via SensCritique front-end Apollo GraphQL.",
+    "setup_fr": "Aucune clé. rate_limit=2.5 s.",
+    "setup_en": "No API key. rate_limit=2.5 s.",
+    "warnings": [
+      "Endpoint GraphQL non officiel — peut changer sans préavis."
+    ]
+  },
+  "TAPAS": {
+    "method": "html",
+    "languages": [
+      "en"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://tapas.io",
+    "region": "US",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Tapas — webcomics / manhwa (HTML).",
+    "summary_en": "Tapas — webcomics / manhwa (HTML).",
+    "setup_fr": "Aucune clé. rate_limit=2.5 s.",
+    "setup_en": "No API key. rate_limit=2.5 s.",
+    "warnings": [
+      "Site HTML — anti-ban rate limit.",
+      "Synopsis série rarement exposé en HTML public (pitch marketing og:description)."
+    ]
+  },
+  "WEBTOON": {
+    "method": "html",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.webtoons.com",
+    "region": "KR/Global",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "WEBTOON (Line) — webtoons / manhwa (HTML). Ne invente pas le statut de publication.",
+    "summary_en": "WEBTOON (Line) — webtoons / manhwa (HTML). Does not invent publication status.",
+    "setup_fr": "Aucune clé. rate_limit=2.5 s.",
+    "setup_en": "No API key. rate_limit=2.5 s.",
+    "warnings": [
+      "Gros site — rate limit recommandé."
+    ]
+  },
+  "OPENBD": {
+    "method": "api",
+    "languages": [
+      "ja"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.openbd.jp",
+    "region": "JP",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "openBD — bibliographie / covers JP par ISBN (API libre). Pas de recherche titre.",
+    "summary_en": "openBD — JP bibliography / covers by ISBN (free API). No title search.",
+    "setup_fr": "Aucune clé. ISBN requis (query ou métadonnées existantes).",
+    "setup_en": "No API key. ISBN required (query or existing metadata).",
+    "warnings": [
+      "API ISBN-only — couplez avec NDL pour la recherche titre."
+    ]
+  },
+  "NDL": {
+    "method": "api",
+    "languages": [
+      "ja",
+      "en"
+    ],
+    "covers": false,
+    "status": "stable",
+    "homepage": "https://ndlsearch.ndl.go.jp",
+    "region": "JP",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "NDL Search — Bibliothèque nationale du Japon (OpenSearch).",
+    "summary_en": "NDL Search — National Diet Library of Japan (OpenSearch).",
+    "setup_fr": "Aucune clé. Pas de covers natives fiables (utiliser openBD pour les ISBN).",
+    "setup_en": "No API key. No reliable native covers (use openBD for ISBNs).",
+    "warnings": []
+  },
+  "BNE": {
+    "method": "sru",
+    "languages": [
+      "es"
+    ],
+    "covers": false,
+    "status": "stable",
+    "homepage": "https://www.bne.es",
+    "region": "ES",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Biblioteca Nacional de España — SRU Alma (DC).",
+    "summary_en": "National Library of Spain — Alma SRU (DC).",
+    "setup_fr": "Aucune clé. Données CC0.",
+    "setup_en": "No API key. CC0 data.",
+    "warnings": []
+  },
+  "LOC": {
+    "method": "sru",
+    "languages": [
+      "en"
+    ],
+    "covers": false,
+    "status": "stable",
+    "homepage": "https://www.loc.gov",
+    "region": "US",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Library of Congress — SRU LCDB (Dublin Core). Peu/pas de covers.",
+    "summary_en": "Library of Congress — LCDB SRU (Dublin Core). Covers rarely available.",
+    "setup_fr": "Aucune clé. rate_limit=1.5 s. Fallback JSON loc.gov si SRU vide.",
+    "setup_en": "No API key. rate_limit=1.5 s. JSON loc.gov fallback if SRU empty.",
+    "warnings": [
+      "Couvertures absentes via SRU DC.",
+      "Préférer une requête avec auteur pour de meilleures notices."
+    ]
+  },
+  "SBN": {
+    "method": "api",
+    "languages": [
+      "it"
+    ],
+    "covers": false,
+    "status": "beta",
+    "homepage": "https://opac.sbn.it",
+    "region": "IT",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "SBN / ICCU — catalogue bibliographique italien (JSON OPAC mobile).",
+    "summary_en": "SBN / ICCU — Italian national bibliographic catalog (OPAC mobile JSON).",
+    "setup_fr": "Aucune clé. Endpoint app OPAC (non documenté officiellement pour tiers).",
+    "setup_en": "No API key. OPAC app endpoint (not officially documented for third parties).",
+    "warnings": [
+      "API mobile non officiellement documentée — peut changer."
+    ]
+  },
+  "KB": {
+    "method": "sru",
+    "languages": [
+      "nl"
+    ],
+    "covers": false,
+    "status": "beta",
+    "homepage": "https://www.kb.nl",
+    "region": "NL",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Koninklijke Bibliotheek — SRU JSRU (collections GGC/DPO).",
+    "summary_en": "KB National Library of the Netherlands — JSRU SRU (GGC/DPO).",
+    "setup_fr": "Aucune clé. Couverture catalogue à valider en live.",
+    "setup_en": "No API key. Catalog coverage to validate live.",
+    "warnings": [
+      "Collections SRU KB surtout numériques / GGC — à finetuner après tests."
+    ]
+  },
+  "TEBEOSFERA": {
+    "method": "html",
+    "languages": [
+      "es"
+    ],
+    "covers": true,
+    "status": "limited",
+    "homepage": "https://www.tebeosfera.com",
+    "region": "ES",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Tebeosfera — comics / tebeos espagnols (HTML best-effort).",
+    "summary_en": "Tebeosfera — Spanish comics / tebeos (best-effort HTML).",
+    "setup_fr": "Aucune clé. rate_limit=3.0 s.",
+    "setup_en": "No API key. rate_limit=3.0 s.",
+    "warnings": [
+      "Catalogue entièrement JS/iframe — scraping HTML inopérant pour l’instant."
+    ]
+  }
+}

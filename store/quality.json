@@ -1,0 +1,259 @@
+{
+  "_meta": {
+    "schema": 1,
+    "audited_at": "2026-08-02",
+    "source": "tests/run_payload_audit.py + tests/run_quality.py",
+    "notes_fr": "Notes payload 0–100 + grade A–E. gaps.provider = limite amont ; gaps.bug = scraper à corriger ; gaps.optional = champ souvent vide (ISBN comics, tags, status…). covers_ok = cover_url observé sur le cas de test positif.",
+    "notes_en": "Payload score 0–100 + grade A–E. gaps.provider = upstream limit; gaps.bug = scraper fix needed; gaps.optional = often empty (comic ISBN, tags, status…). covers_ok = cover_url seen on the positive test case. Human docs (QUALITY.md, store README, scraper pages) are English-first."
+  },
+  "ANIMEPLANET": {
+    "grade": "A",
+    "note": 100,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": [], "bug": [], "optional": ["isbn", "publisher", "alternative_titles", "status"] },
+    "tested_query": "Death Note",
+    "pick_fr": "Manga EN — payload complet + covers.",
+    "pick_en": "EN manga — full payload + covers."
+  },
+  "ANN": {
+    "grade": "A",
+    "note": 100,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": [], "bug": [], "optional": ["isbn", "publisher", "status"] },
+    "tested_query": "Death Note",
+    "pick_fr": "Référence manga EN (API XML) — covers OK.",
+    "pick_en": "EN manga reference (XML API) — covers OK."
+  },
+  "BABELIO": {
+    "grade": "A",
+    "note": 100,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": [], "bug": [], "optional": ["alternative_titles", "status"] },
+    "tested_query": "Le Petit Prince",
+    "pick_fr": "Littérature FR — idéal Book francophone.",
+    "pick_en": "French literature — best for FR Book libraries."
+  },
+  "BANGUMI": {
+    "grade": "A",
+    "note": 100,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": [], "bug": [], "optional": ["isbn"] },
+    "tested_query": "Death Note",
+    "pick_fr": "Manga/Book JP-CN — très complet (status inclus).",
+    "pick_en": "JP/CN manga & books — very complete (incl. status)."
+  },
+  "BDGEST": {
+    "grade": "A",
+    "note": 100,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": [], "bug": [], "optional": ["isbn", "publisher", "tags", "alternative_titles", "status"] },
+    "tested_query": "Astérix",
+    "pick_fr": "BD FR (Bédéthèque) — covers + année série.",
+    "pick_en": "FR BD (Bédéthèque) — covers + series year."
+  },
+  "BNE": {
+    "grade": "A",
+    "note": 98,
+    "audit_status": "PASS",
+    "covers_ok": false,
+    "gaps": { "provider": ["cover_url"], "bug": [], "optional": ["isbn", "tags", "alternative_titles", "status"] },
+    "tested_query": "Don Quijote",
+    "pick_fr": "Catalogue ES — notices OK, pas de covers SRU.",
+    "pick_en": "Spanish national catalog — records OK, no SRU covers."
+  },
+  "BNF": {
+    "grade": "A",
+    "note": 99,
+    "audit_status": "PASS",
+    "covers_ok": false,
+    "gaps": { "provider": ["cover_url"], "bug": [], "optional": ["publisher", "tags", "alternative_titles", "status"] },
+    "tested_query": "Les Misérables",
+    "pick_fr": "Catalogue FR officiel — pas de covers (coupler Babelio/Decitre).",
+    "pick_en": "French national catalog — no covers (pair with Babelio/Decitre)."
+  },
+  "DECITRE": {
+    "grade": "A",
+    "note": 100,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": [], "bug": [], "optional": ["tags", "alternative_titles", "status"] },
+    "tested_query": "Le Petit Prince",
+    "pick_fr": "Librairie FR — covers + ISBN + résumé.",
+    "pick_en": "French bookstore — covers + ISBN + summary."
+  },
+  "DNB": {
+    "grade": "A",
+    "note": 98,
+    "audit_status": "PASS",
+    "covers_ok": false,
+    "gaps": { "provider": ["cover_url", "summary"], "bug": [], "optional": ["tags", "status"] },
+    "tested_query": "Der Prozess",
+    "pick_fr": "Catalogue DE — notices riches, sans cover/summary.",
+    "pick_en": "German national catalog — rich records, no cover/summary."
+  },
+  "GCD": {
+    "grade": null,
+    "note": null,
+    "audit_status": "EXPECTED",
+    "covers_ok": null,
+    "gaps": { "provider": [], "bug": [], "optional": [] },
+    "tested_query": "Watchmen",
+    "pick_fr": "Comics US — souvent 429 ; covers déclarés mais non vérifiés ce run.",
+    "pick_en": "US comics — often 429; covers declared but not verified this run."
+  },
+  "ISBNDB": {
+    "grade": null,
+    "note": null,
+    "audit_status": "SKIP",
+    "covers_ok": null,
+    "gaps": { "provider": [], "bug": [], "optional": [] },
+    "tested_query": null,
+    "pick_fr": "ISBN mondial — clé payante requise, non testé en live.",
+    "pick_en": "Worldwide ISBN — paid key required, not live-tested."
+  },
+  "KB": {
+    "grade": "A",
+    "note": 97,
+    "audit_status": "PASS",
+    "covers_ok": false,
+    "gaps": { "provider": ["cover_url", "summary"], "bug": [], "optional": ["isbn", "tags", "alternative_titles", "status"] },
+    "tested_query": "Max Havelaar",
+    "pick_fr": "Catalogue NL — pas de covers SRU.",
+    "pick_en": "Dutch national catalog — no SRU covers."
+  },
+  "LOC": {
+    "grade": "A",
+    "note": 97,
+    "audit_status": "PASS",
+    "covers_ok": false,
+    "gaps": { "provider": ["cover_url", "summary", "url"], "bug": [], "optional": ["isbn", "publisher", "alternative_titles", "status"] },
+    "tested_query": "Moby Dick",
+    "pick_fr": "Library of Congress — SRU DC, rarement covers/URL.",
+    "pick_en": "Library of Congress — SRU DC, covers/URL rarely present."
+  },
+  "LOCG": {
+    "grade": "A",
+    "note": 100,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": [], "bug": [], "optional": ["isbn", "publisher", "tags", "alternative_titles", "status"] },
+    "tested_query": "Watchmen",
+    "pick_fr": "Comics US sans clé — covers + résumé série.",
+    "pick_en": "US comics, no API key — series covers + summary."
+  },
+  "MANGASANCTUARY": {
+    "grade": "A",
+    "note": 100,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": [], "bug": [], "optional": ["isbn", "publisher", "tags", "alternative_titles", "status"] },
+    "tested_query": "Death Note",
+    "pick_fr": "Manga FR — covers OK.",
+    "pick_en": "French manga site — covers OK."
+  },
+  "METRON": {
+    "grade": "A",
+    "note": 100,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": [], "bug": [], "optional": ["isbn", "alternative_titles"] },
+    "tested_query": "Watchmen",
+    "pick_fr": "Meilleure API comics (clé) — staff via 1er issue + covers.",
+    "pick_en": "Best comics API (key) — staff from 1st issue + covers."
+  },
+  "NDL": {
+    "grade": "A",
+    "note": 99,
+    "audit_status": "PASS",
+    "covers_ok": false,
+    "gaps": { "provider": ["cover_url"], "bug": [], "optional": ["tags", "alternative_titles", "status"] },
+    "tested_query": "Norwegian Wood",
+    "pick_fr": "Bibliothèque nationale JP — notices, pas de covers (voir openBD).",
+    "pick_en": "JP national library — records, no covers (see openBD)."
+  },
+  "NOVELUPDATES": {
+    "grade": null,
+    "note": null,
+    "audit_status": "EXPECTED",
+    "covers_ok": null,
+    "gaps": { "provider": [], "bug": [], "optional": [] },
+    "tested_query": "Overlord",
+    "pick_fr": "Novels EN — Cloudflare ; cookies optionnels.",
+    "pick_en": "EN novels — Cloudflare; optional cookies."
+  },
+  "OPENBD": {
+    "grade": "A",
+    "note": 99,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": ["summary"], "bug": [], "optional": ["tags", "alternative_titles", "status"] },
+    "tested_query": "9784101001517",
+    "pick_fr": "ISBN JP + covers — résumé souvent absent.",
+    "pick_en": "JP ISBN + covers — summary often missing."
+  },
+  "PLANETEBD": {
+    "grade": "A",
+    "note": 100,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": [], "bug": [], "optional": ["tags", "alternative_titles"] },
+    "tested_query": "Astérix",
+    "pick_fr": "BD FR + comics — payload très complet.",
+    "pick_en": "FR BD + comics — very complete payload."
+  },
+  "SBN": {
+    "grade": "A",
+    "note": 97,
+    "audit_status": "PASS",
+    "covers_ok": false,
+    "gaps": { "provider": ["cover_url", "summary"], "bug": [], "optional": ["isbn", "tags", "alternative_titles", "status"] },
+    "tested_query": "Il nome della rosa",
+    "pick_fr": "Catalogue IT — pas de covers.",
+    "pick_en": "Italian catalog — no covers."
+  },
+  "SENSCRITIQUE": {
+    "grade": "A",
+    "note": 100,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": [], "bug": [], "optional": ["tags", "alternative_titles", "status"] },
+    "tested_query": "Tintin",
+    "pick_fr": "FR Book/Comic — GraphQL, covers OK.",
+    "pick_en": "FR Book/Comic — GraphQL, covers OK."
+  },
+  "TAPAS": {
+    "grade": "A",
+    "note": 98,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": ["summary", "year"], "bug": [], "optional": ["isbn", "publisher", "tags", "alternative_titles", "status"] },
+    "tested_query": "Solo Leveling",
+    "pick_fr": "Manhwa/webcomics — covers OK ; résumé/année absents côté HTML public.",
+    "pick_en": "Manhwa/webcomics — covers OK; public HTML lacks summary/year."
+  },
+  "TEBEOSFERA": {
+    "grade": null,
+    "note": null,
+    "audit_status": "SKIP",
+    "covers_ok": false,
+    "gaps": { "provider": [], "bug": [], "optional": [] },
+    "tested_query": null,
+    "pick_fr": "Comics ES — catalogue JS/iframe, non scrapable pour l’instant.",
+    "pick_en": "ES comics — JS/iframe catalog, not scrapable yet."
+  },
+  "WEBTOON": {
+    "grade": "A",
+    "note": 99,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": { "provider": ["year"], "bug": [], "optional": ["isbn", "publisher", "tags", "alternative_titles", "status"] },
+    "tested_query": "Tower of God",
+    "pick_fr": "Webtoon EN — covers + résumé ; année non exposée.",
+    "pick_en": "EN webtoon — covers + summary; year not exposed."
+  }
+}
