@@ -547,5 +547,35 @@
     "warnings": [
       "Catalogue entièrement JS/iframe — scraping HTML inopérant pour l’instant."
     ]
+  },
+  "WIKIDATA": {
+    "method": "api",
+    "languages": [
+      "en",
+      "fr",
+      "ja",
+      "de",
+      "es",
+      "it",
+      "ko",
+      "zh"
+    ],
+    "covers": true,
+    "status": "beta",
+    "homepage": "https://www.wikidata.org",
+    "region": "Global",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Wikidata live (SPARQL + Entity API) — fallback / ISBN / IDs croisés. Périmètre métadonnées restreint.",
+    "summary_en": "Wikidata live (SPARQL + Entity API) — fallback / ISBN / cross-IDs. Limited metadata scope.",
+    "setup_fr": "Aucune clé. rate_limit=1.2 s. Nécessite MetaKavita ≥ 1.6.1 (`scrapers.wikidata_map`).",
+    "setup_en": "No API key. rate_limit=1.2 s. Requires MetaKavita ≥ 1.6.1 (`scrapers.wikidata_map`).",
+    "warnings": [
+      "Périmètre de données limité — ne remplace pas AniList / ComicVine / Google Books.",
+      "API live uniquement (pas de mode dump/SQLite hors-ligne)."
+    ]
   }
 }

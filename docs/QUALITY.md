@@ -43,10 +43,11 @@ Use this page to **pick a scraper**. The machine catalog [`store/catalog.json`](
 | `TAPAS` | Manga | A | 98 | Yes | summary, year | — | Manhwa/webcomics — covers OK; public HTML lacks summary/year. |
 | `TEBEOSFERA` | Comic | — | — | No | — | — | ES comics — JS/iframe catalog, not scrapable yet. |
 | `WEBTOON` | Manga | A | 99 | Yes | year | — | EN webtoon — covers + summary; year not exposed. |
+| `WIKIDATA` | Book, Comic, Manga | C | 70 | Yes | status, tags | — | Fallback / ISBN / cross-IDs — limited scope, not a primary. |
 
 ## Covers — who provides images?
 
-**Yes (14):** `ANIMEPLANET`, `ANN`, `BABELIO`, `BANGUMI`, `BDGEST`, `DECITRE`, `LOCG`, `MANGASANCTUARY`, `METRON`, `OPENBD`, `PLANETEBD`, `SENSCRITIQUE`, `TAPAS`, `WEBTOON`
+**Yes (15):** `ANIMEPLANET`, `ANN`, `BABELIO`, `BANGUMI`, `BDGEST`, `DECITRE`, `LOCG`, `MANGASANCTUARY`, `METRON`, `OPENBD`, `PLANETEBD`, `SENSCRITIQUE`, `TAPAS`, `WEBTOON`, `WIKIDATA`
 
 **No / provider limit (8):** `BNE`, `BNF`, `DNB`, `KB`, `LOC`, `NDL`, `SBN`, `TEBEOSFERA`
 
@@ -96,6 +97,7 @@ Use this page to **pick a scraper**. The machine catalog [`store/catalog.json`](
 | `TAPAS` | summary, year | — | isbn, publisher, tags, alternative_titles, status |
 | `TEBEOSFERA` | — | — | — |
 | `WEBTOON` | year | — | isbn, publisher, tags, alternative_titles, status |
+| `WIKIDATA` | status, tags | — | publisher, alternative_titles, isbn |
 
 ## Updating
 

@@ -32,4 +32,5 @@ Per-scraper pages + machine catalog [`store/catalog.json`](../store/catalog.json
 | `TAPAS` | Tapas | Manga | html | Yes | A | — | [tapas.md](scrapers/tapas.md) |
 | `TEBEOSFERA` | Tebeosfera | Comic | html | No | — | — | [tebeosfera.md](scrapers/tebeosfera.md) |
 | `WEBTOON` | WEBTOON | Manga | html | Yes | A | — | [webtoon.md](scrapers/webtoon.md) |
+| `WIKIDATA` | Wikidata | Book, Comic, Manga | api | Yes | C | — | [wikidata.md](scrapers/wikidata.md) |
 

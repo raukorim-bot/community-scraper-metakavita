@@ -53,6 +53,7 @@ No rebuild of the MetaKavita image is required.
 | [`sbn.py`](sbn.py) | `SBN` | Book | None | No | SBN / ICCU Italia (OPAC JSON) | [doc](docs/scrapers/sbn.md) |
 | [`kb.py`](kb.py) | `KB` | Book | None | No | KB Nederland (JSRU / GGC) | [doc](docs/scrapers/kb.md) |
 | [`tebeosfera.py`](tebeosfera.py) | `TEBEOSFERA` | Comic | None | Yes | Tebeosfera — Spanish comics (HTML; limited) | [doc](docs/scrapers/tebeosfera.md) |
+| [`wikidata.py`](wikidata.py) | `WIKIDATA` | Manga, Comic, Book | None | Yes | Wikidata live SPARQL/Entity — fallback / ISBN / cross-IDs (limited scope) | [doc](docs/scrapers/wikidata.md) |
 
 \*Bangumi expects a proper User-Agent (handled by the scraper).  
 \*GCD cover URLs are on `files1.comics.org` (may need proxy / browser-like fetch).

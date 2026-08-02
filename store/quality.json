@@ -246,6 +246,20 @@
     "pick_fr": "Comics ES — catalogue JS/iframe, non scrapable pour l’instant.",
     "pick_en": "ES comics — JS/iframe catalog, not scrapable yet."
   },
+  "WIKIDATA": {
+    "grade": "C",
+    "note": 70,
+    "audit_status": "PASS",
+    "covers_ok": true,
+    "gaps": {
+      "provider": ["status", "tags"],
+      "bug": [],
+      "optional": ["publisher", "alternative_titles", "isbn"]
+    },
+    "tested_query": "Attack on Titan",
+    "pick_fr": "Fallback / ISBN / IDs croisés — périmètre restreint, pas un primaire.",
+    "pick_en": "Fallback / ISBN / cross-IDs — limited scope, not a primary."
+  },
   "WEBTOON": {
     "grade": "A",
     "note": 99,

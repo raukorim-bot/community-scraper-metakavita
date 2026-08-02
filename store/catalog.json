@@ -8,7 +8,7 @@
   "repo": "https://github.com/raukorim-bot/community-scraper-metakavita",
   "default_branch": "main",
   "raw_base": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main",
-  "generated_at": "2026-08-02T14:30:49Z",
+  "generated_at": "2026-08-02T15:47:34Z",
   "quality_docs": "docs/QUALITY.md",
   "quality_audited_at": "2026-08-02",
   "install_notes": {
@@ -2104,6 +2104,106 @@
         "grade-a",
         "html",
         "kr"
+      ]
+    },
+    {
+      "id": "WIKIDATA",
+      "file": "wikidata.py",
+      "display_name": "Wikidata",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book",
+        "Comic",
+        "Manga"
+      ],
+      "library_types": [
+        "Book",
+        "Comic",
+        "Manga"
+      ],
+      "method": "api",
+      "languages": [
+        "en",
+        "fr",
+        "ja",
+        "de",
+        "es",
+        "it",
+        "ko",
+        "zh"
+      ],
+      "region": "Global",
+      "homepage": "https://www.wikidata.org",
+      "covers": true,
+      "status": "beta",
+      "rate_limit": 1.2,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "wikidata.org",
+        "www.wikidata.org",
+        "commons.wikimedia.org",
+        "upload.wikimedia.org"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Wikidata live (SPARQL + Entity API) — fallback / ISBN / IDs croisés. Périmètre métadonnées restreint.",
+        "en": "Wikidata live (SPARQL + Entity API) — fallback / ISBN / cross-IDs. Limited metadata scope."
+      },
+      "setup": {
+        "fr": "Aucune clé. rate_limit=1.2 s. Nécessite MetaKavita ≥ 1.6.1 (`scrapers.wikidata_map`).",
+        "en": "No API key. rate_limit=1.2 s. Requires MetaKavita ≥ 1.6.1 (`scrapers.wikidata_map`)."
+      },
+      "warnings": [
+        "Périmètre de données limité — ne remplace pas AniList / ComicVine / Google Books.",
+        "API live uniquement (pas de mode dump/SQLite hors-ligne)."
+      ],
+      "quality": {
+        "grade": "C",
+        "note": 70,
+        "audit_status": "PASS",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [
+            "status",
+            "tags"
+          ],
+          "bug": [],
+          "optional": [
+            "publisher",
+            "alternative_titles",
+            "isbn"
+          ]
+        },
+        "tested_query": "Attack on Titan",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Fallback / ISBN / IDs croisés — périmètre restreint, pas un primaire.",
+          "en": "Fallback / ISBN / cross-IDs — limited scope, not a primary."
+        }
+      },
+      "docs": "docs/scrapers/wikidata.md",
+      "install": {
+        "path": "wikidata.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/wikidata.py",
+        "sha256": "5dd7253ecebb35a06ef44d40f2990ec510da267679a6a9d02b875ec2d6aeb901",
+        "bytes": 11011,
+        "target": "data/scrapers/wikidata.py"
+      },
+      "tags": [
+        "Book",
+        "Comic",
+        "Manga",
+        "api",
+        "covers",
+        "global",
+        "grade-c"
       ]
     }
   ]
