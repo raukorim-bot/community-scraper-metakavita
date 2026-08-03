@@ -29,7 +29,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`mangabaka.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangabaka.py) into `data/scrapers/`.
-2. Verify SHA-256: `e3365bfde6f7d725032566ab28dbcdb2b0adc70f8153c8815a18c52535372255`.
+2. Verify SHA-256: `b86afb66038672fc969379bf3c3b704bb326caba17fd85ea49fe38c67192b5cb`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Manga).
 

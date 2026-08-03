@@ -8,7 +8,7 @@
   "repo": "https://github.com/raukorim-bot/community-scraper-metakavita",
   "default_branch": "main",
   "raw_base": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main",
-  "generated_at": "2026-08-03T08:43:27Z",
+  "generated_at": "2026-08-03T08:53:59Z",
   "quality_docs": "docs/QUALITY.md",
   "quality_audited_at": "2026-08-02",
   "install_notes": {
@@ -1776,8 +1776,8 @@
       "install": {
         "path": "mangabaka.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangabaka.py",
-        "sha256": "e3365bfde6f7d725032566ab28dbcdb2b0adc70f8153c8815a18c52535372255",
-        "bytes": 13909,
+        "sha256": "b86afb66038672fc969379bf3c3b704bb326caba17fd85ea49fe38c67192b5cb",
+        "bytes": 14592,
         "target": "data/scrapers/mangabaka.py"
       },
       "tags": [
