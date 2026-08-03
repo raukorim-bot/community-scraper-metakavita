@@ -8,7 +8,7 @@
   "repo": "https://github.com/raukorim-bot/community-scraper-metakavita",
   "default_branch": "main",
   "raw_base": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main",
-  "generated_at": "2026-08-02T15:47:34Z",
+  "generated_at": "2026-08-03T08:43:27Z",
   "quality_docs": "docs/QUALITY.md",
   "quality_audited_at": "2026-08-02",
   "install_notes": {
@@ -20,6 +20,73 @@
     "en": "A scraper is Python executed with MetaKavita privileges. See CUSTOM_SCRAPERS.md."
   },
   "scrapers": [
+    {
+      "id": "ANILIST",
+      "file": "anilist.py",
+      "display_name": "AniList (International)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book",
+        "Comic",
+        "Manga"
+      ],
+      "library_types": [
+        "Book",
+        "Comic",
+        "Manga"
+      ],
+      "method": "graphql",
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "region": "INTL",
+      "homepage": "https://anilist.co",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 1.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "anilist.co"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "AniList — métadonnées manga / LN (GraphQL). Scraper core MetaKavita.",
+        "en": "AniList — manga / LN metadata (GraphQL). MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+        "en": "No API key. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/anilist.md",
+      "install": {
+        "path": "anilist.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/anilist.py",
+        "sha256": "45c44569647b62aef3fec176282d2646221334634256963bba8e6e9291171c38",
+        "bytes": 9924,
+        "target": "data/scrapers/anilist.py"
+      },
+      "tags": [
+        "Book",
+        "Comic",
+        "Manga",
+        "core",
+        "graphql",
+        "intl"
+      ]
+    },
     {
       "id": "ANIMEPLANET",
       "file": "animeplanet.py",
@@ -39,6 +106,7 @@
       "homepage": "https://www.anime-planet.com",
       "covers": true,
       "status": "stable",
+      "is_core": false,
       "rate_limit": 3.0,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -122,6 +190,7 @@
       "homepage": "https://www.animenewsnetwork.com",
       "covers": true,
       "status": "stable",
+      "is_core": true,
       "rate_limit": 1.2,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -170,13 +239,14 @@
       "install": {
         "path": "ann.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/ann.py",
-        "sha256": "dec4ffc17f9def84f454a4500508a29288c36a59e294670ddbeffdd602845ed3",
-        "bytes": 14338,
+        "sha256": "e303e53b47a506e533a2fde177e7e78a9afeb2231518a1acd7e8731e6dc343f6",
+        "bytes": 13967,
         "target": "data/scrapers/ann.py"
       },
       "tags": [
         "Manga",
         "api",
+        "core",
         "covers",
         "grade-a",
         "us"
@@ -201,6 +271,7 @@
       "homepage": "https://www.babelio.com",
       "covers": true,
       "status": "stable",
+      "is_core": true,
       "rate_limit": 3.0,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -254,12 +325,13 @@
       "install": {
         "path": "babelio.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/babelio.py",
-        "sha256": "914606d21347b1bae24bdafce945bd54ac68d7612f9c41e5873dfb842d0dab21",
-        "bytes": 23761,
+        "sha256": "dd3665ca329046e1993d2d0e2e2348108e0c4d926e3d8a90b8463fdedbfb38e2",
+        "bytes": 23780,
         "target": "data/scrapers/babelio.py"
       },
       "tags": [
         "Book",
+        "core",
         "covers",
         "fr",
         "grade-a",
@@ -289,6 +361,7 @@
       "homepage": "https://bgm.tv",
       "covers": true,
       "status": "stable",
+      "is_core": false,
       "rate_limit": 1.2,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -368,6 +441,7 @@
       "homepage": "https://www.bedetheque.com",
       "covers": true,
       "status": "beta",
+      "is_core": false,
       "rate_limit": 3.0,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -436,6 +510,127 @@
       ]
     },
     {
+      "id": "BDTHEQUE",
+      "file": "bdtheque.py",
+      "display_name": "BDTheque.com (Franco-Belge)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Comic"
+      ],
+      "library_types": [
+        "Comic"
+      ],
+      "method": "html",
+      "languages": [
+        "fr"
+      ],
+      "region": "FR",
+      "homepage": "https://www.bdtheque.com",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 1.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "bdtheque.com",
+        "www.bdtheque.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "BDTheque.com — BD franco-belge (HTML). Scraper core MetaKavita.",
+        "en": "BDTheque.com — Franco-Belgian comics (HTML). MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+        "en": "No API key. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/bdtheque.md",
+      "install": {
+        "path": "bdtheque.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bdtheque.py",
+        "sha256": "9d3dcb2206e98540a04c6d7fcb7f487130bc46fa480c0947338ca37f6a5e085a",
+        "bytes": 20437,
+        "target": "data/scrapers/bdtheque.py"
+      },
+      "tags": [
+        "Comic",
+        "core",
+        "fr",
+        "html"
+      ]
+    },
+    {
+      "id": "BEDETHEQUE",
+      "file": "bedetheque.py",
+      "display_name": "Bédéthèque (Franco-Belge)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Comic"
+      ],
+      "library_types": [
+        "Comic"
+      ],
+      "method": "html",
+      "languages": [
+        "fr"
+      ],
+      "region": "FR",
+      "homepage": "https://www.bedetheque.com",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 2.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "bedetheque.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Bedetheque — BD franco-belge (HTML). Scraper core MetaKavita.",
+        "en": "Bedetheque — Franco-Belgian comics (HTML). MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+        "en": "No API key. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/bedetheque.md",
+      "install": {
+        "path": "bedetheque.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bedetheque.py",
+        "sha256": "c76ea7b103707287c97949ebae99929d410289595463024945c5338d26446160",
+        "bytes": 19863,
+        "target": "data/scrapers/bedetheque.py"
+      },
+      "tags": [
+        "Comic",
+        "core",
+        "fr",
+        "html"
+      ]
+    },
+    {
       "id": "BNE",
       "file": "bne.py",
       "display_name": "BNE (España)",
@@ -454,6 +649,7 @@
       "homepage": "https://www.bne.es",
       "covers": false,
       "status": "stable",
+      "is_core": false,
       "rate_limit": 1.2,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -507,8 +703,8 @@
       "install": {
         "path": "bne.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bne.py",
-        "sha256": "2d53ec833819bc1ab34f30d49a216eb29581aca5c0f254cc7f41598eec5fa146",
-        "bytes": 9088,
+        "sha256": "3a66d4e43e2ce09dda30f07c260a2d03d254ecbba2bea0485f93235fc7efc8dd",
+        "bytes": 9331,
         "target": "data/scrapers/bne.py"
       },
       "tags": [
@@ -538,6 +734,7 @@
       "homepage": "https://catalogue.bnf.fr",
       "covers": false,
       "status": "stable",
+      "is_core": false,
       "rate_limit": 1.0,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -602,6 +799,68 @@
       ]
     },
     {
+      "id": "COMICVINE",
+      "file": "comicvine.py",
+      "display_name": "ComicVine (Ultime BD/Comics)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Comic"
+      ],
+      "library_types": [
+        "Comic"
+      ],
+      "method": "api",
+      "languages": [
+        "en"
+      ],
+      "region": "US",
+      "homepage": "https://comicvine.gamespot.com",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 1.2,
+      "needs_api_key": true,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": true,
+      "proxy_domains": [
+        "comicvine.gamespot.com",
+        "static.comicvine.com"
+      ],
+      "auth": {
+        "required": true,
+        "config_key": "COMICVINE_API_KEY",
+        "kind": "api_key"
+      },
+      "summary": {
+        "fr": "ComicVine — comics / BD (API). Scraper core MetaKavita.",
+        "en": "ComicVine — comics (API). MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Clé ComicVine → COMICVINE_API_KEY. Livré en core MetaKavita (is_core).",
+        "en": "ComicVine key → COMICVINE_API_KEY. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/comicvine.md",
+      "install": {
+        "path": "comicvine.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/comicvine.py",
+        "sha256": "ef65048ab9c4aeb145e90605a03807f405ecd30eb8ff6c0836069aa688f54974",
+        "bytes": 23147,
+        "target": "data/scrapers/comicvine.py"
+      },
+      "tags": [
+        "Comic",
+        "api",
+        "api-key",
+        "core",
+        "us"
+      ]
+    },
+    {
       "id": "DECITRE",
       "file": "decitre.py",
       "display_name": "Decitre",
@@ -620,6 +879,7 @@
       "homepage": "https://www.decitre.fr",
       "covers": true,
       "status": "stable",
+      "is_core": true,
       "rate_limit": 2.5,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -672,12 +932,13 @@
       "install": {
         "path": "decitre.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/decitre.py",
-        "sha256": "f2a1767f78f0c2dd2b2cd172d924d7dd7d14d554523720512484ae8eb32e22a7",
-        "bytes": 10818,
+        "sha256": "e57307cfb417fdd3c46c05abe0a5469fe53fa2b3cd9f798c5c2b3545ec06ccde",
+        "bytes": 10837,
         "target": "data/scrapers/decitre.py"
       },
       "tags": [
         "Book",
+        "core",
         "covers",
         "fr",
         "grade-a",
@@ -704,6 +965,7 @@
       "homepage": "https://www.dnb.de",
       "covers": false,
       "status": "stable",
+      "is_core": false,
       "rate_limit": 1.0,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -787,6 +1049,7 @@
       "homepage": "https://www.comics.org",
       "covers": true,
       "status": "stable",
+      "is_core": false,
       "rate_limit": 2.0,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -847,6 +1110,139 @@
       ]
     },
     {
+      "id": "GOOGLEBOOKS",
+      "file": "googlebooks.py",
+      "display_name": "Google Books",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book",
+        "Comic"
+      ],
+      "library_types": [
+        "Book",
+        "Comic"
+      ],
+      "method": "api",
+      "languages": [
+        "en",
+        "fr"
+      ],
+      "region": "INTL",
+      "homepage": "https://books.google.com",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 1.0,
+      "needs_api_key": true,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "books.google.com",
+        "books.googleusercontent.com",
+        "googleusercontent.com"
+      ],
+      "auth": {
+        "required": true,
+        "config_key": "GOOGLEBOOKS_API_KEY",
+        "kind": "api_key"
+      },
+      "summary": {
+        "fr": "Google Books — livres / comics (API). Scraper core MetaKavita.",
+        "en": "Google Books — books / comics (API). MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Clé Google → GOOGLEBOOKS_API_KEY. Livré en core MetaKavita (is_core).",
+        "en": "Google key → GOOGLEBOOKS_API_KEY. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/googlebooks.md",
+      "install": {
+        "path": "googlebooks.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/googlebooks.py",
+        "sha256": "fd0323e60f4ad59e72bac820d94d5bfe7790c48f40dcb39f977e95bffe30b4b9",
+        "bytes": 11766,
+        "target": "data/scrapers/googlebooks.py"
+      },
+      "tags": [
+        "Book",
+        "Comic",
+        "api",
+        "api-key",
+        "core",
+        "intl"
+      ]
+    },
+    {
+      "id": "HARDCOVER",
+      "file": "hardcover.py",
+      "display_name": "Hardcover (Expérimental / GraphQL)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book",
+        "Comic"
+      ],
+      "library_types": [
+        "Book",
+        "Comic"
+      ],
+      "method": "graphql",
+      "languages": [
+        "en"
+      ],
+      "region": "US",
+      "homepage": "https://hardcover.app",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 1.2,
+      "needs_api_key": true,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "hardcover.app",
+        "api.hardcover.app",
+        "img.hardcover.app"
+      ],
+      "auth": {
+        "required": true,
+        "config_key": "HARDCOVER_API_KEY",
+        "kind": "api_key"
+      },
+      "summary": {
+        "fr": "Hardcover — livres (GraphQL). Scraper core MetaKavita.",
+        "en": "Hardcover — books (GraphQL). MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Clé Hardcover → HARDCOVER_API_KEY. Livré en core MetaKavita (is_core).",
+        "en": "Hardcover key → HARDCOVER_API_KEY. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/hardcover.md",
+      "install": {
+        "path": "hardcover.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/hardcover.py",
+        "sha256": "9030b0e380d659aff880a60ad0250f1da27ae521dfb78d7c3e83cab49889c88c",
+        "bytes": 16819,
+        "target": "data/scrapers/hardcover.py"
+      },
+      "tags": [
+        "Book",
+        "Comic",
+        "api-key",
+        "core",
+        "graphql",
+        "us"
+      ]
+    },
+    {
       "id": "ISBNDB",
       "file": "isbndb.py",
       "display_name": "ISBNdb",
@@ -865,6 +1261,7 @@
       "homepage": "https://isbndb.com",
       "covers": true,
       "status": "untested",
+      "is_core": false,
       "rate_limit": 1.0,
       "needs_api_key": true,
       "has_direct_id_support": true,
@@ -943,6 +1340,7 @@
       "homepage": "https://www.kb.nl",
       "covers": false,
       "status": "beta",
+      "is_core": false,
       "rate_limit": 1.5,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -999,8 +1397,8 @@
       "install": {
         "path": "kb.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/kb.py",
-        "sha256": "d51e5b2033c15efa3bf4878d0f3aded1d5ca39a0d69af7c7ea80abec6a7181bf",
-        "bytes": 8361,
+        "sha256": "2496269a3fdebb7df799644e8cd64b807cf803611bb3e9ca522b5f4724d6323c",
+        "bytes": 8587,
         "target": "data/scrapers/kb.py"
       },
       "tags": [
@@ -1009,6 +1407,69 @@
         "nl",
         "no-covers",
         "sru"
+      ]
+    },
+    {
+      "id": "KITSU",
+      "file": "kitsu.py",
+      "display_name": "Kitsu (JSON:API)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Manga"
+      ],
+      "library_types": [
+        "Manga"
+      ],
+      "method": "api",
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "region": "INTL",
+      "homepage": "https://kitsu.io",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 1.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "kitsu.io",
+        "media.kitsu.app",
+        "media.kitsu.io"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Kitsu — manga (JSON:API). Scraper core MetaKavita.",
+        "en": "Kitsu — manga (JSON:API). MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+        "en": "No API key. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/kitsu.md",
+      "install": {
+        "path": "kitsu.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/kitsu.py",
+        "sha256": "f11cd63977d6fb58a92b1584a8dbbf9d02b9490c0aa6b3a0d068a2953c48f651",
+        "bytes": 8100,
+        "target": "data/scrapers/kitsu.py"
+      },
+      "tags": [
+        "Manga",
+        "api",
+        "core",
+        "intl"
       ]
     },
     {
@@ -1030,6 +1491,7 @@
       "homepage": "https://www.loc.gov",
       "covers": false,
       "status": "stable",
+      "is_core": false,
       "rate_limit": 1.5,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -1088,8 +1550,8 @@
       "install": {
         "path": "loc.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/loc.py",
-        "sha256": "b8e00f8f5540b1d74deecaf864b812401e36d1d0e0be19c7a0528c010ce65f57",
-        "bytes": 17185,
+        "sha256": "c7a4d0e033a56e0e23d441503ded7272834e71cb0861bc9c706a295d7f25da16",
+        "bytes": 17617,
         "target": "data/scrapers/loc.py"
       },
       "tags": [
@@ -1119,6 +1581,7 @@
       "homepage": "https://leagueofcomicgeeks.com",
       "covers": true,
       "status": "stable",
+      "is_core": true,
       "rate_limit": 4.0,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -1174,16 +1637,279 @@
       "install": {
         "path": "locg.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/locg.py",
-        "sha256": "27f83546e4f08d9248c96a25fd70112b3d6b0d0c5b694a2d8518304a5c3aa42a",
-        "bytes": 19255,
+        "sha256": "db063630cb5e3fca149daa5833ec1ba6ceb8d13adb4dd0ad13ee8c7eadc16836",
+        "bytes": 19274,
         "target": "data/scrapers/locg.py"
       },
       "tags": [
         "Comic",
+        "core",
         "covers",
         "grade-a",
         "html",
         "us"
+      ]
+    },
+    {
+      "id": "MAL",
+      "file": "mal.py",
+      "display_name": "MyAnimeList (Official API)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book",
+        "Manga"
+      ],
+      "library_types": [
+        "Book",
+        "Manga"
+      ],
+      "method": "api",
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "region": "INTL",
+      "homepage": "https://myanimelist.net",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 1.2,
+      "needs_api_key": true,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "cdn.myanimelist.net",
+        "myanimelist.net",
+        "api.myanimelist.net"
+      ],
+      "auth": {
+        "required": true,
+        "config_key": "MAL_API_KEY",
+        "kind": "api_key"
+      },
+      "summary": {
+        "fr": "MyAnimeList — API officielle (Client ID). Scraper core MetaKavita.",
+        "en": "MyAnimeList — official API (Client ID). MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Client ID MAL → MAL_API_KEY. Livré en core MetaKavita (is_core).",
+        "en": "MAL Client ID → MAL_API_KEY. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/mal.md",
+      "install": {
+        "path": "mal.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mal.py",
+        "sha256": "3b1c7ed6790534b52bfa6608548617996f1692d0780bad71e3469371947ed218",
+        "bytes": 13032,
+        "target": "data/scrapers/mal.py"
+      },
+      "tags": [
+        "Book",
+        "Manga",
+        "api",
+        "api-key",
+        "core",
+        "intl"
+      ]
+    },
+    {
+      "id": "MANGABAKA",
+      "file": "mangabaka.py",
+      "display_name": "MangaBaka (API / Rapide)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book",
+        "Manga"
+      ],
+      "library_types": [
+        "Book",
+        "Manga"
+      ],
+      "method": "api",
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "region": "INTL",
+      "homepage": "https://mangabaka.org",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 2.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "mangabaka.org",
+        "api.mangabaka.org",
+        "images.mangabaka.org",
+        "cdn.mangabaka.org",
+        "mangabaka.dev",
+        "api.mangabaka.dev",
+        "images.mangabaka.dev",
+        "cdn.mangabaka.dev"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "MangaBaka — API v2 (manga / novels). Scraper core MetaKavita.",
+        "en": "MangaBaka — v2 API (manga / novels). MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+        "en": "No API key. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/mangabaka.md",
+      "install": {
+        "path": "mangabaka.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangabaka.py",
+        "sha256": "e3365bfde6f7d725032566ab28dbcdb2b0adc70f8153c8815a18c52535372255",
+        "bytes": 13909,
+        "target": "data/scrapers/mangabaka.py"
+      },
+      "tags": [
+        "Book",
+        "Manga",
+        "api",
+        "core",
+        "intl"
+      ]
+    },
+    {
+      "id": "MANGADEX",
+      "file": "mangadex.py",
+      "display_name": "MangaDex (API)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Manga"
+      ],
+      "library_types": [
+        "Manga"
+      ],
+      "method": "api",
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "region": "INTL",
+      "homepage": "https://mangadex.org",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 0.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": true,
+      "proxy_domains": [
+        "mangadex.org",
+        "uploads.mangadex.org",
+        "api.mangadex.org"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "MangaDex — API publique. Scraper core MetaKavita.",
+        "en": "MangaDex — public API. MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+        "en": "No API key. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/mangadex.md",
+      "install": {
+        "path": "mangadex.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangadex.py",
+        "sha256": "4a48c35713f29b9f868248b0f6e2e0abc7226eb0d43fd799a4a682aaf704a8ec",
+        "bytes": 11508,
+        "target": "data/scrapers/mangadex.py"
+      },
+      "tags": [
+        "Manga",
+        "api",
+        "core",
+        "intl"
+      ]
+    },
+    {
+      "id": "MANGANEWS",
+      "file": "manganews.py",
+      "display_name": "Manga-News (Catalogue VF)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Manga"
+      ],
+      "library_types": [
+        "Manga"
+      ],
+      "method": "html",
+      "languages": [
+        "fr"
+      ],
+      "region": "FR",
+      "homepage": "https://www.manga-news.com",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 1.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "manga-news.com",
+        "www.manga-news.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Manga-News — catalogue VF. Scraper core MetaKavita.",
+        "en": "Manga-News — French catalog. MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+        "en": "No API key. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/manganews.md",
+      "install": {
+        "path": "manganews.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/manganews.py",
+        "sha256": "cd83fce6540ad6a430cd161ae8a04fcbd5b746e46468b5f5d71d6833ecb139c1",
+        "bytes": 18713,
+        "target": "data/scrapers/manganews.py"
+      },
+      "tags": [
+        "Manga",
+        "core",
+        "fr",
+        "html"
       ]
     },
     {
@@ -1205,6 +1931,7 @@
       "homepage": "https://www.manga-sanctuary.com",
       "covers": true,
       "status": "stable",
+      "is_core": false,
       "rate_limit": 2.5,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -1257,8 +1984,8 @@
       "install": {
         "path": "mangasanctuary.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangasanctuary.py",
-        "sha256": "b942112acefe4d77f316d0088e2b95d6702cbb0181f122a5cdcdd2f04dd85835",
-        "bytes": 9400,
+        "sha256": "1d0bc6945af3c1da57ec0d8df3376f5a9522be056cd000fe8c311064f46e759c",
+        "bytes": 9639,
         "target": "data/scrapers/mangasanctuary.py"
       },
       "tags": [
@@ -1267,6 +1994,68 @@
         "fr",
         "grade-a",
         "html"
+      ]
+    },
+    {
+      "id": "MANGAUPDATES",
+      "file": "mangaupdates.py",
+      "display_name": "MangaUpdates (Baka-Updates)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Manga"
+      ],
+      "library_types": [
+        "Manga"
+      ],
+      "method": "api",
+      "languages": [
+        "en"
+      ],
+      "region": "US",
+      "homepage": "https://www.mangaupdates.com",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 1.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "mangaupdates.com",
+        "api.mangaupdates.com",
+        "www.mangaupdates.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "MangaUpdates (Baka-Updates) — API. Scraper core MetaKavita.",
+        "en": "MangaUpdates (Baka-Updates) — API. MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+        "en": "No API key. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/mangaupdates.md",
+      "install": {
+        "path": "mangaupdates.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangaupdates.py",
+        "sha256": "e72e93b3a05d665327c72aadf73a857fecf1df42e2873e7546f8852deb6e4c14",
+        "bytes": 14669,
+        "target": "data/scrapers/mangaupdates.py"
+      },
+      "tags": [
+        "Manga",
+        "api",
+        "core",
+        "us"
       ]
     },
     {
@@ -1288,6 +2077,7 @@
       "homepage": "https://metron.cloud",
       "covers": true,
       "status": "stable",
+      "is_core": true,
       "rate_limit": 3.0,
       "needs_api_key": true,
       "has_direct_id_support": true,
@@ -1337,14 +2127,15 @@
       "install": {
         "path": "metron.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/metron.py",
-        "sha256": "576ce6840092849f8b6c75b3ebb26b563d3cd7a908b7e8397feff6ab336366e3",
-        "bytes": 20195,
+        "sha256": "61b3ab672fd80fefd69dfc5f72723b62f71d7b7aac556fa348ddb64332ce33ff",
+        "bytes": 20214,
         "target": "data/scrapers/metron.py"
       },
       "tags": [
         "Comic",
         "api",
         "api-key",
+        "core",
         "covers",
         "grade-a",
         "us"
@@ -1370,6 +2161,7 @@
       "homepage": "https://ndlsearch.ndl.go.jp",
       "covers": false,
       "status": "stable",
+      "is_core": false,
       "rate_limit": 1.2,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -1422,8 +2214,8 @@
       "install": {
         "path": "ndl.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/ndl.py",
-        "sha256": "c7c5d1ebf38157af1ae623300e8f02535265dcaba52d7823009a522fa4dc751c",
-        "bytes": 10709,
+        "sha256": "da95d4e290fa0518c0cc8d096fa9710a4edf1bbb60c5c8a912c508263b900bef",
+        "bytes": 10989,
         "target": "data/scrapers/ndl.py"
       },
       "tags": [
@@ -1455,6 +2247,7 @@
       "homepage": "https://www.novelupdates.com",
       "covers": true,
       "status": "limited",
+      "is_core": false,
       "rate_limit": 3.0,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -1502,8 +2295,8 @@
       "install": {
         "path": "novelupdates.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/novelupdates.py",
-        "sha256": "e8e61c4eebe87aedff2f46e33dc67e6c1a2fdceaa71e29ee0b42ccd026a1ce4e",
-        "bytes": 9599,
+        "sha256": "e00fde53ed1efb636318da84e994261b4d777b872653d84e17c0ed4de7abc3c0",
+        "bytes": 9853,
         "target": "data/scrapers/novelupdates.py"
       },
       "tags": [
@@ -1532,6 +2325,7 @@
       "homepage": "https://www.openbd.jp",
       "covers": true,
       "status": "stable",
+      "is_core": false,
       "rate_limit": 1.0,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -1599,6 +2393,71 @@
       ]
     },
     {
+      "id": "OPENLIBRARY",
+      "file": "openlibrary.py",
+      "display_name": "Open Library (Livres/Romans)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Book",
+        "Comic"
+      ],
+      "library_types": [
+        "Book",
+        "Comic"
+      ],
+      "method": "api",
+      "languages": [
+        "en"
+      ],
+      "region": "INTL",
+      "homepage": "https://openlibrary.org",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 2.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "openlibrary.org",
+        "covers.openlibrary.org",
+        "books.google.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Open Library — livres / romans. Scraper core MetaKavita.",
+        "en": "Open Library — books / novels. MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+        "en": "No API key. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/openlibrary.md",
+      "install": {
+        "path": "openlibrary.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/openlibrary.py",
+        "sha256": "afebb79794799ac44b3d29db0159788c8caff1ac0225a5c762c2dec6b6b4c276",
+        "bytes": 17326,
+        "target": "data/scrapers/openlibrary.py"
+      },
+      "tags": [
+        "Book",
+        "Comic",
+        "api",
+        "core",
+        "intl"
+      ]
+    },
+    {
       "id": "PLANETEBD",
       "file": "planetebd.py",
       "display_name": "Planète BD",
@@ -1617,6 +2476,7 @@
       "homepage": "https://www.planetebd.com",
       "covers": true,
       "status": "stable",
+      "is_core": true,
       "rate_limit": 2.5,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -1667,12 +2527,13 @@
       "install": {
         "path": "planetebd.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/planetebd.py",
-        "sha256": "22c42ef2fd97e2cc7c97cef4672f01f4b323158c0db61f7573195c8d8e77ca01",
-        "bytes": 19629,
+        "sha256": "f540d1bc1d4febf7532dbc30289d9cc96789578c38f09b849f4f71dfd4314e29",
+        "bytes": 19648,
         "target": "data/scrapers/planetebd.py"
       },
       "tags": [
         "Comic",
+        "core",
         "covers",
         "fr",
         "grade-a",
@@ -1698,6 +2559,7 @@
       "homepage": "https://opac.sbn.it",
       "covers": false,
       "status": "beta",
+      "is_core": false,
       "rate_limit": 1.5,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -1754,8 +2616,8 @@
       "install": {
         "path": "sbn.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/sbn.py",
-        "sha256": "e91dc8c8c27fb2a69a5f324162cc02aaf16c42bfcfd90e7209a3102b4ed32ec4",
-        "bytes": 9878,
+        "sha256": "eba464110696309e8e51ee7877d271459c7f4b445a517e5cf9fe3f272dc88bcb",
+        "bytes": 10150,
         "target": "data/scrapers/sbn.py"
       },
       "tags": [
@@ -1787,6 +2649,7 @@
       "homepage": "https://www.senscritique.com",
       "covers": true,
       "status": "stable",
+      "is_core": true,
       "rate_limit": 2.5,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -1839,17 +2702,81 @@
       "install": {
         "path": "senscritique.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/senscritique.py",
-        "sha256": "c5df9c5625307a20e44ead5d73b375c7c6a306c5f88450ef8ba959ce3341ec81",
-        "bytes": 22347,
+        "sha256": "174e8232120354ccbff6dec9e02fc9d9f537e59f6a20f6eb5b6faca0810fed83",
+        "bytes": 22366,
         "target": "data/scrapers/senscritique.py"
       },
       "tags": [
         "Book",
         "Comic",
+        "core",
         "covers",
         "fr",
         "grade-a",
         "graphql"
+      ]
+    },
+    {
+      "id": "SHIKIMORI",
+      "file": "shikimori.py",
+      "display_name": "Shikimori (API JSON)",
+      "version": "1.0.0",
+      "supported_types": [
+        "Manga"
+      ],
+      "library_types": [
+        "Manga"
+      ],
+      "method": "api",
+      "languages": [
+        "ru",
+        "en",
+        "ja"
+      ],
+      "region": "RU",
+      "homepage": "https://shikimori.one",
+      "covers": true,
+      "status": "stable",
+      "is_core": true,
+      "rate_limit": 0.5,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "shikimori.one",
+        "shikimori.me"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Shikimori — API JSON manga. Scraper core MetaKavita.",
+        "en": "Shikimori — manga JSON API. MetaKavita core scraper."
+      },
+      "setup": {
+        "fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+        "en": "No API key. Ships as MetaKavita core (is_core)."
+      },
+      "warnings": [
+        "Already ships in the MetaKavita image — Store shows state=core."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/shikimori.md",
+      "install": {
+        "path": "shikimori.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/shikimori.py",
+        "sha256": "471a67247c9215c1efc2f21734ade9291fcdfb7fb49f5de0da7226c5be99d7d3",
+        "bytes": 14329,
+        "target": "data/scrapers/shikimori.py"
+      },
+      "tags": [
+        "Manga",
+        "api",
+        "core",
+        "ru"
       ]
     },
     {
@@ -1871,6 +2798,7 @@
       "homepage": "https://tapas.io",
       "covers": true,
       "status": "stable",
+      "is_core": false,
       "rate_limit": 2.5,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -1961,6 +2889,7 @@
       "homepage": "https://www.tebeosfera.com",
       "covers": true,
       "status": "limited",
+      "is_core": false,
       "rate_limit": 3.0,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -2038,6 +2967,7 @@
       "homepage": "https://www.webtoons.com",
       "covers": true,
       "status": "stable",
+      "is_core": false,
       "rate_limit": 2.5,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -2094,8 +3024,8 @@
       "install": {
         "path": "webtoon.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/webtoon.py",
-        "sha256": "dde4a94c3f08b3bf547d05d48d4da85d12b550289c1d7e350a461620c2610f4f",
-        "bytes": 9557,
+        "sha256": "5ce8016da387446cb2ccaf5fbcde5dd749a288a427f72bf8fb0b892f1d629ad0",
+        "bytes": 9798,
         "target": "data/scrapers/webtoon.py"
       },
       "tags": [
@@ -2136,6 +3066,7 @@
       "homepage": "https://www.wikidata.org",
       "covers": true,
       "status": "beta",
+      "is_core": false,
       "rate_limit": 1.2,
       "needs_api_key": false,
       "has_direct_id_support": true,
@@ -2192,8 +3123,8 @@
       "install": {
         "path": "wikidata.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/wikidata.py",
-        "sha256": "5dd7253ecebb35a06ef44d40f2990ec510da267679a6a9d02b875ec2d6aeb901",
-        "bytes": 11011,
+        "sha256": "a230580461140d10e6d2e73e2b2bf7d01071dc97abf3d7353e4c2b61fe5d961e",
+        "bytes": 11323,
         "target": "data/scrapers/wikidata.py"
       },
       "tags": [

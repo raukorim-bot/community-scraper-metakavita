@@ -29,7 +29,7 @@ Gaps: `provider: cover_url; opt.: tags, alternative_titles, status` — global o
 ## Install (MetaKavita)
 
 1. Download [`ndl.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/ndl.py) into `data/scrapers/`.
-2. Verify SHA-256: `c7c5d1ebf38157af1ae623300e8f02535265dcaba52d7823009a522fa4dc751c`.
+2. Verify SHA-256: `da95d4e290fa0518c0cc8d096fa9710a4edf1bbb60c5c8a912c508263b900bef`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

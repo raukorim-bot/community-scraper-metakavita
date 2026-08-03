@@ -193,6 +193,7 @@ def parse_scraper(path: pathlib.Path) -> dict | None:
                     "proxy_domains",
                     "uses_unified_scoring",
                     "requires_proxy",
+                    "is_core",
                 ):
                     try:
                         fields[t.id] = ast.literal_eval(stmt.value)
@@ -329,11 +330,14 @@ def main() -> int:
                     "en": q_src.get("pick_en") or "",
                 },
             }
+        is_core = bool(fields.get("is_core"))
         tags = set(
             types
             + [m["method"], m["region"].split("/")[0].lower()]
             + (["api-key"] if m["auth"].get("required") else [])
         )
+        if is_core:
+            tags.add("core")
         if quality and quality.get("covers_ok") is True:
             tags.add("covers")
         if quality and quality.get("covers_ok") is False:
@@ -353,6 +357,7 @@ def main() -> int:
             "homepage": m["homepage"],
             "covers": m["covers"],
             "status": m["status"],
+            "is_core": is_core,
             "rate_limit": fields.get("rate_limit"),
             "needs_api_key": bool(fields.get("needs_api_key")),
             "has_direct_id_support": bool(fields.get("has_direct_id_support")),

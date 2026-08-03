@@ -29,7 +29,7 @@ Gaps: `opt.: isbn, publisher, tags, alternative_titles, status` — global overv
 ## Install (MetaKavita)
 
 1. Download [`mangasanctuary.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangasanctuary.py) into `data/scrapers/`.
-2. Verify SHA-256: `b942112acefe4d77f316d0088e2b95d6702cbb0181f122a5cdcdd2f04dd85835`.
+2. Verify SHA-256: `1d0bc6945af3c1da57ec0d8df3376f5a9522be056cd000fe8c311064f46e759c`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 

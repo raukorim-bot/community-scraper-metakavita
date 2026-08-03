@@ -29,7 +29,7 @@ Gaps: `opt.: isbn, publisher, status` — global overview: [`docs/QUALITY.md`](.
 ## Install (MetaKavita)
 
 1. Download [`ann.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/ann.py) into `data/scrapers/`.
-2. Verify SHA-256: `dec4ffc17f9def84f454a4500508a29288c36a59e294670ddbeffdd602845ed3`.
+2. Verify SHA-256: `e303e53b47a506e533a2fde177e7e78a9afeb2231518a1acd7e8731e6dc343f6`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 

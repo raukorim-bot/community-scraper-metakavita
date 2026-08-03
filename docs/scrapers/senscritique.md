@@ -29,7 +29,7 @@ Gaps: `opt.: tags, alternative_titles, status` — global overview: [`docs/QUALI
 ## Install (MetaKavita)
 
 1. Download [`senscritique.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/senscritique.py) into `data/scrapers/`.
-2. Verify SHA-256: `c5df9c5625307a20e44ead5d73b375c7c6a306c5f88450ef8ba959ce3341ec81`.
+2. Verify SHA-256: `174e8232120354ccbff6dec9e02fc9d9f537e59f6a20f6eb5b6faca0810fed83`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Comic).
 

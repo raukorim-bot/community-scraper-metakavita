@@ -1,4 +1,27 @@
 {
+  "ANILIST": {
+    "method": "graphql",
+    "languages": [
+      "en",
+      "ja"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://anilist.co",
+    "region": "INTL",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "AniList — métadonnées manga / LN (GraphQL). Scraper core MetaKavita.",
+    "summary_en": "AniList — manga / LN metadata (GraphQL). MetaKavita core scraper.",
+    "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+    "setup_en": "No API key. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
+    ]
+  },
   "ANIMEPLANET": {
     "method": "html",
     "languages": [
@@ -108,6 +131,70 @@
       "Site sensible aux bans IP."
     ]
   },
+  "BDTHEQUE": {
+    "method": "html",
+    "languages": [
+      "fr"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.bdtheque.com",
+    "region": "FR",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "BDTheque.com — BD franco-belge (HTML). Scraper core MetaKavita.",
+    "summary_en": "BDTheque.com — Franco-Belgian comics (HTML). MetaKavita core scraper.",
+    "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+    "setup_en": "No API key. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
+    ]
+  },
+  "BEDETHEQUE": {
+    "method": "html",
+    "languages": [
+      "fr"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.bedetheque.com",
+    "region": "FR",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Bedetheque — BD franco-belge (HTML). Scraper core MetaKavita.",
+    "summary_en": "Bedetheque — Franco-Belgian comics (HTML). MetaKavita core scraper.",
+    "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+    "setup_en": "No API key. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
+    ]
+  },
+  "BNE": {
+    "method": "sru",
+    "languages": [
+      "es"
+    ],
+    "covers": false,
+    "status": "stable",
+    "homepage": "https://www.bne.es",
+    "region": "ES",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Biblioteca Nacional de España — SRU Alma (DC).",
+    "summary_en": "National Library of Spain — Alma SRU (DC).",
+    "setup_fr": "Aucune clé. Données CC0.",
+    "setup_en": "No API key. CC0 data.",
+    "warnings": []
+  },
   "BNF": {
     "method": "sru",
     "languages": [
@@ -127,6 +214,28 @@
     "setup_fr": "Aucune clé.",
     "setup_en": "No API key.",
     "warnings": []
+  },
+  "COMICVINE": {
+    "method": "api",
+    "languages": [
+      "en"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://comicvine.gamespot.com",
+    "region": "US",
+    "auth": {
+      "required": true,
+      "config_key": "COMICVINE_API_KEY",
+      "kind": "api_key"
+    },
+    "summary_fr": "ComicVine — comics / BD (API). Scraper core MetaKavita.",
+    "summary_en": "ComicVine — comics (API). MetaKavita core scraper.",
+    "setup_fr": "Clé ComicVine → COMICVINE_API_KEY. Livré en core MetaKavita (is_core).",
+    "setup_en": "ComicVine key → COMICVINE_API_KEY. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
+    ]
   },
   "DECITRE": {
     "method": "html",
@@ -193,6 +302,51 @@
       "Couvertures sur files1.comics.org (proxy MetaKavita)."
     ]
   },
+  "GOOGLEBOOKS": {
+    "method": "api",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://books.google.com",
+    "region": "INTL",
+    "auth": {
+      "required": true,
+      "config_key": "GOOGLEBOOKS_API_KEY",
+      "kind": "api_key"
+    },
+    "summary_fr": "Google Books — livres / comics (API). Scraper core MetaKavita.",
+    "summary_en": "Google Books — books / comics (API). MetaKavita core scraper.",
+    "setup_fr": "Clé Google → GOOGLEBOOKS_API_KEY. Livré en core MetaKavita (is_core).",
+    "setup_en": "Google key → GOOGLEBOOKS_API_KEY. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
+    ]
+  },
+  "HARDCOVER": {
+    "method": "graphql",
+    "languages": [
+      "en"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://hardcover.app",
+    "region": "US",
+    "auth": {
+      "required": true,
+      "config_key": "HARDCOVER_API_KEY",
+      "kind": "api_key"
+    },
+    "summary_fr": "Hardcover — livres (GraphQL). Scraper core MetaKavita.",
+    "summary_en": "Hardcover — books (GraphQL). MetaKavita core scraper.",
+    "setup_fr": "Clé Hardcover → HARDCOVER_API_KEY. Livré en core MetaKavita (is_core).",
+    "setup_en": "Hardcover key → HARDCOVER_API_KEY. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
+    ]
+  },
   "ISBNDB": {
     "method": "api",
     "languages": [
@@ -214,6 +368,74 @@
     "warnings": [
       "Abonnement payant requis.",
       "Non validé en live (pas de clé de test)."
+    ]
+  },
+  "KB": {
+    "method": "sru",
+    "languages": [
+      "nl"
+    ],
+    "covers": false,
+    "status": "beta",
+    "homepage": "https://www.kb.nl",
+    "region": "NL",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Koninklijke Bibliotheek — SRU JSRU (collections GGC/DPO).",
+    "summary_en": "KB National Library of the Netherlands — JSRU SRU (GGC/DPO).",
+    "setup_fr": "Aucune clé. Couverture catalogue à valider en live.",
+    "setup_en": "No API key. Catalog coverage to validate live.",
+    "warnings": [
+      "Collections SRU KB surtout numériques / GGC — à finetuner après tests."
+    ]
+  },
+  "KITSU": {
+    "method": "api",
+    "languages": [
+      "en",
+      "ja"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://kitsu.io",
+    "region": "INTL",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Kitsu — manga (JSON:API). Scraper core MetaKavita.",
+    "summary_en": "Kitsu — manga (JSON:API). MetaKavita core scraper.",
+    "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+    "setup_en": "No API key. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
+    ]
+  },
+  "LOC": {
+    "method": "sru",
+    "languages": [
+      "en"
+    ],
+    "covers": false,
+    "status": "stable",
+    "homepage": "https://www.loc.gov",
+    "region": "US",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Library of Congress — SRU LCDB (Dublin Core). Peu/pas de covers.",
+    "summary_en": "Library of Congress — LCDB SRU (Dublin Core). Covers rarely available.",
+    "setup_fr": "Aucune clé. rate_limit=1.5 s. Fallback JSON loc.gov si SRU vide.",
+    "setup_en": "No API key. rate_limit=1.5 s. JSON loc.gov fallback if SRU empty.",
+    "warnings": [
+      "Couvertures absentes via SRU DC.",
+      "Préférer une requête avec auteur pour de meilleures notices."
     ]
   },
   "LOCG": {
@@ -239,6 +461,97 @@
       "Rate limit élevé volontairement."
     ]
   },
+  "MAL": {
+    "method": "api",
+    "languages": [
+      "en",
+      "ja"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://myanimelist.net",
+    "region": "INTL",
+    "auth": {
+      "required": true,
+      "config_key": "MAL_API_KEY",
+      "kind": "api_key"
+    },
+    "summary_fr": "MyAnimeList — API officielle (Client ID). Scraper core MetaKavita.",
+    "summary_en": "MyAnimeList — official API (Client ID). MetaKavita core scraper.",
+    "setup_fr": "Client ID MAL → MAL_API_KEY. Livré en core MetaKavita (is_core).",
+    "setup_en": "MAL Client ID → MAL_API_KEY. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
+    ]
+  },
+  "MANGABAKA": {
+    "method": "api",
+    "languages": [
+      "en",
+      "ja"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://mangabaka.org",
+    "region": "INTL",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "MangaBaka — API v2 (manga / novels). Scraper core MetaKavita.",
+    "summary_en": "MangaBaka — v2 API (manga / novels). MetaKavita core scraper.",
+    "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+    "setup_en": "No API key. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
+    ]
+  },
+  "MANGADEX": {
+    "method": "api",
+    "languages": [
+      "en",
+      "ja"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://mangadex.org",
+    "region": "INTL",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "MangaDex — API publique. Scraper core MetaKavita.",
+    "summary_en": "MangaDex — public API. MetaKavita core scraper.",
+    "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+    "setup_en": "No API key. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
+    ]
+  },
+  "MANGANEWS": {
+    "method": "html",
+    "languages": [
+      "fr"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.manga-news.com",
+    "region": "FR",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Manga-News — catalogue VF. Scraper core MetaKavita.",
+    "summary_en": "Manga-News — French catalog. MetaKavita core scraper.",
+    "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+    "setup_en": "No API key. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
+    ]
+  },
   "MANGASANCTUARY": {
     "method": "html",
     "languages": [
@@ -259,6 +572,28 @@
     "setup_en": "No API key. rate_limit=2.5 s.",
     "warnings": [
       "Site HTML — anti-ban rate limit."
+    ]
+  },
+  "MANGAUPDATES": {
+    "method": "api",
+    "languages": [
+      "en"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.mangaupdates.com",
+    "region": "US",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "MangaUpdates (Baka-Updates) — API. Scraper core MetaKavita.",
+    "summary_en": "MangaUpdates (Baka-Updates) — API. MetaKavita core scraper.",
+    "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+    "setup_en": "No API key. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
     ]
   },
   "METRON": {
@@ -283,6 +618,27 @@
       "Quota API Metron (~20 req/min) — rate_limit=3.0."
     ]
   },
+  "NDL": {
+    "method": "api",
+    "languages": [
+      "ja",
+      "en"
+    ],
+    "covers": false,
+    "status": "stable",
+    "homepage": "https://ndlsearch.ndl.go.jp",
+    "region": "JP",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "NDL Search — Bibliothèque nationale du Japon (OpenSearch).",
+    "summary_en": "NDL Search — National Diet Library of Japan (OpenSearch).",
+    "setup_fr": "Aucune clé. Pas de covers natives fiables (utiliser openBD pour les ISBN).",
+    "setup_en": "No API key. No reliable native covers (use openBD for ISBNs).",
+    "warnings": []
+  },
   "NOVELUPDATES": {
     "method": "html",
     "languages": [
@@ -304,6 +660,50 @@
     "warnings": [
       "Sans cookies CF, les recherches échouent souvent.",
       "Ne pas partager vos cookies publiquement."
+    ]
+  },
+  "OPENBD": {
+    "method": "api",
+    "languages": [
+      "ja"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://www.openbd.jp",
+    "region": "JP",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "openBD — bibliographie / covers JP par ISBN (API libre). Pas de recherche titre.",
+    "summary_en": "openBD — JP bibliography / covers by ISBN (free API). No title search.",
+    "setup_fr": "Aucune clé. ISBN requis (query ou métadonnées existantes).",
+    "setup_en": "No API key. ISBN required (query or existing metadata).",
+    "warnings": [
+      "API ISBN-only — couplez avec NDL pour la recherche titre."
+    ]
+  },
+  "OPENLIBRARY": {
+    "method": "api",
+    "languages": [
+      "en"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://openlibrary.org",
+    "region": "INTL",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Open Library — livres / romans. Scraper core MetaKavita.",
+    "summary_en": "Open Library — books / novels. MetaKavita core scraper.",
+    "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+    "setup_en": "No API key. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
     ]
   },
   "PLANETEBD": {
@@ -328,6 +728,28 @@
       "Site HTML — anti-ban rate limit."
     ]
   },
+  "SBN": {
+    "method": "api",
+    "languages": [
+      "it"
+    ],
+    "covers": false,
+    "status": "beta",
+    "homepage": "https://opac.sbn.it",
+    "region": "IT",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "SBN / ICCU — catalogue bibliographique italien (JSON OPAC mobile).",
+    "summary_en": "SBN / ICCU — Italian national bibliographic catalog (OPAC mobile JSON).",
+    "setup_fr": "Aucune clé. Endpoint app OPAC (non documenté officiellement pour tiers).",
+    "setup_en": "No API key. OPAC app endpoint (not officially documented for third parties).",
+    "warnings": [
+      "API mobile non officiellement documentée — peut changer."
+    ]
+  },
   "SENSCRITIQUE": {
     "method": "graphql",
     "languages": [
@@ -348,6 +770,30 @@
     "setup_en": "No API key. rate_limit=2.5 s.",
     "warnings": [
       "Endpoint GraphQL non officiel — peut changer sans préavis."
+    ]
+  },
+  "SHIKIMORI": {
+    "method": "api",
+    "languages": [
+      "ru",
+      "en",
+      "ja"
+    ],
+    "covers": true,
+    "status": "stable",
+    "homepage": "https://shikimori.one",
+    "region": "RU",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Shikimori — API JSON manga. Scraper core MetaKavita.",
+    "summary_en": "Shikimori — manga JSON API. MetaKavita core scraper.",
+    "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
+    "setup_en": "No API key. Ships as MetaKavita core (is_core).",
+    "warnings": [
+      "Already ships in the MetaKavita image — Store shows state=core."
     ]
   },
   "TAPAS": {
@@ -373,6 +819,28 @@
       "Synopsis série rarement exposé en HTML public (pitch marketing og:description)."
     ]
   },
+  "TEBEOSFERA": {
+    "method": "html",
+    "languages": [
+      "es"
+    ],
+    "covers": true,
+    "status": "limited",
+    "homepage": "https://www.tebeosfera.com",
+    "region": "ES",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Tebeosfera — comics / tebeos espagnols (HTML best-effort).",
+    "summary_en": "Tebeosfera — Spanish comics / tebeos (best-effort HTML).",
+    "setup_fr": "Aucune clé. rate_limit=3.0 s.",
+    "setup_en": "No API key. rate_limit=3.0 s.",
+    "warnings": [
+      "Catalogue entièrement JS/iframe — scraping HTML inopérant pour l’instant."
+    ]
+  },
   "WEBTOON": {
     "method": "html",
     "languages": [
@@ -394,158 +862,6 @@
     "setup_en": "No API key. rate_limit=2.5 s.",
     "warnings": [
       "Gros site — rate limit recommandé."
-    ]
-  },
-  "OPENBD": {
-    "method": "api",
-    "languages": [
-      "ja"
-    ],
-    "covers": true,
-    "status": "stable",
-    "homepage": "https://www.openbd.jp",
-    "region": "JP",
-    "auth": {
-      "required": false,
-      "config_key": null,
-      "kind": "none"
-    },
-    "summary_fr": "openBD — bibliographie / covers JP par ISBN (API libre). Pas de recherche titre.",
-    "summary_en": "openBD — JP bibliography / covers by ISBN (free API). No title search.",
-    "setup_fr": "Aucune clé. ISBN requis (query ou métadonnées existantes).",
-    "setup_en": "No API key. ISBN required (query or existing metadata).",
-    "warnings": [
-      "API ISBN-only — couplez avec NDL pour la recherche titre."
-    ]
-  },
-  "NDL": {
-    "method": "api",
-    "languages": [
-      "ja",
-      "en"
-    ],
-    "covers": false,
-    "status": "stable",
-    "homepage": "https://ndlsearch.ndl.go.jp",
-    "region": "JP",
-    "auth": {
-      "required": false,
-      "config_key": null,
-      "kind": "none"
-    },
-    "summary_fr": "NDL Search — Bibliothèque nationale du Japon (OpenSearch).",
-    "summary_en": "NDL Search — National Diet Library of Japan (OpenSearch).",
-    "setup_fr": "Aucune clé. Pas de covers natives fiables (utiliser openBD pour les ISBN).",
-    "setup_en": "No API key. No reliable native covers (use openBD for ISBNs).",
-    "warnings": []
-  },
-  "BNE": {
-    "method": "sru",
-    "languages": [
-      "es"
-    ],
-    "covers": false,
-    "status": "stable",
-    "homepage": "https://www.bne.es",
-    "region": "ES",
-    "auth": {
-      "required": false,
-      "config_key": null,
-      "kind": "none"
-    },
-    "summary_fr": "Biblioteca Nacional de España — SRU Alma (DC).",
-    "summary_en": "National Library of Spain — Alma SRU (DC).",
-    "setup_fr": "Aucune clé. Données CC0.",
-    "setup_en": "No API key. CC0 data.",
-    "warnings": []
-  },
-  "LOC": {
-    "method": "sru",
-    "languages": [
-      "en"
-    ],
-    "covers": false,
-    "status": "stable",
-    "homepage": "https://www.loc.gov",
-    "region": "US",
-    "auth": {
-      "required": false,
-      "config_key": null,
-      "kind": "none"
-    },
-    "summary_fr": "Library of Congress — SRU LCDB (Dublin Core). Peu/pas de covers.",
-    "summary_en": "Library of Congress — LCDB SRU (Dublin Core). Covers rarely available.",
-    "setup_fr": "Aucune clé. rate_limit=1.5 s. Fallback JSON loc.gov si SRU vide.",
-    "setup_en": "No API key. rate_limit=1.5 s. JSON loc.gov fallback if SRU empty.",
-    "warnings": [
-      "Couvertures absentes via SRU DC.",
-      "Préférer une requête avec auteur pour de meilleures notices."
-    ]
-  },
-  "SBN": {
-    "method": "api",
-    "languages": [
-      "it"
-    ],
-    "covers": false,
-    "status": "beta",
-    "homepage": "https://opac.sbn.it",
-    "region": "IT",
-    "auth": {
-      "required": false,
-      "config_key": null,
-      "kind": "none"
-    },
-    "summary_fr": "SBN / ICCU — catalogue bibliographique italien (JSON OPAC mobile).",
-    "summary_en": "SBN / ICCU — Italian national bibliographic catalog (OPAC mobile JSON).",
-    "setup_fr": "Aucune clé. Endpoint app OPAC (non documenté officiellement pour tiers).",
-    "setup_en": "No API key. OPAC app endpoint (not officially documented for third parties).",
-    "warnings": [
-      "API mobile non officiellement documentée — peut changer."
-    ]
-  },
-  "KB": {
-    "method": "sru",
-    "languages": [
-      "nl"
-    ],
-    "covers": false,
-    "status": "beta",
-    "homepage": "https://www.kb.nl",
-    "region": "NL",
-    "auth": {
-      "required": false,
-      "config_key": null,
-      "kind": "none"
-    },
-    "summary_fr": "Koninklijke Bibliotheek — SRU JSRU (collections GGC/DPO).",
-    "summary_en": "KB National Library of the Netherlands — JSRU SRU (GGC/DPO).",
-    "setup_fr": "Aucune clé. Couverture catalogue à valider en live.",
-    "setup_en": "No API key. Catalog coverage to validate live.",
-    "warnings": [
-      "Collections SRU KB surtout numériques / GGC — à finetuner après tests."
-    ]
-  },
-  "TEBEOSFERA": {
-    "method": "html",
-    "languages": [
-      "es"
-    ],
-    "covers": true,
-    "status": "limited",
-    "homepage": "https://www.tebeosfera.com",
-    "region": "ES",
-    "auth": {
-      "required": false,
-      "config_key": null,
-      "kind": "none"
-    },
-    "summary_fr": "Tebeosfera — comics / tebeos espagnols (HTML best-effort).",
-    "summary_en": "Tebeosfera — Spanish comics / tebeos (best-effort HTML).",
-    "setup_fr": "Aucune clé. rate_limit=3.0 s.",
-    "setup_en": "No API key. rate_limit=3.0 s.",
-    "warnings": [
-      "Catalogue entièrement JS/iframe — scraping HTML inopérant pour l’instant."
     ]
   },
   "WIKIDATA": {
