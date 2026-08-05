@@ -36,7 +36,7 @@ class OpenbdScraper(BaseScraper):
     id = "OPENBD"
     display_name = "openBD (JP)"
     supported_types = {"Book"}
-    rate_limit = 1.0
+    rate_limit = 0.4  # bulk API, no hard limit — polite 0.4s
     proxy_domains = [
         "openbd.jp",
         "api.openbd.jp",

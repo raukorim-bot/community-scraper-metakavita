@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://www.anime-planet.com |
+| **Version** | `1.0.1` |
 
 ## Summary
 
@@ -26,10 +27,14 @@ EN manga — full payload + covers.
 
 Gaps: `opt.: isbn, publisher, alternative_titles, status` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 
+## Covers
+
+`fetch_covers` prefers detail-page `og:image` (usually full JPEG) over search-card thumbs. Card URLs like `…-285x427.webp` are upgraded by stripping the WxH suffix. CDN hotlink needs MetaKavita image proxy (`requires_proxy` + `cdn.anime-planet.com`).
+
 ## Install (MetaKavita)
 
 1. Download [`animeplanet.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/animeplanet.py) into `data/scrapers/`.
-2. Verify SHA-256: `1257f6596fb4697d66ca589c9d302b94d00cb1f75ace5f539d8594fc8bccd615`.
+2. Verify SHA-256: `816bd78a45e9fbb6e9a1efcfeea4b24c29beb1b431b58b318de87b153617adc3`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 

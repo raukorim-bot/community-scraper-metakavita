@@ -11,7 +11,7 @@
 | **Covers (audit)** | N/A |
 | **Quality audit** | — / — |
 | **Auth** | None |
-| **Rate limit** | `2.0` s |
+| **Rate limit** | `1.1` s |
 | **Direct ID / URL** | Yes |
 | **Region / languages** | INTL — en |
 | **Site** | https://openlibrary.org |
@@ -29,7 +29,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`openlibrary.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/openlibrary.py) into `data/scrapers/`.
-2. Verify SHA-256: `afebb79794799ac44b3d29db0159788c8caff1ac0225a5c762c2dec6b6b4c276`.
+2. Verify SHA-256: `09a9ea354b8776efe0b172e969416f2fa22e078036a4cd237c92d5b4a13e6a3a`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Comic).
 
@@ -42,6 +42,8 @@ No API key. Ships as MetaKavita core (is_core).
 `openlibrary.org`, `covers.openlibrary.org`, `books.google.com`
 
 ## Warnings
+
+- Anonymous Open Library ceiling is 1 req/s; rate_limit=1.1 keeps ~10% headroom without requiring identified access.
 
 - Already ships in the MetaKavita image — Store shows state=core.
 

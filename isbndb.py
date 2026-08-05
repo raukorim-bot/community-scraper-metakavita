@@ -31,7 +31,7 @@ class IsbndbScraper(BaseScraper):
     id = "ISBNDB"
     display_name = "ISBNdb"
     supported_types = {"Book"}
-    rate_limit = 1.0
+    rate_limit = 1.1  # ~0.91/s: 10% under Basic plan 1/s
     proxy_domains = ["isbndb.com", "api2.isbndb.com", "images.isbndb.com"]
     has_direct_id_support = True
     needs_api_key = True

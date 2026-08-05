@@ -11,7 +11,7 @@
 | **Covers (audit)** | Yes |
 | **Quality audit** | A / 100 |
 | **Auth** | Required — `METRON_API_KEY` (Bearer or `user:password`) |
-| **Rate limit** | `3.0` s |
+| **Rate limit** | `3.4` s |
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://metron.cloud |
@@ -29,7 +29,7 @@ Gaps: `opt.: isbn, alternative_titles` — global overview: [`docs/QUALITY.md`](
 ## Install (MetaKavita)
 
 1. Download [`metron.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/metron.py) into `data/scrapers/`.
-2. Verify SHA-256: `61b3ab672fd80fefd69dfc5f72723b62f71d7b7aac556fa348ddb64332ce33ff`.
+2. Verify SHA-256: `94f5ccedd7d2ec2c0fb31e94db0d69fd6d64a7c4789100f12a099f13822a3476`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 
@@ -43,7 +43,7 @@ metron.cloud account → API Tokens → METRON_API_KEY (Bearer, or user:password
 
 ## Warnings
 
-- Quota API Metron (~20 req/min) — rate_limit=3.0.
+- Quota API Metron (~20 req/min) — rate_limit=3.4.4.
 
 ## Store
 

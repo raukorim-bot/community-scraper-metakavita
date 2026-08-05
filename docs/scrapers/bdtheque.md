@@ -11,7 +11,7 @@
 | **Covers (audit)** | N/A |
 | **Quality audit** | — / — |
 | **Auth** | None |
-| **Rate limit** | `1.5` s |
+| **Rate limit** | `2.2` s |
 | **Direct ID / URL** | Yes |
 | **Region / languages** | FR — fr |
 | **Site** | https://www.bdtheque.com |
@@ -29,7 +29,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`bdtheque.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bdtheque.py) into `data/scrapers/`.
-2. Verify SHA-256: `9d3dcb2206e98540a04c6d7fcb7f487130bc46fa480c0947338ca37f6a5e085a`.
+2. Verify SHA-256: `df3ca9eb2507d40227cd2dde4f6f78989e514985b798627948984cdd65a09c33`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 

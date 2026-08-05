@@ -21,6 +21,27 @@ from scrapers.utils import (
 _BASE = "https://www.anime-planet.com"
 _YEAR = re.compile(r"(1[0-9]{3}|20[0-9]{2})")
 _SLUG = re.compile(r"^/manga/([a-z0-9\-]+)/?$", re.I)
+# Search cards serve tiny `-285x427.webp` thumbs; full primary drops the WxH suffix.
+_COVER_SIZE = re.compile(r"-(\d{2,4})x(\d{2,4})(?=\.(?:webp|jpe?g|png)$)", re.I)
+
+
+def _abs_url(url: Optional[str]) -> Optional[str]:
+    if not url:
+        return None
+    u = str(url).strip()
+    if not u or u.startswith("data:"):
+        return None
+    return urljoin(_BASE, u.split("#", 1)[0])
+
+
+def _upgrade_cover(url: Optional[str]) -> Optional[str]:
+    """Prefer full-size CDN primary over card thumbnails."""
+    abs_u = _abs_url(url)
+    if not abs_u:
+        return None
+    base, sep, qs = abs_u.partition("?")
+    upgraded = _COVER_SIZE.sub("", base)
+    return upgraded + (sep + qs if qs else "")
 
 
 class AnimePlanetScraper(BaseScraper):
@@ -143,21 +164,46 @@ class AnimePlanetScraper(BaseScraper):
                 pass
 
     def fetch_covers(self, query: str, library_type: str = "Manga") -> List[Dict[str, str]]:
-        covers = []
+        covers: List[Dict[str, str]] = []
         cleaned = clean_title(query, library_type=library_type)
         if not cleaned:
             return covers
         session = requests.Session(impersonate="chrome110")
+        session.headers.update({"Accept-Language": "en-US,en;q=0.9", "Referer": f"{_BASE}/"})
         try:
-            for hit in self._search(session, cleaned)[:5]:
-                if hit.get("cover"):
-                    covers.append(
-                        {
-                            "provider": self.display_name,
-                            "title": hit["title"],
-                            "url": hit["cover"],
-                        }
-                    )
+            hits = self._search(session, cleaned)
+            qcf = cleaned.casefold()
+            hits.sort(
+                key=lambda h: (
+                    0 if (h.get("title") or "").casefold() == qcf else 1,
+                    0 if (h.get("title") or "").casefold().startswith(qcf) else 1,
+                    len(h.get("title") or ""),
+                )
+            )
+            seen: set[str] = set()
+            for hit in hits[:6]:
+                # Prefer detail og:image (usually full JPEG) over search thumbs.
+                url = None
+                detail = self._parse_manga(session, hit["url"]) if hit.get("url") else None
+                if detail:
+                    url = _upgrade_cover(detail.get("cover_url"))
+                    title = detail.get("title") or hit.get("title") or cleaned
+                else:
+                    title = hit.get("title") or cleaned
+                if not url:
+                    url = _upgrade_cover(hit.get("cover"))
+                if not url or url in seen:
+                    continue
+                seen.add(url)
+                covers.append(
+                    {
+                        "provider": self.display_name,
+                        "title": title,
+                        "url": url,
+                    }
+                )
+                if len(covers) >= 5:
+                    break
         except Exception as e:
             logging.error(self.t("covers_err").format(e))
         finally:
@@ -170,7 +216,7 @@ class AnimePlanetScraper(BaseScraper):
     def _search(self, session, terms: str) -> List[dict]:
         res = session.get(
             f"{_BASE}/manga/all",
-            params={"name": terms, "sort": "title", "order": "asc"},
+            params={"name": terms, "sort": "average", "order": "desc"},
             timeout=25,
         )
         if res.status_code != 200:
@@ -189,7 +235,7 @@ class AnimePlanetScraper(BaseScraper):
             img = card.select_one("img")
             cover = None
             if img:
-                cover = img.get("data-src") or img.get("src")
+                cover = _upgrade_cover(img.get("data-src") or img.get("src"))
             hits.append(
                 {
                     "title": name_el.get_text(" ", strip=True),
@@ -266,7 +312,7 @@ class AnimePlanetScraper(BaseScraper):
             "title": title.strip(),
             "alternative_titles": [],
             "summary": summary,
-            "cover_url": og_img.get("content") if og_img else None,
+            "cover_url": _upgrade_cover(og_img.get("content") if og_img else None),
             "genres": genres[: get_max_genres()] or ["Manga"],
             "tags": tags[: get_max_tags()],
             "year": year,

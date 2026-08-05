@@ -11,7 +11,7 @@
 | **Covers (audit)** | N/A |
 | **Quality audit** | — / — |
 | **Auth** | None |
-| **Rate limit** | `0.5` s |
+| **Rate limit** | `0.75` s |
 | **Direct ID / URL** | Yes |
 | **Region / languages** | RU — ru, en, ja |
 | **Site** | https://shikimori.one |
@@ -29,7 +29,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`shikimori.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/shikimori.py) into `data/scrapers/`.
-2. Verify SHA-256: `471a67247c9215c1efc2f21734ade9291fcdfb7fb49f5de0da7226c5be99d7d3`.
+2. Verify SHA-256: `2893e14230d7193cc271f6ff1596abf009c82b1b12f4caa64998f583f45346c1`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 
@@ -42,6 +42,8 @@ No API key. Ships as MetaKavita core (is_core).
 `shikimori.one`, `shikimori.me`
 
 ## Warnings
+
+- Official limit 5 rps and 90 rpm; rate_limit=0.75 stays ~10% under rpm.
 
 - Already ships in the MetaKavita image — Store shows state=core.
 

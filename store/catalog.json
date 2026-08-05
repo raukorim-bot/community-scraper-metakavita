@@ -8,7 +8,7 @@
   "repo": "https://github.com/raukorim-bot/community-scraper-metakavita",
   "default_branch": "main",
   "raw_base": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main",
-  "generated_at": "2026-08-03T08:53:59Z",
+  "generated_at": "2026-08-04T21:37:48Z",
   "quality_docs": "docs/QUALITY.md",
   "quality_audited_at": "2026-08-02",
   "install_notes": {
@@ -45,7 +45,7 @@
       "covers": true,
       "status": "stable",
       "is_core": true,
-      "rate_limit": 1.0,
+      "rate_limit": 2.25,
       "needs_api_key": false,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -74,7 +74,7 @@
       "install": {
         "path": "anilist.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/anilist.py",
-        "sha256": "45c44569647b62aef3fec176282d2646221334634256963bba8e6e9291171c38",
+        "sha256": "2378bc84ac3ae72f8820dcb770479ce107c998ece6aaafaff77b592e24ce7e93",
         "bytes": 9924,
         "target": "data/scrapers/anilist.py"
       },
@@ -91,7 +91,7 @@
       "id": "ANIMEPLANET",
       "file": "animeplanet.py",
       "display_name": "Anime-Planet",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "supported_types": [
         "Manga"
       ],
@@ -159,8 +159,8 @@
       "install": {
         "path": "animeplanet.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/animeplanet.py",
-        "sha256": "1257f6596fb4697d66ca589c9d302b94d00cb1f75ace5f539d8594fc8bccd615",
-        "bytes": 11114,
+        "sha256": "816bd78a45e9fbb6e9a1efcfeea4b24c29beb1b431b58b318de87b153617adc3",
+        "bytes": 13017,
         "target": "data/scrapers/animeplanet.py"
       },
       "tags": [
@@ -191,7 +191,7 @@
       "covers": true,
       "status": "stable",
       "is_core": true,
-      "rate_limit": 1.2,
+      "rate_limit": 1.1,
       "needs_api_key": false,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -239,7 +239,7 @@
       "install": {
         "path": "ann.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/ann.py",
-        "sha256": "e303e53b47a506e533a2fde177e7e78a9afeb2231518a1acd7e8731e6dc343f6",
+        "sha256": "73cc0c6e7d2c80b93efc264d6e06f7df648234bc6114897588760deae2edb20b",
         "bytes": 13967,
         "target": "data/scrapers/ann.py"
       },
@@ -529,7 +529,7 @@
       "covers": true,
       "status": "stable",
       "is_core": true,
-      "rate_limit": 1.5,
+      "rate_limit": 2.2,
       "needs_api_key": false,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -559,7 +559,7 @@
       "install": {
         "path": "bdtheque.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bdtheque.py",
-        "sha256": "9d3dcb2206e98540a04c6d7fcb7f487130bc46fa480c0947338ca37f6a5e085a",
+        "sha256": "df3ca9eb2507d40227cd2dde4f6f78989e514985b798627948984cdd65a09c33",
         "bytes": 20437,
         "target": "data/scrapers/bdtheque.py"
       },
@@ -1262,7 +1262,7 @@
       "covers": true,
       "status": "untested",
       "is_core": false,
-      "rate_limit": 1.0,
+      "rate_limit": 1.1,
       "needs_api_key": true,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -1310,7 +1310,7 @@
       "install": {
         "path": "isbndb.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/isbndb.py",
-        "sha256": "55d8176285b3527ba82cc85aa2737ee18e81101d2f40629079ff688d73680ada",
+        "sha256": "5d19fd2c48e74053d041815266cbbb0496bda885ccb28ba7dcf7ac9e05e614d4",
         "bytes": 9279,
         "target": "data/scrapers/isbndb.py"
       },
@@ -1492,7 +1492,7 @@
       "covers": false,
       "status": "stable",
       "is_core": false,
-      "rate_limit": 1.5,
+      "rate_limit": 3.4,
       "needs_api_key": false,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -1513,8 +1513,8 @@
         "en": "Library of Congress — LCDB SRU (Dublin Core). Covers rarely available."
       },
       "setup": {
-        "fr": "Aucune clé. rate_limit=1.5 s. Fallback JSON loc.gov si SRU vide.",
-        "en": "No API key. rate_limit=1.5 s. JSON loc.gov fallback if SRU empty."
+        "fr": "Aucune clé. rate_limit=3.4 s. Fallback JSON loc.gov si SRU vide.",
+        "en": "No API key. rate_limit=3.4 s. JSON loc.gov fallback if SRU empty."
       },
       "warnings": [
         "Couvertures absentes via SRU DC.",
@@ -1550,7 +1550,7 @@
       "install": {
         "path": "loc.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/loc.py",
-        "sha256": "c7a4d0e033a56e0e23d441503ded7272834e71cb0861bc9c706a295d7f25da16",
+        "sha256": "efe4f9cac6dd059c138dcea551ecefef6e90f8492ef0599a3c493900633a7df5",
         "bytes": 17617,
         "target": "data/scrapers/loc.py"
       },
@@ -1582,7 +1582,7 @@
       "covers": true,
       "status": "stable",
       "is_core": true,
-      "rate_limit": 4.0,
+      "rate_limit": 5.0,
       "needs_api_key": false,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -1603,8 +1603,8 @@
         "en": "League of Comic Geeks — comic series via public XHR/HTML (partner API is not self-serve)."
       },
       "setup": {
-        "fr": "Aucune clé. rate_limit=4.0 s (prudent).",
-        "en": "No API key. rate_limit=4.0 s (conservative)."
+        "fr": "Aucune clé. rate_limit=5.0 s (interactif ; pas de sync bulk).",
+        "en": "No API key. rate_limit=5.0 s (interactive; do not bulk-crawl)."
       },
       "warnings": [
         "API officielle non disponible en libre-service.",
@@ -1637,7 +1637,7 @@
       "install": {
         "path": "locg.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/locg.py",
-        "sha256": "db063630cb5e3fca149daa5833ec1ba6ceb8d13adb4dd0ad13ee8c7eadc16836",
+        "sha256": "be41223bdd57df6df6d5c31566df3a1a15ea32b1b3e9fcb7f2ef5f6d690736c4",
         "bytes": 19274,
         "target": "data/scrapers/locg.py"
       },
@@ -1740,7 +1740,7 @@
       "covers": true,
       "status": "stable",
       "is_core": true,
-      "rate_limit": 2.5,
+      "rate_limit": 2.25,
       "needs_api_key": false,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -1776,8 +1776,8 @@
       "install": {
         "path": "mangabaka.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangabaka.py",
-        "sha256": "b86afb66038672fc969379bf3c3b704bb326caba17fd85ea49fe38c67192b5cb",
-        "bytes": 14592,
+        "sha256": "d1f534cc60487e217fb52c2882cd35c0ecd1f8b32a3a9b085d305fe41a5de30d",
+        "bytes": 14593,
         "target": "data/scrapers/mangabaka.py"
       },
       "tags": [
@@ -1809,7 +1809,7 @@
       "covers": true,
       "status": "stable",
       "is_core": true,
-      "rate_limit": 0.5,
+      "rate_limit": 0.25,
       "needs_api_key": false,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -1840,7 +1840,7 @@
       "install": {
         "path": "mangadex.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangadex.py",
-        "sha256": "4a48c35713f29b9f868248b0f6e2e0abc7226eb0d43fd799a4a682aaf704a8ec",
+        "sha256": "e5cae15372e7a81b1eb5fac236f5de7f10b2addeb90d1859781440e4b3eabe92",
         "bytes": 11508,
         "target": "data/scrapers/mangadex.py"
       },
@@ -1871,7 +1871,7 @@
       "covers": true,
       "status": "stable",
       "is_core": true,
-      "rate_limit": 1.5,
+      "rate_limit": 2.5,
       "needs_api_key": false,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -1901,7 +1901,7 @@
       "install": {
         "path": "manganews.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/manganews.py",
-        "sha256": "cd83fce6540ad6a430cd161ae8a04fcbd5b746e46468b5f5d71d6833ecb139c1",
+        "sha256": "0a4562bcbb60009cf11419ac887ea3600ebeb76348344f314309df470234c57a",
         "bytes": 18713,
         "target": "data/scrapers/manganews.py"
       },
@@ -2016,7 +2016,7 @@
       "covers": true,
       "status": "stable",
       "is_core": true,
-      "rate_limit": 1.0,
+      "rate_limit": 0.55,
       "needs_api_key": false,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -2047,7 +2047,7 @@
       "install": {
         "path": "mangaupdates.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangaupdates.py",
-        "sha256": "e72e93b3a05d665327c72aadf73a857fecf1df42e2873e7546f8852deb6e4c14",
+        "sha256": "92d542a9721cb15d58b3fd6b90e815a44518bfc5f0cbf0a3c47ceacc3a7b2782",
         "bytes": 14669,
         "target": "data/scrapers/mangaupdates.py"
       },
@@ -2078,7 +2078,7 @@
       "covers": true,
       "status": "stable",
       "is_core": true,
-      "rate_limit": 3.0,
+      "rate_limit": 3.4,
       "needs_api_key": true,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -2101,7 +2101,7 @@
         "en": "metron.cloud account → API Tokens → METRON_API_KEY (Bearer, or user:password)."
       },
       "warnings": [
-        "Quota API Metron (~20 req/min) — rate_limit=3.0."
+        "Quota API Metron (~20 req/min) — rate_limit=3.4 (marge 10%)."
       ],
       "quality": {
         "grade": "A",
@@ -2127,7 +2127,7 @@
       "install": {
         "path": "metron.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/metron.py",
-        "sha256": "61b3ab672fd80fefd69dfc5f72723b62f71d7b7aac556fa348ddb64332ce33ff",
+        "sha256": "94f5ccedd7d2ec2c0fb31e94db0d69fd6d64a7c4789100f12a099f13822a3476",
         "bytes": 20214,
         "target": "data/scrapers/metron.py"
       },
@@ -2326,7 +2326,7 @@
       "covers": true,
       "status": "stable",
       "is_core": false,
-      "rate_limit": 1.0,
+      "rate_limit": 0.4,
       "needs_api_key": false,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -2380,7 +2380,7 @@
       "install": {
         "path": "openbd.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/openbd.py",
-        "sha256": "dce810a94a51cefbca14bd263520e66ec2db242102e9d12e2658a35e9665723b",
+        "sha256": "1c76af1e8072873d737e8c2819efb9b1babe8efa432225d2d06eca63d929eec1",
         "bytes": 7138,
         "target": "data/scrapers/openbd.py"
       },
@@ -2414,7 +2414,7 @@
       "covers": true,
       "status": "stable",
       "is_core": true,
-      "rate_limit": 2.0,
+      "rate_limit": 1.1,
       "needs_api_key": false,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -2445,7 +2445,7 @@
       "install": {
         "path": "openlibrary.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/openlibrary.py",
-        "sha256": "afebb79794799ac44b3d29db0159788c8caff1ac0225a5c762c2dec6b6b4c276",
+        "sha256": "2e9d44d6728ba66b7b2afaf22a16692f4fad76980f9d40eb4d191560daa871a2",
         "bytes": 17326,
         "target": "data/scrapers/openlibrary.py"
       },
@@ -2738,7 +2738,7 @@
       "covers": true,
       "status": "stable",
       "is_core": true,
-      "rate_limit": 0.5,
+      "rate_limit": 0.75,
       "needs_api_key": false,
       "has_direct_id_support": true,
       "uses_unified_scoring": true,
@@ -2768,7 +2768,7 @@
       "install": {
         "path": "shikimori.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/shikimori.py",
-        "sha256": "471a67247c9215c1efc2f21734ade9291fcdfb7fb49f5de0da7226c5be99d7d3",
+        "sha256": "2893e14230d7193cc271f6ff1596abf009c82b1b12f4caa64998f583f45346c1",
         "bytes": 14329,
         "target": "data/scrapers/shikimori.py"
       },

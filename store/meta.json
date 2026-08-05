@@ -431,8 +431,8 @@
     },
     "summary_fr": "Library of Congress — SRU LCDB (Dublin Core). Peu/pas de covers.",
     "summary_en": "Library of Congress — LCDB SRU (Dublin Core). Covers rarely available.",
-    "setup_fr": "Aucune clé. rate_limit=1.5 s. Fallback JSON loc.gov si SRU vide.",
-    "setup_en": "No API key. rate_limit=1.5 s. JSON loc.gov fallback if SRU empty.",
+    "setup_fr": "Aucune clé. rate_limit=3.4 s. Fallback JSON loc.gov si SRU vide.",
+    "setup_en": "No API key. rate_limit=3.4 s. JSON loc.gov fallback if SRU empty.",
     "warnings": [
       "Couvertures absentes via SRU DC.",
       "Préférer une requête avec auteur pour de meilleures notices."
@@ -454,8 +454,8 @@
     },
     "summary_fr": "League of Comic Geeks — séries comics via XHR/HTML public (pas d’API partenaire libre-service).",
     "summary_en": "League of Comic Geeks — comic series via public XHR/HTML (partner API is not self-serve).",
-    "setup_fr": "Aucune clé. rate_limit=4.0 s (prudent).",
-    "setup_en": "No API key. rate_limit=4.0 s (conservative).",
+    "setup_fr": "Aucune clé. rate_limit=5.0 s (interactif ; pas de sync bulk).",
+    "setup_en": "No API key. rate_limit=5.0 s (interactive; do not bulk-crawl).",
     "warnings": [
       "API officielle non disponible en libre-service.",
       "Rate limit élevé volontairement."
@@ -615,7 +615,7 @@
     "setup_fr": "Compte metron.cloud → API Tokens → coller dans METRON_API_KEY (Bearer, ou user:password).",
     "setup_en": "metron.cloud account → API Tokens → METRON_API_KEY (Bearer, or user:password).",
     "warnings": [
-      "Quota API Metron (~20 req/min) — rate_limit=3.0."
+      "Quota API Metron (~20 req/min) — rate_limit=3.4 (marge 10%)."
     ]
   },
   "NDL": {

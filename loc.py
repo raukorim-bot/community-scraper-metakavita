@@ -67,7 +67,7 @@ class LocScraper(BaseScraper):
     id = "LOC"
     display_name = "Library of Congress"
     supported_types = {"Book"}
-    rate_limit = 1.5
+    rate_limit = 3.4  # ~17.6/min: 10% under loc.gov JSON 20/min
     proxy_domains = [
         "loc.gov",
         "www.loc.gov",
