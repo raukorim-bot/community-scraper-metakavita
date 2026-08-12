@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://www.mangaupdates.com |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`mangaupdates.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangaupdates.py) into `data/scrapers/`.
-2. Verify SHA-256: `92d542a9721cb15d58b3fd6b90e815a44518bfc5f0cbf0a3c47ceacc3a7b2782`.
+2. Verify SHA-256: `58440068ec296f826f8e7aa78907f90c9dc5cc6080c7a29d644612cdc69f66f3`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 
@@ -44,7 +45,6 @@ No API key. Ships as MetaKavita core (is_core).
 ## Warnings
 
 - Reads mostly unlimited; 0.55 s cushions DDoS 429 protection.
-
 - Already ships in the MetaKavita image — Store shows state=core.
 
 ## Store

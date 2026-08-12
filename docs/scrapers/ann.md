@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://www.animenewsnetwork.com |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `opt.: isbn, publisher, status` — global overview: [`docs/QUALITY.md`](.
 ## Install (MetaKavita)
 
 1. Download [`ann.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/ann.py) into `data/scrapers/`.
-2. Verify SHA-256: `73cc0c6e7d2c80b93efc264d6e06f7df648234bc6114897588760deae2edb20b`.
+2. Verify SHA-256: `671de053441dc8a7bfdb36b29e04c85f9b7e55409432ee7bb94013aa880c539d`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 
@@ -44,8 +45,6 @@ No API key.
 ## Warnings
 
 - Official 1 req/s; rate_limit=1.1 keeps ~10% headroom.
-
-_None._
 
 ## Store
 

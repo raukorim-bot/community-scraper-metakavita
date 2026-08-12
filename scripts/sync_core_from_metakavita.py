@@ -271,6 +271,23 @@ def class_has_is_core(path: Path) -> bool:
     return False
 
 
+def merge_entry(old: dict | None, new: dict) -> dict:
+    """Refresh an entry from META_NEW without dropping curated fields.
+
+    Warnings written by hand (rate-limit notes…) and `covers_note` live only in
+    meta.json, so a blind overwrite would silently delete them.
+    """
+    merged = dict(new)
+    if not old:
+        return merged
+    fresh = list(new.get("warnings") or [])
+    kept = [w for w in (old.get("warnings") or []) if w not in fresh]
+    merged["warnings"] = kept + fresh
+    if old.get("covers_note") and not merged.get("covers_note"):
+        merged["covers_note"] = old["covers_note"]
+    return merged
+
+
 def main() -> int:
     if not SRC.is_dir():
         print(f"missing MetaKavita scrapers dir: {SRC}", file=sys.stderr)
@@ -305,10 +322,14 @@ def main() -> int:
     meta_path = ROOT / "store" / "meta.json"
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
     for sid, entry in META_NEW.items():
-        meta[sid] = entry
+        meta[sid] = merge_entry(meta.get(sid), entry)
         print(f"meta+ {sid}")
     meta = {k: meta[k] for k in sorted(meta.keys())}
-    meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    meta_path.write_text(
+        json.dumps(meta, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
     print(f"meta keys={len(meta)}")
     return 0
 

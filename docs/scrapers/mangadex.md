@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | INTL — en, ja |
 | **Site** | https://mangadex.org |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`mangadex.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangadex.py) into `data/scrapers/`.
-2. Verify SHA-256: `e5cae15372e7a81b1eb5fac236f5de7f10b2addeb90d1859781440e4b3eabe92`.
+2. Verify SHA-256: `81c1976747bc59a44eabe09e0d8c16a6369e567d29205079697503700512f98d`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 
@@ -44,7 +45,6 @@ No API key. Ships as MetaKavita core (is_core).
 ## Warnings
 
 - MangaDex global ~5 req/s; rate_limit=0.25 keeps ~10% headroom.
-
 - Already ships in the MetaKavita image — Store shows state=core.
 
 ## Store

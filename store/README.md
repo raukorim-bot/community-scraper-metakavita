@@ -3,7 +3,7 @@
 Primary files for the future MetaKavita **scraper store**:
 
 - **[`catalog.json`](catalog.json)** — machine-readable list of community scrapers.
-- **[`meta.json`](meta.json)** — human-edited texts / auth / warnings (build input).
+- **[`meta.json`](meta.json)** — human-edited texts / auth / warnings / optional `covers_note` (build input).
 - **[`quality.json`](quality.json)** — human-edited payload / covers / gaps audit scores.
 - **Human overview:** [`docs/QUALITY.md`](../docs/QUALITY.md) — global view to help pick a scraper.
 
@@ -60,3 +60,13 @@ python scripts\build_store_catalog.py
 ```
 
 This regenerates `store/catalog.json`, `docs/scrapers/*.md`, `docs/README.md`, and `docs/QUALITY.md`.
+
+Then check that every published digest matches the bytes GitHub will serve:
+
+```bat
+python scripts\verify_catalog_sha.py
+```
+
+`install.sha256` is the digest of the **LF** blob, not of the working copy: the
+repository ships a `.gitattributes` that keeps text files LF on every platform,
+because a CRLF checkout would publish digests MetaKavita can never reproduce.

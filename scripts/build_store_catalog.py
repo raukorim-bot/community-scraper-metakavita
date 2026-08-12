@@ -33,6 +33,19 @@ STATUS_LABEL = {
 }
 
 
+def to_lf(data: bytes) -> bytes:
+    """Content as git stores it and raw.githubusercontent.com serves it.
+
+    A Windows clone with core.autocrlf=true has CRLF on disk, so hashing the
+    working copy would publish digests no client can ever reproduce.
+    """
+    return data.replace(b"\r\n", b"\n")
+
+
+def write_lf(path: pathlib.Path, text: str) -> None:
+    path.write_text(text, encoding="utf-8", newline="\n")
+
+
 def _covers_label(covers_ok) -> str:
     if covers_ok is True:
         return "Yes"
@@ -161,7 +174,7 @@ def write_quality_doc(scrapers: list[dict], quality_meta: dict, out: pathlib.Pat
             "",
         ]
     )
-    out.write_text("\n".join(lines), encoding="utf-8")
+    write_lf(out, "\n".join(lines))
 
 
 def parse_scraper(path: pathlib.Path) -> dict | None:
@@ -186,6 +199,7 @@ def parse_scraper(path: pathlib.Path) -> dict | None:
                 if isinstance(t, ast.Name) and t.id in (
                     "id",
                     "display_name",
+                    "version",
                     "supported_types",
                     "rate_limit",
                     "needs_api_key",
@@ -201,10 +215,33 @@ def parse_scraper(path: pathlib.Path) -> dict | None:
                         fields[t.id] = None
     if not fields.get("id"):
         return None
+    payload = to_lf(path.read_bytes())
     fields["file"] = path.name
-    fields["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
-    fields["bytes"] = path.stat().st_size
+    fields["sha256"] = hashlib.sha256(payload).hexdigest()
+    fields["bytes"] = len(payload)
     return fields
+
+
+def previous_versions(catalog_path: pathlib.Path) -> dict[str, str]:
+    if not catalog_path.exists():
+        return {}
+    try:
+        previous = json.loads(catalog_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return {
+        s["id"]: s["version"]
+        for s in previous.get("scrapers") or []
+        if s.get("id") and s.get("version")
+    }
+
+
+def resolve_version(sid: str, fields: dict, published: dict[str, str]) -> str:
+    """Class attribute wins, then the version already published, then 1.0.0."""
+    declared = fields.get("version")
+    if isinstance(declared, str) and declared.strip():
+        return declared.strip()
+    return published.get(sid) or "1.0.0"
 
 
 def auth_line(auth: dict) -> str:
@@ -223,7 +260,7 @@ def auth_line(auth: dict) -> str:
     return str(kind)
 
 
-def write_doc(e: dict, docs_dir: pathlib.Path) -> None:
+def write_doc(e: dict, docs_dir: pathlib.Path, covers_note: str = "") -> None:
     stem = pathlib.Path(e["file"]).stem
     warns = (
         "\n".join(f"- {w}" for w in e["warnings"]) if e["warnings"] else "_None._"
@@ -234,6 +271,7 @@ def write_doc(e: dict, docs_dir: pathlib.Path) -> None:
     pick = (q.get("pick") or {}).get("en") or (q.get("pick") or {}).get("fr") or "_Not audited yet._"
     summary_en = e["summary"].get("en") or e["summary"].get("fr") or ""
     setup_en = e["setup"].get("en") or e["setup"].get("fr") or ""
+    covers_section = f"## Covers\n\n{covers_note.strip()}\n\n" if covers_note.strip() else ""
     md = f"""# {e["display_name"]}
 
 | | |
@@ -251,6 +289,7 @@ def write_doc(e: dict, docs_dir: pathlib.Path) -> None:
 | **Direct ID / URL** | {"Yes" if e["has_direct_id_support"] else "No"} |
 | **Region / languages** | {e["region"]} — {", ".join(e["languages"])} |
 | **Site** | {e["homepage"]} |
+| **Version** | `{e["version"]}` |
 
 ## Summary
 
@@ -262,7 +301,7 @@ def write_doc(e: dict, docs_dir: pathlib.Path) -> None:
 
 Gaps: `{_gaps_cell(q.get("gaps"))}` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 
-## Install (MetaKavita)
+{covers_section}## Install (MetaKavita)
 
 1. Download [`{e["file"]}`]({e["install"]["url"]}) into `data/scrapers/`.
 2. Verify SHA-256: `{e["install"]["sha256"]}`.
@@ -285,12 +324,17 @@ Gaps: `{_gaps_cell(q.get("gaps"))}` — global overview: [`docs/QUALITY.md`](../
 
 Catalog entry: [`store/catalog.json`](../../store/catalog.json) → id `{e["id"]}`.
 """
-    (docs_dir / f"{stem}.md").write_text(md.strip() + "\n", encoding="utf-8")
+    write_lf(docs_dir / f"{stem}.md", md.strip() + "\n")
 
 
 def main() -> int:
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except (AttributeError, OSError):
+        pass
     meta_path = ROOT / "store" / "meta.json"
     quality_path = ROOT / "store" / "quality.json"
+    catalog_path = ROOT / "store" / "catalog.json"
     if not meta_path.exists():
         print(f"missing {meta_path}", file=sys.stderr)
         return 1
@@ -299,8 +343,10 @@ def main() -> int:
     if quality_path.exists():
         quality_raw = json.loads(quality_path.read_text(encoding="utf-8"))
     quality_meta = quality_raw.get("_meta") or {}
+    published = previous_versions(catalog_path)
 
     scrapers = []
+    covers_notes: dict[str, str] = {}
     for path in sorted(ROOT.glob("*.py")):
         if path.name.startswith("_") or path.name in SKIP:
             continue
@@ -348,7 +394,7 @@ def main() -> int:
             "id": sid,
             "file": fields["file"],
             "display_name": fields.get("display_name") or sid,
-            "version": "1.0.0",
+            "version": resolve_version(sid, fields, published),
             "supported_types": types,
             "library_types": types,
             "method": m["method"],
@@ -379,6 +425,7 @@ def main() -> int:
             },
             "tags": sorted(tags),
         }
+        covers_notes[sid] = m.get("covers_note") or ""
         scrapers.append(entry)
 
     catalog = {
@@ -412,12 +459,10 @@ def main() -> int:
     docs_dir = ROOT / "docs" / "scrapers"
     docs_dir.mkdir(parents=True, exist_ok=True)
 
-    (store / "catalog.json").write_text(
-        json.dumps(catalog, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    write_lf(catalog_path, json.dumps(catalog, ensure_ascii=False, indent=2) + "\n")
 
     for e in scrapers:
-        write_doc(e, docs_dir)
+        write_doc(e, docs_dir, covers_notes.get(e["id"], ""))
 
     write_quality_doc(scrapers, quality_meta, ROOT / "docs" / "QUALITY.md")
 
@@ -443,7 +488,7 @@ def main() -> int:
             f"[{stem}.md](scrapers/{stem}.md) |"
         )
     index.append("")
-    (ROOT / "docs" / "README.md").write_text("\n".join(index) + "\n", encoding="utf-8")
+    write_lf(ROOT / "docs" / "README.md", "\n".join(index) + "\n")
 
     print(
         f"OK — {len(scrapers)} scrapers → store/catalog.json + docs/scrapers/ + docs/QUALITY.md"

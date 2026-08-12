@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | FR — fr |
 | **Site** | https://www.bedetheque.com |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `opt.: isbn, publisher, tags, alternative_titles, status` — global overv
 ## Install (MetaKavita)
 
 1. Download [`bdgest.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bdgest.py) into `data/scrapers/`.
-2. Verify SHA-256: `59dea681d71103d588fd15cf6d868a88e22173d55dfab010c79af18e93ec03be`.
+2. Verify SHA-256: `94b60bd5fec387a83dcef166855fd9c48fb8401c768765d52d6a7fa372d0cd1a`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 

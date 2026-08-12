@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | FR — fr |
 | **Site** | https://www.senscritique.com |
+| **Version** | `1.0.0` |
 
 ## Summary
 

@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | JP — ja |
 | **Site** | https://www.openbd.jp |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `provider: summary; opt.: tags, alternative_titles, status` — global ove
 ## Install (MetaKavita)
 
 1. Download [`openbd.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/openbd.py) into `data/scrapers/`.
-2. Verify SHA-256: `1c76af1e8072873d737e8c2819efb9b1babe8efa432225d2d06eca63d929eec1`.
+2. Verify SHA-256: `db6c3e4cfdccf40988ef42a8398e102ee32b93fdca84727a6f1a70baf1a2e503`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 
@@ -44,7 +45,6 @@ No API key. ISBN required (query or existing metadata).
 ## Warnings
 
 - openBD has no hard rate limit (bulk-oriented); 0.4 s is polite.
-
 - API ISBN-only — couplez avec NDL pour la recherche titre.
 
 ## Store

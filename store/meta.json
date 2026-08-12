@@ -19,6 +19,7 @@
     "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
     "setup_en": "No API key. Ships as MetaKavita core (is_core).",
     "warnings": [
+      "AniList API currently degraded to 30 req/min (normal 90); rate_limit=2.25 keeps ~10% headroom.",
       "Already ships in the MetaKavita image — Store shows state=core."
     ]
   },
@@ -42,7 +43,8 @@
     "setup_en": "No API key. rate_limit=3.0 s.",
     "warnings": [
       "Anti-bot fréquent — rate limit élevé."
-    ]
+    ],
+    "covers_note": "`fetch_covers` prefers detail-page `og:image` (usually full JPEG) over search-card thumbs. Card URLs like `…-285x427.webp` are upgraded by stripping the WxH suffix. CDN hotlink needs MetaKavita image proxy (`requires_proxy` + `cdn.anime-planet.com`)."
   },
   "ANN": {
     "method": "api",
@@ -62,7 +64,9 @@
     "summary_en": "Anime News Network encyclopedia — public XML API.",
     "setup_fr": "Aucune clé.",
     "setup_en": "No API key.",
-    "warnings": []
+    "warnings": [
+      "Official 1 req/s; rate_limit=1.1 keeps ~10% headroom."
+    ]
   },
   "BABELIO": {
     "method": "html",
@@ -366,6 +370,7 @@
     "setup_fr": "Clé REST payante → ISBNDB_API_KEY.",
     "setup_en": "Paid REST key → ISBNDB_API_KEY.",
     "warnings": [
+      "Basic plan 1 req/s; rate_limit=1.1 keeps ~10% headroom.",
       "Abonnement payant requis.",
       "Non validé en live (pas de clé de test)."
     ]
@@ -434,6 +439,7 @@
     "setup_fr": "Aucune clé. rate_limit=3.4 s. Fallback JSON loc.gov si SRU vide.",
     "setup_en": "No API key. rate_limit=3.4 s. JSON loc.gov fallback if SRU empty.",
     "warnings": [
+      "loc.gov JSON API: 20 req/min (1h block if exceeded); rate_limit=3.4 (~10% headroom).",
       "Couvertures absentes via SRU DC.",
       "Préférer une requête avec auteur pour de meilleures notices."
     ]
@@ -457,6 +463,8 @@
     "setup_fr": "Aucune clé. rate_limit=5.0 s (interactif ; pas de sync bulk).",
     "setup_en": "No API key. rate_limit=5.0 s (interactive; do not bulk-crawl).",
     "warnings": [
+      "robots.txt Crawl-delay: 30 targets search-engine bots. MetaKavita uses 5.0 s for interactive lookups only — prefer ComicVine/Metron for bulk sync.",
+      "Interactive use only — prefer ComicVine/Metron for bulk.",
       "API officielle non disponible en libre-service.",
       "Rate limit élevé volontairement."
     ]
@@ -504,6 +512,7 @@
     "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
     "setup_en": "No API key. Ships as MetaKavita core (is_core).",
     "warnings": [
+      "Search endpoint 30 req/min; rate_limit=2.25 keeps ~10% headroom.",
       "Already ships in the MetaKavita image — Store shows state=core."
     ]
   },
@@ -527,6 +536,7 @@
     "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
     "setup_en": "No API key. Ships as MetaKavita core (is_core).",
     "warnings": [
+      "MangaDex global ~5 req/s; rate_limit=0.25 keeps ~10% headroom.",
       "Already ships in the MetaKavita image — Store shows state=core."
     ]
   },
@@ -593,6 +603,7 @@
     "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
     "setup_en": "No API key. Ships as MetaKavita core (is_core).",
     "warnings": [
+      "Reads mostly unlimited; 0.55 s cushions DDoS 429 protection.",
       "Already ships in the MetaKavita image — Store shows state=core."
     ]
   },
@@ -681,6 +692,7 @@
     "setup_fr": "Aucune clé. ISBN requis (query ou métadonnées existantes).",
     "setup_en": "No API key. ISBN required (query or existing metadata).",
     "warnings": [
+      "openBD has no hard rate limit (bulk-oriented); 0.4 s is polite.",
       "API ISBN-only — couplez avec NDL pour la recherche titre."
     ]
   },
@@ -703,6 +715,7 @@
     "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
     "setup_en": "No API key. Ships as MetaKavita core (is_core).",
     "warnings": [
+      "Anonymous Open Library ceiling is 1 req/s; rate_limit=1.1 keeps ~10% headroom without requiring identified access.",
       "Already ships in the MetaKavita image — Store shows state=core."
     ]
   },
@@ -793,6 +806,7 @@
     "setup_fr": "Aucune clé. Livré en core MetaKavita (is_core).",
     "setup_en": "No API key. Ships as MetaKavita core (is_core).",
     "warnings": [
+      "Official limit 5 rps and 90 rpm; rate_limit=0.75 stays ~10% under rpm.",
       "Already ships in the MetaKavita image — Store shows state=core."
     ]
   },

@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | ES — es |
 | **Site** | https://www.bne.es |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `provider: cover_url; opt.: isbn, tags, alternative_titles, status` — gl
 ## Install (MetaKavita)
 
 1. Download [`bne.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bne.py) into `data/scrapers/`.
-2. Verify SHA-256: `3a66d4e43e2ce09dda30f07c260a2d03d254ecbba2bea0485f93235fc7efc8dd`.
+2. Verify SHA-256: `2d53ec833819bc1ab34f30d49a216eb29581aca5c0f254cc7f41598eec5fa146`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

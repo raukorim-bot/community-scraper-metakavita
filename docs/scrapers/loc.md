@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://www.loc.gov |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `provider: cover_url, summary, url; opt.: isbn, publisher, alternative_tit
 ## Install (MetaKavita)
 
 1. Download [`loc.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/loc.py) into `data/scrapers/`.
-2. Verify SHA-256: `efe4f9cac6dd059c138dcea551ecefef6e90f8492ef0599a3c493900633a7df5`.
+2. Verify SHA-256: `cffe23f197c6971160cd08496141aee104f755b26818dab48e012a0a48715d4c`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 
@@ -44,7 +45,6 @@ No API key. rate_limit=3.4 s. JSON loc.gov fallback if SRU empty.
 ## Warnings
 
 - loc.gov JSON API: 20 req/min (1h block if exceeded); rate_limit=3.4 (~10% headroom).
-
 - Couvertures absentes via SRU DC.
 - Préférer une requête avec auteur pour de meilleures notices.
 

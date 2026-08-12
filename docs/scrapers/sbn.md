@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | IT — it |
 | **Site** | https://opac.sbn.it |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `provider: cover_url, summary; opt.: isbn, tags, alternative_titles, statu
 ## Install (MetaKavita)
 
 1. Download [`sbn.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/sbn.py) into `data/scrapers/`.
-2. Verify SHA-256: `eba464110696309e8e51ee7877d271459c7f4b445a517e5cf9fe3f272dc88bcb`.
+2. Verify SHA-256: `e91dc8c8c27fb2a69a5f324162cc02aaf16c42bfcfd90e7209a3102b4ed32ec4`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

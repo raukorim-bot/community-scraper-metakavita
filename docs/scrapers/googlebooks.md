@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | INTL — en, fr |
 | **Site** | https://books.google.com |
+| **Version** | `1.0.0` |
 
 ## Summary
 

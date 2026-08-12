@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | INTL — en, ja |
 | **Site** | https://mangabaka.org |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`mangabaka.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangabaka.py) into `data/scrapers/`.
-2. Verify SHA-256: `d1f534cc60487e217fb52c2882cd35c0ecd1f8b32a3a9b085d305fe41a5de30d`.
+2. Verify SHA-256: `ec0abc81f3a22500d6be6f28186b823933f8d315445150e17ad860c831592aed`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Manga).
 
@@ -44,7 +45,6 @@ No API key. Ships as MetaKavita core (is_core).
 ## Warnings
 
 - Search endpoint 30 req/min; rate_limit=2.25 keeps ~10% headroom.
-
 - Already ships in the MetaKavita image — Store shows state=core.
 
 ## Store

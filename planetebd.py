@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import logging
 import re
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
@@ -139,11 +139,21 @@ class PlanetebdScraper(BaseScraper):
                 if not sid:
                     return None
                 logging.info(self.t("direct_id").format(sid))
-                # ID série direct : tenter bd puis comics
-                for kind in ("bd", "comics"):
-                    # slug inconnu → on ne peut pas reconstruire l'URL série seule
-                    pass
-                # Fallback : si URL complète fournie
+                # Bare numeric ID: probe with a placeholder slug — the site
+                # redirects to the canonical /series/<slug>/<id>.html URL.
+                for kind in ("bd", "comics", "mangas"):
+                    probe = f"{_BASE}/{kind}/series/s/{sid}.html"
+                    try:
+                        res = session.get(probe, timeout=20, allow_redirects=True)
+                        if res is None or getattr(res, "status_code", 0) != 200:
+                            continue
+                        final = getattr(res, "url", None) or probe
+                        cand = self._candidate_from_series_or_album(session, final)
+                        if cand:
+                            return attach_match_score(cand, 1.0)
+                    except Exception as e:
+                        logging.debug("PlaneteBD bare-id probe %s failed: %s", probe, e)
+                # Fallback : URL complète fournie
                 if "planetebd.com" in query or query.startswith("/"):
                     cand = self._candidate_from_series_or_album(session, query)
                     if cand:
@@ -323,11 +333,9 @@ class PlanetebdScraper(BaseScraper):
         album_meta: Dict[str, Any] = {}
         series_url = None
         series_title = None
-        series_id = None
 
         if sm:
             series_url = url
-            series_id = sm.group("id")
             series_title = self._fetch_series_title(session, url)
             # Prendre un album de la série pour cover/staff
             album_meta = self._first_album_from_series(session, url) or {}
@@ -337,7 +345,6 @@ class PlanetebdScraper(BaseScraper):
                 return None
             series_url = album_meta.get("series_url")
             series_title = album_meta.get("series_title")
-            series_id = album_meta.get("series_id")
             # Affiner le titre série via page série
             if series_url:
                 st = self._fetch_series_title(session, series_url)

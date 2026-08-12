@@ -1,0 +1,15 @@
+# The Store serves raw blobs from raw.githubusercontent.com, which are LF.
+# Catalog sha256 digests are computed on that content, so the working tree
+# must stay LF on every platform (core.autocrlf must not apply here).
+* text=auto eol=lf
+
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.txt text eol=lf
+*.cfg text eol=lf
+*.toml text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf

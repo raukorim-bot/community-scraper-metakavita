@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://leagueofcomicgeeks.com |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `opt.: isbn, publisher, tags, alternative_titles, status` — global overv
 ## Install (MetaKavita)
 
 1. Download [`locg.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/locg.py) into `data/scrapers/`.
-2. Verify SHA-256: `be41223bdd57df6df6d5c31566df3a1a15ea32b1b3e9fcb7f2ef5f6d690736c4`.
+2. Verify SHA-256: `42f505278bd698dc244b718e4ae8e660fb6b8890ee6961251b7ad9322f165324`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 
@@ -44,9 +45,9 @@ No API key. rate_limit=5.0 s (interactive; do not bulk-crawl).
 ## Warnings
 
 - robots.txt Crawl-delay: 30 targets search-engine bots. MetaKavita uses 5.0 s for interactive lookups only — prefer ComicVine/Metron for bulk sync.
-
-- API officielle non disponible en libre-service.
 - Interactive use only — prefer ComicVine/Metron for bulk.
+- API officielle non disponible en libre-service.
+- Rate limit élevé volontairement.
 
 ## Store
 

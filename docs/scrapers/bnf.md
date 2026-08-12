@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | FR â€” fr |
 | **Site** | https://catalogue.bnf.fr |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `provider: cover_url; opt.: publisher, tags, alternative_titles, status` â
 ## Install (MetaKavita)
 
 1. Download [`bnf.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bnf.py) into `data/scrapers/`.
-2. Verify SHA-256: `709bc1308ebbbe393228e89f93451a9310fdd5fcb237731d87edb2da3e32ba31`.
+2. Verify SHA-256: `9c2d15086e53ca7087d1b99e20e2d8d5c108e6c449edd6768548fb57905de408`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://comicvine.gamespot.com |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`comicvine.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/comicvine.py) into `data/scrapers/`.
-2. Verify SHA-256: `ef65048ab9c4aeb145e90605a03807f405ecd30eb8ff6c0836069aa688f54974`.
+2. Verify SHA-256: `d4b337f7cb1740e5d902898229046c0ddf8bc5f529a09ac869e2d289dada9983`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 

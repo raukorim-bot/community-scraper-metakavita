@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | INTL — en, ja |
 | **Site** | https://myanimelist.net |
+| **Version** | `1.0.0` |
 
 ## Summary
 

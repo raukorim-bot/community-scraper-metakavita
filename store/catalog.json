@@ -8,7 +8,7 @@
   "repo": "https://github.com/raukorim-bot/community-scraper-metakavita",
   "default_branch": "main",
   "raw_base": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main",
-  "generated_at": "2026-08-04T21:37:48Z",
+  "generated_at": "2026-08-12T20:11:10Z",
   "quality_docs": "docs/QUALITY.md",
   "quality_audited_at": "2026-08-02",
   "install_notes": {
@@ -67,6 +67,7 @@
         "en": "No API key. Ships as MetaKavita core (is_core)."
       },
       "warnings": [
+        "AniList API currently degraded to 30 req/min (normal 90); rate_limit=2.25 keeps ~10% headroom.",
         "Already ships in the MetaKavita image — Store shows state=core."
       ],
       "quality": null,
@@ -74,8 +75,8 @@
       "install": {
         "path": "anilist.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/anilist.py",
-        "sha256": "2378bc84ac3ae72f8820dcb770479ce107c998ece6aaafaff77b592e24ce7e93",
-        "bytes": 9924,
+        "sha256": "7c053811528d33bd75e74c2b1e4b137cfb674c38872dc988ee43a2b4c64c3be3",
+        "bytes": 10366,
         "target": "data/scrapers/anilist.py"
       },
       "tags": [
@@ -159,8 +160,8 @@
       "install": {
         "path": "animeplanet.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/animeplanet.py",
-        "sha256": "816bd78a45e9fbb6e9a1efcfeea4b24c29beb1b431b58b318de87b153617adc3",
-        "bytes": 13017,
+        "sha256": "c3eb562a678283777e46fae8029d6fcd08a83cb8682662cb9aec97db6c227a68",
+        "bytes": 12691,
         "target": "data/scrapers/animeplanet.py"
       },
       "tags": [
@@ -213,7 +214,9 @@
         "fr": "Aucune clé.",
         "en": "No API key."
       },
-      "warnings": [],
+      "warnings": [
+        "Official 1 req/s; rate_limit=1.1 keeps ~10% headroom."
+      ],
       "quality": {
         "grade": "A",
         "note": 100,
@@ -239,8 +242,8 @@
       "install": {
         "path": "ann.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/ann.py",
-        "sha256": "73cc0c6e7d2c80b93efc264d6e06f7df648234bc6114897588760deae2edb20b",
-        "bytes": 13967,
+        "sha256": "671de053441dc8a7bfdb36b29e04c85f9b7e55409432ee7bb94013aa880c539d",
+        "bytes": 13979,
         "target": "data/scrapers/ann.py"
       },
       "tags": [
@@ -409,8 +412,8 @@
       "install": {
         "path": "bangumi.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bangumi.py",
-        "sha256": "6644e03d80d03df97575faf257a0c830e1f35430ddfdf1a5dcd92db1daf9d06a",
-        "bytes": 18695,
+        "sha256": "8e780d12347e83714a506d4a1cd0abc16e9fa154db54052ffff3d968690a835a",
+        "bytes": 18178,
         "target": "data/scrapers/bangumi.py"
       },
       "tags": [
@@ -497,8 +500,8 @@
       "install": {
         "path": "bdgest.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bdgest.py",
-        "sha256": "59dea681d71103d588fd15cf6d868a88e22173d55dfab010c79af18e93ec03be",
-        "bytes": 16116,
+        "sha256": "94b60bd5fec387a83dcef166855fd9c48fb8401c768765d52d6a7fa372d0cd1a",
+        "bytes": 15702,
         "target": "data/scrapers/bdgest.py"
       },
       "tags": [
@@ -559,8 +562,8 @@
       "install": {
         "path": "bdtheque.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bdtheque.py",
-        "sha256": "df3ca9eb2507d40227cd2dde4f6f78989e514985b798627948984cdd65a09c33",
-        "bytes": 20437,
+        "sha256": "0be940b8273c4f5ada7d8f388e1a5ce2731a26e16875c5cd2d53764daf93ce5f",
+        "bytes": 20465,
         "target": "data/scrapers/bdtheque.py"
       },
       "tags": [
@@ -619,8 +622,8 @@
       "install": {
         "path": "bedetheque.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bedetheque.py",
-        "sha256": "c76ea7b103707287c97949ebae99929d410289595463024945c5338d26446160",
-        "bytes": 19863,
+        "sha256": "3f2b88906b96822985fee53dc49cffb53fd56f118d9dd242d50c2d0ecaca66fd",
+        "bytes": 21044,
         "target": "data/scrapers/bedetheque.py"
       },
       "tags": [
@@ -703,8 +706,8 @@
       "install": {
         "path": "bne.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bne.py",
-        "sha256": "3a66d4e43e2ce09dda30f07c260a2d03d254ecbba2bea0485f93235fc7efc8dd",
-        "bytes": 9331,
+        "sha256": "2d53ec833819bc1ab34f30d49a216eb29581aca5c0f254cc7f41598eec5fa146",
+        "bytes": 9088,
         "target": "data/scrapers/bne.py"
       },
       "tags": [
@@ -786,8 +789,8 @@
       "install": {
         "path": "bnf.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bnf.py",
-        "sha256": "709bc1308ebbbe393228e89f93451a9310fdd5fcb237731d87edb2da3e32ba31",
-        "bytes": 9394,
+        "sha256": "9c2d15086e53ca7087d1b99e20e2d8d5c108e6c449edd6768548fb57905de408",
+        "bytes": 9147,
         "target": "data/scrapers/bnf.py"
       },
       "tags": [
@@ -848,8 +851,8 @@
       "install": {
         "path": "comicvine.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/comicvine.py",
-        "sha256": "ef65048ab9c4aeb145e90605a03807f405ecd30eb8ff6c0836069aa688f54974",
-        "bytes": 23147,
+        "sha256": "d4b337f7cb1740e5d902898229046c0ddf8bc5f529a09ac869e2d289dada9983",
+        "bytes": 25481,
         "target": "data/scrapers/comicvine.py"
       },
       "tags": [
@@ -932,8 +935,8 @@
       "install": {
         "path": "decitre.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/decitre.py",
-        "sha256": "e57307cfb417fdd3c46c05abe0a5469fe53fa2b3cd9f798c5c2b3545ec06ccde",
-        "bytes": 10837,
+        "sha256": "05e4f82df4e60feb744ebf7a87388b62a0f1a12d8737d82694971b00aa67ef5d",
+        "bytes": 10781,
         "target": "data/scrapers/decitre.py"
       },
       "tags": [
@@ -1018,8 +1021,8 @@
       "install": {
         "path": "dnb.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/dnb.py",
-        "sha256": "7511ee2cc726523128c0da47725c8a26d2db87aebf01c19b3dda094096cfb729",
-        "bytes": 24538,
+        "sha256": "f7e1d69edbbfad0f8381cf62029122f77fcbc802d9a97bc784e23f83873de1f1",
+        "bytes": 23904,
         "target": "data/scrapers/dnb.py"
       },
       "tags": [
@@ -1099,8 +1102,8 @@
       "install": {
         "path": "gcd.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/gcd.py",
-        "sha256": "246f7c2286a3cdc113c2ffb88b0ae6d4a680e1274ea412694712c9bf70b48662",
-        "bytes": 21166,
+        "sha256": "8b3da951196015a43dacf015d33d067d3a59226b78e5299dcd598f1c4f300b6c",
+        "bytes": 20590,
         "target": "data/scrapers/gcd.py"
       },
       "tags": [
@@ -1229,8 +1232,8 @@
       "install": {
         "path": "hardcover.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/hardcover.py",
-        "sha256": "9030b0e380d659aff880a60ad0250f1da27ae521dfb78d7c3e83cab49889c88c",
-        "bytes": 16819,
+        "sha256": "a212e67d673f60df4611cf547e7370d50b39ee4df1ff6b09fce52d623e01a855",
+        "bytes": 16849,
         "target": "data/scrapers/hardcover.py"
       },
       "tags": [
@@ -1286,6 +1289,7 @@
         "en": "Paid REST key → ISBNDB_API_KEY."
       },
       "warnings": [
+        "Basic plan 1 req/s; rate_limit=1.1 keeps ~10% headroom.",
         "Abonnement payant requis.",
         "Non validé en live (pas de clé de test)."
       ],
@@ -1310,8 +1314,8 @@
       "install": {
         "path": "isbndb.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/isbndb.py",
-        "sha256": "5d19fd2c48e74053d041815266cbbb0496bda885ccb28ba7dcf7ac9e05e614d4",
-        "bytes": 9279,
+        "sha256": "27a66c770cfb9ac8ba62752aa6af3f0b02c1c4fa56602dc2ec0d1703a9e79bd8",
+        "bytes": 9076,
         "target": "data/scrapers/isbndb.py"
       },
       "tags": [
@@ -1397,8 +1401,8 @@
       "install": {
         "path": "kb.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/kb.py",
-        "sha256": "2496269a3fdebb7df799644e8cd64b807cf803611bb3e9ca522b5f4724d6323c",
-        "bytes": 8587,
+        "sha256": "d51e5b2033c15efa3bf4878d0f3aded1d5ca39a0d69af7c7ea80abec6a7181bf",
+        "bytes": 8361,
         "target": "data/scrapers/kb.py"
       },
       "tags": [
@@ -1461,8 +1465,8 @@
       "install": {
         "path": "kitsu.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/kitsu.py",
-        "sha256": "f11cd63977d6fb58a92b1584a8dbbf9d02b9490c0aa6b3a0d068a2953c48f651",
-        "bytes": 8100,
+        "sha256": "34bcb2894853e60761d95347e0b65db8cd08d411c3f70085c9c083b1427d9764",
+        "bytes": 8124,
         "target": "data/scrapers/kitsu.py"
       },
       "tags": [
@@ -1517,6 +1521,7 @@
         "en": "No API key. rate_limit=3.4 s. JSON loc.gov fallback if SRU empty."
       },
       "warnings": [
+        "loc.gov JSON API: 20 req/min (1h block if exceeded); rate_limit=3.4 (~10% headroom).",
         "Couvertures absentes via SRU DC.",
         "Préférer une requête avec auteur pour de meilleures notices."
       ],
@@ -1550,8 +1555,8 @@
       "install": {
         "path": "loc.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/loc.py",
-        "sha256": "efe4f9cac6dd059c138dcea551ecefef6e90f8492ef0599a3c493900633a7df5",
-        "bytes": 17617,
+        "sha256": "cffe23f197c6971160cd08496141aee104f755b26818dab48e012a0a48715d4c",
+        "bytes": 17229,
         "target": "data/scrapers/loc.py"
       },
       "tags": [
@@ -1607,6 +1612,8 @@
         "en": "No API key. rate_limit=5.0 s (interactive; do not bulk-crawl)."
       },
       "warnings": [
+        "robots.txt Crawl-delay: 30 targets search-engine bots. MetaKavita uses 5.0 s for interactive lookups only — prefer ComicVine/Metron for bulk sync.",
+        "Interactive use only — prefer ComicVine/Metron for bulk.",
         "API officielle non disponible en libre-service.",
         "Rate limit élevé volontairement."
       ],
@@ -1637,8 +1644,8 @@
       "install": {
         "path": "locg.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/locg.py",
-        "sha256": "be41223bdd57df6df6d5c31566df3a1a15ea32b1b3e9fcb7f2ef5f6d690736c4",
-        "bytes": 19274,
+        "sha256": "42f505278bd698dc244b718e4ae8e660fb6b8890ee6961251b7ad9322f165324",
+        "bytes": 19305,
         "target": "data/scrapers/locg.py"
       },
       "tags": [
@@ -1769,6 +1776,7 @@
         "en": "No API key. Ships as MetaKavita core (is_core)."
       },
       "warnings": [
+        "Search endpoint 30 req/min; rate_limit=2.25 keeps ~10% headroom.",
         "Already ships in the MetaKavita image — Store shows state=core."
       ],
       "quality": null,
@@ -1776,8 +1784,8 @@
       "install": {
         "path": "mangabaka.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangabaka.py",
-        "sha256": "d1f534cc60487e217fb52c2882cd35c0ecd1f8b32a3a9b085d305fe41a5de30d",
-        "bytes": 14593,
+        "sha256": "ec0abc81f3a22500d6be6f28186b823933f8d315445150e17ad860c831592aed",
+        "bytes": 14639,
         "target": "data/scrapers/mangabaka.py"
       },
       "tags": [
@@ -1833,6 +1841,7 @@
         "en": "No API key. Ships as MetaKavita core (is_core)."
       },
       "warnings": [
+        "MangaDex global ~5 req/s; rate_limit=0.25 keeps ~10% headroom.",
         "Already ships in the MetaKavita image — Store shows state=core."
       ],
       "quality": null,
@@ -1840,8 +1849,8 @@
       "install": {
         "path": "mangadex.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangadex.py",
-        "sha256": "e5cae15372e7a81b1eb5fac236f5de7f10b2addeb90d1859781440e4b3eabe92",
-        "bytes": 11508,
+        "sha256": "81c1976747bc59a44eabe09e0d8c16a6369e567d29205079697503700512f98d",
+        "bytes": 11608,
         "target": "data/scrapers/mangadex.py"
       },
       "tags": [
@@ -1901,8 +1910,8 @@
       "install": {
         "path": "manganews.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/manganews.py",
-        "sha256": "0a4562bcbb60009cf11419ac887ea3600ebeb76348344f314309df470234c57a",
-        "bytes": 18713,
+        "sha256": "4594c0110c74d68abba0be4bb3b0178e799eab749d13432e7799cafb249c19e1",
+        "bytes": 18741,
         "target": "data/scrapers/manganews.py"
       },
       "tags": [
@@ -1984,8 +1993,8 @@
       "install": {
         "path": "mangasanctuary.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangasanctuary.py",
-        "sha256": "1d0bc6945af3c1da57ec0d8df3376f5a9522be056cd000fe8c311064f46e759c",
-        "bytes": 9639,
+        "sha256": "b942112acefe4d77f316d0088e2b95d6702cbb0181f122a5cdcdd2f04dd85835",
+        "bytes": 9400,
         "target": "data/scrapers/mangasanctuary.py"
       },
       "tags": [
@@ -2040,6 +2049,7 @@
         "en": "No API key. Ships as MetaKavita core (is_core)."
       },
       "warnings": [
+        "Reads mostly unlimited; 0.55 s cushions DDoS 429 protection.",
         "Already ships in the MetaKavita image — Store shows state=core."
       ],
       "quality": null,
@@ -2047,8 +2057,8 @@
       "install": {
         "path": "mangaupdates.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangaupdates.py",
-        "sha256": "92d542a9721cb15d58b3fd6b90e815a44518bfc5f0cbf0a3c47ceacc3a7b2782",
-        "bytes": 14669,
+        "sha256": "58440068ec296f826f8e7aa78907f90c9dc5cc6080c7a29d644612cdc69f66f3",
+        "bytes": 15977,
         "target": "data/scrapers/mangaupdates.py"
       },
       "tags": [
@@ -2127,8 +2137,8 @@
       "install": {
         "path": "metron.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/metron.py",
-        "sha256": "94f5ccedd7d2ec2c0fb31e94db0d69fd6d64a7c4789100f12a099f13822a3476",
-        "bytes": 20214,
+        "sha256": "6e044cf161b034ec9adeea4dd86c63365e75cc3a9596c6e7ce5915b819fbaf66",
+        "bytes": 20232,
         "target": "data/scrapers/metron.py"
       },
       "tags": [
@@ -2214,8 +2224,8 @@
       "install": {
         "path": "ndl.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/ndl.py",
-        "sha256": "da95d4e290fa0518c0cc8d096fa9710a4edf1bbb60c5c8a912c508263b900bef",
-        "bytes": 10989,
+        "sha256": "c7c5d1ebf38157af1ae623300e8f02535265dcaba52d7823009a522fa4dc751c",
+        "bytes": 10709,
         "target": "data/scrapers/ndl.py"
       },
       "tags": [
@@ -2295,8 +2305,8 @@
       "install": {
         "path": "novelupdates.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/novelupdates.py",
-        "sha256": "e00fde53ed1efb636318da84e994261b4d777b872653d84e17c0ed4de7abc3c0",
-        "bytes": 9853,
+        "sha256": "e8e61c4eebe87aedff2f46e33dc67e6c1a2fdceaa71e29ee0b42ccd026a1ce4e",
+        "bytes": 9599,
         "target": "data/scrapers/novelupdates.py"
       },
       "tags": [
@@ -2351,6 +2361,7 @@
         "en": "No API key. ISBN required (query or existing metadata)."
       },
       "warnings": [
+        "openBD has no hard rate limit (bulk-oriented); 0.4 s is polite.",
         "API ISBN-only — couplez avec NDL pour la recherche titre."
       ],
       "quality": {
@@ -2380,8 +2391,8 @@
       "install": {
         "path": "openbd.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/openbd.py",
-        "sha256": "1c76af1e8072873d737e8c2819efb9b1babe8efa432225d2d06eca63d929eec1",
-        "bytes": 7138,
+        "sha256": "db6c3e4cfdccf40988ef42a8398e102ee32b93fdca84727a6f1a70baf1a2e503",
+        "bytes": 6985,
         "target": "data/scrapers/openbd.py"
       },
       "tags": [
@@ -2438,6 +2449,7 @@
         "en": "No API key. Ships as MetaKavita core (is_core)."
       },
       "warnings": [
+        "Anonymous Open Library ceiling is 1 req/s; rate_limit=1.1 keeps ~10% headroom without requiring identified access.",
         "Already ships in the MetaKavita image — Store shows state=core."
       ],
       "quality": null,
@@ -2445,8 +2457,8 @@
       "install": {
         "path": "openlibrary.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/openlibrary.py",
-        "sha256": "2e9d44d6728ba66b7b2afaf22a16692f4fad76980f9d40eb4d191560daa871a2",
-        "bytes": 17326,
+        "sha256": "896311478383dd5a2a2b789385ce58fdedc91aad1e7fd237f53859982caa8d1e",
+        "bytes": 17402,
         "target": "data/scrapers/openlibrary.py"
       },
       "tags": [
@@ -2527,8 +2539,8 @@
       "install": {
         "path": "planetebd.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/planetebd.py",
-        "sha256": "f540d1bc1d4febf7532dbc30289d9cc96789578c38f09b849f4f71dfd4314e29",
-        "bytes": 19648,
+        "sha256": "32276714b4382723e875f91c96afa1207faeb801505b40088622e1263bc692db",
+        "bytes": 20188,
         "target": "data/scrapers/planetebd.py"
       },
       "tags": [
@@ -2616,8 +2628,8 @@
       "install": {
         "path": "sbn.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/sbn.py",
-        "sha256": "eba464110696309e8e51ee7877d271459c7f4b445a517e5cf9fe3f272dc88bcb",
-        "bytes": 10150,
+        "sha256": "e91dc8c8c27fb2a69a5f324162cc02aaf16c42bfcfd90e7209a3102b4ed32ec4",
+        "bytes": 9878,
         "target": "data/scrapers/sbn.py"
       },
       "tags": [
@@ -2761,6 +2773,7 @@
         "en": "No API key. Ships as MetaKavita core (is_core)."
       },
       "warnings": [
+        "Official limit 5 rps and 90 rpm; rate_limit=0.75 stays ~10% under rpm.",
         "Already ships in the MetaKavita image — Store shows state=core."
       ],
       "quality": null,
@@ -2768,8 +2781,8 @@
       "install": {
         "path": "shikimori.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/shikimori.py",
-        "sha256": "2893e14230d7193cc271f6ff1596abf009c82b1b12f4caa64998f583f45346c1",
-        "bytes": 14329,
+        "sha256": "f16f6a63120a970a1db1bbe86b860bec2b22dbeee0d6aefcc32f9adb7138781c",
+        "bytes": 14381,
         "target": "data/scrapers/shikimori.py"
       },
       "tags": [
@@ -2858,8 +2871,8 @@
       "install": {
         "path": "tapas.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/tapas.py",
-        "sha256": "1d5f73b733ba34d0970c5c0cf6e490a8432dd9f2512ee5367c52398bbaadcfe0",
-        "bytes": 9061,
+        "sha256": "7e06044976e1d15cdcc442acc0545918130f67652a19d5ef0a79ea0efedd6f8c",
+        "bytes": 8833,
         "target": "data/scrapers/tapas.py"
       },
       "tags": [
@@ -2936,8 +2949,8 @@
       "install": {
         "path": "tebeosfera.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/tebeosfera.py",
-        "sha256": "da2c7d274727a6a28c425b1179ab743dff8b1b860fb42749b886d59049c42007",
-        "bytes": 11166,
+        "sha256": "c10dd06f71e4d1a81f994abc9718b0d91f59099e53d9e8772bf6ae57abba315e",
+        "bytes": 10878,
         "target": "data/scrapers/tebeosfera.py"
       },
       "tags": [
@@ -3024,8 +3037,8 @@
       "install": {
         "path": "webtoon.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/webtoon.py",
-        "sha256": "5ce8016da387446cb2ccaf5fbcde5dd749a288a427f72bf8fb0b892f1d629ad0",
-        "bytes": 9798,
+        "sha256": "dde4a94c3f08b3bf547d05d48d4da85d12b550289c1d7e350a461620c2610f4f",
+        "bytes": 9557,
         "target": "data/scrapers/webtoon.py"
       },
       "tags": [
@@ -3123,8 +3136,8 @@
       "install": {
         "path": "wikidata.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/wikidata.py",
-        "sha256": "a230580461140d10e6d2e73e2b2bf7d01071dc97abf3d7353e4c2b61fe5d961e",
-        "bytes": 11323,
+        "sha256": "5dd7253ecebb35a06ef44d40f2990ec510da267679a6a9d02b875ec2d6aeb901",
+        "bytes": 11011,
         "target": "data/scrapers/wikidata.py"
       },
       "tags": [

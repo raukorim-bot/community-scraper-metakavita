@@ -16,6 +16,11 @@ DEBUG = {"debug_dump_ann.py", "debug_dump_planetebd.py"}
 RAW = "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main"
 
 
+def to_lf(data: bytes) -> bytes:
+    """Content as git stores it and raw.githubusercontent.com serves it."""
+    return data.replace(b"\r\n", b"\n")
+
+
 def parse_fields(path: Path) -> dict | None:
     tree = ast.parse(path.read_text(encoding="utf-8"))
     for node in tree.body:
@@ -51,6 +56,10 @@ def file_is_core(path: Path) -> tuple[bool, str | None]:
 
 
 def main() -> int:
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except (AttributeError, OSError):
+        pass
     issues: list[str] = []
 
     mk_core: dict[str, str] = {}
@@ -125,7 +134,7 @@ def main() -> int:
         if not path.is_file():
             issues.append(f"CATALOG_FILE_MISSING {sid} {e['file']}")
             continue
-        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        digest = hashlib.sha256(to_lf(path.read_bytes())).hexdigest()
         cat_sha = ((e.get("install") or {}).get("sha256") or "").lower()
         if digest != cat_sha:
             issues.append(f"SHA_MISMATCH {sid}")

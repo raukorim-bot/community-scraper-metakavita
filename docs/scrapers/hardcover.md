@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://hardcover.app |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`hardcover.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/hardcover.py) into `data/scrapers/`.
-2. Verify SHA-256: `9030b0e380d659aff880a60ad0250f1da27ae521dfb78d7c3e83cab49889c88c`.
+2. Verify SHA-256: `a212e67d673f60df4611cf547e7370d50b39ee4df1ff6b09fce52d623e01a855`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Comic).
 

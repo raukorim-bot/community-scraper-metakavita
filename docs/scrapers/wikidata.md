@@ -15,6 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | Global — en, fr, ja, de, es, it, ko, zh |
 | **Site** | https://www.wikidata.org |
+| **Version** | `1.0.0` |
 
 ## Summary
 
@@ -29,7 +30,7 @@ Gaps: `provider: status, tags; opt.: publisher, alternative_titles, isbn` — gl
 ## Install (MetaKavita)
 
 1. Download [`wikidata.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/wikidata.py) into `data/scrapers/`.
-2. Verify SHA-256: `a230580461140d10e6d2e73e2b2bf7d01071dc97abf3d7353e4c2b61fe5d961e`.
+2. Verify SHA-256: `5dd7253ecebb35a06ef44d40f2990ec510da267679a6a9d02b875ec2d6aeb901`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Comic, Manga).
 
