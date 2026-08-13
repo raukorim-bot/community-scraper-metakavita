@@ -1,5 +1,55 @@
 # Changelog — community-scraper-metakavita
 
+## [Unreleased] The 21 core copies, refreshed for MetaKavita 1.7.0
+
+### Why now
+
+The per-request throttle fix below shipped for the 19 community scrapers only. The core copies
+were held back on purpose: they call `self._http_get` and import `response_is_ok`, neither of
+which exists in 1.6.x, so publishing them then would have removed 21 providers from every
+install that had not updated yet. MetaKavita 1.7.0 ships those helpers, so the copies can be
+published — behind the floor that says so.
+
+### What the copies bring
+
+* The pace is applied to **every** outgoing request, not once per `fetch()` — the burst that got
+  an IP banned on bedetheque.com. Four of the refreshed copies target French HTML sites
+  (Babelio, Decitre, Planète BD, SensCritique), which is where it matters most.
+* A revoked key, an exhausted quota and an empty result are told apart (`provider_error_scope`),
+  instead of all three reading as *no match*.
+* HTML pages are read with their declared encoding, so accented titles stop arriving mangled.
+* ComicVine's scoring no longer lets a collection outrank an exact title.
+* `BEDETHEQUE`, `COMICVINE`, `MANGADEX` and `PLANETEBD` gained `fetch_volume_index`: they can
+  list a series' albums in one pass, which is what MetaKavita's per-volume enrichment reads.
+
+### The floor
+
+`store/meta.json` declares `"requires_app": "1.7.0"` on the 21 core entries; the build copies it
+into `store/catalog.json` and opens each doc page with the prerequisite. Below that version,
+MetaKavita skips the entry during the core sync (keeping the working copy) and answers **409** on
+a manual install. Equality installs — the floor reads *from this version onwards*.
+
+Versions move from `1.0.0` to `1.1.0`, and to `1.2.0` for the four that also gained the volume
+index. Without that bump the corrected copies would sit in the catalog and reach nobody: the
+image refuses an entry whose version is not ahead of the file already installed.
+
+### Changed
+
+* The 21 `is_core` `.py` files — regenerated from the MetaKavita 1.7.0 image by
+  `scripts/sync_core_from_metakavita.py`, `store/catalog.json`, `store/meta.json` and the 21 doc
+  pages rebuilt from them.
+* `scripts/sync_core_from_metakavita.py` — a resync now carries `requires_app` over. Its table
+  of entries does not know about floors, so the next run would have republished the copies
+  without theirs, and only users on the older image would have noticed.
+* `tests/test_requires_app_floor.py` — offline guard: a copy that calls a 1.7.0 helper must
+  declare the floor, the catalog floor must come from `meta.json`, no core entry may go without,
+  and a resync must preserve it.
+* `WIKIDATA` gets `"requires_app": "1.6.1"`. It imports `scrapers.wikidata_map`, which appeared
+  in that release, and its doc page had said so in prose since day one — where nothing could
+  act on it. Same requirement, now enforced by the Store.
+* `README.md` — the install steps say to check the doc page for a floor, since copying a file by
+  hand is the one path the Store cannot guard.
+
 ## [Unreleased] `BDGEST` retired — one scraper per host
 
 `BDGEST` is **retired**, replaced by `BEDETHEQUE` (shipped as MetaKavita core).

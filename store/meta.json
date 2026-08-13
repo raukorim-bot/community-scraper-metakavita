@@ -7,6 +7,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://anilist.co",
     "region": "INTL",
     "auth": {
@@ -53,6 +54,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://www.animenewsnetwork.com",
     "region": "US",
     "auth": {
@@ -75,6 +77,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://www.babelio.com",
     "region": "FR",
     "auth": {
@@ -150,6 +153,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://www.bdtheque.com",
     "region": "FR",
     "auth": {
@@ -172,6 +176,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://www.bedetheque.com",
     "region": "FR",
     "auth": {
@@ -234,6 +239,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://comicvine.gamespot.com",
     "region": "US",
     "auth": {
@@ -256,6 +262,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://www.decitre.fr",
     "region": "FR",
     "auth": {
@@ -322,6 +329,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://books.google.com",
     "region": "INTL",
     "auth": {
@@ -344,6 +352,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://hardcover.app",
     "region": "US",
     "auth": {
@@ -413,6 +422,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://kitsu.io",
     "region": "INTL",
     "auth": {
@@ -459,6 +469,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://leagueofcomicgeeks.com",
     "region": "US",
     "auth": {
@@ -485,6 +496,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://myanimelist.net",
     "region": "INTL",
     "auth": {
@@ -508,6 +520,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://mangabaka.org",
     "region": "INTL",
     "auth": {
@@ -532,6 +545,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://mangadex.org",
     "region": "INTL",
     "auth": {
@@ -555,6 +569,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://www.manga-news.com",
     "region": "FR",
     "auth": {
@@ -599,6 +614,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://www.mangaupdates.com",
     "region": "US",
     "auth": {
@@ -622,6 +638,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://metron.cloud",
     "region": "US",
     "auth": {
@@ -711,6 +728,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://openlibrary.org",
     "region": "INTL",
     "auth": {
@@ -734,6 +752,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://www.planetebd.com",
     "region": "FR",
     "auth": {
@@ -778,6 +797,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://www.senscritique.com",
     "region": "FR",
     "auth": {
@@ -802,6 +822,7 @@
     ],
     "covers": true,
     "status": "stable",
+    "requires_app": "1.7.0",
     "homepage": "https://shikimori.one",
     "region": "RU",
     "auth": {
@@ -900,6 +921,7 @@
     ],
     "covers": true,
     "status": "beta",
+    "requires_app": "1.6.1",
     "homepage": "https://www.wikidata.org",
     "region": "Global",
     "auth": {

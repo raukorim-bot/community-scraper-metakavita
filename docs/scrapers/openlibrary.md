@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | INTL — en |
 | **Site** | https://openlibrary.org |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -29,8 +29,10 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 
 ## Install (MetaKavita)
 
+**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+
 1. Download [`openlibrary.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/openlibrary.py) into `data/scrapers/`.
-2. Verify SHA-256: `896311478383dd5a2a2b789385ce58fdedc91aad1e7fd237f53859982caa8d1e`.
+2. Verify SHA-256: `6c6b7b9f51f93e7f1e39fca88a979226378070089ac93aaa66a3e96725db6330`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Comic).
 

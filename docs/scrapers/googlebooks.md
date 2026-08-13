@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | INTL — en, fr |
 | **Site** | https://books.google.com |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -29,8 +29,10 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 
 ## Install (MetaKavita)
 
+**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+
 1. Download [`googlebooks.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/googlebooks.py) into `data/scrapers/`.
-2. Verify SHA-256: `fd0323e60f4ad59e72bac820d94d5bfe7790c48f40dcb39f977e95bffe30b4b9`.
+2. Verify SHA-256: `156c2d1cb0fc7351f31a719421c1fd28d06d15e96d6778b1dbda3b836cd6f54c`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Comic).
 

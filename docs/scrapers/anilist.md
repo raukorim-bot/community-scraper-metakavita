@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | INTL — en, ja |
 | **Site** | https://anilist.co |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -29,8 +29,10 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 
 ## Install (MetaKavita)
 
+**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+
 1. Download [`anilist.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/anilist.py) into `data/scrapers/`.
-2. Verify SHA-256: `7c053811528d33bd75e74c2b1e4b137cfb674c38872dc988ee43a2b4c64c3be3`.
+2. Verify SHA-256: `a1064abbf52ba5364545916ccf758785c9d8cb9d9d8a0a13e46a117450d8a58e`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Comic, Manga).
 

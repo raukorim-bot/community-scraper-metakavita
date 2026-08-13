@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | FR — fr |
 | **Site** | https://www.decitre.fr |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -29,8 +29,10 @@ Gaps: `opt.: tags, alternative_titles, status` — global overview: [`docs/QUALI
 
 ## Install (MetaKavita)
 
+**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+
 1. Download [`decitre.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/decitre.py) into `data/scrapers/`.
-2. Verify SHA-256: `05e4f82df4e60feb744ebf7a87388b62a0f1a12d8737d82694971b00aa67ef5d`.
+2. Verify SHA-256: `6210f382b65061e152489f59abcab55c95b46925e5c9985f11d213236d87a894`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

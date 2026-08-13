@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | INTL — en, ja |
 | **Site** | https://myanimelist.net |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -29,8 +29,10 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 
 ## Install (MetaKavita)
 
+**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+
 1. Download [`mal.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mal.py) into `data/scrapers/`.
-2. Verify SHA-256: `3b1c7ed6790534b52bfa6608548617996f1692d0780bad71e3469371947ed218`.
+2. Verify SHA-256: `69528d2086570f81d67ed949b0bc7a37547f32579cc98711e3913b3cf8e32688`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Manga).
 

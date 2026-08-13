@@ -8,7 +8,7 @@
   "repo": "https://github.com/raukorim-bot/community-scraper-metakavita",
   "default_branch": "main",
   "raw_base": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main",
-  "generated_at": "2026-08-13T08:19:43Z",
+  "generated_at": "2026-08-13T19:13:30Z",
   "quality_docs": "docs/QUALITY.md",
   "quality_audited_at": "2026-08-02",
   "install_notes": {
@@ -24,7 +24,7 @@
       "id": "ANILIST",
       "file": "anilist.py",
       "display_name": "AniList (International)",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Book",
         "Comic",
@@ -72,11 +72,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/anilist.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "anilist.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/anilist.py",
-        "sha256": "7c053811528d33bd75e74c2b1e4b137cfb674c38872dc988ee43a2b4c64c3be3",
-        "bytes": 10366,
+        "sha256": "a1064abbf52ba5364545916ccf758785c9d8cb9d9d8a0a13e46a117450d8a58e",
+        "bytes": 13112,
         "target": "data/scrapers/anilist.py"
       },
       "tags": [
@@ -176,7 +177,7 @@
       "id": "ANN",
       "file": "ann.py",
       "display_name": "Anime News Network",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Manga"
       ],
@@ -239,11 +240,12 @@
         }
       },
       "docs": "docs/scrapers/ann.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "ann.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/ann.py",
-        "sha256": "671de053441dc8a7bfdb36b29e04c85f9b7e55409432ee7bb94013aa880c539d",
-        "bytes": 13979,
+        "sha256": "991ab976231071a2596c168309ef451f7ce82136480ec0196701c18695e44979",
+        "bytes": 14473,
         "target": "data/scrapers/ann.py"
       },
       "tags": [
@@ -259,7 +261,7 @@
       "id": "BABELIO",
       "file": "babelio.py",
       "display_name": "Babelio (Littérature FR)",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Book"
       ],
@@ -325,11 +327,12 @@
         }
       },
       "docs": "docs/scrapers/babelio.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "babelio.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/babelio.py",
-        "sha256": "dd3665ca329046e1993d2d0e2e2348108e0c4d926e3d8a90b8463fdedbfb38e2",
-        "bytes": 23780,
+        "sha256": "4db074436d9fcfab1be265a18e5ffbb3e769560c536d000a68d35354e0849952",
+        "bytes": 24823,
         "target": "data/scrapers/babelio.py"
       },
       "tags": [
@@ -527,7 +530,7 @@
       "id": "BDTHEQUE",
       "file": "bdtheque.py",
       "display_name": "BDTheque.com (Franco-Belge)",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Comic"
       ],
@@ -570,11 +573,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/bdtheque.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "bdtheque.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bdtheque.py",
-        "sha256": "0be940b8273c4f5ada7d8f388e1a5ce2731a26e16875c5cd2d53764daf93ce5f",
-        "bytes": 20465,
+        "sha256": "8ee34a435ef7cf02bd91ed63499f44fea1f1432ccd570c00c25595c19c01e1b5",
+        "bytes": 21783,
         "target": "data/scrapers/bdtheque.py"
       },
       "tags": [
@@ -588,7 +592,7 @@
       "id": "BEDETHEQUE",
       "file": "bedetheque.py",
       "display_name": "Bédéthèque (Franco-Belge)",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "supported_types": [
         "Comic"
       ],
@@ -630,11 +634,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/bedetheque.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "bedetheque.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bedetheque.py",
-        "sha256": "3f2b88906b96822985fee53dc49cffb53fd56f118d9dd242d50c2d0ecaca66fd",
-        "bytes": 21044,
+        "sha256": "af66bcb0a4890ce17be487f8546995d9ada971573425e00ba33f2fab0912b33c",
+        "bytes": 36059,
         "target": "data/scrapers/bedetheque.py"
       },
       "tags": [
@@ -816,7 +821,7 @@
       "id": "COMICVINE",
       "file": "comicvine.py",
       "display_name": "ComicVine (Ultime BD/Comics)",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "supported_types": [
         "Comic"
       ],
@@ -859,11 +864,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/comicvine.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "comicvine.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/comicvine.py",
-        "sha256": "d4b337f7cb1740e5d902898229046c0ddf8bc5f529a09ac869e2d289dada9983",
-        "bytes": 25481,
+        "sha256": "47c98b62e2e15430b589be46e8f27054410e44bf9e8151bce606cc9b7e0606e0",
+        "bytes": 40639,
         "target": "data/scrapers/comicvine.py"
       },
       "tags": [
@@ -878,7 +884,7 @@
       "id": "DECITRE",
       "file": "decitre.py",
       "display_name": "Decitre",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Book"
       ],
@@ -943,11 +949,12 @@
         }
       },
       "docs": "docs/scrapers/decitre.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "decitre.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/decitre.py",
-        "sha256": "05e4f82df4e60feb744ebf7a87388b62a0f1a12d8737d82694971b00aa67ef5d",
-        "bytes": 10781,
+        "sha256": "6210f382b65061e152489f59abcab55c95b46925e5c9985f11d213236d87a894",
+        "bytes": 12085,
         "target": "data/scrapers/decitre.py"
       },
       "tags": [
@@ -1127,7 +1134,7 @@
       "id": "GOOGLEBOOKS",
       "file": "googlebooks.py",
       "display_name": "Google Books",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Book",
         "Comic"
@@ -1174,11 +1181,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/googlebooks.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "googlebooks.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/googlebooks.py",
-        "sha256": "fd0323e60f4ad59e72bac820d94d5bfe7790c48f40dcb39f977e95bffe30b4b9",
-        "bytes": 11766,
+        "sha256": "156c2d1cb0fc7351f31a719421c1fd28d06d15e96d6778b1dbda3b836cd6f54c",
+        "bytes": 17127,
         "target": "data/scrapers/googlebooks.py"
       },
       "tags": [
@@ -1194,7 +1202,7 @@
       "id": "HARDCOVER",
       "file": "hardcover.py",
       "display_name": "Hardcover (Expérimental / GraphQL)",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Book",
         "Comic"
@@ -1240,11 +1248,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/hardcover.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "hardcover.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/hardcover.py",
-        "sha256": "a212e67d673f60df4611cf547e7370d50b39ee4df1ff6b09fce52d623e01a855",
-        "bytes": 16849,
+        "sha256": "85f9830abac134d3d051954491ec6606660c71d1348016b4a00c18809392953a",
+        "bytes": 19525,
         "target": "data/scrapers/hardcover.py"
       },
       "tags": [
@@ -1428,7 +1437,7 @@
       "id": "KITSU",
       "file": "kitsu.py",
       "display_name": "Kitsu (JSON:API)",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Manga"
       ],
@@ -1473,11 +1482,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/kitsu.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "kitsu.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/kitsu.py",
-        "sha256": "34bcb2894853e60761d95347e0b65db8cd08d411c3f70085c9c083b1427d9764",
-        "bytes": 8124,
+        "sha256": "0ff16d33a89759eb5b887f99b8dfe8efcd000b78391b217f9ca293b074e02d8f",
+        "bytes": 8664,
         "target": "data/scrapers/kitsu.py"
       },
       "tags": [
@@ -1582,7 +1592,7 @@
       "id": "LOCG",
       "file": "locg.py",
       "display_name": "League of Comic Geeks",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Comic"
       ],
@@ -1652,11 +1662,12 @@
         }
       },
       "docs": "docs/scrapers/locg.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "locg.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/locg.py",
-        "sha256": "42f505278bd698dc244b718e4ae8e660fb6b8890ee6961251b7ad9322f165324",
-        "bytes": 19305,
+        "sha256": "033166deeab34d93339cb35f8dd44f6790615071cce38898f00b76734af11996",
+        "bytes": 20881,
         "target": "data/scrapers/locg.py"
       },
       "tags": [
@@ -1672,7 +1683,7 @@
       "id": "MAL",
       "file": "mal.py",
       "display_name": "MyAnimeList (Official API)",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Book",
         "Manga"
@@ -1719,11 +1730,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/mal.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "mal.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mal.py",
-        "sha256": "3b1c7ed6790534b52bfa6608548617996f1692d0780bad71e3469371947ed218",
-        "bytes": 13032,
+        "sha256": "69528d2086570f81d67ed949b0bc7a37547f32579cc98711e3913b3cf8e32688",
+        "bytes": 13709,
         "target": "data/scrapers/mal.py"
       },
       "tags": [
@@ -1739,7 +1751,7 @@
       "id": "MANGABAKA",
       "file": "mangabaka.py",
       "display_name": "MangaBaka (API / Rapide)",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Book",
         "Manga"
@@ -1792,11 +1804,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/mangabaka.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "mangabaka.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangabaka.py",
-        "sha256": "ec0abc81f3a22500d6be6f28186b823933f8d315445150e17ad860c831592aed",
-        "bytes": 14639,
+        "sha256": "069152099d8fbdb49680aa4ee662739f84b5020a91d1b6f2db8510ba2de92f1f",
+        "bytes": 15189,
         "target": "data/scrapers/mangabaka.py"
       },
       "tags": [
@@ -1811,7 +1824,7 @@
       "id": "MANGADEX",
       "file": "mangadex.py",
       "display_name": "MangaDex (API)",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "supported_types": [
         "Manga"
       ],
@@ -1857,11 +1870,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/mangadex.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "mangadex.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangadex.py",
-        "sha256": "81c1976747bc59a44eabe09e0d8c16a6369e567d29205079697503700512f98d",
-        "bytes": 11608,
+        "sha256": "20166c0159cd3a8520604a5b7d8bd9b570f5ffcbb64540bce542b748e847b07c",
+        "bytes": 17163,
         "target": "data/scrapers/mangadex.py"
       },
       "tags": [
@@ -1875,7 +1889,7 @@
       "id": "MANGANEWS",
       "file": "manganews.py",
       "display_name": "Manga-News (Catalogue VF)",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Manga"
       ],
@@ -1918,11 +1932,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/manganews.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "manganews.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/manganews.py",
-        "sha256": "4594c0110c74d68abba0be4bb3b0178e799eab749d13432e7799cafb249c19e1",
-        "bytes": 18741,
+        "sha256": "869d51a1479b3ecc89ed9ea3a83c8345f13f7e64cf3871d67bb0b9aa2bc20ea0",
+        "bytes": 20509,
         "target": "data/scrapers/manganews.py"
       },
       "tags": [
@@ -2020,7 +2035,7 @@
       "id": "MANGAUPDATES",
       "file": "mangaupdates.py",
       "display_name": "MangaUpdates (Baka-Updates)",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Manga"
       ],
@@ -2065,11 +2080,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/mangaupdates.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "mangaupdates.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangaupdates.py",
-        "sha256": "58440068ec296f826f8e7aa78907f90c9dc5cc6080c7a29d644612cdc69f66f3",
-        "bytes": 15977,
+        "sha256": "63ec1394b8b3e76b2175db20728d91c536248ef0181155563dc7e5d9b55d7526",
+        "bytes": 16854,
         "target": "data/scrapers/mangaupdates.py"
       },
       "tags": [
@@ -2083,7 +2099,7 @@
       "id": "METRON",
       "file": "metron.py",
       "display_name": "Metron (Comics API)",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Comic"
       ],
@@ -2145,11 +2161,12 @@
         }
       },
       "docs": "docs/scrapers/metron.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "metron.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/metron.py",
-        "sha256": "6e044cf161b034ec9adeea4dd86c63365e75cc3a9596c6e7ce5915b819fbaf66",
-        "bytes": 20232,
+        "sha256": "d866b59420067432b76ba4ba3c689478a67e6d4373d3c6327f3f23c89289ae55",
+        "bytes": 21004,
         "target": "data/scrapers/metron.py"
       },
       "tags": [
@@ -2418,7 +2435,7 @@
       "id": "OPENLIBRARY",
       "file": "openlibrary.py",
       "display_name": "Open Library (Livres/Romans)",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Book",
         "Comic"
@@ -2465,11 +2482,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/openlibrary.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "openlibrary.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/openlibrary.py",
-        "sha256": "896311478383dd5a2a2b789385ce58fdedc91aad1e7fd237f53859982caa8d1e",
-        "bytes": 17402,
+        "sha256": "6c6b7b9f51f93e7f1e39fca88a979226378070089ac93aaa66a3e96725db6330",
+        "bytes": 19309,
         "target": "data/scrapers/openlibrary.py"
       },
       "tags": [
@@ -2484,7 +2502,7 @@
       "id": "PLANETEBD",
       "file": "planetebd.py",
       "display_name": "Planète BD",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "supported_types": [
         "Comic"
       ],
@@ -2547,11 +2565,12 @@
         }
       },
       "docs": "docs/scrapers/planetebd.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "planetebd.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/planetebd.py",
-        "sha256": "32276714b4382723e875f91c96afa1207faeb801505b40088622e1263bc692db",
-        "bytes": 20188,
+        "sha256": "a5ac7d9a37afcb6c516f610dc64b2588017cdabbe0753f30b489076a5e1d7d60",
+        "bytes": 30853,
         "target": "data/scrapers/planetebd.py"
       },
       "tags": [
@@ -2655,7 +2674,7 @@
       "id": "SENSCRITIQUE",
       "file": "senscritique.py",
       "display_name": "SensCritique (FR)",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Book",
         "Comic"
@@ -2722,11 +2741,12 @@
         }
       },
       "docs": "docs/scrapers/senscritique.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "senscritique.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/senscritique.py",
-        "sha256": "174e8232120354ccbff6dec9e02fc9d9f537e59f6a20f6eb5b6faca0810fed83",
-        "bytes": 22366,
+        "sha256": "8ce504d512f45f4ca2f75eb0b4c4c911177b0ec62f6d449a2b2985517e14fb57",
+        "bytes": 23393,
         "target": "data/scrapers/senscritique.py"
       },
       "tags": [
@@ -2743,7 +2763,7 @@
       "id": "SHIKIMORI",
       "file": "shikimori.py",
       "display_name": "Shikimori (API JSON)",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "supported_types": [
         "Manga"
       ],
@@ -2789,11 +2809,12 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/shikimori.md",
+      "requires_app": "1.7.0",
       "install": {
         "path": "shikimori.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/shikimori.py",
-        "sha256": "f16f6a63120a970a1db1bbe86b860bec2b22dbeee0d6aefcc32f9adb7138781c",
-        "bytes": 14381,
+        "sha256": "2218c6a13d872c22dcbb63317b6da89499cc79990e03030535b96960118ed6f1",
+        "bytes": 15412,
         "target": "data/scrapers/shikimori.py"
       },
       "tags": [
@@ -3144,6 +3165,7 @@
         }
       },
       "docs": "docs/scrapers/wikidata.md",
+      "requires_app": "1.6.1",
       "install": {
         "path": "wikidata.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/wikidata.py",

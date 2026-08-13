@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | FR — fr |
 | **Site** | https://www.planetebd.com |
-| **Version** | `1.0.0` |
+| **Version** | `1.2.0` |
 
 ## Summary
 
@@ -29,8 +29,10 @@ Gaps: `opt.: tags, alternative_titles` — global overview: [`docs/QUALITY.md`](
 
 ## Install (MetaKavita)
 
+**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+
 1. Download [`planetebd.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/planetebd.py) into `data/scrapers/`.
-2. Verify SHA-256: `32276714b4382723e875f91c96afa1207faeb801505b40088622e1263bc692db`.
+2. Verify SHA-256: `a5ac7d9a37afcb6c516f610dc64b2588017cdabbe0753f30b489076a5e1d7d60`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 

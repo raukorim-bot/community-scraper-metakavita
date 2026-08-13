@@ -22,6 +22,8 @@ Drop a `.py` file into your MetaKavita `data/scrapers/` folder, restart, and the
 
 No rebuild of the MetaKavita image is required.
 
+> **Check the version first.** An entry may require a minimum MetaKavita version — its doc page then opens with *Requires MetaKavita x.y.z or newer*. The Store honours that floor for you; a file copied by hand does not, and an image below it unbinds the scraper at import, so the provider simply never appears. The 21 core copies currently require **1.7.0**, and `WIKIDATA` requires **1.6.1**.
+
 ---
 
 ## Available scrapers

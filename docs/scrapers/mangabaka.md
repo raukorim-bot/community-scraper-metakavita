@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | INTL — en, ja |
 | **Site** | https://mangabaka.org |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -29,8 +29,10 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 
 ## Install (MetaKavita)
 
+**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+
 1. Download [`mangabaka.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangabaka.py) into `data/scrapers/`.
-2. Verify SHA-256: `ec0abc81f3a22500d6be6f28186b823933f8d315445150e17ad860c831592aed`.
+2. Verify SHA-256: `069152099d8fbdb49680aa4ee662739f84b5020a91d1b6f2db8510ba2de92f1f`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Manga).
 

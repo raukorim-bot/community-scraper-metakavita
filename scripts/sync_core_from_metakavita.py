@@ -283,8 +283,10 @@ def class_has_is_core(path: Path) -> bool:
 def merge_entry(old: dict | None, new: dict) -> dict:
     """Refresh an entry from META_NEW without dropping curated fields.
 
-    Warnings written by hand (rate-limit notes…) and `covers_note` live only in
-    meta.json, so a blind overwrite would silently delete them.
+    Warnings written by hand (rate-limit notes…), `covers_note` and
+    `requires_app` live only in meta.json, so a blind overwrite would silently
+    delete them. Losing the floor is the costly one: the entry would then be
+    offered to installs that cannot import it.
     """
     merged = dict(new)
     if not old:
@@ -292,8 +294,9 @@ def merge_entry(old: dict | None, new: dict) -> dict:
     fresh = list(new.get("warnings") or [])
     kept = [w for w in (old.get("warnings") or []) if w not in fresh]
     merged["warnings"] = kept + fresh
-    if old.get("covers_note") and not merged.get("covers_note"):
-        merged["covers_note"] = old["covers_note"]
+    for key in ("covers_note", "requires_app"):
+        if old.get(key) and not merged.get(key):
+            merged[key] = old[key]
     return merged
 
 

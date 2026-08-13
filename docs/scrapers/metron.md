@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://metron.cloud |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -29,8 +29,10 @@ Gaps: `opt.: isbn, alternative_titles` — global overview: [`docs/QUALITY.md`](
 
 ## Install (MetaKavita)
 
+**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+
 1. Download [`metron.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/metron.py) into `data/scrapers/`.
-2. Verify SHA-256: `6e044cf161b034ec9adeea4dd86c63365e75cc3a9596c6e7ce5915b819fbaf66`.
+2. Verify SHA-256: `d866b59420067432b76ba4ba3c689478a67e6d4373d3c6327f3f23c89289ae55`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 

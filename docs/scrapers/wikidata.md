@@ -29,6 +29,8 @@ Gaps: `provider: status, tags; opt.: publisher, alternative_titles, isbn` — gl
 
 ## Install (MetaKavita)
 
+**Requires MetaKavita 1.6.1 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+
 1. Download [`wikidata.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/wikidata.py) into `data/scrapers/`.
 2. Verify SHA-256: `68290eea906c8c2b6760490966d5991548a3fbeb5154c12c95ba14db28841af3`.
 3. Restart MetaKavita.

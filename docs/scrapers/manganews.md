@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | FR — fr |
 | **Site** | https://www.manga-news.com |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -29,8 +29,10 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 
 ## Install (MetaKavita)
 
+**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+
 1. Download [`manganews.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/manganews.py) into `data/scrapers/`.
-2. Verify SHA-256: `4594c0110c74d68abba0be4bb3b0178e799eab749d13432e7799cafb249c19e1`.
+2. Verify SHA-256: `869d51a1479b3ecc89ed9ea3a83c8345f13f7e64cf3871d67bb0b9aa2bc20ea0`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 

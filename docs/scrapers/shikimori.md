@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | RU — ru, en, ja |
 | **Site** | https://shikimori.one |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -29,8 +29,10 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 
 ## Install (MetaKavita)
 
+**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+
 1. Download [`shikimori.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/shikimori.py) into `data/scrapers/`.
-2. Verify SHA-256: `f16f6a63120a970a1db1bbe86b860bec2b22dbeee0d6aefcc32f9adb7138781c`.
+2. Verify SHA-256: `2218c6a13d872c22dcbb63317b6da89499cc79990e03030535b96960118ed6f1`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 

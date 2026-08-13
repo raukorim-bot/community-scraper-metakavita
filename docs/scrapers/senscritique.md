@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | FR — fr |
 | **Site** | https://www.senscritique.com |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -29,8 +29,10 @@ Gaps: `opt.: tags, alternative_titles, status` — global overview: [`docs/QUALI
 
 ## Install (MetaKavita)
 
+**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+
 1. Download [`senscritique.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/senscritique.py) into `data/scrapers/`.
-2. Verify SHA-256: `174e8232120354ccbff6dec9e02fc9d9f537e59f6a20f6eb5b6faca0810fed83`.
+2. Verify SHA-256: `8ce504d512f45f4ca2f75eb0b4c4c911177b0ec62f6d449a2b2985517e14fb57`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Comic).
 

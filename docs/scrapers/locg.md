@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://leagueofcomicgeeks.com |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -29,8 +29,10 @@ Gaps: `opt.: isbn, publisher, tags, alternative_titles, status` — global overv
 
 ## Install (MetaKavita)
 
+**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+
 1. Download [`locg.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/locg.py) into `data/scrapers/`.
-2. Verify SHA-256: `42f505278bd698dc244b718e4ae8e660fb6b8890ee6961251b7ad9322f165324`.
+2. Verify SHA-256: `033166deeab34d93339cb35f8dd44f6790615071cce38898f00b76734af11996`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 
