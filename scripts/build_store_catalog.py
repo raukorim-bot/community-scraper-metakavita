@@ -91,6 +91,30 @@ def retirement_fields(meta_entry: dict) -> dict:
     }
 
 
+def requires_app_fields(meta_entry: dict) -> dict:
+    """Plancher de version MetaKavita d'une entrée, ou `{}` si elle n'en a pas.
+
+    Un scraper du catalogue s'exécute *dans* l'image : il appelle les méthodes de
+    `BaseScraper` et les fonctions de `scrapers.utils` de la version installée.
+    Une copie écrite pour une version ultérieure échoue donc à l'import sur une
+    antérieure, et MetaKavita délie le module scraper par scraper : le
+    fournisseur disparaît des recherches sans que rien ne l'explique à l'écran.
+
+    Le cas concret : les scrapers core de la 1.7.0 appellent `self._http_get` et
+    importent `response_is_ok`, deux choses absentes de la 1.6.x. Publier ces
+    copies sans plancher aurait privé de tous leurs fournisseurs core les
+    conteneurs restés sur la version précédente.
+
+    Déclaré à la main dans `store/meta.json` (`requires_app`), comme le retrait :
+    seul le mainteneur sait contre quelle version une copie a été écrite.
+    `services/scraper_store.is_entry_too_new` le respecte à l'installation comme
+    à la synchronisation, et à égalité installe — le plancher se lit « à partir
+    de cette version ».
+    """
+    raw = str(meta_entry.get("requires_app") or "").strip()
+    return {"requires_app": raw} if raw else {}
+
+
 def _id_cell(e: dict) -> str:
     """Cellule d'identifiant des tableaux, suffixée quand l'entrée est retirée."""
     return f"`{e['id']}` (retired)" if e.get("retired") else f"`{e['id']}`"
@@ -344,8 +368,18 @@ The scraper registry reloads on the spot, no restart needed. Deleting
 on the next restart.
 """
     else:
+        # Un plancher annoncé seulement dans le JSON serait invisible à qui pose
+        # le fichier à la main, hors du Magasin : c'est le seul chemin que
+        # MetaKavita ne peut pas garder.
+        floor = e.get("requires_app")
+        floor_line = (
+            f"\n**Requires MetaKavita {floor} or newer.** On an older version this "
+            "scraper fails to load and its provider disappears from every search.\n"
+            if floor
+            else ""
+        )
         install_section = f"""## Install (MetaKavita)
-
+{floor_line}
 1. Download [`{e["file"]}`]({e["install"]["url"]}) into `data/scrapers/`.
 2. Verify SHA-256: `{e["install"]["sha256"]}`.
 3. Restart MetaKavita.
@@ -493,6 +527,7 @@ def main() -> int:
             "quality": quality,
             "docs": f"docs/scrapers/{path.stem}.md",
             **retirement,
+            **requires_app_fields(m),
             "install": {
                 "path": fields["file"],
                 "url": f"{RAW}/{fields['file']}",
