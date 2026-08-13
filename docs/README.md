@@ -12,7 +12,7 @@ Per-scraper pages + machine catalog [`store/catalog.json`](../store/catalog.json
 | `ANN` | Anime News Network | Manga | api | Yes | A | — | [ann.md](scrapers/ann.md) |
 | `BABELIO` | Babelio (Littérature FR) | Book | html | Yes | A | — | [babelio.md](scrapers/babelio.md) |
 | `BANGUMI` | Bangumi (JP/CN) | Book, Manga | api | Yes | A | — | [bangumi.md](scrapers/bangumi.md) |
-| `BDGEST` | BDgest / Bédéthèque | Comic | html | Yes | A | — | [bdgest.md](scrapers/bdgest.md) |
+| `BDGEST` (retired) | BDgest / Bédéthèque | Comic | html | Yes | A | — | [bdgest.md](scrapers/bdgest.md) |
 | `BDTHEQUE` | BDTheque.com (Franco-Belge) | Comic | html | N/A | — | — | [bdtheque.md](scrapers/bdtheque.md) |
 | `BEDETHEQUE` | Bédéthèque (Franco-Belge) | Comic | html | N/A | — | — | [bedetheque.md](scrapers/bedetheque.md) |
 | `BNE` | BNE (España) | Book | sru | No | A | — | [bne.md](scrapers/bne.md) |

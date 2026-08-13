@@ -53,8 +53,8 @@
     "covers_ok": true,
     "gaps": { "provider": [], "bug": [], "optional": ["isbn", "publisher", "tags", "alternative_titles", "status"] },
     "tested_query": "Astérix",
-    "pick_fr": "BD FR (Bédéthèque) — covers + année série.",
-    "pick_en": "FR BD (Bédéthèque) — covers + series year."
+    "pick_fr": "Jamais — retiré le 2026-08-13, prendre BEDETHEQUE (core).",
+    "pick_en": "Never — retired on 2026-08-13, use BEDETHEQUE (core)."
   },
   "BNE": {
     "grade": "A",

@@ -44,7 +44,6 @@ No rebuild of the MetaKavita image is required.
 | [`novelupdates.py`](novelupdates.py) | `NOVELUPDATES` | Book, Manga | Optional CF cookies | Yes | Cloudflare — paste `cf_clearance=…` in `NOVELUPDATES_API_KEY` | [doc](docs/scrapers/novelupdates.md) |
 | [`locg.py`](locg.py) | `LOCG` | Comic | None | Yes | LoCG site XHR/HTML — partner API not self-serve | [doc](docs/scrapers/locg.md) |
 | [`isbndb.py`](isbndb.py) | `ISBNDB` | Book | **Required (paid)** | Yes | [ISBNdb](https://isbndb.com/apidocs/v2) — **not live-tested** | [doc](docs/scrapers/isbndb.md) |
-| [`bdgest.py`](bdgest.py) | `BDGEST` | Comic | None | Yes | BDgest / Bédéthèque best-effort HTML | [doc](docs/scrapers/bdgest.md) |
 | [`gcd.py`](gcd.py) | `GCD` | Comic | Optional Basic | Yes* | Grand Comics Database — JSON `/api/` | [doc](docs/scrapers/gcd.md) |
 | [`openbd.py`](openbd.py) | `OPENBD` | Book | None | Yes | openBD JP — ISBN API + covers | [doc](docs/scrapers/openbd.md) |
 | [`ndl.py`](ndl.py) | `NDL` | Book | None | No | NDL Search (National Diet Library JP) | [doc](docs/scrapers/ndl.md) |
@@ -57,6 +56,14 @@ No rebuild of the MetaKavita image is required.
 
 \*Bangumi expects a proper User-Agent (handled by the scraper).  
 \*GCD cover URLs are on `files1.comics.org` (may need proxy / browser-like fetch).
+
+### Retired
+
+Retired entries stay in [`store/catalog.json`](store/catalog.json) with `retired: true`: MetaKavita refuses to install them and flags the file for anyone who already has it. Deleting the entry instead would leave those users with a silent orphan.
+
+| File | ID | Retired | Use instead | Why |
+|------|-----|---------|-------------|-----|
+| [`bdgest.py`](bdgest.py) | `BDGEST` | 2026-08-13 | `BEDETHEQUE` (core) | Its own search is dead — it queried bedetheque.com throughout, i.e. the same site as `BEDETHEQUE`, which does it better (CSRF token, ban 403 vs 404, ISO-8859-1, album index). Decisive point: throttling is keyed on the scraper id, so the two entries kept **two clocks for one host** and enabling both hit bedetheque.com at the sum of their rates. [doc](docs/scrapers/bdgest.md) |
 
 ### Skipped / blocked for now
 

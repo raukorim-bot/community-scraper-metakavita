@@ -37,13 +37,34 @@ MetaKavita can:
 | `needs_api_key` + `auth.config_key` | Show Config key field |
 | `proxy_domains` | Cover allowlist (also read when loading the `.py`) |
 | `rate_limit` | Docs / info (enforced in the `.py`) |
-| `status` | `stable` / `beta` / `limited` / `untested` |
+| `status` | `stable` / `beta` / `limited` / `untested` / `retired` |
+| `retired` / `lifecycle` / `retirement` | Out of service — install refused, provider badged in the UI |
 | `covers` | Declared capability (meta) |
 | `quality.covers_ok` | Cover seen in live audit (`true` / `false` / `null`) |
 | `quality.grade` / `quality.note` | Payload grade A–E / score 0–100 |
 | `quality.gaps` | `{ provider, bug, optional }` — classified missing fields |
 | `quality.pick` | Short FR/EN “pick this if…” blurb |
 | `docs` | Human doc page |
+
+### Retiring a scraper
+
+A scraper that must no longer be used is **retired, not deleted**. Set in `store/meta.json`:
+
+```json
+"status": "retired",
+"lifecycle": "retired",
+"retired": true,
+"retirement": { "date": "YYYY-MM-DD", "replacement": "OTHER_ID", "reason_fr": "…", "reason_en": "…" }
+```
+
+`build_store_catalog.py` propagates all of it plus a `retired` tag.
+`services/scraper_store.is_entry_retired` accepts any one of those four signals, so a partial
+edit still blocks the install; `install_from_catalog` then answers **403** and the UI badges the
+provider *Out of service*.
+
+Keep the entry and the `.py`: an entry removed from the catalog leaves users who already
+installed the file with an orphan and no reason shown, and `verify_catalog_sha.py` reads the
+`.py` of every entry it finds.
 
 ### Security
 

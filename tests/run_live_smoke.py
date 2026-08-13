@@ -27,6 +27,34 @@ if str(ROOT) not in sys.path:
 # Scrapers community (hors debug_*)
 SKIP_FILES = {"debug_dump_ann.py", "debug_dump_planetebd.py"}
 
+
+def _retired_files() -> set:
+    """Fichiers dont l'entrée de catalogue est retirée — jamais interrogés.
+
+    Un scraper est retiré quand son site est déjà couvert par un autre du
+    catalogue : l'interroger quand même ferait passer la campagne deux fois sur
+    le même hôte, et la cadence étant indexée sur l'identifiant du scraper, les
+    deux passages ne se voient pas l'un l'autre. C'est le trafic qui a fait
+    bannir une IP sur bedetheque.com. La liste vient du catalogue plutôt que
+    d'un ensemble écrit ici, pour qu'un retrait futur suffise.
+    """
+    try:
+        catalog = json.loads(
+            (ROOT / "store" / "catalog.json").read_text(encoding="utf-8")
+        )
+    except (OSError, json.JSONDecodeError):
+        return set()
+    out = set()
+    for entry in catalog.get("scrapers") or []:
+        statuses = {
+            str(entry.get("lifecycle") or "").lower(),
+            str(entry.get("status") or "").lower(),
+        }
+        tags = {str(t).lower() for t in entry.get("tags") or []}
+        if entry.get("retired") is True or "retired" in statuses | tags:
+            out.add(str(entry.get("file") or ""))
+    return out - {""}
+
 # Requêtes live par type de bibliothèque
 QUERIES: Dict[str, List[Tuple[str, str]]] = {
     "Book": [("Le Petit Prince", "Book"), ("1984", "Book")],
@@ -70,9 +98,10 @@ def _has_key(scraper_id: str) -> bool:
 
 def _discover_modules() -> List[Path]:
     files = sorted(ROOT.glob("*.py"))
+    skip = SKIP_FILES | _retired_files()
     out = []
     for f in files:
-        if f.name.startswith("_") or f.name in SKIP_FILES:
+        if f.name.startswith("_") or f.name in skip:
             continue
         if f.name == "conftest.py":
             continue
@@ -210,8 +239,6 @@ def _pick_queries(inst: Any) -> List[Tuple[str, str]]:
     if inst.id == "BANGUMI":
         out = [("Death Note", "Manga")]
     if inst.id == "PLANETEBD":
-        out = [("Astérix", "Comic")]
-    if inst.id == "BDGEST":
         out = [("Astérix", "Comic")]
     if inst.id == "SENSCRITIQUE":
         out = [("Tintin", "Comic")]

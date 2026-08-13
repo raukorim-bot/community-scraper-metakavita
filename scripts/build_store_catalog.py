@@ -30,7 +30,16 @@ STATUS_LABEL = {
     "beta": "Beta",
     "limited": "Limited",
     "untested": "Not live-tested",
+    "retired": "Retired — out of service",
 }
+
+# MetaKavita (`services/scraper_store.is_entry_retired`) reconnaît un retrait sur
+# quatre signaux indépendants. On les émet tous les quatre : une entrée de
+# catalogue survit à des relectures partielles (un `status` remis à « beta » par
+# mégarde, un tri de tags), et il suffit qu'un seul subsiste pour que
+# l'installation reste refusée.
+RETIRED_STATUS = "retired"
+RETIRED_TAG = "retired"
 
 
 def to_lf(data: bytes) -> bytes:
@@ -52,6 +61,39 @@ def _covers_label(covers_ok) -> str:
     if covers_ok is False:
         return "No"
     return "N/A"
+
+
+def retirement_fields(meta_entry: dict) -> dict:
+    """Bloc de retrait d'une entrée `meta.json`, ou `{}` si elle est en service.
+
+    Le retrait est déclaré à la main dans `store/meta.json` et non déduit d'un
+    scraper absent : le `.py` reste dans le dépôt (`verify_catalog_sha.py` relit
+    le fichier de chaque entrée), et l'entrée doit survivre à la disparition du
+    scraper pour que l'utilisateur qui l'a déjà installé soit averti.
+    """
+    retired = bool(meta_entry.get("retired")) or str(
+        meta_entry.get("lifecycle") or meta_entry.get("status") or ""
+    ).strip().lower() == RETIRED_STATUS
+    if not retired:
+        return {}
+    retirement = meta_entry.get("retirement") or {}
+    return {
+        "retired": True,
+        "lifecycle": RETIRED_STATUS,
+        "retirement": {
+            "date": retirement.get("date"),
+            "replacement": retirement.get("replacement"),
+            "reason": {
+                "fr": retirement.get("reason_fr") or "",
+                "en": retirement.get("reason_en") or "",
+            },
+        },
+    }
+
+
+def _id_cell(e: dict) -> str:
+    """Cellule d'identifiant des tableaux, suffixée quand l'entrée est retirée."""
+    return f"`{e['id']}` (retired)" if e.get("retired") else f"`{e['id']}`"
 
 
 def _gaps_cell(gaps: dict | None) -> str:
@@ -110,7 +152,7 @@ def write_quality_doc(scrapers: list[dict], quality_meta: dict, out: pathlib.Pat
         )
         pick = (q.get("pick") or {}).get("en") or (q.get("pick") or {}).get("fr") or "—"
         lines.append(
-            f"| `{e['id']}` | {', '.join(e['supported_types'])} | {grade} | {note} | "
+            f"| {_id_cell(e)} | {', '.join(e['supported_types'])} | {grade} | {note} | "
             f"{_covers_label(q.get('covers_ok'))} | {useful_s} | {auth} | {pick} |"
         )
 
@@ -145,7 +187,10 @@ def write_quality_doc(scrapers: list[dict], quality_meta: dict, out: pathlib.Pat
             "| Manga FR | `MANGASANCTUARY` |",
             "| Webtoon / manhwa | `WEBTOON`, `TAPAS` |",
             "| Comic US + covers | `METRON` (key), `LOCG`, `PLANETEBD` |",
-            "| French BD | `PLANETEBD`, `BDGEST`, `SENSCRITIQUE` |",
+            # Un seul scraper par hôte : la cadence est indexée sur l'id du
+            # scraper, deux entrées visant bedetheque.com y frappent donc à la
+            # somme de leurs cadences. `BDGEST` a été retiré pour cette raison.
+            "| French BD | `PLANETEBD`, `BEDETHEQUE` (core), `SENSCRITIQUE` |",
             "",
             "## Gap detail (optional included)",
             "",
@@ -157,7 +202,7 @@ def write_quality_doc(scrapers: list[dict], quality_meta: dict, out: pathlib.Pat
         q = e.get("quality") or {}
         g = q.get("gaps") or {}
         lines.append(
-            f"| `{e['id']}` | {', '.join(g.get('provider') or []) or '—'} | "
+            f"| {_id_cell(e)} | {', '.join(g.get('provider') or []) or '—'} | "
             f"{', '.join(g.get('bug') or []) or '—'} | "
             f"{', '.join(g.get('optional') or []) or '—'} |"
         )
@@ -272,9 +317,47 @@ def write_doc(e: dict, docs_dir: pathlib.Path, covers_note: str = "") -> None:
     summary_en = e["summary"].get("en") or e["summary"].get("fr") or ""
     setup_en = e["setup"].get("en") or e["setup"].get("fr") or ""
     covers_section = f"## Covers\n\n{covers_note.strip()}\n\n" if covers_note.strip() else ""
+    retirement = e.get("retirement") or {}
+    banner = ""
+    # Une entrée retirée garde sa page, mais elle n'a plus rien à installer :
+    # la section « Install » est remplacée par la marche à suivre pour se
+    # débarrasser du fichier déjà déposé sous `data/scrapers/`.
+    if e.get("retired"):
+        replacement = retirement.get("replacement")
+        instead = f" Use `{replacement}` instead." if replacement else ""
+        on_date = f" on {retirement['date']}" if retirement.get("date") else ""
+        banner = f"> **Retired{on_date} — do not install.**{instead}\n\n"
+        install_section = f"""## Retired — why
+
+{retirement.get("reason", {}).get("en") or summary_en}
+
+## Removal (MetaKavita)
+
+MetaKavita refuses to install this entry (HTTP 403, *Install blocked (out of
+service)*), and badges it **Out of service** if you already have the file.
+
+1. Open **Manage your scrapers** (`/manage-scrapers`).
+2. `{e["id"]}` is sorted to the top, with the *Out of service* badge — click **Delete**.
+
+The scraper registry reloads on the spot, no restart needed. Deleting
+`data/scrapers/{e["file"]}` by hand works too, but then MetaKavita only notices
+on the next restart.
+"""
+    else:
+        install_section = f"""## Install (MetaKavita)
+
+1. Download [`{e["file"]}`]({e["install"]["url"]}) into `data/scrapers/`.
+2. Verify SHA-256: `{e["install"]["sha256"]}`.
+3. Restart MetaKavita.
+4. Enable the provider in Config for the matching types ({types}).
+
+### Setup
+
+{setup_en}
+"""
     md = f"""# {e["display_name"]}
 
-| | |
+{banner}| | |
 |---|---|
 | **ID** | `{e["id"]}` |
 | **File** | [`{e["file"]}`](../../{e["file"]}) |
@@ -301,17 +384,7 @@ def write_doc(e: dict, docs_dir: pathlib.Path, covers_note: str = "") -> None:
 
 Gaps: `{_gaps_cell(q.get("gaps"))}` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 
-{covers_section}## Install (MetaKavita)
-
-1. Download [`{e["file"]}`]({e["install"]["url"]}) into `data/scrapers/`.
-2. Verify SHA-256: `{e["install"]["sha256"]}`.
-3. Restart MetaKavita.
-4. Enable the provider in Config for the matching types ({types}).
-
-### Setup
-
-{setup_en}
-
+{covers_section}{install_section}
 ## Proxy domains (covers)
 
 {domains}
@@ -377,6 +450,7 @@ def main() -> int:
                 },
             }
         is_core = bool(fields.get("is_core"))
+        retirement = retirement_fields(m)
         tags = set(
             types
             + [m["method"], m["region"].split("/")[0].lower()]
@@ -384,6 +458,8 @@ def main() -> int:
         )
         if is_core:
             tags.add("core")
+        if retirement:
+            tags.add(RETIRED_TAG)
         if quality and quality.get("covers_ok") is True:
             tags.add("covers")
         if quality and quality.get("covers_ok") is False:
@@ -416,6 +492,7 @@ def main() -> int:
             "warnings": m["warnings"],
             "quality": quality,
             "docs": f"docs/scrapers/{path.stem}.md",
+            **retirement,
             "install": {
                 "path": fields["file"],
                 "url": f"{RAW}/{fields['file']}",
@@ -483,7 +560,7 @@ def main() -> int:
         q = e.get("quality") or {}
         grade = q.get("grade") if q.get("grade") is not None else "—"
         index.append(
-            f"| `{e['id']}` | {e['display_name']} | {', '.join(e['supported_types'])} | "
+            f"| {_id_cell(e)} | {e['display_name']} | {', '.join(e['supported_types'])} | "
             f"{e['method']} | {_covers_label(q.get('covers_ok'))} | {grade} | {auth} | "
             f"[{stem}.md](scrapers/{stem}.md) |"
         )

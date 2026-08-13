@@ -23,7 +23,7 @@ Use this page to **pick a scraper**. The machine catalog [`store/catalog.json`](
 | `ANN` | Manga | A | 100 | Yes | — | — | EN manga reference (XML API) — covers OK. |
 | `BABELIO` | Book | A | 100 | Yes | — | — | French literature — best for FR Book libraries. |
 | `BANGUMI` | Book, Manga | A | 100 | Yes | — | — | JP/CN manga & books — very complete (incl. status). |
-| `BDGEST` | Comic | A | 100 | Yes | — | — | FR BD (Bédéthèque) — covers + series year. |
+| `BDGEST` (retired) | Comic | A | 100 | Yes | — | — | Never — retired on 2026-08-13, use BEDETHEQUE (core). |
 | `BDTHEQUE` | Comic | — | — | N/A | — | — | — |
 | `BEDETHEQUE` | Comic | — | — | N/A | — | — | — |
 | `BNE` | Book | A | 98 | No | cover_url | — | Spanish national catalog — records OK, no SRU covers. |
@@ -80,7 +80,7 @@ Use this page to **pick a scraper**. The machine catalog [`store/catalog.json`](
 | Manga FR | `MANGASANCTUARY` |
 | Webtoon / manhwa | `WEBTOON`, `TAPAS` |
 | Comic US + covers | `METRON` (key), `LOCG`, `PLANETEBD` |
-| French BD | `PLANETEBD`, `BDGEST`, `SENSCRITIQUE` |
+| French BD | `PLANETEBD`, `BEDETHEQUE` (core), `SENSCRITIQUE` |
 
 ## Gap detail (optional included)
 
@@ -91,7 +91,7 @@ Use this page to **pick a scraper**. The machine catalog [`store/catalog.json`](
 | `ANN` | — | — | isbn, publisher, status |
 | `BABELIO` | — | — | alternative_titles, status |
 | `BANGUMI` | — | — | isbn |
-| `BDGEST` | — | — | isbn, publisher, tags, alternative_titles, status |
+| `BDGEST` (retired) | — | — | isbn, publisher, tags, alternative_titles, status |
 | `BDTHEQUE` | — | — | — |
 | `BEDETHEQUE` | — | — | — |
 | `BNE` | cover_url | — | isbn, tags, alternative_titles, status |

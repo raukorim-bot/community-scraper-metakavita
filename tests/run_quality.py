@@ -45,7 +45,6 @@ FILE_BY_ID = {
     "ANN": "ann.py",
     "BABELIO": "babelio.py",
     "BANGUMI": "bangumi.py",
-    "BDGEST": "bdgest.py",
     "BNE": "bne.py",
     "BNF": "bnf.py",
     "DECITRE": "decitre.py",
@@ -228,14 +227,10 @@ SUITES: List[Suite] = [
             Case("zzzzqwxnotitle999", "Comic", None),
         ],
     ),
-    Suite(
-        "BDGEST",
-        [
-            Case("Astérix", "Comic", "Astérix", title_mode="contains", require_cover=True, min_score=0.55),
-            Case("Tintin", "Comic", "Tintin", title_mode="contains", min_score=0.55),
-            Case("zzzzqwxnotitle999", "Comic", None),
-        ],
-    ),
+    # BDGEST retiré le 2026-08-13 : il visait bedetheque.com, déjà couvert par
+    # BEDETHEQUE. Le garder ici ferait passer une campagne de mesure deux fois
+    # sur le même hôte, sur deux horloges de cadence distinctes — exactement ce
+    # qui a fait bannir une IP.
     Suite(
         "GCD",
         [

@@ -118,7 +118,15 @@
       "fr"
     ],
     "covers": true,
-    "status": "beta",
+    "status": "retired",
+    "lifecycle": "retired",
+    "retired": true,
+    "retirement": {
+      "date": "2026-08-13",
+      "replacement": "BEDETHEQUE",
+      "reason_fr": "La recherche propre à bdgest.com est morte : le scraper interrogeait en réalité bedetheque.com de bout en bout. Or le catalogue livre déjà BEDETHEQUE pour ce site, et en mieux (jeton CSRF, 403 de bannissement distingué d'un 404, décodage ISO-8859-1, index des albums). Surtout, la cadence est indexée sur l'identifiant du scraper : BDGEST et BEDETHEQUE tenaient deux horloges séparées pour un seul hôte, et activer les deux frappait bedetheque.com à la somme des deux cadences — ce qui a valu un bannissement d'IP.",
+      "reason_en": "The bdgest.com search is dead: the scraper actually queried bedetheque.com end to end. The catalog already ships BEDETHEQUE for that site, and does it better (CSRF token, ban 403 told apart from a 404, ISO-8859-1 decoding, album index). Above all, throttling is keyed on the scraper id: BDGEST and BEDETHEQUE kept two separate clocks for a single host, so enabling both hit bedetheque.com at the sum of the two rates — which is how an IP got banned."
+    },
     "homepage": "https://www.bedetheque.com",
     "region": "FR",
     "auth": {
@@ -126,13 +134,13 @@
       "config_key": null,
       "kind": "none"
     },
-    "summary_fr": "BDgest / Bédéthèque — BD FR via bedetheque.com (HTML, best-effort).",
-    "summary_en": "BDgest / Bédéthèque — French BD via bedetheque.com (HTML, best-effort).",
-    "setup_fr": "Aucune clé. rate_limit=3.0 s.",
-    "setup_en": "No API key. rate_limit=3.0 s.",
+    "summary_fr": "Hors d'usage — doublon de BEDETHEQUE (core) sur le même site, avec une horloge de cadence séparée qui doublait le trafic vers bedetheque.com. Utilisez BEDETHEQUE.",
+    "summary_en": "Out of service — duplicate of BEDETHEQUE (core) on the same site, with a separate throttle clock that doubled traffic to bedetheque.com. Use BEDETHEQUE instead.",
+    "setup_fr": "Rien à installer : l'entrée est retirée, MetaKavita refuse l'installation. Si le fichier est déjà présent, supprimez-le depuis le hub des scrapers.",
+    "setup_en": "Nothing to set up: the entry is retired and MetaKavita refuses the install. If the file is already present, delete it from the scraper hub.",
     "warnings": [
-      "Matching encore perfectible.",
-      "Site sensible aux bans IP."
+      "Retiré le 2026-08-13 — remplacé par BEDETHEQUE (livré en core).",
+      "Site sensible aux bans IP : deux scrapers sur bedetheque.com = deux fois la cadence."
     ]
   },
   "BDTHEQUE": {
