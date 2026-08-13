@@ -19,8 +19,9 @@ published — behind the floor that says so.
   instead of all three reading as *no match*.
 * HTML pages are read with their declared encoding, so accented titles stop arriving mangled.
 * ComicVine's scoring no longer lets a collection outrank an exact title.
-* `BEDETHEQUE`, `COMICVINE`, `MANGADEX` and `PLANETEBD` gained `fetch_volume_index`: they can
+* `BEDETHEQUE`, `COMICVINE`, `MANGADEX`, `MANGANEWS` and `PLANETEBD` gained `fetch_volume_index`: they can
   list a series' albums in one pass, which is what MetaKavita's per-volume enrichment reads.
+  Manga-News lists French manga volumes (title, summary, ISBN, date), one page per volume.
 
 ### The floor
 
@@ -29,7 +30,7 @@ into `store/catalog.json` and opens each doc page with the prerequisite. Below t
 MetaKavita skips the entry during the core sync (keeping the working copy) and answers **409** on
 a manual install. Equality installs — the floor reads *from this version onwards*.
 
-Versions move from `1.0.0` to `1.1.0`, and to `1.2.0` for the four that also gained the volume
+Versions move from `1.0.0` to `1.1.0`, and to `1.2.0` for the five that also gained the volume
 index. Without that bump the corrected copies would sit in the catalog and reach nobody: the
 image refuses an entry whose version is not ahead of the file already installed.
 

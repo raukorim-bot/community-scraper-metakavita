@@ -7,7 +7,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://anilist.co",
     "region": "INTL",
     "auth": {
@@ -22,7 +21,8 @@
     "warnings": [
       "AniList API currently degraded to 30 req/min (normal 90); rate_limit=2.25 keeps ~10% headroom.",
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "ANIMEPLANET": {
     "method": "html",
@@ -153,7 +153,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://www.bdtheque.com",
     "region": "FR",
     "auth": {
@@ -167,7 +166,8 @@
     "setup_en": "No API key. Ships as MetaKavita core (is_core).",
     "warnings": [
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "BEDETHEQUE": {
     "method": "html",
@@ -176,7 +176,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://www.bedetheque.com",
     "region": "FR",
     "auth": {
@@ -190,7 +189,8 @@
     "setup_en": "No API key. Ships as MetaKavita core (is_core).",
     "warnings": [
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "BNE": {
     "method": "sru",
@@ -239,7 +239,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://comicvine.gamespot.com",
     "region": "US",
     "auth": {
@@ -253,7 +252,8 @@
     "setup_en": "ComicVine key → COMICVINE_API_KEY. Ships as MetaKavita core (is_core).",
     "warnings": [
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "DECITRE": {
     "method": "html",
@@ -329,7 +329,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://books.google.com",
     "region": "INTL",
     "auth": {
@@ -343,7 +342,8 @@
     "setup_en": "Google key → GOOGLEBOOKS_API_KEY. Ships as MetaKavita core (is_core).",
     "warnings": [
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "HARDCOVER": {
     "method": "graphql",
@@ -352,7 +352,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://hardcover.app",
     "region": "US",
     "auth": {
@@ -366,7 +365,8 @@
     "setup_en": "Hardcover key → HARDCOVER_API_KEY. Ships as MetaKavita core (is_core).",
     "warnings": [
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "ISBNDB": {
     "method": "api",
@@ -422,7 +422,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://kitsu.io",
     "region": "INTL",
     "auth": {
@@ -436,7 +435,8 @@
     "setup_en": "No API key. Ships as MetaKavita core (is_core).",
     "warnings": [
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "LOC": {
     "method": "sru",
@@ -496,7 +496,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://myanimelist.net",
     "region": "INTL",
     "auth": {
@@ -510,7 +509,8 @@
     "setup_en": "MAL Client ID → MAL_API_KEY. Ships as MetaKavita core (is_core).",
     "warnings": [
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "MANGABAKA": {
     "method": "api",
@@ -520,7 +520,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://mangabaka.org",
     "region": "INTL",
     "auth": {
@@ -535,7 +534,8 @@
     "warnings": [
       "Search endpoint 30 req/min; rate_limit=2.25 keeps ~10% headroom.",
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "MANGADEX": {
     "method": "api",
@@ -545,7 +545,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://mangadex.org",
     "region": "INTL",
     "auth": {
@@ -560,7 +559,8 @@
     "warnings": [
       "MangaDex global ~5 req/s; rate_limit=0.25 keeps ~10% headroom.",
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "MANGANEWS": {
     "method": "html",
@@ -569,7 +569,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://www.manga-news.com",
     "region": "FR",
     "auth": {
@@ -583,7 +582,8 @@
     "setup_en": "No API key. Ships as MetaKavita core (is_core).",
     "warnings": [
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "MANGASANCTUARY": {
     "method": "html",
@@ -614,7 +614,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://www.mangaupdates.com",
     "region": "US",
     "auth": {
@@ -629,7 +628,8 @@
     "warnings": [
       "Reads mostly unlimited; 0.55 s cushions DDoS 429 protection.",
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "METRON": {
     "method": "api",
@@ -728,7 +728,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://openlibrary.org",
     "region": "INTL",
     "auth": {
@@ -743,7 +742,8 @@
     "warnings": [
       "Anonymous Open Library ceiling is 1 req/s; rate_limit=1.1 keeps ~10% headroom without requiring identified access.",
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "PLANETEBD": {
     "method": "html",
@@ -822,7 +822,6 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
     "homepage": "https://shikimori.one",
     "region": "RU",
     "auth": {
@@ -837,7 +836,8 @@
     "warnings": [
       "Official limit 5 rps and 90 rpm; rate_limit=0.75 stays ~10% under rpm.",
       "Already ships in the MetaKavita image — Store shows state=core."
-    ]
+    ],
+    "requires_app": "1.7.0"
   },
   "TAPAS": {
     "method": "html",
