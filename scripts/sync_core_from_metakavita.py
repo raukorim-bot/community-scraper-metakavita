@@ -11,6 +11,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SRC = Path(r"Z:\kavitafetcher\scrapers")
 
+# Deux listes, une seule opération : toutes ces copies sont écrasées depuis
+# l'image, qui est la source de vérité des scrapers core. Elles ne diffèrent que
+# par `META_NEW`, qui ne décrit que les entrées `store/meta.json` à créer.
 MISSING = [
     "anilist.py",
     "bdtheque.py",
@@ -27,6 +30,12 @@ MISSING = [
     "openlibrary.py",
     "shikimori.py",
 ]
+# Ces sept-là étaient seulement tagués `is_core`, jamais recopiés : leur version
+# catalogue avait donc silencieusement divergé de l'image, qui les avait entre
+# temps fait passer par `BaseScraper._http_get`. Résultat, la cadence corrigée
+# côté image n'atteignait pas les utilisateurs — et quatre d'entre eux visent
+# des sites français (Babelio, Decitre, Planète BD, SensCritique). Ils sont
+# désormais recopiés comme les autres.
 EXISTING_CORE = [
     "ann.py",
     "babelio.py",
@@ -293,7 +302,7 @@ def main() -> int:
         print(f"missing MetaKavita scrapers dir: {SRC}", file=sys.stderr)
         return 1
 
-    for name in MISSING:
+    for name in MISSING + EXISTING_CORE:
         src = SRC / name
         if not src.is_file():
             print(f"missing source {src}", file=sys.stderr)
@@ -304,20 +313,6 @@ def main() -> int:
         dest.write_text(raw, encoding="utf-8", newline="\n")
         assert class_has_is_core(dest), name
         print(f"copied {name}")
-
-    for name in EXISTING_CORE:
-        path = ROOT / name
-        if not path.is_file():
-            print(f"missing existing {name}", file=sys.stderr)
-            return 1
-        text = path.read_text(encoding="utf-8")
-        text2 = ensure_is_core(text)
-        if text2 != text:
-            path.write_text(text2, encoding="utf-8", newline="\n")
-            print(f"tagged {name}")
-        else:
-            print(f"already tagged {name}")
-        assert class_has_is_core(path), name
 
     meta_path = ROOT / "store" / "meta.json"
     meta = json.loads(meta_path.read_text(encoding="utf-8"))

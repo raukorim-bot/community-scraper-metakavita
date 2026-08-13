@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://isbndb.com |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -30,7 +30,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`isbndb.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/isbndb.py) into `data/scrapers/`.
-2. Verify SHA-256: `27a66c770cfb9ac8ba62752aa6af3f0b02c1c4fa56602dc2ec0d1703a9e79bd8`.
+2. Verify SHA-256: `041adaef5c8d581472a785d42c6dc3336a846002270fa36e41220e1ea5361280`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

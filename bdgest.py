@@ -1,13 +1,28 @@
-"""BDgest / Bédéthèque — métadonnées BD FR via bedetheque.com (HTML).
+"""BDgest / Bédéthèque — RETIRÉ le 2026-08-13, remplacé par BEDETHEQUE.
 
-La recherche bdgest.com/search est morte (404). On utilise
-https://www.bedetheque.com/search/albums?RechSerie=… puis les pages
-serie-N-BD-Slug.html dérivées des albums.
+La recherche bdgest.com/search est morte (404) : ce scraper interrogeait en
+réalité bedetheque.com de bout en bout, comme BEDETHEQUE, que MetaKavita livre
+déjà en core et qui fait mieux (jeton CSRF, 403 de bannissement distingué d'un
+404, décodage ISO-8859-1, index des albums).
+
+Ce qui a décidé du retrait n'est pas le doublon mais la cadence : elle est
+indexée sur l'identifiant du scraper, BDGEST et BEDETHEQUE tenaient donc deux
+horloges pour un seul hôte, et l'utilisateur qui activait les deux frappait
+bedetheque.com à la somme des deux cadences — c'est ce trafic qui a fait bannir
+une IP.
+
+Le fichier reste dans le dépôt : `store/catalog.json` garde une entrée marquée
+`retired`, MetaKavita refuse de l'installer et signale le fichier déjà déposé
+sous `data/scrapers/` — et `scripts/verify_catalog_sha.py` relit le `.py` de
+chaque entrée. Il n'est plus maintenu : la version reste à 1.1.0 puisqu'une
+entrée retirée ne peut plus livrer de mise à jour à personne.
 """
 from __future__ import annotations
 
 import logging
 import re
+import threading
+import time
 from typing import Any, Dict, List, Optional, Tuple
 from urllib.parse import urljoin, urlparse
 
@@ -28,11 +43,66 @@ _SERIES = re.compile(r"serie-(\d+)-BD-([^/?#]+)\.html", re.I)
 _ALBUM = re.compile(r"BD-[^/]+-(\d+)\.html", re.I)
 _YEAR = re.compile(r"(1[0-9]{3}|20[0-9]{2})")
 
+# --- Cadence des requêtes (repli de compatibilité) ---------------------------
+# `BaseScraper._http_get` applique le `rate_limit` du scraper AVANT CHAQUE
+# requête. Sans lui, la cadence n'est honorée qu'une fois par `fetch()`, par
+# l'appelant, et les requêtes émises À L'INTÉRIEUR partent en rafale : c'est ce
+# profil de trafic qui fait bannir une IP sur un site sans API. Ce helper est
+# récent, et un scraper du catalogue peut être installé sur une image MetaKavita
+# antérieure où l'appeler lèverait `AttributeError` à l'exécution. On sonde donc
+# sa présence à chaque appel et, quand il manque, on refait son travail ici :
+# aucun chemin ne doit pouvoir émettre une requête non cadencée.
+_LAST_CALL: dict = {}
+_LAST_CALL_LOCK = threading.Lock()
+
+
+def _throttle_fallback(scraper) -> None:
+    """Attend le solde du `rate_limit` sur les images sans `_http_get`.
+
+    `services.provider_throttle` est privilégié quand il existe : c'est
+    l'horloge que partagent tous les chemins de l'application (enrichissement,
+    recherche de couvertures, diagnostic), et tenir un compteur séparé
+    reviendrait à autoriser deux fois la cadence sur le même fournisseur. Le
+    compteur local ci-dessous n'est qu'un dernier recours, pour une image qui
+    n'aurait même pas ce module.
+    """
+    try:
+        from services.provider_throttle import throttle_provider
+    except Exception:
+        pass
+    else:
+        throttle_provider(scraper)
+        return
+
+    delay = float(getattr(scraper, "rate_limit", 1.0) or 0.0)
+    key = getattr(scraper, "id", "") or scraper.__class__.__name__
+    with _LAST_CALL_LOCK:
+        last = _LAST_CALL.get(key)
+        now = time.monotonic()
+        if last is not None and now - last < delay:
+            time.sleep(delay - (now - last))
+        _LAST_CALL[key] = time.monotonic()
+
+
+def _throttled_get(scraper, client, url: str, **kwargs):
+    """GET cadencé : `BaseScraper._http_get` s'il existe, repli explicite sinon."""
+    helper = getattr(scraper, "_http_get", None)
+    if callable(helper):
+        return helper(client, url, **kwargs)
+    _throttle_fallback(scraper)
+    kwargs.setdefault("timeout", getattr(scraper, "http_timeout", 20.0))
+    return client.get(url, **kwargs)
+
 
 class BdgestScraper(BaseScraper):
     id = "BDGEST"
     display_name = "BDgest / Bédéthèque"
     supported_types = {"Comic"}
+    # 1.1.0 : les quatorze requêtes possibles d'un `fetch()` passent désormais
+    # toutes par la cadence, au lieu d'une seule appliquée avant l'appel. La
+    # montée de version est ce qui autorise l'image à remplacer la 1.0.x déjà
+    # installée sous `data/scrapers/` : sans elle, le correctif n'arrive pas.
+    version = "1.1.0"
     rate_limit = 3.0  # HTML bedetheque.com — anti-ban IP
     proxy_domains = [
         "bdgest.com",
@@ -192,11 +262,13 @@ class BdgestScraper(BaseScraper):
         """Search albums by series name, group by serie-N-BD-Slug pages."""
         # Warmup cookies / csrf
         try:
-            session.get(_BASE + "/", timeout=20)
+            _throttled_get(self, session, _BASE + "/", timeout=20)
         except Exception:
             pass
 
-        res = session.get(
+        res = _throttled_get(
+            self,
+            session,
             f"{_BASE}/search/albums",
             params={"RechSerie": terms},
             timeout=40,
@@ -282,7 +354,7 @@ class BdgestScraper(BaseScraper):
 
         for album_url in albums:
             try:
-                ar = session.get(album_url, timeout=25)
+                ar = _throttled_get(self, session, album_url, timeout=25)
             except Exception:
                 continue
             if ar.status_code != 200:
@@ -318,7 +390,7 @@ class BdgestScraper(BaseScraper):
 
     def _parse_series(self, session, url: str) -> Optional[Dict[str, Any]]:
         try:
-            res = session.get(url, timeout=25)
+            res = _throttled_get(self, session, url, timeout=25)
         except Exception:
             return None
         if res.status_code != 200:

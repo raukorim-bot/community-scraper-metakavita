@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | FR — fr |
 | **Site** | https://www.manga-sanctuary.com |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -30,7 +30,7 @@ Gaps: `opt.: isbn, publisher, tags, alternative_titles, status` — global overv
 ## Install (MetaKavita)
 
 1. Download [`mangasanctuary.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangasanctuary.py) into `data/scrapers/`.
-2. Verify SHA-256: `b942112acefe4d77f316d0088e2b95d6702cbb0181f122a5cdcdd2f04dd85835`.
+2. Verify SHA-256: `ec22ae8cf253849ef66c9abcf75757c5b12b8c688f5bf6a94afe362dc2e32c7a`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 

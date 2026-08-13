@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://www.anime-planet.com |
-| **Version** | `1.0.1` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -34,7 +34,7 @@ Gaps: `opt.: isbn, publisher, alternative_titles, status` — global overview: [
 ## Install (MetaKavita)
 
 1. Download [`animeplanet.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/animeplanet.py) into `data/scrapers/`.
-2. Verify SHA-256: `c3eb562a678283777e46fae8029d6fcd08a83cb8682662cb9aec97db6c227a68`.
+2. Verify SHA-256: `a3a394fe019255011b258b85669d6f31800ce279fab8876a07da768a0091720c`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 

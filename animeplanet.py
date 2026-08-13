@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import logging
 import re
+import threading
+import time
 from typing import Any, Dict, List, Optional
 from urllib.parse import urljoin, urlparse
 
@@ -44,10 +46,64 @@ def _upgrade_cover(url: Optional[str]) -> Optional[str]:
     return upgraded + (sep + qs if qs else "")
 
 
+# --- Cadence des requêtes (repli de compatibilité) ---------------------------
+# `BaseScraper._http_get` applique le `rate_limit` du scraper AVANT CHAQUE
+# requête. Sans lui, la cadence n'est honorée qu'une fois par `fetch()`, par
+# l'appelant, et les requêtes émises À L'INTÉRIEUR partent en rafale : c'est ce
+# profil de trafic qui fait bannir une IP sur un site sans API. Ce helper est
+# récent, et un scraper du catalogue peut être installé sur une image MetaKavita
+# antérieure où l'appeler lèverait `AttributeError` à l'exécution. On sonde donc
+# sa présence à chaque appel et, quand il manque, on refait son travail ici :
+# aucun chemin ne doit pouvoir émettre une requête non cadencée.
+_LAST_CALL: dict = {}
+_LAST_CALL_LOCK = threading.Lock()
+
+
+def _throttle_fallback(scraper) -> None:
+    """Attend le solde du `rate_limit` sur les images sans `_http_get`.
+
+    `services.provider_throttle` est privilégié quand il existe : c'est
+    l'horloge que partagent tous les chemins de l'application (enrichissement,
+    recherche de couvertures, diagnostic), et tenir un compteur séparé
+    reviendrait à autoriser deux fois la cadence sur le même fournisseur. Le
+    compteur local ci-dessous n'est qu'un dernier recours, pour une image qui
+    n'aurait même pas ce module.
+    """
+    try:
+        from services.provider_throttle import throttle_provider
+    except Exception:
+        pass
+    else:
+        throttle_provider(scraper)
+        return
+
+    delay = float(getattr(scraper, "rate_limit", 1.0) or 0.0)
+    key = getattr(scraper, "id", "") or scraper.__class__.__name__
+    with _LAST_CALL_LOCK:
+        last = _LAST_CALL.get(key)
+        now = time.monotonic()
+        if last is not None and now - last < delay:
+            time.sleep(delay - (now - last))
+        _LAST_CALL[key] = time.monotonic()
+
+
+def _throttled_get(scraper, client, url: str, **kwargs):
+    """GET cadencé : `BaseScraper._http_get` s'il existe, repli explicite sinon."""
+    helper = getattr(scraper, "_http_get", None)
+    if callable(helper):
+        return helper(client, url, **kwargs)
+    _throttle_fallback(scraper)
+    kwargs.setdefault("timeout", getattr(scraper, "http_timeout", 20.0))
+    return client.get(url, **kwargs)
+
+
 class AnimePlanetScraper(BaseScraper):
     id = "ANIMEPLANET"
     display_name = "Anime-Planet"
     supported_types = {"Manga"}
+    # 1.1.0 : toutes les requêtes d'un `fetch()` passent par la cadence, au lieu
+    # d'une seule appliquée avant l'appel.
+    version = "1.1.0"
     rate_limit = 3.0  # HTML — anti-ban IP
     proxy_domains = ["anime-planet.com", "www.anime-planet.com", "cdn.anime-planet.com"]
     has_direct_id_support = True
@@ -214,7 +270,9 @@ class AnimePlanetScraper(BaseScraper):
         return covers
 
     def _search(self, session, terms: str) -> List[dict]:
-        res = session.get(
+        res = _throttled_get(
+            self,
+            session,
             f"{_BASE}/manga/all",
             params={"name": terms, "sort": "average", "order": "desc"},
             timeout=25,
@@ -248,7 +306,7 @@ class AnimePlanetScraper(BaseScraper):
         return hits
 
     def _parse_manga(self, session, url: str) -> Optional[Dict[str, Any]]:
-        res = session.get(url, timeout=25)
+        res = _throttled_get(self, session, url, timeout=25)
         if res.status_code != 200:
             return None
         soup = BeautifulSoup(res.text, "html.parser")

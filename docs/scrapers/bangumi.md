@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | JP/CN — ja, zh, en |
 | **Site** | https://bgm.tv |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -30,7 +30,7 @@ Gaps: `opt.: isbn` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`bangumi.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bangumi.py) into `data/scrapers/`.
-2. Verify SHA-256: `8e780d12347e83714a506d4a1cd0abc16e9fa154db54052ffff3d968690a835a`.
+2. Verify SHA-256: `2d4f7feb9e43f9e94adb8d7fee794c33005810a8c7c0a70b65b3e4570d05e97a`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Manga).
 

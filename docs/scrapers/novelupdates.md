@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://www.novelupdates.com |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -30,7 +30,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`novelupdates.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/novelupdates.py) into `data/scrapers/`.
-2. Verify SHA-256: `e8e61c4eebe87aedff2f46e33dc67e6c1a2fdceaa71e29ee0b42ccd026a1ce4e`.
+2. Verify SHA-256: `57d3acf2630f25cd7bbb66f891fc4fb8b8d919384c1705f5616b73b3750826d8`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book, Manga).
 

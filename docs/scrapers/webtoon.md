@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | KR/Global — en, fr |
 | **Site** | https://www.webtoons.com |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -30,7 +30,7 @@ Gaps: `provider: year; opt.: isbn, publisher, tags, alternative_titles, status` 
 ## Install (MetaKavita)
 
 1. Download [`webtoon.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/webtoon.py) into `data/scrapers/`.
-2. Verify SHA-256: `dde4a94c3f08b3bf547d05d48d4da85d12b550289c1d7e350a461620c2610f4f`.
+2. Verify SHA-256: `cf38ad2766fdd7b6e79f4bb9d7a79a5246e99b5a51d5adc6361e177e5f73a306`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 

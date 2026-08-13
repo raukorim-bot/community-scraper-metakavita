@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | JP — ja, en |
 | **Site** | https://ndlsearch.ndl.go.jp |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -30,7 +30,7 @@ Gaps: `provider: cover_url; opt.: tags, alternative_titles, status` — global o
 ## Install (MetaKavita)
 
 1. Download [`ndl.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/ndl.py) into `data/scrapers/`.
-2. Verify SHA-256: `c7c5d1ebf38157af1ae623300e8f02535265dcaba52d7823009a522fa4dc751c`.
+2. Verify SHA-256: `fefcab9e3d0627f7f78b034e471b89ab5654e1a3dde3e1cd8b1099b085c5a846`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

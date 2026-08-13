@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | NL — nl |
 | **Site** | https://www.kb.nl |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -30,7 +30,7 @@ Gaps: `provider: cover_url, summary; opt.: isbn, tags, alternative_titles, statu
 ## Install (MetaKavita)
 
 1. Download [`kb.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/kb.py) into `data/scrapers/`.
-2. Verify SHA-256: `d51e5b2033c15efa3bf4878d0f3aded1d5ca39a0d69af7c7ea80abec6a7181bf`.
+2. Verify SHA-256: `b9f60397a24dac46a8c535251af2ce6bc826a97f2b4432c161f1f683ef877a1c`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

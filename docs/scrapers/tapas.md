@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://tapas.io |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -30,7 +30,7 @@ Gaps: `provider: summary, year; opt.: isbn, publisher, tags, alternative_titles,
 ## Install (MetaKavita)
 
 1. Download [`tapas.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/tapas.py) into `data/scrapers/`.
-2. Verify SHA-256: `7e06044976e1d15cdcc442acc0545918130f67652a19d5ef0a79ea0efedd6f8c`.
+2. Verify SHA-256: `fd83e2d5594fde1742ae842bbbb6a9dc9a8ebe6049effd9b4317f9e506dc0ccc`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Manga).
 

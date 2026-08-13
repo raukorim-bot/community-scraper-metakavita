@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | DE — de, en |
 | **Site** | https://www.dnb.de |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -30,7 +30,7 @@ Gaps: `provider: cover_url, summary; opt.: tags, status` — global overview: [`
 ## Install (MetaKavita)
 
 1. Download [`dnb.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/dnb.py) into `data/scrapers/`.
-2. Verify SHA-256: `f7e1d69edbbfad0f8381cf62029122f77fcbc802d9a97bc784e23f83873de1f1`.
+2. Verify SHA-256: `a3e25c9d2f68569a9f0b093aea06302a585aeddf96978194979ada1ee8d7c00a`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | ES — es |
 | **Site** | https://www.tebeosfera.com |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -30,7 +30,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`tebeosfera.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/tebeosfera.py) into `data/scrapers/`.
-2. Verify SHA-256: `c10dd06f71e4d1a81f994abc9718b0d91f59099e53d9e8772bf6ae57abba315e`.
+2. Verify SHA-256: `90e9f89e3d3eec11032064511266a5040ed8390b1962094c6aca655c9ac2a962`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 

@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://www.loc.gov |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -30,7 +30,7 @@ Gaps: `provider: cover_url, summary, url; opt.: isbn, publisher, alternative_tit
 ## Install (MetaKavita)
 
 1. Download [`loc.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/loc.py) into `data/scrapers/`.
-2. Verify SHA-256: `cffe23f197c6971160cd08496141aee104f755b26818dab48e012a0a48715d4c`.
+2. Verify SHA-256: `975c94a5594d5a7203eb9c1d8827584912f16cba89b80be91939600ee5170334`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

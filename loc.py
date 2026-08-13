@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import logging
 import re
+import threading
+import time
 import xml.etree.ElementTree as ET
 from typing import Any, Dict, List, Optional
 from urllib.parse import urlparse
@@ -63,10 +65,66 @@ def _norm_isbn(raw: Optional[str]) -> Optional[str]:
     return c if len(c) in (10, 13) else None
 
 
+# --- Cadence des requêtes (repli de compatibilité) ---------------------------
+# `BaseScraper._http_get` applique le `rate_limit` du scraper AVANT CHAQUE
+# requête. Sans lui, la cadence n'est honorée qu'une fois par `fetch()`, par
+# l'appelant, et les requêtes émises À L'INTÉRIEUR partent en rafale : c'est ce
+# profil de trafic qui fait bannir une IP sur un site sans API. Ce helper est
+# récent, et un scraper du catalogue peut être installé sur une image MetaKavita
+# antérieure où l'appeler lèverait `AttributeError` à l'exécution. On sonde donc
+# sa présence à chaque appel et, quand il manque, on refait son travail ici :
+# aucun chemin ne doit pouvoir émettre une requête non cadencée.
+_LAST_CALL: dict = {}
+_LAST_CALL_LOCK = threading.Lock()
+
+
+def _throttle_fallback(scraper) -> None:
+    """Attend le solde du `rate_limit` sur les images sans `_http_get`.
+
+    `services.provider_throttle` est privilégié quand il existe : c'est
+    l'horloge que partagent tous les chemins de l'application (enrichissement,
+    recherche de couvertures, diagnostic), et tenir un compteur séparé
+    reviendrait à autoriser deux fois la cadence sur le même fournisseur. Le
+    compteur local ci-dessous n'est qu'un dernier recours, pour une image qui
+    n'aurait même pas ce module.
+    """
+    try:
+        from services.provider_throttle import throttle_provider
+    except Exception:
+        pass
+    else:
+        throttle_provider(scraper)
+        return
+
+    delay = float(getattr(scraper, "rate_limit", 1.0) or 0.0)
+    key = getattr(scraper, "id", "") or scraper.__class__.__name__
+    with _LAST_CALL_LOCK:
+        last = _LAST_CALL.get(key)
+        now = time.monotonic()
+        if last is not None and now - last < delay:
+            time.sleep(delay - (now - last))
+        _LAST_CALL[key] = time.monotonic()
+
+
+def _throttled_get(scraper, client, url: str, **kwargs):
+    """GET cadencé : `BaseScraper._http_get` s'il existe, repli explicite sinon."""
+    helper = getattr(scraper, "_http_get", None)
+    if callable(helper):
+        return helper(client, url, **kwargs)
+    _throttle_fallback(scraper)
+    kwargs.setdefault("timeout", getattr(scraper, "http_timeout", 20.0))
+    return client.get(url, **kwargs)
+
+
 class LocScraper(BaseScraper):
     id = "LOC"
     display_name = "Library of Congress"
     supported_types = {"Book"}
+    # 1.1.0 : `_search_sru` enchaîne jusqu'à trois formulations de la requête,
+    # puis `_search` retombe sur le JSON loc.gov — quatre requêtes possibles qui
+    # ne payaient la cadence qu'une fois. Toutes y passent désormais, ce qui
+    # compte d'autant plus que loc.gov coupe à 20 requêtes par minute.
+    version = "1.1.0"
     rate_limit = 3.4  # ~17.6/min: 10% under loc.gov JSON 20/min
     proxy_domains = [
         "loc.gov",
@@ -218,7 +276,9 @@ class LocScraper(BaseScraper):
 
         # Fallback JSON
         try:
-            res = requests.get(
+            res = _throttled_get(
+                self,
+                requests,
                 _SEARCH,
                 params={"q": q, "fo": "json", "c": str(max(1, min(count, 25)))},
                 timeout=25,
@@ -250,7 +310,9 @@ class LocScraper(BaseScraper):
         best_batch: List[dict] = []
         for cql in queries:
             try:
-                res = requests.get(
+                res = _throttled_get(
+                    self,
+                    requests,
                     _SRU,
                     params={
                         "version": "1.1",

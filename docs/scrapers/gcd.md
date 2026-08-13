@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://www.comics.org |
-| **Version** | `1.0.0` |
+| **Version** | `1.1.0` |
 
 ## Summary
 
@@ -30,7 +30,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 ## Install (MetaKavita)
 
 1. Download [`gcd.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/gcd.py) into `data/scrapers/`.
-2. Verify SHA-256: `8b3da951196015a43dacf015d33d067d3a59226b78e5299dcd598f1c4f300b6c`.
+2. Verify SHA-256: `24f21b5e81fa2c99c62eb2f198be54e24aafe748adf5a08f799adc3e78e5054b`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 
