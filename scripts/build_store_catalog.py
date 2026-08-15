@@ -17,7 +17,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 REPO = "https://github.com/raukorim-bot/community-scraper-metakavita"
 RAW = f"https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main"
 BRANCH = "main"
-SKIP = {"debug_dump_ann.py", "debug_dump_planetebd.py", "conftest.py"}
+SKIP = {"debug_dump_ann.py", "debug_dump_planetebd.py", "debug_dump_fandom.py", "conftest.py"}
 
 METHOD_LABEL = {
     "html": "HTML / site",

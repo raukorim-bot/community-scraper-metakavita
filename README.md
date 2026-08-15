@@ -22,7 +22,7 @@ Drop a `.py` file into your MetaKavita `data/scrapers/` folder, restart, and the
 
 No rebuild of the MetaKavita image is required.
 
-> **Check the version first.** An entry may require a minimum MetaKavita version — its doc page then opens with *Requires MetaKavita x.y.z or newer*. The Store honours that floor for you; a file copied by hand does not, and an image below it unbinds the scraper at import, so the provider simply never appears. The 21 core copies currently require **1.7.0**, and `WIKIDATA` requires **1.6.1**.
+> **Check the version first.** An entry may require a minimum MetaKavita version — its doc page then opens with *Requires MetaKavita x.y.z or newer*. The Store honours that floor for you; a file copied by hand does not, and an image below it unbinds the scraper at import, so the provider simply never appears. The 21 core copies currently require **1.7.0**, `FANDOM` requires **1.7.0**, and `WIKIDATA` requires **1.6.1**.
 
 ---
 
@@ -54,6 +54,7 @@ No rebuild of the MetaKavita image is required.
 | [`sbn.py`](sbn.py) | `SBN` | Book | None | No | SBN / ICCU Italia (OPAC JSON) | [doc](docs/scrapers/sbn.md) |
 | [`kb.py`](kb.py) | `KB` | Book | None | No | KB Nederland (JSRU / GGC) | [doc](docs/scrapers/kb.md) |
 | [`tebeosfera.py`](tebeosfera.py) | `TEBEOSFERA` | Comic | None | Yes | Tebeosfera — Spanish comics (HTML; limited) | [doc](docs/scrapers/tebeosfera.md) |
+| [`fandom.py`](fandom.py) | `FANDOM` | Manga, Comic, Book | None | Yes | English Fandom wikis — manga volume index (list / templates / Volume N) | [doc](docs/scrapers/fandom.md) |
 | [`wikidata.py`](wikidata.py) | `WIKIDATA` | Manga, Comic, Book | None | Yes | Wikidata live SPARQL/Entity — fallback / ISBN / cross-IDs (limited scope) | [doc](docs/scrapers/wikidata.md) |
 
 \*Bangumi expects a proper User-Agent (handled by the scraper).  

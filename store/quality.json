@@ -96,6 +96,20 @@
     "pick_fr": "Catalogue DE — notices riches, sans cover/summary.",
     "pick_en": "German national catalog — rich records, no cover/summary."
   },
+  "FANDOM": {
+    "grade": null,
+    "note": null,
+    "audit_status": "SKIP",
+    "covers_ok": true,
+    "gaps": {
+      "provider": ["status", "tags"],
+      "bug": [],
+      "optional": ["publisher", "alternative_titles"]
+    },
+    "tested_query": "One Piece",
+    "pick_fr": "Index de tomes wiki — titres / résumés / dates / ISBN / jaquettes quand les catalogues n'ont rien. Pas un primaire.",
+    "pick_en": "Wiki volume index — titles / summaries / dates / ISBN / covers when catalogs miss. Not a primary."
+  },
   "GCD": {
     "grade": null,
     "note": null,

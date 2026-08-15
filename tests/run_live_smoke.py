@@ -25,7 +25,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 # Scrapers community (hors debug_*)
-SKIP_FILES = {"debug_dump_ann.py", "debug_dump_planetebd.py"}
+SKIP_FILES = {"debug_dump_ann.py", "debug_dump_planetebd.py", "debug_dump_fandom.py"}
 
 
 def _retired_files() -> set:

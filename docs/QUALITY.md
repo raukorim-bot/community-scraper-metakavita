@@ -31,6 +31,7 @@ Use this page to **pick a scraper**. The machine catalog [`store/catalog.json`](
 | `COMICVINE` | Comic | — | — | N/A | — | key | — |
 | `DECITRE` | Book | A | 100 | Yes | — | — | French bookstore — covers + ISBN + summary. |
 | `DNB` | Book | A | 98 | No | cover_url, summary | — | German national catalog — rich records, no cover/summary. |
+| `FANDOM` | Book, Comic, Manga | — | — | Yes | status, tags | — | Wiki volume index — titles / summaries / dates / ISBN / covers when catalogs miss. Not a primary. |
 | `GCD` | Comic | — | — | N/A | — | opt. | US comics — often 429; covers declared but not verified this run. |
 | `GOOGLEBOOKS` | Book, Comic | — | — | N/A | — | key | — |
 | `HARDCOVER` | Book, Comic | — | — | N/A | — | key | — |
@@ -61,7 +62,7 @@ Use this page to **pick a scraper**. The machine catalog [`store/catalog.json`](
 
 ## Covers — who provides images?
 
-**Yes (15):** `ANIMEPLANET`, `ANN`, `BABELIO`, `BANGUMI`, `BDGEST`, `DECITRE`, `LOCG`, `MANGASANCTUARY`, `METRON`, `OPENBD`, `PLANETEBD`, `SENSCRITIQUE`, `TAPAS`, `WEBTOON`, `WIKIDATA`
+**Yes (16):** `ANIMEPLANET`, `ANN`, `BABELIO`, `BANGUMI`, `BDGEST`, `DECITRE`, `FANDOM`, `LOCG`, `MANGASANCTUARY`, `METRON`, `OPENBD`, `PLANETEBD`, `SENSCRITIQUE`, `TAPAS`, `WEBTOON`, `WIKIDATA`
 
 **No / provider limit (8):** `BNE`, `BNF`, `DNB`, `KB`, `LOC`, `NDL`, `SBN`, `TEBEOSFERA`
 
@@ -99,6 +100,7 @@ Use this page to **pick a scraper**. The machine catalog [`store/catalog.json`](
 | `COMICVINE` | — | — | — |
 | `DECITRE` | — | — | tags, alternative_titles, status |
 | `DNB` | cover_url, summary | — | tags, status |
+| `FANDOM` | status, tags | — | publisher, alternative_titles |
 | `GCD` | — | — | — |
 | `GOOGLEBOOKS` | — | — | — |
 | `HARDCOVER` | — | — | — |

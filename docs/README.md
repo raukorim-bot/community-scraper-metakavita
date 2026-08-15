@@ -20,6 +20,7 @@ Per-scraper pages + machine catalog [`store/catalog.json`](../store/catalog.json
 | `COMICVINE` | ComicVine (Ultime BD/Comics) | Comic | api | N/A | — | key | [comicvine.md](scrapers/comicvine.md) |
 | `DECITRE` | Decitre | Book | html | Yes | A | — | [decitre.md](scrapers/decitre.md) |
 | `DNB` | DNB (Deutsche Nationalbibliothek) | Book | sru | No | A | — | [dnb.md](scrapers/dnb.md) |
+| `FANDOM` | Fandom (Wikis) | Book, Comic, Manga | api | Yes | — | — | [fandom.md](scrapers/fandom.md) |
 | `GCD` | Grand Comics Database | Comic | api | N/A | — | opt. | [gcd.md](scrapers/gcd.md) |
 | `GOOGLEBOOKS` | Google Books | Book, Comic | api | N/A | — | key | [googlebooks.md](scrapers/googlebooks.md) |
 | `HARDCOVER` | Hardcover (Expérimental / GraphQL) | Book, Comic | graphql | N/A | — | key | [hardcover.md](scrapers/hardcover.md) |

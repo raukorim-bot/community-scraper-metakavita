@@ -1,5 +1,40 @@
 # Changelog — community-scraper-metakavita
 
+## [Unreleased] Manga-News 1.3.0
+
+* `MANGANEWS` — volume index no longer drops a bandeau whose `/manga/…/vol-`
+  slug differs from the series page (`Demon-Slayer` on `Rodeurs-de-la-nuit-les`,
+  `Frieren` on `Frieren-:`). Series without `#serieVolumes` follow
+  `/serie/editions/` (Hellsing). Kavita English titles that the VF catalog
+  only knows in French get a second search (`Delicious in Dungeon` →
+  *Gloutons et Dragons*). Live battery: 33/33 series, 33/33 volume indexes
+  (Blacksad correctly misses). Pace unchanged (6 s, ceiling 40).
+
+## [Unreleased] Fandom volume index
+
+* `FANDOM` — Magasin scraper (`scopes = {series, volume}`) that lists a series'
+  volumes from that series' own **English** Fandom wiki (localized `/fr/` paths
+  are rewritten; MetaKavita translates afterwards). Resolution is anchored:
+  Magic Input / weblink URL, then a slug built from the title (`One Piece` →
+  `onepiece.fandom.com`), then DuckDuckGo HTML (`site:fandom.com`) as a last
+  resort. No search engine is added to the MetaKavita stack. The hub API on
+  `community.fandom.com` is Cloudflare-blocked; `{wiki}.fandom.com/api.php` is
+  not. **One `action=parse`** of the list page returns every volume (HTML tables
+  plus `{{Volume}}` / `{{volinfo}}`) — titles, dates, ISBN, covers, chapter
+  lists. Synopses come from `pageprops.fandomdescription` in batches of 50, not
+  one page per volume. Wikis without a list page fall back to `Volume N` articles
+  (allpages + revisions), including `{{Volume box}}` / `{{Volume Infobox}}`.
+  DuckDuckGo HTML often serves a challenge (202); lite is tried next, and
+  results are scored against the page title. Title slugs also try a last-word
+  guess (`A Couple of Cuckoos` → `cuckoo`) so a blocked DDG does not empty the
+  index. Pace is randomized 4–8 s per request. Requires MetaKavita ≥ 1.7.0.
+  Keep it behind the commercial catalogs. 1.4.0 hardens the manga path:
+  `{{Tankobon}}` / `{{Volumes}}` / `{{Infobox:Volume}}` on the list page, curated
+  EN→wiki slugs (JoJo, Komi, Kaguya-sama, Apothecary Diaries), `Manga Volume N`
+  pages, and filters that drop Blu-ray / Episode Nagi / light-novel articles.
+  1.4.1: series `fetch()` uses the same live-wiki resolution as the volume
+  index (no more match on a dead slug titled `jojosbizarreadventure`).
+
 ## [Unreleased] The 21 core copies, refreshed for MetaKavita 1.7.0
 
 ### Why now

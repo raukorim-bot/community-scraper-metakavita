@@ -299,6 +299,36 @@
     "setup_en": "No API key. Year is often catalogue edition year, not first publication.",
     "warnings": []
   },
+  "FANDOM": {
+    "method": "api",
+    "languages": [
+      "en"
+    ],
+    "covers": true,
+    "status": "beta",
+    "requires_app": "1.7.0",
+    "homepage": "https://www.fandom.com",
+    "region": "Global",
+    "auth": {
+      "required": false,
+      "config_key": null,
+      "kind": "none"
+    },
+    "summary_fr": "Wikis Fandom EN — fiche série (wiki réel) + index de tomes. Pas un primaire : AniList / Manga-News d'abord.",
+    "summary_en": "English Fandom wikis — series match (live wiki) + volume index. Not a primary: AniList / Manga-News first.",
+    "setup_fr": "Aucune clé. Wiki EN uniquement (MetaKavita traduit). Cadence 4–8 s aléatoire. Nécessite MetaKavita ≥ 1.7.0. Fond de cascade, pas PROVIDER_1.",
+    "setup_en": "No API key. English wiki only (MetaKavita translates). Random 4–8 s pace. Requires MetaKavita ≥ 1.7.0. Keep last in the cascade, not PROVIDER_1.",
+    "warnings": [
+      "Not a single catalog — each series is its own wiki. Blind community.fandom.com search is Cloudflare-blocked.",
+      "Volume summaries are wiki text (CC-BY-SA): plot when the wiki has one, otherwise the chapter list.",
+      "English wiki only (localized /fr/ URLs are rewritten). A list-page parse returns every volume; wikis without one fall back to Volume N articles (allpages + revisions). Synopses are batched via pageprops.",
+      "DuckDuckGo HTML often returns a challenge (202). Title slugs include a last-word guess and a few EN→wiki aliases (JoJo → jojo, Komi → komisan) so niche wikis still resolve.",
+      "List-page wikitext templates (Tankobon, Volumes, Infobox:Volume) carry dates/ISBNs. Blu-ray, Episode Nagi and light-novel pages are skipped.",
+      "Rate limit is randomized 4–8 s to reduce bans. Happy path is one parse, not one page per volume.",
+      "Prefer Manga-News / ComicVine / Bédéthèque first. Fandom fills titles, summaries, dates, ISBNs and covers when catalogs miss."
+    ],
+    "covers_note": "Volume covers come from the list-page parse or Volume N thumbnails (`static.wikia.nocookie.net`). `requires_proxy` is on. `fetch_covers` is empty on purpose so the cover picker does not re-run the whole index."
+  },
   "GCD": {
     "method": "api",
     "languages": [

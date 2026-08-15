@@ -8,7 +8,7 @@
   "repo": "https://github.com/raukorim-bot/community-scraper-metakavita",
   "default_branch": "main",
   "raw_base": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main",
-  "generated_at": "2026-08-13T21:45:55Z",
+  "generated_at": "2026-08-15T17:08:38Z",
   "quality_docs": "docs/QUALITY.md",
   "quality_audited_at": "2026-08-02",
   "install_notes": {
@@ -1052,6 +1052,105 @@
       ]
     },
     {
+      "id": "FANDOM",
+      "file": "fandom.py",
+      "display_name": "Fandom (Wikis)",
+      "version": "1.4.1",
+      "supported_types": [
+        "Book",
+        "Comic",
+        "Manga"
+      ],
+      "library_types": [
+        "Book",
+        "Comic",
+        "Manga"
+      ],
+      "method": "api",
+      "languages": [
+        "en"
+      ],
+      "region": "Global",
+      "homepage": "https://www.fandom.com",
+      "covers": true,
+      "status": "beta",
+      "is_core": false,
+      "rate_limit": 6.0,
+      "needs_api_key": false,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": true,
+      "proxy_domains": [
+        "fandom.com",
+        "wikia.com",
+        "wikia.nocookie.net",
+        "static.wikia.nocookie.net",
+        "images.wikia.com"
+      ],
+      "auth": {
+        "required": false,
+        "config_key": null,
+        "kind": "none"
+      },
+      "summary": {
+        "fr": "Wikis Fandom EN — fiche série (wiki réel) + index de tomes. Pas un primaire : AniList / Manga-News d'abord.",
+        "en": "English Fandom wikis — series match (live wiki) + volume index. Not a primary: AniList / Manga-News first."
+      },
+      "setup": {
+        "fr": "Aucune clé. Wiki EN uniquement (MetaKavita traduit). Cadence 4–8 s aléatoire. Nécessite MetaKavita ≥ 1.7.0. Fond de cascade, pas PROVIDER_1.",
+        "en": "No API key. English wiki only (MetaKavita translates). Random 4–8 s pace. Requires MetaKavita ≥ 1.7.0. Keep last in the cascade, not PROVIDER_1."
+      },
+      "warnings": [
+        "Not a single catalog — each series is its own wiki. Blind community.fandom.com search is Cloudflare-blocked.",
+        "Volume summaries are wiki text (CC-BY-SA): plot when the wiki has one, otherwise the chapter list.",
+        "English wiki only (localized /fr/ URLs are rewritten). A list-page parse returns every volume; wikis without one fall back to Volume N articles (allpages + revisions). Synopses are batched via pageprops.",
+        "DuckDuckGo HTML often returns a challenge (202). Title slugs include a last-word guess and a few EN→wiki aliases (JoJo → jojo, Komi → komisan) so niche wikis still resolve.",
+        "List-page wikitext templates (Tankobon, Volumes, Infobox:Volume) carry dates/ISBNs. Blu-ray, Episode Nagi and light-novel pages are skipped.",
+        "Rate limit is randomized 4–8 s to reduce bans. Happy path is one parse, not one page per volume.",
+        "Prefer Manga-News / ComicVine / Bédéthèque first. Fandom fills titles, summaries, dates, ISBNs and covers when catalogs miss."
+      ],
+      "quality": {
+        "grade": null,
+        "note": null,
+        "audit_status": "SKIP",
+        "covers_ok": true,
+        "gaps": {
+          "provider": [
+            "status",
+            "tags"
+          ],
+          "bug": [],
+          "optional": [
+            "publisher",
+            "alternative_titles"
+          ]
+        },
+        "tested_query": "One Piece",
+        "audited_at": "2026-08-02",
+        "pick": {
+          "fr": "Index de tomes wiki — titres / résumés / dates / ISBN / jaquettes quand les catalogues n'ont rien. Pas un primaire.",
+          "en": "Wiki volume index — titles / summaries / dates / ISBN / covers when catalogs miss. Not a primary."
+        }
+      },
+      "docs": "docs/scrapers/fandom.md",
+      "requires_app": "1.7.0",
+      "install": {
+        "path": "fandom.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/fandom.py",
+        "sha256": "2d01ad51751581e6f81f3f99e42a9063e836f982814f07c6a807708bb6bd102b",
+        "bytes": 59643,
+        "target": "data/scrapers/fandom.py"
+      },
+      "tags": [
+        "Book",
+        "Comic",
+        "Manga",
+        "api",
+        "covers",
+        "global"
+      ]
+    },
+    {
       "id": "GCD",
       "file": "gcd.py",
       "display_name": "Grand Comics Database",
@@ -1889,7 +1988,7 @@
       "id": "MANGANEWS",
       "file": "manganews.py",
       "display_name": "Manga-News (Catalogue VF)",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "supported_types": [
         "Manga"
       ],
@@ -1936,8 +2035,8 @@
       "install": {
         "path": "manganews.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/manganews.py",
-        "sha256": "9c502652bb34c84d37e5fe613460268a8eb9828365ce6e06cd73ba72ea54e607",
-        "bytes": 31285,
+        "sha256": "4ebbe41e94408fb708b5bbfe02e695d42e4d61951cb017c8ba17fdba95c2e349",
+        "bytes": 34832,
         "target": "data/scrapers/manganews.py"
       },
       "tags": [
