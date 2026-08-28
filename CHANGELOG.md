@@ -1,5 +1,12 @@
 # Changelog — community-scraper-metakavita
 
+## [Unreleased] ComicVine 1.2.1
+
+* `COMICVINE` — on a long-running title (Batman, Avengers, Superman), an exact
+  run year now outranks a neighbour within ±1 that merely has more issues
+  ([#40](https://github.com/raukorim-bot/MetaKavita/issues/40)). Same ranking on
+  the issue fallback. Core copy, requires MetaKavita ≥ 1.7.0.
+
 ## [Unreleased] Manga-News 1.3.0
 
 * `MANGANEWS` — volume index no longer drops a bandeau whose `/manga/…/vol-`
