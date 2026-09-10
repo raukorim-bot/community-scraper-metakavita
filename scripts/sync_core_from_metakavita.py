@@ -4,12 +4,15 @@ from __future__ import annotations
 
 import ast
 import json
+import os
 import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = Path(r"Z:\kavitafetcher\scrapers")
+# Même convention que `verify_core_mirror.py` et les runners de `tests/`.
+_MK_ROOT = os.environ.get("METAKAVITA_ROOT")
+SRC = Path(_MK_ROOT) / "scrapers" if _MK_ROOT else Path(r"Z:\kavitafetcher\scrapers")
 
 # Deux listes, une seule opération : toutes ces copies sont écrasées depuis
 # l'image, qui est la source de vérité des scrapers core. Elles ne diffèrent que
