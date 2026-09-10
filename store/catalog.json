@@ -8,7 +8,7 @@
   "repo": "https://github.com/raukorim-bot/community-scraper-metakavita",
   "default_branch": "main",
   "raw_base": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main",
-  "generated_at": "2026-08-28T16:20:18Z",
+  "generated_at": "2026-09-10T16:03:17Z",
   "quality_docs": "docs/QUALITY.md",
   "quality_audited_at": "2026-08-02",
   "install_notes": {
@@ -1923,7 +1923,7 @@
       "id": "MANGADEX",
       "file": "mangadex.py",
       "display_name": "MangaDex (API)",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "supported_types": [
         "Manga"
       ],
@@ -1973,8 +1973,8 @@
       "install": {
         "path": "mangadex.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangadex.py",
-        "sha256": "20166c0159cd3a8520604a5b7d8bd9b570f5ffcbb64540bce542b748e847b07c",
-        "bytes": 17163,
+        "sha256": "634d8dc20b59104a9c3c4bac858b3ae03d31c21d05a068bb50a166157c97496d",
+        "bytes": 18252,
         "target": "data/scrapers/mangadex.py"
       },
       "tags": [
@@ -2601,7 +2601,7 @@
       "id": "PLANETEBD",
       "file": "planetebd.py",
       "display_name": "Planète BD",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "supported_types": [
         "Comic"
       ],
@@ -2668,8 +2668,8 @@
       "install": {
         "path": "planetebd.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/planetebd.py",
-        "sha256": "a5ac7d9a37afcb6c516f610dc64b2588017cdabbe0753f30b489076a5e1d7d60",
-        "bytes": 30853,
+        "sha256": "495c6175f31a44eb53f9c4900a7f5a160d40c88523200fe52f5472e306807004",
+        "bytes": 31512,
         "target": "data/scrapers/planetebd.py"
       },
       "tags": [

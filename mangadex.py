@@ -30,7 +30,7 @@ class MangaDexScraper(BaseScraper):
     # (429, 5xx) sont journalisés au lieu de rendre un index vide en silence. La
     # montée de version est ce qui autorise l'image à remplacer la copie déjà
     # installée sous data/.
-    version = "1.2.0"
+    version = "1.2.1"
     rate_limit = 0.25  # ~4.5/s: 10% under MangaDex global ~5 req/s
     proxy_domains = ["mangadex.org", "uploads.mangadex.org", "api.mangadex.org"]
     has_direct_id_support = True
@@ -143,7 +143,10 @@ class MangaDexScraper(BaseScraper):
             elif rel_type == "cover_art" and rel_attrs.get("fileName"):
                 cover_url = f"https://uploads.mangadex.org/covers/{manga_id}/{rel_attrs.get('fileName')}"
 
-        links = attrs.get("links", {})
+        # `get("links", {})` ne protège que de la clé ABSENTE. MangaDex envoie
+        # « "links": null » sur les séries sans identifiant externe, et `.get()`
+        # rend alors None, pas le défaut. Le `or {}` couvre les deux cas.
+        links = attrs.get("links") or {}
         anilist_id = links.get("al") if links.get("al") and str(links.get("al")).isdigit() else None
         mal_id = links.get("mal") if links.get("mal") and str(links.get("mal")).isdigit() else None
 
@@ -207,7 +210,21 @@ class MangaDexScraper(BaseScraper):
             best_score = -1.0
 
             for item in items:
-                candidate = self._build_candidate(item, target_lang)
+                # Un candidat mal formé ne doit pas emporter la recherche
+                # entière. Sans cette garde, une série au JSON inattendu en
+                # deuxième position faisait remonter l'exception jusqu'au
+                # `except` de `fetch()`, qui rendait None — y compris quand le
+                # premier candidat était un match parfait déjà scoré à 1.0.
+                try:
+                    candidate = self._build_candidate(item, target_lang)
+                except Exception as exc:
+                    # Pas de `safe_exc_str` : ce fichier est aussi publié
+                    # comme copie communautaire, qui doit rester chargeable
+                    # sur une image antérieure à l'ajout de ce helper.
+                    logging.warning(
+                        "[MangaDex] candidat ignoré (%s)", type(exc).__name__
+                    )
+                    continue
                 if not candidate: continue
 
                 # Évaluation avec la matrice unifiée (titre + auteur/artiste + anti-homonyme).

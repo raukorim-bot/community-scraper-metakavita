@@ -119,7 +119,7 @@ class PlanetebdScraper(BaseScraper):
     # rafale, dont 8 en double), et décodage HTML confié à BeautifulSoup. La
     # montée de version est ce qui autorise l'image à remplacer la copie 1.1.x
     # déjà installée sous data/.
-    version = "1.2.0"
+    version = "1.2.1"
     rate_limit = 2.5  # HTML — anti-ban IP
     # Une page par album à 2,5 s : au-delà, l'index coûterait plus de deux
     # minutes pour une série que personne ne possède en entier.
@@ -427,9 +427,18 @@ class PlanetebdScraper(BaseScraper):
     # ------------------------------------------------------------------ Search
 
     def _search(self, session, terms: str) -> List[dict]:
+        # `/recherche/` ne lit plus la requête : le site y répond par une
+        # redirection vers `/recherche.html` qui PERD les paramètres, puis
+        # sert une liste d'articles à la une, identique quel que soit le
+        # terme cherché. La recherche renvoyait donc silencieusement des
+        # albums sans rapport — « Astérix » ramenait « Pro-gamer T2 ». Le
+        # scoring les rejetait, si bien que le symptôme visible était un
+        # `None`, pas une erreur. `/recherche.html` est l'action du
+        # formulaire du site, qui redirige vers la forme canonique
+        # `/recherche/mot-clef/<terme>` en conservant le terme.
         res = self._http_get(
             session,
-            f"{_BASE}/recherche/",
+            f"{_BASE}/recherche.html",
             params={"mot-clef": terms},
             timeout=25,
         )
