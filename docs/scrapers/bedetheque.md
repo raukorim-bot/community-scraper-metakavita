@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | FR — fr |
 | **Site** | https://www.bedetheque.com |
-| **Version** | `1.2.0` |
+| **Version** | `1.3.0` |
 
 ## Summary
 
@@ -29,10 +29,10 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 
 ## Install (MetaKavita)
 
-**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+**Requires MetaKavita 1.7.2 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
 
 1. Download [`bedetheque.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bedetheque.py) into `data/scrapers/`.
-2. Verify SHA-256: `af66bcb0a4890ce17be487f8546995d9ada971573425e00ba33f2fab0912b33c`.
+2. Verify SHA-256: `c18975e8140962e3b370b25bf7d6f26ede6c4543c74e8dc38b85222619efcbed`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 

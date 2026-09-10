@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | FR — fr |
 | **Site** | https://www.babelio.com |
-| **Version** | `1.1.0` |
+| **Version** | `1.2.0` |
 
 ## Summary
 
@@ -32,7 +32,7 @@ Gaps: `opt.: alternative_titles, status` — global overview: [`docs/QUALITY.md`
 **Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
 
 1. Download [`babelio.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/babelio.py) into `data/scrapers/`.
-2. Verify SHA-256: `4db074436d9fcfab1be265a18e5ffbb3e769560c536d000a68d35354e0849952`.
+2. Verify SHA-256: `2e86beef759c3b14eaa7029dada357e4cccb95b48215931534f0c4b41d24c65d`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Book).
 

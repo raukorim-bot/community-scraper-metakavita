@@ -10,6 +10,7 @@ Thumbs.db
 
 # Local probes / smoke artifacts
 tests/_smoke_report.json
+tests/_live_validation.json
 tests/_fandom_*
 tests/_*.html
 tests/_probe_*.py

@@ -15,7 +15,7 @@
 | **Direct ID / URL** | Yes |
 | **Region / languages** | US — en |
 | **Site** | https://comicvine.gamespot.com |
-| **Version** | `1.2.1` |
+| **Version** | `1.3.0` |
 
 ## Summary
 
@@ -32,7 +32,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 **Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
 
 1. Download [`comicvine.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/comicvine.py) into `data/scrapers/`.
-2. Verify SHA-256: `b18e4d1bdd0cf408028617a834c69dd99bcd98cac057f479e53e0b20463b68b2`.
+2. Verify SHA-256: `2115ca8bbf5f9b7e5d66e694ce1ce5874c79f628cf1154e064752a023db30cbc`.
 3. Restart MetaKavita.
 4. Enable the provider in Config for the matching types (Comic).
 

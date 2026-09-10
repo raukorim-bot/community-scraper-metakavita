@@ -5,12 +5,19 @@ from __future__ import annotations
 import ast
 import hashlib
 import json
+import os
 import sys
 import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MK = Path(r"Z:\kavitafetcher\scrapers")
+# Racine MetaKavita : `METAKAVITA_ROOT` d'abord, comme les runners de
+# `tests/`. Le chemin en dur ne vaut que sur le poste du mainteneur ;
+# ailleurs il n'existe pas, et `Path.glob()` sur un dossier absent ne lève
+# rien — la comparaison core tournait alors sur un ensemble vide et le
+# script concluait « ALL CHECKS PASSED » sans avoir rien comparé.
+_MK_ROOT = os.environ.get("METAKAVITA_ROOT")
+MK = Path(_MK_ROOT) / "scrapers" if _MK_ROOT else Path(r"Z:\kavitafetcher\scrapers")
 SKIP = {"__init__.py", "base.py", "utils.py", "wikidata_map.py"}
 DEBUG = {"debug_dump_ann.py", "debug_dump_planetebd.py"}
 RAW = "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main"
@@ -61,6 +68,17 @@ def main() -> int:
     except (AttributeError, OSError):
         pass
     issues: list[str] = []
+
+    # Sans ce garde-fou, un chemin MetaKavita introuvable ne produit aucune
+    # erreur : il produit un `mk_core` vide, donc zéro divergence détectée.
+    if not MK.is_dir():
+        print(f"=== ISSUES ===\n ! MK_SCRAPERS_DIR_MISSING {MK}")
+        print(
+            "   Renseignez METAKAVITA_ROOT (racine du checkout MetaKavita) : "
+            "sans elle, la comparaison core tournerait à vide et passerait."
+        )
+        print("FAIL (1 issue)")
+        return 1
 
     mk_core: dict[str, str] = {}
     for p in sorted(MK.glob("*.py")):

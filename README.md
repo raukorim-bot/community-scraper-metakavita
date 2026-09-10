@@ -122,6 +122,26 @@ python -m pytest tests/test_ann.py tests/test_planetebd.py -q
 python tests/run_live_smoke.py
 ```
 
+### Live validation of the whole catalog
+
+`tests/run_live_validation.py` queries every entry once, with the guards that
+`run_live_smoke.py` lacks: cadence keyed on the **registrable domain** (so the
+five `loc.gov` hostnames share one clock instead of five), a domain dropped from
+the run at its first 403 / 429 / Cloudflare interstitial and never retried, the
+whole campaign aborted once several domains refuse — that pattern means the exit
+address is flagged, not that several sites broke — and a resumable report so a
+re-run does not repay the traffic.
+
+```bat
+python tests/run_live_validation.py --dry-run   :: plan + estimate, no traffic
+python tests/run_live_validation.py             :: full campaign
+python tests/run_live_validation.py --resume    :: only what is still missing
+```
+
+Run it from a residential connection when you can. A shared VPN or datacenter
+exit trips Cloudflare on the HTML sites for reasons that have nothing to do with
+the scraper, and a block there hits everyone sharing that exit.
+
 Maintainer review is required before merge.
 
 ---
