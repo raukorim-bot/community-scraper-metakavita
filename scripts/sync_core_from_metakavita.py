@@ -303,16 +303,68 @@ def merge_entry(old: dict | None, new: dict) -> dict:
     return merged
 
 
+def _declared_version(text: str) -> tuple | None:
+    """`version = "x.y.z"` de la classe scraper, en tuple comparable."""
+    m = re.search(r'^\s{4}version\s*=\s*["\']([0-9]+(?:\.[0-9]+)*)["\']',
+                  text, re.M)
+    if not m:
+        return None
+    try:
+        return tuple(int(p) for p in m.group(1).split("."))
+    except ValueError:
+        return None
+
+
 def main() -> int:
     if not SRC.is_dir():
         print(f"missing MetaKavita scrapers dir: {SRC}", file=sys.stderr)
         return 1
 
+    # Refuser d'écrire une version PLUS ANCIENNE que celle déjà en place.
+    #
+    # Ce script est fait pour écraser — l'image est la source de vérité — et la
+    # garde ne s'y oppose pas : une version égale ou supérieure passe toujours.
+    # Elle n'attrape qu'un cas, mais un cas réel et silencieux : une source
+    # pointée sur la mauvaise référence. Un `git checkout` de la branche
+    # d'intégration qui échoue sans qu'on le remarque, un checkout laissé en
+    # arrière, et la synchronisation recopie des versions antérieures par-dessus
+    # les copies à jour. Rien ne le signale : le script annonce « copied » pour
+    # chacune, le catalogue se régénère sans broncher, les tests passent, et la
+    # régression n'apparaît que chez l'utilisateur. C'est arrivé pendant la mise
+    # au point de cette garde, sur sept fichiers d'un coup.
+    regressions = []
     for name in MISSING + EXISTING_CORE:
         src = SRC / name
         if not src.is_file():
             print(f"missing source {src}", file=sys.stderr)
             return 1
+        dest = ROOT / name
+        if not dest.is_file():
+            continue
+        sv = _declared_version(src.read_text(encoding="utf-8"))
+        dv = _declared_version(dest.read_text(encoding="utf-8"))
+        if sv and dv and sv < dv:
+            regressions.append(
+                f"{name}: source {'.'.join(map(str, sv))} < "
+                f"copie locale {'.'.join(map(str, dv))}"
+            )
+    if regressions:
+        print("REFUS : la source est en retard sur les copies locales.",
+              file=sys.stderr)
+        for r in regressions:
+            print(f"  ! {r}", file=sys.stderr)
+        print(f"\n  Source lue : {SRC}", file=sys.stderr)
+        print("  Vérifiez la branche de ce checkout MetaKavita (la branche\n"
+              "  d'intégration est en général `dev`, pas `main`) et sa\n"
+              "  fraîcheur, puis relancez. Pour rétrograder volontairement,\n"
+              "  passez SYNC_ALLOW_DOWNGRADE=1.", file=sys.stderr)
+        if os.environ.get("SYNC_ALLOW_DOWNGRADE") != "1":
+            return 1
+        print("  SYNC_ALLOW_DOWNGRADE=1 : rétrogradation forcée.",
+              file=sys.stderr)
+
+    for name in MISSING + EXISTING_CORE:
+        src = SRC / name
         raw = rewrite_imports(src.read_text(encoding="utf-8"))
         raw = ensure_is_core(raw)
         dest = ROOT / name

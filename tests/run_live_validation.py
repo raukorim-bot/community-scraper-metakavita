@@ -308,6 +308,52 @@ class Campaign:
 _PRISTINE: Dict[str, Any] = {}
 
 
+def force_impersonate(profile: str) -> None:
+    """Impose une empreinte TLS à tous les scrapers `curl_cffi`.
+
+    Uniquement pour valider depuis un réseau qui n'accepte pas l'empreinte
+    d'origine. Certains intermédiaires (proxy d'entreprise, bac à sable) ne
+    savent pas négocier les empreintes Chrome récentes et coupent la connexion
+    avant le site : le scraper est alors intestable pour une raison qui ne lui
+    appartient pas. Retomber sur une empreinte plus ancienne rend le test
+    possible.
+
+    Les verdicts obtenus ainsi sont INDICATIFS : ils valident la logique du
+    scraper (recherche, appariement, forme de la charge utile), pas son
+    comportement en production, où l'empreinte déclarée est justement celle qui
+    lui permet de passer. Un site peut refuser l'empreinte forcée tout en
+    acceptant l'originale, et l'inverse est vrai aussi.
+    """
+    try:
+        from curl_cffi import requests as cr
+    except ImportError:
+        print("curl_cffi absent : --impersonate sans effet")
+        return
+    # Deux points d'entrée à couvrir, pas un. Un scraper peut fixer
+    # l'empreinte à la construction de la session — et un autre la repasser
+    # requête par requête, auquel cas la valeur de la requête l'emporte sur
+    # celle de la session. Ne corriger que le constructeur laissait ces
+    # derniers échouer exactement comme avant, en donnant l'illusion que
+    # l'empreinte n'était pas en cause.
+    init = cr.Session.__init__
+
+    def patched_init(self, *args, **kwargs):
+        kwargs["impersonate"] = profile
+        return init(self, *args, **kwargs)
+
+    cr.Session.__init__ = patched_init
+
+    request = cr.Session.request
+
+    def patched_request(self, *args, **kwargs):
+        kwargs["impersonate"] = profile
+        return request(self, *args, **kwargs)
+
+    cr.Session.request = patched_request
+    print(f"⚠️  empreinte TLS forcée à « {profile} » pour tous les scrapers "
+          f"curl_cffi — verdicts INDICATIFS, l'empreinte de production diffère")
+
+
 def install_guard(campaign: Campaign):
     """Enveloppe l'unique point de sortie HTTP de tous les scrapers.
 
@@ -480,6 +526,11 @@ def parse_args(argv=None):
                    help="affiche le plan et le trafic estimé, n'émet rien")
     p.add_argument("--resume", action="store_true",
                    help="ne réinterroge pas les scrapers déjà concluants du rapport")
+    p.add_argument("--impersonate", default="",
+                   help="force l'empreinte TLS curl_cffi (ex. chrome110). "
+                        "Uniquement pour tester depuis un réseau qui refuse "
+                        "l'empreinte d'origine ; les verdicts deviennent "
+                        "indicatifs, pas représentatifs de la production.")
     p.add_argument("--verbose", action="store_true", help="journalise chaque requête")
     p.add_argument("--report", default=str(ROOT / "tests" / "_live_validation.json"))
     return p.parse_args(argv)
@@ -513,9 +564,13 @@ def main(argv=None) -> int:
                 r["id"]: r for r in old.get("results", []) if r.get("id")
             }
             carried_requests = list(old.get("requests") or [])
+            # Un NO-MATCH n'est pas concluant : c'est l'absence de résultat,
+            # donc exactement ce qu'on relance après avoir corrigé un scraper.
+            # Le compter comme acquis figeait dans le rapport le verdict d'un
+            # code qui n'existe plus.
             previous = {
                 sid: r for sid, r in carried.items()
-                if r.get("verdict") in {"OK", "SHAPE", "NO-MATCH"}
+                if r.get("verdict") in {"OK", "SHAPE"}
             }
             print(f"reprise : {len(carried)} lignes conservées, "
                   f"{len(previous)} scrapers déjà concluants non réinterrogés")
@@ -583,6 +638,8 @@ def main(argv=None) -> int:
         print("aucune requête émise (--dry-run)")
         return 0
 
+    if args.impersonate:
+        force_impersonate(args.impersonate)
     install_guard(campaign)
 
     results: List[dict] = []
@@ -600,6 +657,7 @@ def main(argv=None) -> int:
             "policy": {
                 "floor": args.floor, "jitter": args.jitter, "gap": args.gap,
                 "max_req": args.max_req, "max_blocked": args.max_blocked,
+                "forced_impersonate": args.impersonate or None,
             },
             "blocked_hosts": campaign.blocked,
             "aborted": aborted,
