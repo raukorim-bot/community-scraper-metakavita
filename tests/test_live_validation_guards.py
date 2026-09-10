@@ -227,3 +227,65 @@ def test_unreachable_is_not_counted_as_a_failure(campaign):
     # main() rend 0 : aucun ERROR / NO-MATCH / SHAPE.
     assert not [r for r in data["results"]
                 if r["verdict"] in {"ERROR", "NO-MATCH", "SHAPE"}]
+
+
+def test_a_quota_429_blocks_the_domain_without_accusing_the_exit_address(campaign):
+    """Un 429 vide un compteur ; il ne dit pas que l'IP est grillée.
+
+    Trouvé en campagne réelle : anilist.co 403, bdtheque.com 403 et
+    googleapis.com 429 (quota anonyme partagé) ont été additionnés pour
+    conclure « adresse marquée », ce qui a interrompu une campagne qui se
+    déroulait normalement. Le 429 retire bien le domaine — insister sur une
+    API qui compte les appels est exactement ce qu'il ne faut pas faire —
+    mais il ne compte plus dans le seuil d'abandon.
+    """
+    runner = _load_runner()
+    assert 429 in runner.PUSHBACK, "un 429 doit retirer le domaine"
+    assert 429 not in runner.REFUSALS, "un 429 ne doit pas accuser l'adresse"
+    assert {401, 403, 503} <= runner.REFUSALS
+
+    run, _ = campaign("429")
+    data = run("--only", "MANGADEX,ANILIST,KITSU,SHIKIMORI,MANGAUPDATES",
+               *FAST, "--max-blocked", "3")
+
+    # Cinq domaines en quota : tous retirés, aucune interruption.
+    assert not data["aborted"], (
+        f"un quota plein ne doit pas interrompre la campagne : {data['aborted']}"
+    )
+    assert len(data["blocked_hosts"]) == 5
+    assert {r["verdict"] for r in data["results"]} == {"BLOCKED"}
+
+
+def test_resume_keeps_the_evidence_that_the_network_works(campaign, tmp_path):
+    """Une reprise ne doit pas rediagnostiquer « machine sans réseau ».
+
+    Trouvé en campagne réelle : les lignes rejouées depuis le rapport
+    n'émettent aucune requête, donc le compteur de réponses HTTP repartait à
+    zéro. Les trois premiers scrapers réellement interrogés étant injoignables
+    (une empreinte TLS refusée par un intermédiaire), la reprise concluait
+    « aucun accès sortant » juste après une passe qui avait validé cinq
+    scrapers.
+    """
+    runner = _load_runner()
+    report = tmp_path / "report.json"
+
+    # Un rapport de passe précédente : un scraper concluant, des requêtes
+    # ayant bel et bien reçu des réponses HTTP.
+    report.write_text(json.dumps({
+        "policy": {}, "blocked_hosts": {}, "aborted": None,
+        "results": [{"id": "BEDETHEQUE", "file": "bedetheque.py",
+                     "verdict": "OK", "detail": "ok"}],
+        "requests": [{"scraper": "BEDETHEQUE", "host": "www.bedetheque.com",
+                      "url": "https://www.bedetheque.com/", "status": 200,
+                      "ms": 100, "waited_s": 0, "error": None}],
+    }), encoding="utf-8")
+
+    run, _ = campaign("boom")
+    runner.main(["--resume", "--only", "BEDETHEQUE,MANGADEX,ANILIST,KITSU",
+                 *FAST, "--max-unreachable", "3", "--report", str(report)])
+    data = json.loads(report.read_text(encoding="utf-8"))
+
+    assert not data["aborted"], (
+        "la reprise a conclu à une absence de réseau malgré un rapport qui "
+        f"prouve le contraire : {data['aborted']}"
+    )

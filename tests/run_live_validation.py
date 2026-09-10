@@ -65,6 +65,19 @@ SKIP_FILES = {"debug_dump_ann.py", "debug_dump_planetebd.py", "debug_dump_fandom
 # Codes par lesquels un site signale qu'il en a assez. Aucun n'est réessayé.
 PUSHBACK = {401, 403, 405, 409, 429, 503}
 
+# Parmi eux, ceux qui disent quelque chose de l'ADRESSE DE SORTIE — un refus,
+# pas un compteur plein. Eux seuls alimentent l'abandon global.
+#
+# La distinction vient d'une campagne réelle : elle s'est arrêtée sur
+# anilist.co 403 (Cloudflare refusant une IP datacenter), bdtheque.com 403
+# (refus du site) et googleapis.com 429 (quota anonyme Google, partagé par
+# tout le monde sur cette IP). Les additionner pour conclure « l'adresse est
+# marquée » est un raccourci : un quota plein n'est pas un refus, il se vide
+# tout seul, et il a interrompu une campagne qui se déroulait normalement.
+# Un 429 retire quand même le domaine de la campagne — insister sur une API
+# qui compte les appels est précisément ce qu'il ne faut pas faire.
+REFUSALS = {401, 403, 405, 409, 503}
+
 # Signatures d'un échec de TRANSPORT : la requête n'a jamais atteint le site.
 # À ne surtout pas confondre avec un refus du site. Un refus est un verdict sur
 # l'adresse de sortie ou sur le scraper ; un échec de transport ne dit rien du
@@ -221,6 +234,7 @@ class Campaign:
         self.log: List[dict] = []
         self.current: Optional[List[Any]] = None
         self.unreachable: Dict[str, str] = {}
+        self.refused: set = set()
         self.http_responses = 0
 
     # -- cadence -----------------------------------------------------------
@@ -254,16 +268,20 @@ class Campaign:
             )
         return host
 
-    def block(self, host: str, why: str) -> None:
+    def block(self, host: str, why: str, counts_as_refusal: bool = True) -> None:
         key = rate_key(host)
         if key in self.blocked:
             return
         self.blocked[key] = why
-        print(f"      ⛔ {key} (via {host}) → {why} ; domaine retiré de la campagne")
-        if len(self.blocked) >= self.max_blocked:
+        if counts_as_refusal:
+            self.refused.add(key)
+        kind = "refus" if counts_as_refusal else "quota"
+        print(f"      ⛔ {key} (via {host}) → {why} [{kind}] ; domaine retiré "
+              f"de la campagne")
+        if len(self.refused) >= self.max_blocked:
             raise CampaignAbort(
-                f"{len(self.blocked)} domaines bloqués "
-                f"({', '.join(sorted(self.blocked))}) — l'adresse de sortie "
+                f"{len(self.refused)} domaines ont REFUSÉ "
+                f"({', '.join(sorted(self.refused))}) — l'adresse de sortie "
                 f"est probablement marquée, campagne interrompue"
             )
 
@@ -327,7 +345,8 @@ def install_guard(campaign: Campaign):
                     retry_after = f" (Retry-After: {ra})" if ra else ""
                 except Exception:
                     pass
-                campaign.block(host, f"HTTP {status}{retry_after}")
+                campaign.block(host, f"HTTP {status}{retry_after}",
+                               counts_as_refusal=status in REFUSALS)
                 raise HostRefused(f"{host} → HTTP {status}")
 
             if status == 200:
@@ -478,6 +497,7 @@ def main(argv=None) -> int:
     report_path = Path(args.report)
 
     previous: Dict[str, dict] = {}
+    resumed_http = 0
     if args.resume and report_path.exists():
         try:
             old = json.loads(report_path.read_text(encoding="utf-8"))
@@ -486,6 +506,13 @@ def main(argv=None) -> int:
                 if r.get("id") and r.get("verdict") in {"OK", "SHAPE", "NO-MATCH"}
             }
             print(f"reprise : {len(previous)} scrapers déjà concluants, non réinterrogés")
+            # Les lignes rejouées n'émettent aucune requête : sans ce report,
+            # le compteur de réponses HTTP repart à zéro et le diagnostic
+            # « aucun accès sortant » se déclenche sur les premiers scrapers
+            # injoignables — alors que le rapport prouve le contraire.
+            resumed_http = sum(
+                1 for r in old.get("requests", []) if r.get("status") is not None
+            )
         except Exception as exc:
             print(f"reprise impossible ({exc}) — campagne complète")
 
@@ -497,12 +524,14 @@ def main(argv=None) -> int:
 
     campaign = Campaign(args.floor, args.jitter, args.max_blocked,
                         args.max_req, args.verbose)
+    campaign.http_responses = resumed_http
 
     print(f"MetaKavita : {MK}")
     print(f"cadence    : max(rate_limit, {args.floor}s) par DOMAINE, +0–{args.jitter}s "
           f"d'aléa, {args.gap}s entre scrapers")
     print(f"garde-fous : {args.max_req} requêtes/scraper max, campagne "
-          f"interrompue à {args.max_blocked} domaines bloqués, aucun réessai")
+          f"interrompue à {args.max_blocked} domaines en REFUS "
+          f"(un 429 de quota ne compte pas), aucun réessai")
     print(f"retirés    : {sorted(skip - SKIP_FILES) or 'aucun'}\n")
 
     plan = []
@@ -626,12 +655,28 @@ def main(argv=None) -> int:
             # dérouler le reste du catalogue pour réécrire la même ligne
             # quarante fois. Ce n'est pas un verdict sur les scrapers.
             if unreachable_streak >= args.max_unreachable and campaign.http_responses == 0:
+                tls_only = all(
+                    "ssl" in (r.get("error") or "").casefold()
+                    or "certificate" in (r.get("error") or "").casefold()
+                    for r in campaign.log if r.get("status") is None
+                )
                 aborted = (
                     f"{unreachable_streak} scrapers d'affilée injoignables et pas "
                     f"une seule réponse HTTP depuis le début : cette machine n'a "
                     f"pas d'accès sortant vers les sites du catalogue. Aucun "
                     f"verdict sur les scrapers n'est possible ici."
                 )
+                if tls_only:
+                    # Un échec de poignée de main n'est pas une absence de
+                    # réseau : c'est souvent l'empreinte TLS du client que
+                    # l'intermédiaire refuse. Le dire évite de conclure trop
+                    # vite que la machine est coupée du monde.
+                    aborted += (
+                        " Toutes les erreurs sont des échecs TLS : c'est plus "
+                        "probablement l'empreinte `impersonate` du client que "
+                        "refuse un intermédiaire qu'une absence de réseau. "
+                        "Essayez une empreinte plus ancienne (chrome110)."
+                    )
                 print(f"\n🛑 {aborted}")
                 break
             time.sleep(args.gap)
@@ -694,6 +739,9 @@ def main(argv=None) -> int:
             print(f"  {verdict:10} {counts[verdict]}")
     print(f"  requêtes émises : {len(campaign.log)}")
     print(f"  domaines bloqués: {campaign.blocked or 'aucun'}")
+    quota_only = sorted(set(campaign.blocked) - campaign.refused)
+    if quota_only:
+        print(f"    dont quota seulement (n'accuse pas l'IP) : {quota_only}")
     if campaign.unreachable:
         print(f"  domaines injoignables (transport) : {len(campaign.unreachable)}")
         for dom, why in list(campaign.unreachable.items())[:5]:
