@@ -8,7 +8,7 @@
   "repo": "https://github.com/raukorim-bot/community-scraper-metakavita",
   "default_branch": "main",
   "raw_base": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main",
-  "generated_at": "2026-09-10T16:03:17Z",
+  "generated_at": "2026-09-10T16:10:21Z",
   "quality_docs": "docs/QUALITY.md",
   "quality_audited_at": "2026-08-02",
   "install_notes": {
@@ -261,7 +261,7 @@
       "id": "BABELIO",
       "file": "babelio.py",
       "display_name": "Babelio (Littérature FR)",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "supported_types": [
         "Book"
       ],
@@ -331,8 +331,8 @@
       "install": {
         "path": "babelio.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/babelio.py",
-        "sha256": "4db074436d9fcfab1be265a18e5ffbb3e769560c536d000a68d35354e0849952",
-        "bytes": 24823,
+        "sha256": "2e86beef759c3b14eaa7029dada357e4cccb95b48215931534f0c4b41d24c65d",
+        "bytes": 37088,
         "target": "data/scrapers/babelio.py"
       },
       "tags": [
@@ -592,7 +592,7 @@
       "id": "BEDETHEQUE",
       "file": "bedetheque.py",
       "display_name": "Bédéthèque (Franco-Belge)",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "supported_types": [
         "Comic"
       ],
@@ -638,8 +638,8 @@
       "install": {
         "path": "bedetheque.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bedetheque.py",
-        "sha256": "af66bcb0a4890ce17be487f8546995d9ada971573425e00ba33f2fab0912b33c",
-        "bytes": 36059,
+        "sha256": "c18975e8140962e3b370b25bf7d6f26ede6c4543c74e8dc38b85222619efcbed",
+        "bytes": 39044,
         "target": "data/scrapers/bedetheque.py"
       },
       "tags": [
@@ -821,7 +821,7 @@
       "id": "COMICVINE",
       "file": "comicvine.py",
       "display_name": "ComicVine (Ultime BD/Comics)",
-      "version": "1.2.1",
+      "version": "1.3.0",
       "supported_types": [
         "Comic"
       ],
@@ -868,8 +868,8 @@
       "install": {
         "path": "comicvine.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/comicvine.py",
-        "sha256": "b18e4d1bdd0cf408028617a834c69dd99bcd98cac057f479e53e0b20463b68b2",
-        "bytes": 40948,
+        "sha256": "2115ca8bbf5f9b7e5d66e694ce1ce5874c79f628cf1154e064752a023db30cbc",
+        "bytes": 42937,
         "target": "data/scrapers/comicvine.py"
       },
       "tags": [
@@ -1973,8 +1973,8 @@
       "install": {
         "path": "mangadex.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/mangadex.py",
-        "sha256": "634d8dc20b59104a9c3c4bac858b3ae03d31c21d05a068bb50a166157c97496d",
-        "bytes": 18252,
+        "sha256": "a1419ed7c7a6919cb02e48730be4e3e900b633365eb03da809ab75c12026b172",
+        "bytes": 17215,
         "target": "data/scrapers/mangadex.py"
       },
       "tags": [
@@ -1988,7 +1988,7 @@
       "id": "MANGANEWS",
       "file": "manganews.py",
       "display_name": "Manga-News (Catalogue VF)",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "supported_types": [
         "Manga"
       ],
@@ -2035,8 +2035,8 @@
       "install": {
         "path": "manganews.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/manganews.py",
-        "sha256": "4ebbe41e94408fb708b5bbfe02e695d42e4d61951cb017c8ba17fdba95c2e349",
-        "bytes": 34832,
+        "sha256": "c9cee876e01edfd1059eb9adb4b38c8591eccff634496a2315e2f212cbfa36a4",
+        "bytes": 37157,
         "target": "data/scrapers/manganews.py"
       },
       "tags": [
@@ -2198,7 +2198,7 @@
       "id": "METRON",
       "file": "metron.py",
       "display_name": "Metron (Comics API)",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "supported_types": [
         "Comic"
       ],
@@ -2264,8 +2264,8 @@
       "install": {
         "path": "metron.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/metron.py",
-        "sha256": "d866b59420067432b76ba4ba3c689478a67e6d4373d3c6327f3f23c89289ae55",
-        "bytes": 21004,
+        "sha256": "0ea5e5b35d38d9490e1772157ee2f210922273edc9a942aa13257d6597da1452",
+        "bytes": 26968,
         "target": "data/scrapers/metron.py"
       },
       "tags": [
@@ -2601,7 +2601,7 @@
       "id": "PLANETEBD",
       "file": "planetebd.py",
       "display_name": "Planète BD",
-      "version": "1.2.1",
+      "version": "1.3.0",
       "supported_types": [
         "Comic"
       ],
@@ -2668,8 +2668,8 @@
       "install": {
         "path": "planetebd.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/planetebd.py",
-        "sha256": "495c6175f31a44eb53f9c4900a7f5a160d40c88523200fe52f5472e306807004",
-        "bytes": 31512,
+        "sha256": "8ab5c10bb3f676845a0369ba8c440ba7f3f5d8b15dbf09a107f83890ac664e7e",
+        "bytes": 32511,
         "target": "data/scrapers/planetebd.py"
       },
       "tags": [
