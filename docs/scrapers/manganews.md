@@ -29,7 +29,7 @@ Gaps: `—` — global overview: [`docs/QUALITY.md`](../QUALITY.md).
 
 ## Install (MetaKavita)
 
-**Requires MetaKavita 1.7.0 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
+**Requires MetaKavita 1.7.2 or newer.** On an older version this scraper fails to load and its provider disappears from every search.
 
 1. Download [`manganews.py`](https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/manganews.py) into `data/scrapers/`.
 2. Verify SHA-256: `c9cee876e01edfd1059eb9adb4b38c8591eccff634496a2315e2f212cbfa36a4`.

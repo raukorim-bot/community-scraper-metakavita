@@ -190,7 +190,7 @@
     "warnings": [
       "Already ships in the MetaKavita image — Store shows state=core."
     ],
-    "requires_app": "1.7.0"
+    "requires_app": "1.7.2"
   },
   "BNE": {
     "method": "sru",
@@ -613,7 +613,7 @@
     "warnings": [
       "Already ships in the MetaKavita image — Store shows state=core."
     ],
-    "requires_app": "1.7.0"
+    "requires_app": "1.7.2"
   },
   "MANGASANCTUARY": {
     "method": "html",
@@ -782,7 +782,7 @@
     ],
     "covers": true,
     "status": "stable",
-    "requires_app": "1.7.0",
+    "requires_app": "1.7.2",
     "homepage": "https://www.planetebd.com",
     "region": "FR",
     "auth": {

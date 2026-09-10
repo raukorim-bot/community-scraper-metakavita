@@ -34,6 +34,22 @@ FLOOR = "1.7.0"
 NEW_METHODS = {"_http_get", "_http_post"}
 NEW_UTILS = {"response_is_ok", "provider_error_scope"}
 
+# Paliers suivants : version d'introduction -> helpers qu'elle apporte.
+#
+# Le catalogue se synchronise depuis la branche d'intégration de MetaKavita,
+# qui est en avance sur l'image publiée. Une copie qui en revient peut donc
+# appeler un helper que l'image des utilisateurs n'a pas encore. Le plancher
+# est le seul garde-fou : sans lui, le Store propose la copie, l'import
+# échoue, et le fournisseur disparaît simplement de l'UI sans message.
+#
+# C'est arrivé avec `select_wanted_album_links`, introduit en 1.7.2 : trois
+# copies revenues de `dev` l'importaient en annonçant un plancher 1.7.0, et
+# une installation 1.7.1 perdait BEDETHEQUE, MANGA-NEWS et PLANETEBD d'un
+# coup. Ajouter une ligne ici à chaque nouveau helper suffit à l'empêcher.
+HELPER_TIERS = {
+    "1.7.2": {"select_wanted_album_links"},
+}
+
 CATALOG = json.loads((ROOT / "store" / "catalog.json").read_text(encoding="utf-8"))
 META = json.loads((ROOT / "store" / "meta.json").read_text(encoding="utf-8"))
 BY_FILE = {entry["file"]: entry for entry in CATALOG["scrapers"]}
@@ -58,13 +74,57 @@ def test_the_scan_still_finds_the_copies_it_is_meant_to_guard():
     assert len(NEEDING) >= 20
 
 
+def _as_tuple(version) -> tuple:
+    try:
+        return tuple(int(p) for p in str(version).split("."))
+    except (TypeError, ValueError):
+        return ()
+
+
 @pytest.mark.parametrize("filename", NEEDING)
 def test_a_copy_using_the_new_helpers_declares_the_floor(filename):
+    """Plancher AU MOINS 1.7.0 — pas exactement, sinon un palier plus haut
+    déclaré à raison ferait échouer le test."""
     entry = BY_FILE[filename]
-    assert entry.get("requires_app") == FLOOR, (
+    declared = entry.get("requires_app")
+    assert _as_tuple(declared) >= _as_tuple(FLOOR), (
         f"{filename} appelle un helper introduit en {FLOOR} mais son entrée de "
-        f"catalogue n'annonce pas de plancher : une installation 1.6.x la "
+        f"catalogue annonce {declared!r} : une installation 1.6.x la "
         f"téléchargerait, échouerait à l'import, et perdrait le fournisseur."
+    )
+
+
+def _imported_names(path: pathlib.Path) -> set:
+    names = set()
+    for node in ast.walk(ast.parse(path.read_text(encoding="utf-8"))):
+        if isinstance(node, ast.ImportFrom) and (node.module or "").startswith("scrapers"):
+            names.update(alias.name for alias in node.names)
+    return names
+
+
+@pytest.mark.parametrize(
+    "filename",
+    sorted(
+        f.name
+        for f in ROOT.glob("*.py")
+        if f.name in BY_FILE
+        and any(_imported_names(f) & helpers for helpers in HELPER_TIERS.values())
+    ),
+)
+def test_a_copy_using_a_later_helper_raises_its_floor(filename):
+    """Un helper plus récent que 1.7.0 impose son propre plancher."""
+    used = _imported_names(ROOT / filename)
+    needed = max(
+        (v for v, helpers in HELPER_TIERS.items() if used & helpers),
+        key=_as_tuple,
+    )
+    declared = BY_FILE[filename].get("requires_app")
+    culprits = sorted(used & HELPER_TIERS[needed])
+    assert _as_tuple(declared) >= _as_tuple(needed), (
+        f"{filename} importe {culprits} de scrapers.utils, apparu en {needed}, "
+        f"mais annonce requires_app={declared!r}. Une image antérieure "
+        f"l'installerait puis échouerait à l'import — le fournisseur "
+        f"disparaîtrait de l'UI sans le moindre message."
     )
 
 

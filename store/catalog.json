@@ -8,7 +8,7 @@
   "repo": "https://github.com/raukorim-bot/community-scraper-metakavita",
   "default_branch": "main",
   "raw_base": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main",
-  "generated_at": "2026-09-10T16:10:21Z",
+  "generated_at": "2026-09-10T16:38:18Z",
   "quality_docs": "docs/QUALITY.md",
   "quality_audited_at": "2026-08-02",
   "install_notes": {
@@ -634,7 +634,7 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/bedetheque.md",
-      "requires_app": "1.7.0",
+      "requires_app": "1.7.2",
       "install": {
         "path": "bedetheque.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/bedetheque.py",
@@ -2031,7 +2031,7 @@
       ],
       "quality": null,
       "docs": "docs/scrapers/manganews.md",
-      "requires_app": "1.7.0",
+      "requires_app": "1.7.2",
       "install": {
         "path": "manganews.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/manganews.py",
@@ -2664,7 +2664,7 @@
         }
       },
       "docs": "docs/scrapers/planetebd.md",
-      "requires_app": "1.7.0",
+      "requires_app": "1.7.2",
       "install": {
         "path": "planetebd.py",
         "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/planetebd.py",
