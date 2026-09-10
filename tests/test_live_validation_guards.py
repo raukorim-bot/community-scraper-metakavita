@@ -65,6 +65,11 @@ def campaign(tmp_path, monkeypatch):
     def make(mode):
         def fake(self, client, url, **kwargs):
             hits.append((self.id, url))
+            if mode == "boom":
+                raise ConnectionError(
+                    "Failed to perform, curl: (7) CONNECT tunnel failed, "
+                    "response 403"
+                )
             if mode == "403":
                 return _Resp(403, "Forbidden")
             if mode == "429":
@@ -177,3 +182,48 @@ def test_cadence_is_keyed_on_the_domain_not_the_hostname(campaign):
         assert all(w >= 1.9 for w in waits[1:]), (
             f"cadence non respectée à l'intérieur du domaine : {waits}"
         )
+
+
+def test_a_transport_failure_is_not_reported_as_a_broken_scraper(campaign):
+    """Ne jamais atteindre le site n'est pas un verdict sur le scraper.
+
+    Sur une machine sans accès sortant, chaque `fetch()` lève une erreur de
+    connexion. Rapporté en ERROR, cela ressemble à quarante scrapers cassés et
+    envoie déboguer du code parfaitement sain.
+    """
+    runner = _load_runner()
+    assert runner.is_transport_failure(
+        "ProxyError('Unable to connect to proxy', "
+        "OSError('Tunnel connection failed: 403 Forbidden'))"
+    )
+    assert runner.is_transport_failure("curl: (7) CONNECT tunnel failed, response 403")
+    # Un refus applicatif ne doit pas être confondu avec une panne de transport.
+    assert not runner.is_transport_failure("HTTP 403 Forbidden")
+    assert not runner.is_transport_failure("no match for query")
+
+    run, _ = campaign("boom")
+    data = run("--only", "MANGADEX", *FAST, "--max-unreachable", "9")
+    assert [r["verdict"] for r in data["results"]] == ["UNREACHABLE"]
+
+
+def test_no_egress_at_all_stops_the_run_instead_of_repeating_itself(campaign):
+    """Zéro réponse HTTP = environnement, pas catalogue : on s'arrête tout de suite."""
+    run, _ = campaign("boom")
+    data = run("--only", "MANGADEX,ANILIST,KITSU,SHIKIMORI,MANGAUPDATES",
+               *FAST, "--max-unreachable", "3")
+
+    assert data["aborted"], "la campagne aurait dû s'arrêter"
+    assert "pas d'accès sortant" in data["aborted"]
+    assert len(data["results"]) == 3, "les scrapers suivants ne sont pas interrogés"
+
+
+def test_unreachable_is_not_counted_as_a_failure(campaign):
+    """Le code de sortie ne doit pas accuser les scrapers d'un problème réseau."""
+    runner = _load_runner()
+    import scrapers.base as base
+    run, _ = campaign("boom")
+    data = run("--only", "MANGADEX", *FAST, "--max-unreachable", "9")
+    assert all(r["verdict"] == "UNREACHABLE" for r in data["results"])
+    # main() rend 0 : aucun ERROR / NO-MATCH / SHAPE.
+    assert not [r for r in data["results"]
+                if r["verdict"] in {"ERROR", "NO-MATCH", "SHAPE"}]

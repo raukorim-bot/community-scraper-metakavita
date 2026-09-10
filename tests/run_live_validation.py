@@ -65,6 +65,31 @@ SKIP_FILES = {"debug_dump_ann.py", "debug_dump_planetebd.py", "debug_dump_fandom
 # Codes par lesquels un site signale qu'il en a assez. Aucun n'est réessayé.
 PUSHBACK = {401, 403, 405, 409, 429, 503}
 
+# Signatures d'un échec de TRANSPORT : la requête n'a jamais atteint le site.
+# À ne surtout pas confondre avec un refus du site. Un refus est un verdict sur
+# l'adresse de sortie ou sur le scraper ; un échec de transport ne dit rien du
+# tout — ni du site, ni du code — et le rapporter comme une panne de scraper
+# envoie chercher un bug qui n'existe pas. C'est le cas typique d'un proxy
+# d'entreprise, d'un pare-feu de sortie ou d'un conteneur sans accès réseau.
+TRANSPORT_FAILURES = (
+    # Deux formulations pour un même échec : urllib3 dit « Tunnel connection
+    # failed », curl_cffi dit « CONNECT tunnel failed ». N'en retenir qu'une
+    # laissait passer la seconde dès qu'elle n'était pas enveloppée dans une
+    # ConnectionError.
+    "proxyerror", "tunnel connection failed", "connect tunnel failed",
+    "failed to perform", "max retries exceeded",
+    "connectionerror", "connecttimeout", "nameresolutionerror",
+    "failed to resolve", "temporary failure in name resolution",
+    "network is unreachable", "no route to host", "connection refused",
+    "ssl", "certificate verify failed", "curlerror", "connection reset",
+)
+
+
+def is_transport_failure(err: str) -> bool:
+    low = (err or "").casefold()
+    return any(marker in low for marker in TRANSPORT_FAILURES)
+
+
 # Marqueurs d'une interstitielle anti-bot dans un corps HTTP 200.
 CF_MARKERS = (
     "just a moment",
@@ -195,6 +220,8 @@ class Campaign:
         self.lock = threading.Lock()
         self.log: List[dict] = []
         self.current: Optional[List[Any]] = None
+        self.unreachable: Dict[str, str] = {}
+        self.http_responses = 0
 
     # -- cadence -----------------------------------------------------------
     def wait_for(self, host: str, scraper_rate: float) -> float:
@@ -245,6 +272,10 @@ class Campaign:
             "scraper": sid, "host": host, "url": url[:200], "status": status,
             "ms": round(elapsed * 1000), "waited_s": round(slept, 2), "error": err,
         })
+        if status is not None:
+            self.http_responses += 1
+        elif err and is_transport_failure(err):
+            self.unreachable.setdefault(rate_key(host), err[:160])
         if self.verbose:
             print(f"      · {status or 'ERR':>4} {host}  "
                   f"(attente {slept:.1f}s, réponse {elapsed:.1f}s)")
@@ -422,6 +453,10 @@ def parse_args(argv=None):
                    help="plafond de requêtes par scraper (défaut 15)")
     p.add_argument("--max-blocked", type=int, default=3,
                    help="nombre d'hôtes bloqués qui interrompt la campagne (défaut 3)")
+    p.add_argument("--max-unreachable", type=int, default=3,
+                   help="scrapers injoignables d'affilée, sans aucune réponse HTTP, "
+                        "qui interrompent la campagne (défaut 3) — signe que la "
+                        "machine n'a pas d'accès sortant, pas que le code est cassé")
     p.add_argument("--dry-run", action="store_true",
                    help="affiche le plan et le trafic estimé, n'émet rien")
     p.add_argument("--resume", action="store_true",
@@ -504,6 +539,7 @@ def main(argv=None) -> int:
 
     results: List[dict] = []
     aborted = None
+    unreachable_streak = 0
 
     def flush():
         report_path.write_text(json.dumps({
@@ -571,6 +607,37 @@ def main(argv=None) -> int:
         hosts = sorted({r["host"] for r in campaign.log if r["scraper"] == inst.id})
         row["hosts"] = hosts
 
+        # Toutes les requêtes de ce scraper ont échoué avant d'obtenir une
+        # réponse HTTP : c'est l'environnement, pas le scraper.
+        own = [r for r in campaign.log if r["scraper"] == inst.id]
+        never_answered = bool(own) and all(
+            r["status"] is None and is_transport_failure(r.get("error") or "")
+            for r in own
+        )
+
+        if never_answered:
+            reason = (own[-1].get("error") or "").strip()
+            row.update(verdict="UNREACHABLE", detail=f"aucune réponse HTTP — {reason[:200]}")
+            print(f"[UNREACH] {inst.id:15} {hosts} injoignable — {reason[:90]}")
+            unreachable_streak += 1
+            results.append(row)
+            flush()
+            # Rien n'est jamais parvenu à quoi que ce soit : inutile de
+            # dérouler le reste du catalogue pour réécrire la même ligne
+            # quarante fois. Ce n'est pas un verdict sur les scrapers.
+            if unreachable_streak >= args.max_unreachable and campaign.http_responses == 0:
+                aborted = (
+                    f"{unreachable_streak} scrapers d'affilée injoignables et pas "
+                    f"une seule réponse HTTP depuis le début : cette machine n'a "
+                    f"pas d'accès sortant vers les sites du catalogue. Aucun "
+                    f"verdict sur les scrapers n'est possible ici."
+                )
+                print(f"\n🛑 {aborted}")
+                break
+            time.sleep(args.gap)
+            continue
+        unreachable_streak = 0
+
         if failure and failure.startswith("BLOCKED"):
             row.update(verdict="BLOCKED", detail=failure)
             print(f"[BLOCKED] {inst.id:15} {failure}")
@@ -621,20 +688,34 @@ def main(argv=None) -> int:
     print("\n=== RÉSUMÉ ===")
     from collections import Counter
     counts = Counter(r["verdict"] for r in results)
-    for verdict in ("OK", "SHAPE", "NO-MATCH", "EXPECTED", "BLOCKED", "ERROR",
-                    "SKIP", "ABORTED"):
+    for verdict in ("OK", "SHAPE", "NO-MATCH", "EXPECTED", "BLOCKED",
+                    "UNREACHABLE", "ERROR", "SKIP", "ABORTED"):
         if counts.get(verdict):
             print(f"  {verdict:10} {counts[verdict]}")
     print(f"  requêtes émises : {len(campaign.log)}")
     print(f"  domaines bloqués: {campaign.blocked or 'aucun'}")
+    if campaign.unreachable:
+        print(f"  domaines injoignables (transport) : {len(campaign.unreachable)}")
+        for dom, why in list(campaign.unreachable.items())[:5]:
+            print(f"    {dom:22} {why[:80]}")
+    print(f"  réponses HTTP reçues : {campaign.http_responses}")
     if aborted:
         print(f"\n🛑 campagne interrompue : {aborted}")
-        print("   Attendez plusieurs heures avant de relancer, puis "
-              "`--resume` pour ne reprendre que ce qui manque.")
+        if campaign.http_responses == 0 and campaign.unreachable:
+            # Attendre ne répare pas une machine sans accès sortant : le
+            # conseil « réessayez plus tard » n'a de sens que pour un refus.
+            print("   Rien n'a atteint le réseau : ce n'est pas une question de "
+                  "cadence et attendre n'y changera rien.")
+            print("   Relancez depuis une machine ayant un accès sortant vers "
+                  "ces domaines (proxy de sortie, pare-feu, conteneur isolé).")
+        else:
+            print("   Attendez plusieurs heures avant de relancer, puis "
+                  "`--resume` pour ne reprendre que ce qui manque.")
     print(f"  rapport → {report_path}")
 
-    # Seuls ERROR / NO-MATCH / SHAPE sont des échecs du code. BLOCKED et
-    # ABORTED décrivent l'environnement réseau, pas le scraper.
+    # Seuls ERROR / NO-MATCH / SHAPE sont des échecs du code. BLOCKED,
+    # UNREACHABLE et ABORTED décrivent l'environnement réseau, pas le scraper :
+    # les compter comme des échecs ferait chercher des bugs inexistants.
     failures = sum(counts.get(v, 0) for v in ("ERROR", "NO-MATCH", "SHAPE"))
     return 1 if failures else 0
 
