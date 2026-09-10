@@ -497,21 +497,40 @@ def main(argv=None) -> int:
     report_path = Path(args.report)
 
     previous: Dict[str, dict] = {}
+    carried: Dict[str, dict] = {}
+    carried_requests: List[dict] = []
     resumed_http = 0
     if args.resume and report_path.exists():
         try:
             old = json.loads(report_path.read_text(encoding="utf-8"))
-            previous = {
-                r["id"]: r for r in old.get("results", [])
-                if r.get("id") and r.get("verdict") in {"OK", "SHAPE", "NO-MATCH"}
+            # Tout est repris, pas seulement ce qu'on saute. Le rapport est à la
+            # fois l'entrée et la sortie de `--resume` : n'y réécrire que la
+            # passe courante fait disparaître les résultats des passes
+            # précédentes dès qu'une reprise s'interrompt tôt. C'est arrivé —
+            # une passe avortée a effacé cinq scrapers validés en direct, et la
+            # reprise suivante a cru repartir de rien.
+            carried = {
+                r["id"]: r for r in old.get("results", []) if r.get("id")
             }
-            print(f"reprise : {len(previous)} scrapers déjà concluants, non réinterrogés")
+            carried_requests = list(old.get("requests") or [])
+            previous = {
+                sid: r for sid, r in carried.items()
+                if r.get("verdict") in {"OK", "SHAPE", "NO-MATCH"}
+            }
+            print(f"reprise : {len(carried)} lignes conservées, "
+                  f"{len(previous)} scrapers déjà concluants non réinterrogés")
             # Les lignes rejouées n'émettent aucune requête : sans ce report,
             # le compteur de réponses HTTP repart à zéro et le diagnostic
             # « aucun accès sortant » se déclenche sur les premiers scrapers
             # injoignables — alors que le rapport prouve le contraire.
             resumed_http = sum(
-                1 for r in old.get("requests", []) if r.get("status") is not None
+                1 for r in carried_requests if r.get("status") is not None
+            )
+            # Un rapport peut avoir perdu son journal de requêtes ; un verdict
+            # OK reste la preuve qu'une réponse HTTP est arrivée.
+            resumed_http += sum(
+                1 for r in carried.values()
+                if r.get("verdict") in {"OK", "SHAPE", "NO-MATCH", "BLOCKED"}
             )
         except Exception as exc:
             print(f"reprise impossible ({exc}) — campagne complète")
@@ -571,6 +590,12 @@ def main(argv=None) -> int:
     unreachable_streak = 0
 
     def flush():
+        # Fusion : les lignes de cette passe écrasent les homonymes, le reste
+        # est conservé. Le rapport ne peut donc que s'enrichir.
+        merged = dict(carried)
+        for row in results:
+            if row.get("id"):
+                merged[row["id"]] = row
         report_path.write_text(json.dumps({
             "policy": {
                 "floor": args.floor, "jitter": args.jitter, "gap": args.gap,
@@ -578,8 +603,8 @@ def main(argv=None) -> int:
             },
             "blocked_hosts": campaign.blocked,
             "aborted": aborted,
-            "results": results,
-            "requests": campaign.log,
+            "results": sorted(merged.values(), key=lambda r: r.get("id") or ""),
+            "requests": carried_requests + campaign.log,
         }, ensure_ascii=False, indent=2), encoding="utf-8")
 
     for path, inst in plan:

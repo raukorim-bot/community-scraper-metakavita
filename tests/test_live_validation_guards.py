@@ -289,3 +289,37 @@ def test_resume_keeps_the_evidence_that_the_network_works(campaign, tmp_path):
         "la reprise a conclu à une absence de réseau malgré un rapport qui "
         f"prouve le contraire : {data['aborted']}"
     )
+
+
+def test_an_aborted_resume_does_not_erase_the_previous_pass(campaign, tmp_path):
+    """Le rapport est entrée ET sortie de `--resume` : il ne doit qu'enrichir.
+
+    Trouvé en campagne réelle : une reprise interrompue au bout de trois
+    scrapers a réécrit le rapport avec ses seules lignes, effaçant cinq
+    scrapers validés en direct à la passe précédente. La reprise suivante a
+    donc cru repartir de presque rien — et le point de reprise, dont le rôle
+    est justement de ne pas repayer le trafic, l'avait fait perdre.
+    """
+    runner = _load_runner()
+    report = tmp_path / "report.json"
+    report.write_text(json.dumps({
+        "policy": {}, "blocked_hosts": {}, "aborted": None,
+        "results": [
+            {"id": "BEDETHEQUE", "verdict": "OK", "detail": "ok"},
+            {"id": "DECITRE", "verdict": "OK", "detail": "ok"},
+            {"id": "BNF", "verdict": "OK", "detail": "ok"},
+        ],
+        "requests": [{"scraper": "BEDETHEQUE", "host": "www.bedetheque.com",
+                      "url": "https://x/", "status": 200, "ms": 1,
+                      "waited_s": 0, "error": None}],
+    }), encoding="utf-8")
+
+    run, _ = campaign("boom")
+    runner.main(["--resume", "--only", "MANGADEX,ANILIST,KITSU,SHIKIMORI",
+                 *FAST, "--max-unreachable", "2", "--report", str(report)])
+    data = json.loads(report.read_text(encoding="utf-8"))
+
+    kept = {r["id"] for r in data["results"]}
+    assert {"BEDETHEQUE", "DECITRE", "BNF"} <= kept, (
+        f"une passe interrompue a effacé des résultats antérieurs : {kept}"
+    )
