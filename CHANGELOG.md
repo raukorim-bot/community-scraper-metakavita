@@ -1,5 +1,22 @@
 # Changelog — community-scraper-metakavita
 
+## [Unreleased] Scrin.is 0.2.0 (beta, Store — not core)
+
+* `SCRINIS` — new Store scraper (**not core**, `status: beta`) for
+  [Scrin.is](https://scrin.is) through its REST API (`/api/v1`). `scopes =
+  {series, volume}`: series match (title search, direct lookup by number / UUID /
+  series URL, priority ISBN lookup through `/volumes/lookup`), covers, and a
+  volume index for **the edition the library owns**: Scrin.is groups a series'
+  volumes into editions (standard / deluxe / omnibus, print / ebook, fr / en).
+  An owned ISBN anchors the exact group through `/volumes/lookup`; otherwise
+  language, print medium and the owned volume count rank the groups, and a tie
+  is split by the year of volume 1 or an owned ISBN. Homonym volumes of the same
+  rank resolve by owned ISBN, then year, then oldest. A multi-edition series
+  card carries no ISBN rather than one from the wrong edition.
+  `needs_api_key`: the key goes in Config under `SCRINIS_API_KEY`, sent as a
+  Bearer token; a `read` key only searches and reads, it cannot ingest.
+  Requires MetaKavita ≥ 1.7.0.
+
 ## [Unreleased] ComicVine 1.2.1
 
 * `COMICVINE` — on a long-running title (Batman, Avengers, Superman), an exact

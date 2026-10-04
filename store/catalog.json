@@ -8,7 +8,7 @@
   "repo": "https://github.com/raukorim-bot/community-scraper-metakavita",
   "default_branch": "main",
   "raw_base": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main",
-  "generated_at": "2026-09-10T16:38:18Z",
+  "generated_at": "2026-10-04T20:32:24Z",
   "quality_docs": "docs/QUALITY.md",
   "quality_audited_at": "2026-08-02",
   "install_notes": {
@@ -2767,6 +2767,77 @@
         "grade-a",
         "it",
         "no-covers"
+      ]
+    },
+    {
+      "id": "SCRINIS",
+      "file": "scrinis.py",
+      "display_name": "Scrin.is (Bêta)",
+      "version": "0.2.0",
+      "supported_types": [
+        "Book",
+        "Comic",
+        "Manga"
+      ],
+      "library_types": [
+        "Book",
+        "Comic",
+        "Manga"
+      ],
+      "method": "api",
+      "languages": [
+        "fr",
+        "en"
+      ],
+      "region": "FR",
+      "homepage": "https://scrin.is",
+      "covers": true,
+      "status": "beta",
+      "is_core": false,
+      "rate_limit": 0.5,
+      "needs_api_key": true,
+      "has_direct_id_support": true,
+      "uses_unified_scoring": true,
+      "requires_proxy": false,
+      "proxy_domains": [
+        "scrin.is",
+        "www.scrin.is"
+      ],
+      "auth": {
+        "required": true,
+        "config_key": "SCRINIS_API_KEY",
+        "kind": "api_key"
+      },
+      "summary": {
+        "fr": "Scrin.is — catalogue manga / BD / livres via l'API REST : fiche série et index des tomes, apparié à l'édition possédée (bêta).",
+        "en": "Scrin.is — manga / comics / books catalog via its REST API: series match and volume index matched to the owned edition (beta)."
+      },
+      "setup": {
+        "fr": "Clé API Scrin.is (lecture seule) → SCRINIS_API_KEY. Scraper du Magasin (pas core), en bêta.",
+        "en": "Scrin.is API key (read-only) → SCRINIS_API_KEY. Store scraper (not core), beta."
+      },
+      "warnings": [
+        "Beta — the catalog and API are still being filled before the public launch.",
+        "Read-only key: it can search and read, never ingest. The provisional 'metakavita' key is replaced at launch.",
+        "Volume index matches the library's edition (owned ISBN, then language / print / volume count / year). Without any hint it falls back to the site's primary edition."
+      ],
+      "quality": null,
+      "docs": "docs/scrapers/scrinis.md",
+      "requires_app": "1.7.0",
+      "install": {
+        "path": "scrinis.py",
+        "url": "https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main/scrinis.py",
+        "sha256": "a7ec41d83c8f644fc2f529af59a3b7132e2040d4593a84604238ffd8a2993737",
+        "bytes": 28973,
+        "target": "data/scrapers/scrinis.py"
+      },
+      "tags": [
+        "Book",
+        "Comic",
+        "Manga",
+        "api",
+        "api-key",
+        "fr"
       ]
     },
     {

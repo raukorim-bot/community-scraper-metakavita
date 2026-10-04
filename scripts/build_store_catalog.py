@@ -10,13 +10,19 @@ import ast
 import datetime
 import hashlib
 import json
+import os
 import pathlib
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 REPO = "https://github.com/raukorim-bot/community-scraper-metakavita"
-RAW = f"https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/main"
 BRANCH = "main"
+RAW = f"https://raw.githubusercontent.com/raukorim-bot/community-scraper-metakavita/{BRANCH}"
+# `CATALOG_BRANCH=dev` publie aussi les entrées `"channel": "dev"` de meta.json (bêtas),
+# téléchargées depuis la branche dev ; les autres entrées restent servies par main.
+# Sur main (défaut) ces entrées sont ignorées, même si leur `.py` y a été fusionné.
+BUILD_BRANCH = os.environ.get("CATALOG_BRANCH", "main")
+DEV_RAW = RAW.rsplit("/", 1)[0] + "/dev"
 SKIP = {"debug_dump_ann.py", "debug_dump_planetebd.py", "debug_dump_fandom.py", "conftest.py"}
 
 METHOD_LABEL = {
@@ -465,6 +471,9 @@ def main() -> int:
         if not m:
             print(f"WARNING: no meta for {sid} ({path.name})", file=sys.stderr)
             continue
+        if m.get("channel") == "dev" and BUILD_BRANCH != "dev":
+            print(f"SKIP {sid}: dev-channel scraper, not published from {BUILD_BRANCH}", file=sys.stderr)
+            continue
         types = sorted(fields.get("supported_types") or [])
         q_src = quality_raw.get(sid) or {}
         quality = None
@@ -530,7 +539,7 @@ def main() -> int:
             **requires_app_fields(m),
             "install": {
                 "path": fields["file"],
-                "url": f"{RAW}/{fields['file']}",
+                "url": f"{DEV_RAW if m.get('channel') == 'dev' else RAW}/{fields['file']}",
                 "sha256": fields["sha256"],
                 "bytes": fields["bytes"],
                 "target": f"data/scrapers/{fields['file']}",

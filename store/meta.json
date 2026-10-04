@@ -967,5 +967,31 @@
       "Périmètre de données limité — ne remplace pas AniList / ComicVine / Google Books.",
       "API live uniquement (pas de mode dump/SQLite hors-ligne)."
     ]
+  },
+  "SCRINIS": {
+    "method": "api",
+    "languages": [
+      "fr",
+      "en"
+    ],
+    "covers": true,
+    "status": "beta",
+    "homepage": "https://scrin.is",
+    "region": "FR",
+    "auth": {
+      "required": true,
+      "config_key": "SCRINIS_API_KEY",
+      "kind": "api_key"
+    },
+    "summary_fr": "Scrin.is — catalogue manga / BD / livres via l'API REST : fiche série et index des tomes, apparié à l'édition possédée (bêta).",
+    "summary_en": "Scrin.is — manga / comics / books catalog via its REST API: series match and volume index matched to the owned edition (beta).",
+    "setup_fr": "Clé API Scrin.is (lecture seule) → SCRINIS_API_KEY. Scraper du Magasin (pas core), en bêta.",
+    "setup_en": "Scrin.is API key (read-only) → SCRINIS_API_KEY. Store scraper (not core), beta.",
+    "warnings": [
+      "Beta — the catalog and API are still being filled before the public launch.",
+      "Read-only key: it can search and read, never ingest. The provisional 'metakavita' key is replaced at launch.",
+      "Volume index matches the library's edition (owned ISBN, then language / print / volume count / year). Without any hint it falls back to the site's primary edition."
+    ],
+    "requires_app": "1.7.0"
   }
 }

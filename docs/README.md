@@ -42,6 +42,7 @@ Per-scraper pages + machine catalog [`store/catalog.json`](../store/catalog.json
 | `OPENLIBRARY` | Open Library (Livres/Romans) | Book, Comic | api | N/A | — | — | [openlibrary.md](scrapers/openlibrary.md) |
 | `PLANETEBD` | Planète BD | Comic | html | Yes | A | — | [planetebd.md](scrapers/planetebd.md) |
 | `SBN` | SBN (Italia) | Book | api | No | A | — | [sbn.md](scrapers/sbn.md) |
+| `SCRINIS` | Scrin.is (Bêta) | Book, Comic, Manga | api | N/A | — | key | [scrinis.md](scrapers/scrinis.md) |
 | `SENSCRITIQUE` | SensCritique (FR) | Book, Comic | graphql | Yes | A | — | [senscritique.md](scrapers/senscritique.md) |
 | `SHIKIMORI` | Shikimori (API JSON) | Manga | api | N/A | — | — | [shikimori.md](scrapers/shikimori.md) |
 | `TAPAS` | Tapas | Manga | html | Yes | A | — | [tapas.md](scrapers/tapas.md) |

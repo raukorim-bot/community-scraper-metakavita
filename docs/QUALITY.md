@@ -53,6 +53,7 @@ Use this page to **pick a scraper**. The machine catalog [`store/catalog.json`](
 | `OPENLIBRARY` | Book, Comic | — | — | N/A | — | — | — |
 | `PLANETEBD` | Comic | A | 100 | Yes | — | — | FR BD + comics — very complete payload. |
 | `SBN` | Book | A | 97 | No | cover_url, summary | — | Italian catalog — no covers. |
+| `SCRINIS` | Book, Comic, Manga | — | — | N/A | — | key | — |
 | `SENSCRITIQUE` | Book, Comic | A | 100 | Yes | — | — | FR Book/Comic — GraphQL, covers OK. |
 | `SHIKIMORI` | Manga | — | — | N/A | — | — | — |
 | `TAPAS` | Manga | A | 98 | Yes | summary, year | — | Manhwa/webcomics — covers OK; public HTML lacks summary/year. |
@@ -66,7 +67,7 @@ Use this page to **pick a scraper**. The machine catalog [`store/catalog.json`](
 
 **No / provider limit (8):** `BNE`, `BNF`, `DNB`, `KB`, `LOC`, `NDL`, `SBN`, `TEBEOSFERA`
 
-**Not verified (17):** `ANILIST`, `BDTHEQUE`, `BEDETHEQUE`, `COMICVINE`, `GCD`, `GOOGLEBOOKS`, `HARDCOVER`, `ISBNDB`, `KITSU`, `MAL`, `MANGABAKA`, `MANGADEX`, `MANGANEWS`, `MANGAUPDATES`, `NOVELUPDATES`, `OPENLIBRARY`, `SHIKIMORI`
+**Not verified (18):** `ANILIST`, `BDTHEQUE`, `BEDETHEQUE`, `COMICVINE`, `GCD`, `GOOGLEBOOKS`, `HARDCOVER`, `ISBNDB`, `KITSU`, `MAL`, `MANGABAKA`, `MANGADEX`, `MANGANEWS`, `MANGAUPDATES`, `NOVELUPDATES`, `OPENLIBRARY`, `SCRINIS`, `SHIKIMORI`
 
 ## Suggestions by need
 
@@ -122,6 +123,7 @@ Use this page to **pick a scraper**. The machine catalog [`store/catalog.json`](
 | `OPENLIBRARY` | — | — | — |
 | `PLANETEBD` | — | — | tags, alternative_titles |
 | `SBN` | cover_url, summary | — | isbn, tags, alternative_titles, status |
+| `SCRINIS` | — | — | — |
 | `SENSCRITIQUE` | — | — | tags, alternative_titles, status |
 | `SHIKIMORI` | — | — | — |
 | `TAPAS` | summary, year | — | isbn, publisher, tags, alternative_titles, status |
